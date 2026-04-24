@@ -1,0 +1,209 @@
+"use client"
+
+import { useRef } from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import {
+  Users,
+  Headphones,
+  BarChart2,
+  ArrowRight,
+  Shield,
+  Target,
+  LineChart,
+  Sparkles,
+} from "lucide-react"
+
+const reasons = [
+  {
+    icon: Users,
+    title: "Dedicated Relationship Manager",
+    description:
+      "Your personal point of contact who understands your brand, resolves queries, and ensures seamless coordination.",
+  },
+  {
+    icon: Headphones,
+    title: "E-commerce Business Expert",
+    description:
+      "An expert who manages all your platform accounts and optimizes performance across every marketplace.",
+  },
+  {
+    icon: BarChart2,
+    title: "Monthly Financial Analysis",
+    description:
+      "Get regular reports that clearly show your profit, loss, ad spend, and overall business performance.",
+  },
+]
+
+const advantages = [
+  {
+    icon: Sparkles,
+    title: "Smart & Strategic Insights",
+    description: "Data-driven pricing strategy, competition analysis, and sales forecasting.",
+  },
+  {
+    icon: Target,
+    title: "Platform-Specific Expertise",
+    description: "Dedicated support tailored to Meesho, Flipkart, Amazon, and Myntra.",
+  },
+  {
+    icon: Shield,
+    title: "Transparent Financial Tracking",
+    description: "Track settlements, catch wrong commissions, identify illegal deductions.",
+  },
+  {
+    icon: LineChart,
+    title: "Proven Profit Techniques",
+    description: "Weekend optimization, discount strategy, and real-time numbers clarity.",
+  },
+]
+
+const reasonCardVariants = {
+  hidden: { opacity: 0, x: 60, rotateY: 5 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    rotateY: 0,
+    transition: {
+      delay: i * 0.15,
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+}
+
+export function WhyUs() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  })
+  const decorY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"])
+
+  return (
+    <section id="why-us" className="py-20 lg:py-32 relative overflow-hidden" ref={sectionRef}>
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <motion.div style={{ y: decorY }} className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <motion.div style={{ y: decorY }} className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      </div>
+
+      <div className="container mx-auto px-4 lg:px-8">
+        {/* Main Reasons */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 lg:mb-32">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-4"
+            >
+              Why Choose Us
+            </motion.span>
+            <h2 className="text-3xl lg:text-5xl font-bold font-display mb-6 text-balance">
+              More Than a Service —{" "}
+              <span className="text-primary">A Success Partner!</span>
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 text-pretty">
+              With a mission to help online sellers maximize profits and scale smartly,
+              Speed Ecom Solution brings together strategy, technology, and support under one roof.
+            </p>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Button asChild size="lg" className="rounded-full group">
+                <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
+                  Get Started Today
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          <div className="space-y-6">
+            {reasons.map((reason, index) => (
+              <motion.div
+                key={reason.title}
+                custom={index}
+                variants={reasonCardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                whileHover={{ x: 8, transition: { duration: 0.2 } }}
+                className="flex gap-5 p-6 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-lg transition-all cursor-default"
+              >
+                <div className="shrink-0">
+                  <motion.div
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                    className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center"
+                  >
+                    <reason.icon className="w-6 h-6" />
+                  </motion.div>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs font-bold text-primary">0{index + 1}</span>
+                    <h3 className="font-semibold font-display text-foreground">{reason.title}</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{reason.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Advantages Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-12"
+        >
+          <h3 className="text-2xl lg:text-4xl font-bold font-display mb-4">
+            Advantages of Choosing Us
+          </h3>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Helping online sellers maximize profit, minimize losses, and grow strategically
+            on platforms like Meesho, Flipkart, and Amazon.
+          </p>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {advantages.map((advantage, index) => (
+            <motion.div
+              key={advantage.title}
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className="group text-center p-8 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-xl transition-all"
+            >
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 text-primary mb-5"
+              >
+                <advantage.icon className="w-7 h-7" />
+              </motion.div>
+              <h4 className="font-semibold font-display text-foreground mb-2 group-hover:text-primary transition-colors">
+                {advantage.title}
+              </h4>
+              <p className="text-sm text-muted-foreground">{advantage.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
