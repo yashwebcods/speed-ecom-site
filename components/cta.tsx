@@ -16,7 +16,7 @@ export function CTA() {
   const bgOpacity = useTransform(scrollYProgress, [0, 0.3], [0.5, 1])
 
   return (
-    <section className="py-20 lg:py-32 relative overflow-hidden bg-primary" ref={sectionRef}>
+    <section className="py-12 lg:py-32 relative overflow-hidden bg-primary" ref={sectionRef}>
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-30">
         <motion.div
@@ -56,8 +56,8 @@ export function CTA() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-3xl sm:text-4xl lg:text-6xl font-bold font-display text-white mb-6 text-balance"
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] as any }}
+            className="text-2xl sm:text-4xl lg:text-6xl font-bold font-display text-white mb-4 text-balance leading-tight"
           >
             Struggling With Online Business Losses?{" "}
             <span className="text-accent">Let Us Fix It!</span>
@@ -68,7 +68,7 @@ export function CTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="text-lg lg:text-xl text-white/80 mb-10 max-w-2xl mx-auto text-pretty"
+            className="text-base lg:text-xl text-white/80 mb-8 max-w-2xl mx-auto text-pretty"
           >
             We help e-commerce sellers solve cash flow, shipment, return, and settlement
             issues across platforms like Meesho, Amazon, Flipkart, and more.
@@ -81,11 +81,11 @@ export function CTA() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-primary hover:bg-white/90 rounded-full px-8 group"
+                className="bg-white text-primary hover:bg-white/90 rounded-full px-8 group h-12 lg:h-11 w-full"
               >
                 <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
                   Book Free Demo
@@ -93,14 +93,14 @@ export function CTA() {
                 </Link>
               </Button>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
               <Button
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-white/30 text-primary hover:bg-white/10 rounded-full px-8"
+                className="border-white/30 text-white hover:bg-white/10 rounded-full px-8 h-12 lg:h-11 w-full"
               >
-                <Link href="#contact">Contact Us</Link>
+                <Link href="tel:+919913315809">Contact Us</Link>
               </Button>
             </motion.div>
           </motion.div>

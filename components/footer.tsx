@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
+import Image from "next/image"
+import { motion, Variants } from "framer-motion"
 import { TrendingUp } from "lucide-react"
 
 const quickLinks = [
@@ -14,7 +15,7 @@ const quickLinks = [
 
 const platforms = ["Meesho", "Flipkart", "Amazon", "Myntra", "JioMart", "GlowRoad"]
 
-const columnVariants = {
+const columnVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
     opacity: 1,
@@ -22,7 +23,7 @@ const columnVariants = {
     transition: {
       delay: i * 0.12,
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as any,
     },
   }),
 }
@@ -42,16 +43,19 @@ export function Footer() {
             className="sm:col-span-2 lg:col-span-1"
           >
             <Link href="/" className="inline-flex items-center gap-2 mb-5">
-              <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-                className="w-10 h-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center"
-              >
-                <TrendingUp className="w-5 h-5" />
-              </motion.div>
-              <div className="flex flex-col">
-                <span className="text-lg font-bold font-display leading-none">Speed E-Com</span>
-                <span className="text-xs text-background/60">Solution</span>
+              <div className="relative w-10 h-10">
+                <Image
+                  src="/logo_light.png"
+                  alt="Speed E-Com Logo"
+                  fill
+                  className="object-contain dark:hidden"
+                />
+                <Image
+                  src="/logo_dark.png"
+                  alt="Speed E-Com Logo"
+                  fill
+                  className="object-contain hidden dark:block"
+                />
               </div>
             </Link>
             <p className="text-sm text-background/70 mb-5 leading-relaxed">

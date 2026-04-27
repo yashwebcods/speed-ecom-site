@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, Variants } from "framer-motion"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
@@ -59,7 +59,7 @@ const advantages = [
   },
 ]
 
-const reasonCardVariants = {
+const reasonCardVariants: Variants = {
   hidden: { opacity: 0, x: 60, rotateY: 5 },
   visible: (i: number) => ({
     opacity: 1,
@@ -68,7 +68,7 @@ const reasonCardVariants = {
     transition: {
       delay: i * 0.15,
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as any,
     },
   }),
 }
@@ -82,7 +82,7 @@ export function WhyUs() {
   const decorY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"])
 
   return (
-    <section id="why-us" className="py-20 lg:py-32 relative overflow-hidden" ref={sectionRef}>
+    <section id="why-us" className="py-12 lg:py-32 relative overflow-hidden" ref={sectionRef}>
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <motion.div style={{ y: decorY }} className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
@@ -96,7 +96,7 @@ export function WhyUs() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as any }}
           >
             <motion.span
               initial={{ opacity: 0, scale: 0.8 }}
@@ -107,11 +107,11 @@ export function WhyUs() {
             >
               Why Choose Us
             </motion.span>
-            <h2 className="text-3xl lg:text-5xl font-bold font-display mb-6 text-balance">
+            <h2 className="text-2xl lg:text-5xl font-bold font-display mb-4 text-balance">
               More Than a Service —{" "}
               <span className="text-primary">A Success Partner!</span>
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 text-pretty">
+            <p className="text-sm lg:text-lg text-muted-foreground mb-6 text-pretty">
               With a mission to help online sellers maximize profits and scale smartly,
               Speed Ecom Solution brings together strategy, technology, and support under one roof.
             </p>
@@ -119,7 +119,7 @@ export function WhyUs() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Button asChild size="lg" className="rounded-full group">
+              <Button asChild size="lg" className="rounded-full group h-12 lg:h-11 w-full sm:w-auto">
                 <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
                   Get Started Today
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -138,23 +138,23 @@ export function WhyUs() {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-50px" }}
                 whileHover={{ x: 8, transition: { duration: 0.2 } }}
-                className="flex gap-5 p-6 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-lg transition-all cursor-default"
+                className="flex gap-4 p-4 lg:p-6 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-lg transition-all cursor-default"
               >
                 <div className="shrink-0">
                   <motion.div
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
-                    className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center"
+                    className="w-10 lg:w-12 h-10 lg:h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center"
                   >
-                    <reason.icon className="w-6 h-6" />
+                    <reason.icon className="w-5 lg:w-6 h-5 lg:h-6" />
                   </motion.div>
                 </div>
                 <div>
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center gap-2 mb-1">
                     <span className="text-xs font-bold text-primary">0{index + 1}</span>
-                    <h3 className="font-semibold font-display text-foreground">{reason.title}</h3>
+                    <h4 className="font-bold text-foreground text-base lg:text-lg">{reason.title}</h4>
                   </div>
-                  <p className="text-sm text-muted-foreground">{reason.description}</p>
+                  <p className="text-xs lg:text-sm text-muted-foreground leading-relaxed">{reason.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -166,10 +166,10 @@ export function WhyUs() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as any }}
           className="text-center mb-12"
         >
-          <h3 className="text-2xl lg:text-4xl font-bold font-display mb-4">
+          <h3 className="text-xl lg:text-4xl font-bold font-display mb-3">
             Advantages of Choosing Us
           </h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -185,21 +185,21 @@ export function WhyUs() {
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] as any }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group text-center p-8 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-xl transition-all"
+              className="group text-center p-6 lg:p-8 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-xl transition-all"
             >
               <motion.div
                 whileHover={{ scale: 1.2, rotate: 10 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 text-primary mb-5"
+                className="inline-flex items-center justify-center w-12 lg:w-14 h-12 lg:h-14 rounded-2xl bg-primary/10 text-primary mb-4"
               >
-                <advantage.icon className="w-7 h-7" />
+                <advantage.icon className="w-6 lg:w-7 h-6 lg:h-7" />
               </motion.div>
-              <h4 className="font-semibold font-display text-foreground mb-2 group-hover:text-primary transition-colors">
+              <h4 className="font-semibold font-display text-foreground mb-2 group-hover:text-primary transition-colors text-sm lg:text-base">
                 {advantage.title}
               </h4>
-              <p className="text-sm text-muted-foreground">{advantage.description}</p>
+              <p className="text-[11px] lg:text-sm text-muted-foreground">{advantage.description}</p>
             </motion.div>
           ))}
         </div>

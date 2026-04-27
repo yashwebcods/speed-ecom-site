@@ -21,19 +21,19 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/logo_light.png',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/logo_dark.png',
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
+        url: '/logo_dark.png',
         type: 'image/svg+xml',
       },
     ],
-    apple: '/apple-icon.png',
+    apple: '/logo_dark.png',
   },
 }
 
@@ -43,8 +43,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} bg-background overflow-x-hidden`}>
-      <body className="font-sans antialiased overflow-x-hidden">
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} bg-background overflow-x-clip`}>
+      <body className="font-sans antialiased overflow-x-clip">
         <SmoothScroll>
           {children}
           {process.env.NODE_ENV === 'production' && <Analytics />}

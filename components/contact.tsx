@@ -42,14 +42,14 @@ const contactCardVariants = {
     transition: {
       delay: 0.2 + i * 0.1,
       duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as any,
     },
   }),
 }
 
 export function Contact() {
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-card">
+    <section id="contact" className="py-12 lg:py-32 bg-card">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Left Content */}
@@ -57,7 +57,7 @@ export function Contact() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as any }}
           >
             <motion.span
               initial={{ opacity: 0, scale: 0.8 }}
@@ -68,11 +68,11 @@ export function Contact() {
             >
               Contact Us
             </motion.span>
-            <h2 className="text-3xl lg:text-5xl font-bold font-display mb-6 text-balance">
+            <h2 className="text-2xl lg:text-5xl font-bold font-display mb-4 text-balance leading-tight">
               Get in Touch With{" "}
               <span className="text-primary">Speed E-Com</span>
             </h2>
-            <p className="text-lg text-muted-foreground mb-10 text-pretty">
+            <p className="text-sm lg:text-lg text-muted-foreground mb-8 text-pretty">
               If you&apos;ve faced problems in your online business like cash flow issues,
               settlement delays, or high shipping charges, we&apos;ve got you covered.
               Our experts are here to provide complete support from start to finish.
@@ -132,7 +132,7 @@ export function Contact() {
             initial={{ opacity: 0, x: 60, rotateY: 5 }}
             whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] as any }}
             className="flex items-center"
           >
             <div className="w-full p-8 lg:p-12 bg-primary rounded-3xl text-white relative overflow-hidden">
@@ -154,7 +154,7 @@ export function Contact() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="text-2xl lg:text-3xl font-bold font-display mb-4 text-balance"
+                  className="text-xl lg:text-3xl font-bold font-display mb-3 text-balance leading-tight"
                 >
                   Enough Talk, Let&apos;s Grow Your Online Business Together!
                 </motion.h3>
@@ -176,11 +176,11 @@ export function Contact() {
                   transition={{ duration: 0.5, delay: 0.6 }}
                   className="flex flex-col sm:flex-row gap-4"
                 >
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
                     <Button
                       asChild
                       size="lg"
-                      className="bg-white text-primary hover:bg-white/90 rounded-full px-8 group"
+                      className="bg-white text-primary hover:bg-white/90 rounded-full px-8 group h-12 lg:h-11 w-full"
                     >
                       <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
                         Book Free Demo
@@ -188,12 +188,12 @@ export function Contact() {
                       </Link>
                     </Button>
                   </motion.div>
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
                     <Button
                       asChild
                       variant="outline"
                       size="lg"
-                      className="border-white/30 text-white hover:bg-white/10 rounded-full px-8"
+                      className="border-white/30 text-white hover:bg-white/10 rounded-full px-8 h-12 lg:h-11 w-full"
                     >
                       <Link href="tel:+919913315809">Call Now</Link>
                     </Button>

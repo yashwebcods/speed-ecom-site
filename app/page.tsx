@@ -19,7 +19,7 @@ export default function Home() {
       <LoadingScreen />
       <ScrollProgress />
       <Header />
-      <main>
+      <main className="w-full overflow-x-clip">
         <Hero />
         <Services />
         <WhyUs />

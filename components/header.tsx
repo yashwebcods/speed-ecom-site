@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Menu, X, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
 
 const navLinks = [
@@ -51,19 +52,14 @@ export function Header() {
             transition={{ duration: 0.5 }}
           >
             <Link href="/" className="flex items-center gap-2 group">
-              <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-                className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground"
-              >
-                <TrendingUp className="w-5 h-5" />
-                <div className="absolute inset-0 rounded-xl bg-primary opacity-0 group-hover:opacity-20 transition-opacity" />
-              </motion.div>
-              <div className="flex flex-col">
-                <span className="text-lg font-bold font-display text-foreground leading-none">
-                  Speed E-Com
-                </span>
-                <span className="text-xs text-muted-foreground">Solution</span>
+              <div className="relative w-40 h-10 lg:w-48 lg:h-12">
+                <Image
+                  src="/navbar.png"
+                  alt="Speed E-Com Logo"
+                  fill
+                  className="object-contain object-left"
+                  priority
+                />
               </div>
             </Link>
           </motion.div>
