@@ -193,7 +193,7 @@ export function Contact() {
                       asChild
                       variant="outline"
                       size="lg"
-                      className="border-white/30 text-white hover:bg-white/10 rounded-full px-8 h-12 lg:h-11 w-full"
+                      className="border-white/30 text-primary hover:bg-white/10 hover:text-white rounded-full px-8 h-12 lg:h-11 w-full"
                     >
                       <Link href="tel:+919913315809">Call Now</Link>
                     </Button>

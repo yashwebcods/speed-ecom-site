@@ -13,6 +13,8 @@ import {
   Zap,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { ThreeDCardIcon } from "@/components/three-d-icon"
+
 
 const services = [
   {
@@ -148,9 +150,10 @@ function MobileServiceCard({ service, index, scrollYProgress }: {
             {service.description}
           </p>
         </div>
-        <div className="absolute -bottom-4 -right-4 opacity-10">
-          <service.icon className="w-28 h-28" />
+        <div className="absolute -bottom-6 -right-6 opacity-20">
+          <ThreeDCardIcon index={index} color={service.color} />
         </div>
+
       </div>
     </motion.div>
   );
@@ -226,12 +229,13 @@ export function Services() {
                 <Card className="group h-full hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 border-border hover:border-primary/20 hover:-translate-y-1">
                   <CardContent className="p-6 lg:p-8 flex flex-col h-full">
                     <motion.div
-                      whileHover={{ rotate: [0, -10, 10, 0], scale: 1.15 }}
+                      whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.4 }}
-                      className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${service.color} mb-5`}
+                      className="mb-5"
                     >
-                      <service.icon className="w-6 h-6" />
+                      <ThreeDCardIcon index={services.indexOf(service)} color={service.color} />
                     </motion.div>
+
                     <h3 className="text-lg font-semibold font-display mb-3 text-foreground group-hover:text-primary transition-colors">
                       {service.title}
                     </h3>

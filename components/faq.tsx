@@ -100,7 +100,7 @@ export function FAQ() {
                 href="tel:+919913315809"
                 className="inline-flex items-center text-sm font-medium text-primary hover:underline"
               >
-                Call us at +91 99133 15809
+              
               </a>
             </motion.div>
           </motion.div>
