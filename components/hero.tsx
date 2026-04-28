@@ -50,7 +50,7 @@ const floatingVariants: Variants = {
 
 export function Hero() {
   return (
-    <section className="relative lg:min-h-screen flex items-center pt-24 pb-10 sm:pt-32 sm:pb-16 lg:pt-0 lg:pb-0 overflow-hidden">
+    <section className="relative lg:min-h-screen flex items-center pt-24 pb-4 sm:pt-32 sm:pb-8 lg:pt-0 lg:pb-0 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
         <motion.div
@@ -66,7 +66,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_0%,transparent_49%,rgba(0,0,0,0.02)_50%,transparent_51%,transparent_100%)] bg-[size:80px_80px]" />
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 py-12 lg:py-20">
+      <div className="container mx-auto px-4 lg:px-8 py-8 lg:py-16">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Content */}
           <motion.div
