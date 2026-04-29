@@ -151,8 +151,9 @@ function MobileServiceCard({ service, index, scrollYProgress }: {
           </p>
         </div>
         <div className="absolute -bottom-6 -right-6 opacity-20">
-          <ThreeDCardIcon index={index} color={service.color} />
+          <ThreeDCardIcon title={service.title} color={service.color} />
         </div>
+
 
       </div>
     </motion.div>
@@ -170,10 +171,18 @@ export function Services() {
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
 
-  // Transform scroll progress to x translation
-  // We start moving after 10% of the section is scrolled and finish at 90%
-  // This helps ensure the "lock" is solid.
+  // Transform scroll progress to x translation for mobile
   const xTransform = useTransform(scrollYProgress, [0, 1], ["0vw", "-698vw"])
+
+  // Transform scroll progress to y translation for desktop counter effect
+  // 3 rows total. Translate by -66.666% to reach the 3rd row.
+  const desktopYTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-66.666%"])
+
+  // Group services into chunks of 3 for the desktop rows
+  const desktopRows = [];
+  for (let i = 0; i < services.length; i += 3) {
+    desktopRows.push(services.slice(i, i + 3));
+  }
 
   return (
     <section id="services" className="bg-card relative" ref={sectionRef}>
@@ -188,92 +197,73 @@ export function Services() {
         We make it very tall so the user has to scroll a lot, 
         driving the horizontal animation.
       */}
-      <div ref={scrollContainerRef} className="h-[500vh] sm:h-auto sm:py-12 lg:py-32 relative">
-        <div className="hidden sm:block container mx-auto px-4 lg:px-8 pt-20 sm:pt-0">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as any }}
-            className="text-center max-w-3xl mx-auto mb-16 sm:mb-16 w-full min-w-0"
-          >
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-4"
-            >
+      <div ref={scrollContainerRef} className="h-[300vh] relative">
+        <div className="sticky top-0 h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden z-10 pt-16">
+          
+          {/* Shared Header */}
+          <div className="w-full text-center px-4 mb-8 sm:mb-12 max-w-3xl mx-auto">
+            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs sm:text-sm font-semibold rounded-full mb-3">
               Premium Services
-            </motion.span>
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold font-display mb-4 text-balance">
-              Smart E-Commerce Support for {" "}
-              <span className="text-primary">Sharp Sellers</span>
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold font-display text-balance leading-tight mb-4">
+              Smart E-Commerce Support for <span className="text-primary">Sharp Sellers</span>
             </h2>
-            <p className="text-sm sm:text-lg text-muted-foreground text-pretty mb-8 sm:mb-0">
+            <p className="hidden sm:block text-sm sm:text-lg text-muted-foreground text-pretty">
               Choose only what grows your business. Our comprehensive suite of services
               is designed to maximize your profits and minimize losses.
             </p>
-          </motion.div>
-
-          {/* Desktop Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {services.map((service) => (
-              <motion.div key={service.title} variants={itemVariants}>
-                <Card className="group h-full hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 border-border hover:border-primary/20 hover:-translate-y-1">
-                  <CardContent className="p-6 lg:p-8 flex flex-col h-full">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.4 }}
-                      className="mb-5"
-                    >
-                      <ThreeDCardIcon index={services.indexOf(service)} color={service.color} />
-                    </motion.div>
-
-                    <h3 className="text-lg font-semibold font-display mb-3 text-foreground group-hover:text-primary transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
-                      {service.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Mobile Scroll-Linked Horizontal Carousel */}
-        <div className="sm:hidden h-[100dvh] sticky top-0 flex flex-col items-start justify-center overflow-hidden z-10">
-          {/* Section Header (re-rendered inside sticky container for mobile only) */}
-          <div className="w-full text-center px-4 mb-10">
-            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-3">
-              Premium Services
-            </span>
-            <h2 className="text-xl font-bold font-display text-balance leading-tight">
-              Smart E-Commerce Support for <span className="text-primary">Sharp Sellers</span>
-            </h2>
           </div>
 
-          <motion.div
-            className="flex gap-4 px-6"
-            style={{ x: xTransform, width: "max-content" }}
-          >
-            {services.map((service, index) => (
-              <MobileServiceCard
-                key={service.title}
-                service={service}
-                index={index}
-                scrollYProgress={scrollYProgress}
-              />
-            ))}
-          </motion.div>
+          {/* Desktop Speedometer Carousel */}
+          <div className="hidden sm:block w-full max-w-7xl mx-auto px-4 lg:px-8">
+            <div 
+              className="h-[300px] lg:h-[340px] overflow-hidden relative" 
+              style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)' }}
+            >
+              <motion.div 
+                style={{ y: desktopYTransform }}
+                className="flex flex-col"
+              >
+                {desktopRows.map((row, rowIndex) => (
+                  <div key={rowIndex} className="grid grid-cols-3 gap-6 h-[300px] lg:h-[340px] shrink-0 py-4">
+                    {row.map((service) => (
+                      <Card key={service.title} className="group h-full hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 border-border hover:border-primary/20 bg-card/50 backdrop-blur-sm">
+                        <CardContent className="p-6 lg:p-8 flex flex-col h-full">
+                          <div className="mb-5">
+                            <ThreeDCardIcon title={service.title} color={service.color} />
+                          </div>
+                          <h3 className="text-lg font-semibold font-display mb-3 text-foreground group-hover:text-primary transition-colors">
+                            {service.title}
+                          </h3>
+                          <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
+                            {service.description}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Mobile Scroll-Linked Horizontal Carousel */}
+          <div className="sm:hidden w-full overflow-hidden">
+            <motion.div
+              className="flex gap-4 px-6"
+              style={{ x: xTransform, width: "max-content" }}
+            >
+              {services.map((service, index) => (
+                <MobileServiceCard
+                  key={service.title}
+                  service={service}
+                  index={index}
+                  scrollYProgress={scrollYProgress}
+                />
+              ))}
+            </motion.div>
+          </div>
+
         </div>
       </div>
     </section>

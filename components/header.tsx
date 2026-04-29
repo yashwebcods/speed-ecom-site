@@ -91,9 +91,12 @@ export function Header() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="hidden lg:flex items-center gap-4"
           >
-            <Link href="tel:+919913315809" className="text-sm font-medium text-muted-foreground hover:text-foreground">
-              +91 99133 15809
-            </Link>
+            <Button asChild variant="outline" className="rounded-full px-6 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 transition-all duration-300">
+              <Link href="/login">
+                Seller Login
+              </Link>
+            </Button>
+
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button asChild className="rounded-full px-6">
                 <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
@@ -169,9 +172,12 @@ export function Header() {
                   transition={{ delay: 0.3 }}
                   className="flex flex-col gap-3 pt-4 border-t border-border"
                 >
-                  <Link href="tel:+919913315809" className="text-sm font-medium text-muted-foreground">
-                    +91 99133 15809
-                  </Link>
+                  <Button asChild variant="outline" className="rounded-full hover:bg-yellow-400 hover:text-black hover:border-yellow-400 transition-all">
+                    <Link href="/login">
+                      Seller Login
+                    </Link>
+                  </Button>
+
                   <Button asChild className="rounded-full">
                     <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
                       Book Free Demo
