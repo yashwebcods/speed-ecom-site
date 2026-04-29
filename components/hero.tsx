@@ -54,17 +54,8 @@ export function Hero() {
     <section className="relative lg:min-h-screen flex items-center pt-24 pb-10 sm:pt-32 sm:pb-16 lg:pt-0 lg:pb-0 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.15, 0.1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.12, 0.1] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_0%,transparent_49%,rgba(0,0,0,0.02)_50%,transparent_51%,transparent_100%)] bg-[size:80px_80px]" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 py-12 lg:py-20">
@@ -212,16 +203,8 @@ export function Hero() {
         </div>
 
         {/* Decorative Elements */}
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
-          transition={{ duration: 5, repeat: Infinity }}
-          className="absolute -z-10 -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-3xl blur-2xl"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.25, 0.2] }}
-          transition={{ duration: 6, repeat: Infinity, delay: 1 }}
-          className="absolute -z-10 -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-3xl blur-2xl"
-        />
+        <div className="absolute -z-10 -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-3xl blur-2xl" />
+        <div className="absolute -z-10 -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-3xl blur-2xl" />
       </div>
     </section>
   )

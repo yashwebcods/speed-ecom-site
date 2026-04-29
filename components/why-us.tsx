@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useScroll, useTransform, Variants } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
@@ -60,11 +60,10 @@ const advantages = [
 ]
 
 const reasonCardVariants: Variants = {
-  hidden: { opacity: 0, x: 60, rotateY: 5 },
+  hidden: { opacity: 0, x: 60 },
   visible: (i: number) => ({
     opacity: 1,
     x: 0,
-    rotateY: 0,
     transition: {
       delay: i * 0.15,
       duration: 0.6,
@@ -75,18 +74,13 @@ const reasonCardVariants: Variants = {
 
 export function WhyUs() {
   const sectionRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  })
-  const decorY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"])
 
   return (
     <section id="why-us" className="py-12 lg:py-32 relative overflow-hidden" ref={sectionRef}>
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <motion.div style={{ y: decorY }} className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <motion.div style={{ y: decorY }} className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       </div>
 
       <div className="container mx-auto px-4 lg:px-8">
@@ -141,13 +135,9 @@ export function WhyUs() {
                 className="flex gap-4 p-4 lg:p-6 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-lg transition-all cursor-default"
               >
                 <div className="shrink-0">
-                  <motion.div
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                    className="w-10 lg:w-12 h-10 lg:h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center"
-                  >
+                <div className="w-10 lg:w-12 h-10 lg:h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                     <reason.icon className="w-5 lg:w-6 h-5 lg:h-6" />
-                  </motion.div>
+                  </div>
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">

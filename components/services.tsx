@@ -102,21 +102,10 @@ const itemVariants: Variants = {
   },
 }
 
-function MobileServiceCard({ service, index, scrollYProgress }: {
+function MobileServiceCard({ service, index }: {
   service: typeof services[0],
   index: number,
-  scrollYProgress: any
 }) {
-  // Focus point calculation: each card is centered at a specific progress
-  const focusPoint = (index * 86 - 3) / 700;
-
-  // Calculate how far the current scroll is from this card's focus point
-  const distance = useTransform(scrollYProgress, (val: number) => Math.abs(val - focusPoint));
-
-  // Map distance to scale and opacity
-  const scale = useTransform(distance, [0, 0.15], [1.05, 0.9]);
-  const opacity = useTransform(distance, [0, 0.2], [1, 0.6]);
-
   let bgClass = "bg-card";
   let titleClass = "text-foreground group-hover:text-primary";
   let descClass = "text-muted-foreground";
@@ -132,10 +121,7 @@ function MobileServiceCard({ service, index, scrollYProgress }: {
   }
 
   return (
-    <motion.div
-      style={{ scale, opacity }}
-      className="w-[82vw] flex-shrink-0"
-    >
+    <div className="w-[82vw] flex-shrink-0">
       <div className={`h-[250px] rounded-2xl p-5 ${bgClass} shadow-xl border border-border/10 flex flex-col relative overflow-hidden`}>
         <div className="mb-4">
           <span className="inline-flex px-3 py-1 bg-white/10 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider rounded border border-white/10">
@@ -153,10 +139,8 @@ function MobileServiceCard({ service, index, scrollYProgress }: {
         <div className="absolute -bottom-6 -right-6 opacity-20">
           <ThreeDCardIcon title={service.title} color={service.color} />
         </div>
-
-
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -199,7 +183,7 @@ export function Services() {
       */}
       <div ref={scrollContainerRef} className="h-[300vh] relative">
         <div className="sticky top-0 h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden z-10 pt-16">
-          
+
           {/* Shared Header */}
           <div className="w-full text-center px-4 mb-8 sm:mb-12 max-w-3xl mx-auto">
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs sm:text-sm font-semibold rounded-full mb-3">
@@ -216,18 +200,18 @@ export function Services() {
 
           {/* Desktop Speedometer Carousel */}
           <div className="hidden sm:block w-full max-w-7xl mx-auto px-4 lg:px-8">
-            <div 
-              className="h-[300px] lg:h-[340px] overflow-hidden relative" 
+            <div
+              className="h-[300px] lg:h-[340px] overflow-hidden relative"
               style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)' }}
             >
-              <motion.div 
+              <motion.div
                 style={{ y: desktopYTransform }}
                 className="flex flex-col"
               >
                 {desktopRows.map((row, rowIndex) => (
                   <div key={rowIndex} className="grid grid-cols-3 gap-6 h-[300px] lg:h-[340px] shrink-0 py-4">
                     {row.map((service) => (
-                      <Card key={service.title} className="group h-full hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 border-border hover:border-primary/20 bg-card/50 backdrop-blur-sm">
+                      <Card key={service.title} className="group h-full hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 border-border hover:border-primary/20 bg-card/50">
                         <CardContent className="p-6 lg:p-8 flex flex-col h-full">
                           <div className="mb-5">
                             <ThreeDCardIcon title={service.title} color={service.color} />
@@ -258,7 +242,6 @@ export function Services() {
                   key={service.title}
                   service={service}
                   index={index}
-                  scrollYProgress={scrollYProgress}
                 />
               ))}
             </motion.div>

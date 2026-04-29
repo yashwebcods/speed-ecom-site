@@ -29,11 +29,10 @@ const testimonials = [
 ]
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 60, rotateX: 10 },
+  hidden: { opacity: 0, y: 60 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    rotateX: 0,
     transition: {
       delay: i * 0.15,
       duration: 0.7,

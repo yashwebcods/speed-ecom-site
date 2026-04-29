@@ -39,8 +39,8 @@ export function Header() {
       animate={{ y: isHidden ? -100 : 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-sm"
-          : "bg-background/50 backdrop-blur-md border-b border-transparent"
+        ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-sm"
+        : "bg-background/50 backdrop-blur-md border-b border-transparent"
         }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
@@ -139,6 +139,20 @@ export function Header() {
           </motion.button>
         </div>
 
+        {/* Row 2: Mobile CTAs (Only visible on mobile) */}
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex lg:hidden items-center gap-3 pb-4"
+        >
+          <Button asChild variant="outline" className="flex-1 rounded-xl h-11 text-xs font-bold border-border/50 hover:bg-yellow-400 hover:text-black transition-all">
+            <Link href="/login">Seller Login</Link>
+          </Button>
+          <Button asChild className="flex-1 rounded-xl h-11 text-xs font-bold shadow-lg shadow-primary/10">
+            <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">Book Free Demo</Link>
+          </Button>
+        </motion.div>
+
         {/* Mobile Navigation */}
         <AnimatePresence>
           {isMenuOpen && (
@@ -166,24 +180,7 @@ export function Header() {
                     </Link>
                   </motion.div>
                 ))}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="flex flex-col gap-3 pt-4 border-t border-border"
-                >
-                  <Button asChild variant="outline" className="rounded-full hover:bg-yellow-400 hover:text-black hover:border-yellow-400 transition-all">
-                    <Link href="/login">
-                      Seller Login
-                    </Link>
-                  </Button>
-
-                  <Button asChild className="rounded-full">
-                    <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
-                      Book Free Demo
-                    </Link>
-                  </Button>
-                </motion.div>
+                {/* Mobile buttons moved to header bar */}
               </nav>
             </motion.div>
           )}
