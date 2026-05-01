@@ -88,10 +88,10 @@ const StickyCapabilitiesFeatures = () => {
   }
 
   return (
-    <div ref={containerRef} style={{ height: `${totalFeatures * 60}vh` }} className="relative w-full">
-      <section className="sticky top-20 h-[500px] w-full flex items-center overflow-hidden">
+    <div ref={containerRef} style={{ height: `${totalFeatures * 80}vh` }} className="relative w-full">
+      <section className="sticky top-20 h-[500px] lg:h-[500px] w-full flex items-center overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-12 items-center h-full">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-center h-full">
 
             {/* Feature Navigation List */}
             <div className="hidden lg:block lg:col-span-3 relative h-[400px] overflow-hidden -ml-4 lg:-ml-8">
@@ -141,7 +141,7 @@ const StickyCapabilitiesFeatures = () => {
             </div>
 
             {/* Combined Image and Content */}
-            <div className="w-full lg:col-span-9 relative h-[400px] flex items-center">
+            <div className="w-full lg:col-span-9 relative h-[420px] lg:h-[400px] flex items-center">
               {coreFeatures.map((feature, i) => {
                 const isSmallImage = feature.image === "/img--1.webp" || feature.image === "/img-4.webp" || feature.image === "/img-6.png" || feature.image === "/img-3.webp";
                 const isAdImage = feature.image === "/img-4.webp";
@@ -157,10 +157,10 @@ const StickyCapabilitiesFeatures = () => {
                       pointerEvents: activeIndex === i ? "auto" : "none",
                     }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 grid grid-cols-1 lg:grid-cols-[1.4fr_1.6fr] gap-8 lg:gap-16 items-center"
+                    className="absolute inset-0 grid grid-cols-1 lg:grid-cols-[1.4fr_1.6fr] gap-2 lg:gap-16 items-center"
                   >
                     {/* Big Image */}
-                    <div className="relative aspect-square flex items-center justify-center overflow-visible">
+                    <div className="relative aspect-square flex items-center justify-center overflow-visible h-[180px] lg:h-auto mx-auto lg:mx-0">
                       <div className={`absolute -inset-10 lg:-inset-20 ${feature.color} blur-[60px] lg:blur-[100px] opacity-30 rounded-full`} />
                       <motion.div
                         animate={{ y: [0, -10, 0] }}
@@ -170,17 +170,17 @@ const StickyCapabilitiesFeatures = () => {
                         <img
                           src={feature.image}
                           alt={feature.title}
-                          className="max-w-[320px] md:max-w-md lg:max-w-full max-h-full object-contain drop-shadow-2xl"
+                          className="max-w-[180px] md:max-w-md lg:max-w-full max-h-full object-contain drop-shadow-2xl mx-auto"
                         />
                       </motion.div>
                     </div>
 
                     {/* Text Content */}
-                    <div className="flex flex-col justify-center space-y-4 lg:space-y-6 text-center lg:text-left">
-                      <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1] dark:text-white">
+                    <div className="flex flex-col justify-center space-y-2 lg:space-y-6 text-center lg:text-left">
+                      <h3 className="text-xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1] dark:text-white">
                         {feature.title}
                       </h3>
-                      <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed">
+                      <p className="text-[13px] sm:text-lg lg:text-2xl text-muted-foreground leading-relaxed px-4 lg:px-0">
                         {feature.description}
                       </p>
                     </div>
@@ -190,7 +190,7 @@ const StickyCapabilitiesFeatures = () => {
             </div>
 
             {/* Mobile Navigation Dots */}
-            <div className="flex lg:hidden gap-2 mt-4 justify-center">
+            <div className="flex lg:hidden gap-2 mt-2 justify-center relative z-20">
               {coreFeatures.map((_, i) => (
                 <button
                   key={i}
@@ -243,12 +243,12 @@ export const PaymentReconciliation = () => {
           <div className="text-center mb-12 mt-10 relative">
            
 
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold font-display mb-6 md:mb-8 tracking-tight leading-[1.2] md:leading-[1.1]">
+            <h2 className="text-2xl sm:text-4xl lg:text-6xl font-bold font-display mb-6 md:mb-8 tracking-tight leading-[1.2] md:leading-[1.1]">
               Scale Your Profits with <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-500 to-blue-600 px-1">AI-Powered Precision</span>
             </h2>
 
-            <p className="text-base md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed font-medium">
+            <p className="text-sm sm:text-lg lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed font-medium">
               The ultimate financial command center for Amazon, Flipkart, and beyond. Track every rupee, detect leaks, and maximize ROI.
             </p>
 
@@ -279,11 +279,11 @@ export const PaymentReconciliation = () => {
                   <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 mb-4 md:mb-6">
                     <BarChart3 className="w-6 h-6 md:w-7 md:h-7" />
                   </div>
-                  <h3 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 tracking-tight">Stop Financial Leakage</h3>
-                  <p className="text-muted-foreground text-base md:text-lg mb-4 md:mb-6 leading-relaxed">
+                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 tracking-tight">Stop Financial Leakage</h3>
+                  <p className="text-muted-foreground text-sm sm:text-base lg:text-lg mb-4 md:mb-6 leading-relaxed">
                     Most e-commerce sellers lose 2-5% of their revenue to unrecorded returns, incorrect commissions, and hidden penalties.
                   </p>
-                  <p className="text-muted-foreground text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
+                  <p className="text-muted-foreground text-sm sm:text-base lg:text-lg mb-6 md:mb-8 leading-relaxed">
                     Our AI scans every transaction across <span className="text-foreground font-semibold">Amazon, Flipkart, and Myntra</span> to ensure you get every rupee you're owed.
                   </p>
                 </div>
@@ -309,8 +309,8 @@ export const PaymentReconciliation = () => {
 
             <div className="space-y-10 order-1 lg:order-2">
               <div>
-                <h3 className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">Why Speed E-com?</h3>
-                <h4 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">Built for Scale, <br />Designed for Clarity.</h4>
+                <h3 className="text-[10px] sm:text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">Why Speed E-com?</h3>
+                <h4 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-8 leading-tight">Built for Scale, <br />Designed for Clarity.</h4>
               </div>
 
               <div className="space-y-6">
@@ -336,10 +336,10 @@ export const PaymentReconciliation = () => {
           {/* Powerful Capabilities Section - Sticky Scroll with Left Nav, Center Image, Right Content */}
           <div className="mt-16 md:mt-24 mb-12">
             <div className="text-center mb-0 md:mb-4">
-              <h3 className="text-3xl md:text-7xl font-bold font-display mb-4 tracking-tight">
+              <h3 className="text-2xl sm:text-4xl lg:text-7xl font-bold font-display mb-4 tracking-tight">
                 Innovative Features
               </h3>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+              <p className="text-sm sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
                 Smart tools tailored to enhance the success of sellers, D2C brands, and retailers.
               </p>
             </div>
@@ -352,8 +352,8 @@ export const PaymentReconciliation = () => {
             <div className="absolute inset-0 bg-primary/[0.03] rounded-[2rem] md:rounded-[4rem] -rotate-1" />
             <div className="relative p-8 md:p-24 overflow-hidden">
               <div className="text-center mb-12 md:mb-24">
-                <h3 className="text-3xl md:text-6xl font-bold mb-4 md:mb-6">How It Works</h3>
-                <p className="text-muted-foreground text-lg md:text-xl">From connection to clarity in minutes</p>
+                <h3 className="text-2xl sm:text-4xl lg:text-6xl font-bold mb-4 md:mb-6">How It Works</h3>
+                <p className="text-muted-foreground text-sm sm:text-lg lg:text-xl">From connection to clarity in minutes</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8 relative">
