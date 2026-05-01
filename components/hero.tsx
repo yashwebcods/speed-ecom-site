@@ -4,10 +4,11 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { motion, Variants } from "framer-motion"
 import { ArrowRight, Play, Star, CheckCircle2 } from "lucide-react"
+import { AnimeText } from "@/components/anime-text"
 
 const stats = [
   { value: "40+", label: "Team Members" },
-  { value: "700+", label: "Client Reviews" },
+  { value: "2000+", label: "Client Reviews" },
   { value: "3500+", label: "Trusted Clients" },
 ]
 
@@ -23,7 +24,7 @@ const containerVariants: Variants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.15,
-      delayChildren: 0.3,
+      delayChildren: 2.5,
     },
   },
 }
@@ -53,17 +54,8 @@ export function Hero() {
     <section className="relative lg:min-h-screen flex items-center pt-24 pb-4 sm:pt-32 sm:pb-8 lg:pt-0 lg:pb-0 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.15, 0.1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.12, 0.1] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_0%,transparent_49%,rgba(0,0,0,0.02)_50%,transparent_51%,transparent_100%)] bg-[size:80px_80px]" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 py-8 lg:py-16">
@@ -81,7 +73,7 @@ export function Hero() {
                 <Star className="w-3 h-3 text-accent fill-accent" />
                 <span className="text-[10px] font-bold uppercase tracking-widest text-accent-foreground">Trusted by 700+ Sellers</span>
               </motion.div>
-              
+
               <motion.h2 variants={itemVariants} className="text-2xl font-bold font-display text-primary">
                 બિઝનેસ તમારો, હિસાબ અમારો
               </motion.h2>
@@ -109,14 +101,17 @@ export function Hero() {
             </motion.div>
 
             {/* Headline */}
-            <motion.h1 variants={itemVariants} className="text-2xl sm:text-4xl lg:text-6xl font-bold font-display leading-[1.1] mb-4">
-              Know Where Your{" "}
-              <span className="text-primary">E-Commerce</span> Money Goes
-              <span className="text-accent">.</span>
+            <motion.h1 variants={itemVariants} className="text-2xl sm:text-4xl lg:text-6xl font-bold font-display leading-[1.1] mb-4 flex flex-wrap justify-center lg:justify-start gap-x-2">
+              <AnimeText text="Know Where Your" animationType="words" delay={2700} />
+              <span className="text-primary">
+                <AnimeText text="E-Commerce" animationType="letters" delay={3100} />
+              </span>
+              <AnimeText text="Money Goes" animationType="words" delay={3600} />
+              <AnimeText text="." animationType="fade-up" delay={4000} className="text-accent -ml-2" />
             </motion.h1>
 
             <motion.p variants={itemVariants} className="text-sm sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-6 text-pretty">
-              Stop losing profits to hidden fees. Get expert financial analysis and grow your 
+              Stop losing profits to hidden fees. Get expert financial analysis and grow your
               business on Meesho, Flipkart, and Amazon with absolute confidence.
             </motion.p>
 
@@ -137,12 +132,22 @@ export function Hero() {
             {/* Platform Strip - Improved for Mobile */}
             <motion.div variants={itemVariants} className="pt-6 border-t border-border/50 lg:border-none">
               <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4 lg:hidden">Supported Platforms</p>
-              <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
-                {["Meesho", "Flipkart", "Amazon", "Myntra", "JioMart"].map((platform) => (
-                  <span key={platform} className="px-3 py-1.5 bg-card border border-border rounded-lg text-xs font-medium text-foreground/80 shadow-sm">
-                    {platform}
-                  </span>
-                ))}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 sm:gap-6 items-center">
+                <div className="bg-white rounded-lg p-1.5 shadow-sm border border-border/50 flex items-center justify-center h-10 w-24 sm:h-12 sm:w-28 transition-transform hover:scale-105">
+                  <img src="/meesho.jpg" alt="Meesho" className="max-h-full max-w-full object-contain mix-blend-multiply" />
+                </div>
+                <div className="bg-white rounded-lg p-1.5 shadow-sm border border-border/50 flex items-center justify-center h-10 w-24 sm:h-12 sm:w-28 transition-transform hover:scale-105">
+                  <img src="/flipkart.jpg" alt="Flipkart" className="max-h-full max-w-full object-contain mix-blend-multiply" />
+                </div>
+                <div className="bg-white rounded-lg p-1.5 shadow-sm border border-border/50 flex items-center justify-center h-10 w-24 sm:h-12 sm:w-28 transition-transform hover:scale-105">
+                  <img src="/amazon.png" alt="Amazon" className="max-h-full max-w-full object-contain mix-blend-multiply" />
+                </div>
+                <div className="bg-white rounded-lg p-1.5 shadow-sm border border-border/50 flex items-center justify-center h-10 w-24 sm:h-12 sm:w-28 transition-transform hover:scale-105">
+                  <img src="/myntra.png" alt="Myntra" className="max-h-full max-w-full object-contain mix-blend-multiply" />
+                </div>
+                <div className="bg-white rounded-lg p-1.5 shadow-sm border border-border/50 flex items-center justify-center h-10 w-24 sm:h-12 sm:w-28 transition-transform hover:scale-105">
+                  <img src="/jioMart.jpg" alt="JioMart" className="max-h-full max-w-full object-contain mix-blend-multiply" />
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -151,7 +156,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 2.7 }}
             className="hidden lg:block relative"
           >
             <motion.div
@@ -163,7 +168,7 @@ export function Hero() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2 }}
+                transition={{ delay: 3.4 }}
                 className="absolute top-8 right-8 bg-accent text-accent-foreground px-5 py-2 rounded-2xl text-sm font-bold shadow-lg rotate-3"
               >
                 Starting ₹249/mo
@@ -172,7 +177,7 @@ export function Hero() {
               <div className="space-y-10">
                 <div className="space-y-2">
                   <p className="text-sm text-primary font-bold uppercase tracking-[0.3em]">Our Impact</p>
-                  <h3 className="text-4xl font-bold font-display tracking-tight">Real Data. <br/>Real Growth.</h3>
+                  <h3 className="text-4xl font-bold font-display tracking-tight">Real Data. <br />Real Growth.</h3>
                 </div>
 
                 <div className="grid grid-cols-1 gap-6">
@@ -181,7 +186,7 @@ export function Hero() {
                       key={stat.label}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 1 + i * 0.1 }}
+                      transition={{ delay: 3.2 + i * 0.1 }}
                       className="flex items-center gap-6 p-6 bg-secondary/30 rounded-3xl border border-white/50"
                     >
                       <div className="text-4xl font-bold text-primary font-display">{stat.value}</div>
@@ -198,16 +203,8 @@ export function Hero() {
         </div>
 
         {/* Decorative Elements */}
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
-          transition={{ duration: 5, repeat: Infinity }}
-          className="absolute -z-10 -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-3xl blur-2xl"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.25, 0.2] }}
-          transition={{ duration: 6, repeat: Infinity, delay: 1 }}
-          className="absolute -z-10 -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-3xl blur-2xl"
-        />
+        <div className="absolute -z-10 -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-3xl blur-2xl" />
+        <div className="absolute -z-10 -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-3xl blur-2xl" />
       </div>
     </section>
   )
