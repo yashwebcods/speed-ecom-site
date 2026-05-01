@@ -116,15 +116,15 @@ export function Hero() {
             </motion.p>
 
             {/* CTAs */}
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10 lg:mb-8">
-              <Button asChild size="lg" className="rounded-full px-8 group h-14 lg:h-12 w-full sm:w-auto shadow-xl shadow-primary/20">
+            <motion.div variants={itemVariants} className="flex flex-row gap-3 justify-center lg:justify-start mb-10 lg:mb-8">
+              <Button asChild size="lg" className="rounded-full px-4 sm:px-8 group h-12 lg:h-12 flex-1 sm:flex-none shadow-xl shadow-primary/20 text-xs sm:text-sm">
                 <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
-                  Book Free Demo
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  Free Demo
+                  <ArrowRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" className="rounded-full px-8 h-14 lg:h-12 w-full sm:w-auto bg-white/50 backdrop-blur-sm">
-                <Play className="mr-2 w-4 h-4" />
+              <Button variant="outline" size="lg" className="rounded-full px-4 sm:px-8 h-12 lg:h-12 flex-1 sm:flex-none bg-white/50 backdrop-blur-sm text-xs sm:text-sm">
+                <Play className="mr-1 sm:mr-2 w-3 h-3 sm:w-4 sm:h-4" />
                 Watch Demo
               </Button>
             </motion.div>
@@ -132,20 +132,20 @@ export function Hero() {
             {/* Platform Strip - Improved for Mobile */}
             <motion.div variants={itemVariants} className="pt-6 border-t border-border/50 lg:border-none">
               <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4 lg:hidden">Supported Platforms</p>
-              <div className="flex flex-wrap justify-center lg:justify-start gap-4 sm:gap-6 items-center">
-                <div className="bg-white rounded-lg p-1.5 shadow-sm border border-border/50 flex items-center justify-center h-10 w-24 sm:h-12 sm:w-28 transition-transform hover:scale-105">
+              <div className="flex flex-row justify-between lg:justify-start gap-2 sm:gap-6 items-center overflow-x-auto hide-scrollbar">
+                <div className="bg-white rounded-lg p-1 shadow-sm border border-border/50 flex items-center justify-center h-8 w-14 sm:h-12 sm:w-28 transition-transform hover:scale-105 shrink-0">
                   <img src="/meesho.jpg" alt="Meesho" className="max-h-full max-w-full object-contain mix-blend-multiply" />
                 </div>
-                <div className="bg-white rounded-lg p-1.5 shadow-sm border border-border/50 flex items-center justify-center h-10 w-24 sm:h-12 sm:w-28 transition-transform hover:scale-105">
+                <div className="bg-white rounded-lg p-1 shadow-sm border border-border/50 flex items-center justify-center h-8 w-14 sm:h-12 sm:w-28 transition-transform hover:scale-105 shrink-0">
                   <img src="/flipkart.jpg" alt="Flipkart" className="max-h-full max-w-full object-contain mix-blend-multiply" />
                 </div>
-                <div className="bg-white rounded-lg p-1.5 shadow-sm border border-border/50 flex items-center justify-center h-10 w-24 sm:h-12 sm:w-28 transition-transform hover:scale-105">
+                <div className="bg-white rounded-lg p-1 shadow-sm border border-border/50 flex items-center justify-center h-8 w-14 sm:h-12 sm:w-28 transition-transform hover:scale-105 shrink-0">
                   <img src="/amazon.png" alt="Amazon" className="max-h-full max-w-full object-contain mix-blend-multiply" />
                 </div>
-                <div className="bg-white rounded-lg p-1.5 shadow-sm border border-border/50 flex items-center justify-center h-10 w-24 sm:h-12 sm:w-28 transition-transform hover:scale-105">
+                <div className="bg-white rounded-lg p-1 shadow-sm border border-border/50 flex items-center justify-center h-8 w-14 sm:h-12 sm:w-28 transition-transform hover:scale-105 shrink-0">
                   <img src="/myntra.png" alt="Myntra" className="max-h-full max-w-full object-contain mix-blend-multiply" />
                 </div>
-                <div className="bg-white rounded-lg p-1.5 shadow-sm border border-border/50 flex items-center justify-center h-10 w-24 sm:h-12 sm:w-28 transition-transform hover:scale-105">
+                <div className="bg-white rounded-lg p-1 shadow-sm border border-border/50 flex items-center justify-center h-8 w-14 sm:h-12 sm:w-28 transition-transform hover:scale-105 shrink-0">
                   <img src="/jioMart.jpg" alt="JioMart" className="max-h-full max-w-full object-contain mix-blend-multiply" />
                 </div>
               </div>

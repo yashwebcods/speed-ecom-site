@@ -258,11 +258,11 @@ export const PaymentReconciliation = () => {
           </div>
 
           {/* About Section */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-16 lg:mb-24">
-            <div className="relative order-2 lg:order-1">
-              <div className="absolute -inset-10 bg-gradient-to-tr from-primary/10 to-indigo-500/10 rounded-[3rem] -z-10 blur-3xl opacity-60" />
-              <div className="bg-card/50 backdrop-blur-xl border border-border/80 p-6 md:p-12 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 md:p-8">
+          <div className="lg:grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-16 lg:mb-24">
+            <div className="relative order-2 lg:order-1 -mx-4 sm:mx-0">
+              <div className="absolute -inset-10 bg-gradient-to-tr from-primary/10 to-indigo-500/10 rounded-[3rem] -z-10 blur-3xl opacity-60 hidden md:block" />
+              <div className="bg-primary p-8 md:p-12 md:rounded-[2.5rem] shadow-2xl relative overflow-hidden text-white min-h-[300px] flex flex-col justify-center">
+                <div className="absolute top-0 right-0 p-4 md:p-8 hidden md:block">
                   <div className="flex -space-x-2 md:-space-x-3">
                     {[1, 2, 3].map(i => (
                       <div key={i} className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-background bg-muted flex items-center justify-center overflow-hidden">
@@ -275,57 +275,57 @@ export const PaymentReconciliation = () => {
                   </div>
                 </div>
 
-                <div className="mb-6 md:mb-8">
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 mb-4 md:mb-6">
+                <div className="mb-0 md:mb-8">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/20 items-center justify-center text-white mb-4 md:mb-6 hidden md:flex">
                     <BarChart3 className="w-6 h-6 md:w-7 md:h-7" />
                   </div>
-                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 tracking-tight">Stop Financial Leakage</h3>
-                  <p className="text-muted-foreground text-sm sm:text-base lg:text-lg mb-4 md:mb-6 leading-relaxed">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 tracking-tight text-center md:text-left">Stop Financial Leakage</h3>
+                  <p className="text-white/90 text-sm sm:text-base lg:text-lg mb-4 md:mb-6 leading-relaxed text-center md:text-left">
                     Most e-commerce sellers lose 2-5% of their revenue to unrecorded returns, incorrect commissions, and hidden penalties.
                   </p>
-                  <p className="text-muted-foreground text-sm sm:text-base lg:text-lg mb-6 md:mb-8 leading-relaxed">
-                    Our AI scans every transaction across <span className="text-foreground font-semibold">Amazon, Flipkart, and Myntra</span> to ensure you get every rupee you're owed.
+                  <p className="text-white/90 text-sm sm:text-base lg:text-lg mb-0 md:mb-8 leading-relaxed text-center md:text-left">
+                    Our AI scans every transaction across <span className="text-white font-bold">Amazon, Flipkart, and Myntra</span> to ensure you get every rupee you're owed.
                   </p>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="p-5 bg-emerald-500/5 rounded-2xl border border-emerald-500/10">
-                    <div className="flex items-center gap-2 text-emerald-600 font-bold mb-1">
+                <div className="grid sm:grid-cols-2 gap-4 hidden md:grid">
+                  <div className="p-5 bg-white/10 rounded-2xl border border-white/20">
+                    <div className="flex items-center gap-2 text-white font-bold mb-1">
                       <TrendingUp className="w-4 h-4" />
                       +24% ROI
                     </div>
-                    <p className="text-sm text-muted-foreground">Average increase in profit margins</p>
+                    <p className="text-sm text-white/80">Average increase in profit margins</p>
                   </div>
-                  <div className="p-5 bg-blue-500/5 rounded-2xl border border-blue-500/10">
-                    <div className="flex items-center gap-2 text-blue-600 font-bold mb-1">
+                  <div className="p-5 bg-white/10 rounded-2xl border border-white/20">
+                    <div className="flex items-center gap-2 text-white font-bold mb-1">
                       <Zap className="w-4 h-4" />
                       10x Faster
                     </div>
-                    <p className="text-sm text-muted-foreground">Automated reconciliation speed</p>
+                    <p className="text-sm text-white/80">Automated reconciliation speed</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="space-y-10 order-1 lg:order-2">
+            <div className="space-y-6 lg:space-y-10 order-1 lg:order-2 mt-12 lg:mt-0">
               <div>
-                <h3 className="text-[10px] sm:text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">Why Speed E-com?</h3>
-                <h4 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-8 leading-tight">Built for Scale, <br />Designed for Clarity.</h4>
+                <h3 className="text-[10px] sm:text-sm font-bold text-primary uppercase tracking-[0.2em] mb-2 lg:mb-4">Why Speed E-com?</h3>
+                <h4 className="text-xl sm:text-4xl lg:text-5xl font-bold mb-4 lg:mb-8 leading-tight">Built for Scale, <br />Designed for Clarity.</h4>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4 lg:space-y-6">
                 {[
-                  { title: "Universal Integration", desc: "One-click connection to all major marketplaces.", icon: <Globe className="w-5 h-5" /> },
-                  { title: "Granular Analysis", desc: "Every SKU, every transaction, every penny accounted for.", icon: <Search className="w-5 h-5" /> },
-                  { title: "AI-Powered Strategy", desc: "Predictive insights to optimize your ad spend and pricing.", icon: <Bot className="w-5 h-5" /> },
+                  { title: "Universal Integration", desc: "One-click connection to all major marketplaces.", icon: <Globe className="w-4 h-4 lg:w-5 lg:h-5" /> },
+                  { title: "Granular Analysis", desc: "Every SKU, every transaction, every penny accounted for.", icon: <Search className="w-4 h-4 lg:w-5 lg:h-5" /> },
+                  { title: "AI-Powered Strategy", desc: "Predictive insights to optimize your ad spend and pricing.", icon: <Bot className="w-4 h-4 lg:w-5 lg:h-5" /> },
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-6 group">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                  <div key={i} className="flex gap-4 lg:gap-6 group">
+                    <div className="flex-shrink-0 w-10 h-10 lg:w-12 lg:h-12 rounded-xl lg:rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
                       {item.icon}
                     </div>
                     <div>
-                      <h5 className="text-xl font-bold mb-2">{item.title}</h5>
-                      <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
+                      <h5 className="text-lg lg:text-xl font-bold mb-1 lg:mb-2">{item.title}</h5>
+                      <p className="text-xs lg:text-base text-muted-foreground leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}
