@@ -42,7 +42,7 @@ export function CTA() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 text-white mb-6"
+            className="hidden lg:inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 text-white mb-6"
           >
             <motion.div
               animate={{ rotate: [0, 15, -15, 0] }}
@@ -60,7 +60,7 @@ export function CTA() {
             className="text-2xl sm:text-4xl lg:text-6xl font-bold font-display text-white mb-4 text-balance leading-tight"
           >
             Struggling With Online Business Losses?{" "}
-            <span className="text-accent">Let Us Fix It!</span>
+            <span>Let Us Fix It!</span>
           </motion.h2>
 
           <motion.p
@@ -68,7 +68,7 @@ export function CTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="text-base lg:text-xl text-white/80 mb-8 max-w-2xl mx-auto text-pretty"
+            className="text-base lg:text-xl text-white/90 mb-8 max-w-2xl mx-auto text-pretty"
           >
             We help e-commerce sellers solve cash flow, shipment, return, and settlement
             issues across platforms like Meesho, Amazon, Flipkart, and more.
@@ -79,26 +79,26 @@ export function CTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-row gap-3 justify-center mt-2 sm:mt-0"
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1 sm:w-auto">
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-primary hover:bg-white/90 rounded-full px-8 group h-12 lg:h-11 w-full"
+                className="bg-white text-primary hover:bg-white/90 rounded-full px-4 sm:px-8 group h-10 sm:h-12 lg:h-11 w-full text-xs sm:text-base"
               >
                 <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
                   Book Free Demo
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="hidden sm:block ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1 sm:w-auto">
               <Button
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-white/30 text-white hover:bg-white/10 rounded-full px-8 h-12 lg:h-11 w-full"
+                className="bg-white/10 border-white/40 text-white hover:bg-white/20 rounded-full px-4 sm:px-8 h-10 sm:h-12 lg:h-11 w-full backdrop-blur-sm text-xs sm:text-base"
               >
                 <Link href="tel:+919913315809">Contact Us</Link>
               </Button>

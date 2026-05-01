@@ -30,9 +30,9 @@ const columnVariants: Variants = {
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background py-16 lg:py-20">
+    <footer className="bg-primary text-primary-foreground py-16 lg:py-20">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
           {/* Brand */}
           <motion.div
             custom={0}
@@ -40,29 +40,23 @@ export function Footer() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-            className="sm:col-span-2 lg:col-span-1"
+            className="col-span-2 lg:col-span-1"
           >
             <Link href="/" className="inline-flex items-center gap-2 mb-5">
               <div className="relative w-10 h-10">
                 <Image
-                  src="/logo_light.png"
-                  alt="Speed E-Com Logo"
-                  fill
-                  className="object-contain dark:hidden"
-                />
-                <Image
                   src="/logo_dark.png"
                   alt="Speed E-Com Logo"
                   fill
-                  className="object-contain hidden dark:block"
+                  className="object-contain"
                 />
               </div>
             </Link>
-            <p className="text-sm text-background/70 mb-5 leading-relaxed">
+            <p className="text-sm text-primary-foreground/70 mb-5 leading-relaxed">
               Your trusted partner for e-commerce financial management. We help online sellers
               maximize profits and eliminate hidden losses.
             </p>
-            <p className="text-sm font-medium text-primary">
+            <p className="text-sm font-medium text-accent">
               બિઝનેસ તમારો, હિસાબ અમારો
             </p>
           </motion.div>
@@ -75,7 +69,7 @@ export function Footer() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
           >
-            <h4 className="font-semibold font-display mb-5">Quick Links</h4>
+            <h4 className="font-semibold font-display mb-5 text-primary-foreground">Quick Links</h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <motion.li
@@ -87,7 +81,7 @@ export function Footer() {
                 >
                   <Link
                     href={link.href}
-                    className="text-sm text-background/70 hover:text-primary hover:translate-x-1 transition-all inline-block"
+                    className="text-sm text-primary-foreground/70 hover:text-accent hover:translate-x-1 transition-all inline-block"
                   >
                     {link.label}
                   </Link>
@@ -104,7 +98,7 @@ export function Footer() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
           >
-            <h4 className="font-semibold font-display mb-5">Supported Platforms</h4>
+            <h4 className="font-semibold font-display mb-5 text-primary-foreground">Supported Platforms</h4>
             <ul className="space-y-3">
               {platforms.map((platform, index) => (
                 <motion.li
@@ -114,7 +108,7 @@ export function Footer() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 + index * 0.08 }}
                 >
-                  <span className="text-sm text-background/70">{platform}</span>
+                  <span className="text-sm text-primary-foreground/70">{platform}</span>
                 </motion.li>
               ))}
             </ul>
@@ -128,12 +122,12 @@ export function Footer() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
           >
-            <h4 className="font-semibold font-display mb-5">Contact</h4>
+            <h4 className="font-semibold font-display mb-5 text-primary-foreground">Contact</h4>
             <ul className="space-y-3">
               <li>
                 <a
                   href="tel:+919913315809"
-                  className="text-sm text-background/70 hover:text-primary transition-colors"
+                  className="text-sm text-primary-foreground/70 hover:text-accent transition-colors"
                 >
                   +91 99133 15809
                 </a>
@@ -141,12 +135,12 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:speedecomsolution@gmail.com"
-                  className="text-sm text-background/70 hover:text-primary transition-colors"
+                  className="text-sm text-primary-foreground/70 hover:text-accent transition-colors"
                 >
                   speedecomsolution@gmail.com
                 </a>
               </li>
-              <li className="text-sm text-background/70">
+              <li className="text-sm text-primary-foreground/70">
                 508, KBC-1, Kiran Chowk,
                 <br />
                 Surat – 395010
@@ -161,17 +155,17 @@ export function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="pt-8 border-t border-background/10"
+          className="pt-8 border-t border-primary-foreground/10"
         >
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-background/50">
+            <p className="text-sm text-primary-foreground/50">
               © {new Date().getFullYear()} Speed E-Com Solution. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <Link href="#" className="text-sm text-background/50 hover:text-primary transition-colors">
+              <Link href="#" className="text-sm text-primary-foreground/50 hover:text-accent transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="#" className="text-sm text-background/50 hover:text-primary transition-colors">
+              <Link href="#" className="text-sm text-primary-foreground/50 hover:text-accent transition-colors">
                 Terms of Service
               </Link>
             </div>

@@ -13,6 +13,7 @@ import {
   Zap,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { ThreeDCardIcon } from "./three-d-icon"
 
 
 const services = [
@@ -135,13 +136,8 @@ function MobileServiceCard({ service, index }: {
             {service.description}
           </p>
         </div>
-<<<<<<< HEAD
-        <div className="absolute -bottom-4 -right-4 opacity-10 group-hover:opacity-20 transition-opacity">
-          <service.icon className="w-24 h-24" />
-=======
         <div className="absolute -bottom-6 -right-6 opacity-20">
           <ThreeDCardIcon title={service.title} color={service.color} />
->>>>>>> bda2a48109088443a6983e8ad05d01d34683371a
         </div>
       </div>
     </div>
@@ -200,54 +196,6 @@ export function Services() {
               Choose only what grows your business. Our comprehensive suite of services
               is designed to maximize your profits and minimize losses.
             </p>
-<<<<<<< HEAD
-          </motion.div>
-
-          {/* Desktop Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {services.map((service) => (
-              <motion.div key={service.title} variants={itemVariants}>
-                <Card className="group h-full hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 border-border hover:border-primary/20 hover:-translate-y-1">
-                  <CardContent className="p-6 lg:p-8 flex flex-col h-full">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.4 }}
-                      className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg`}
-                    >
-                      <service.icon className="w-7 h-7" />
-                    </motion.div>
-
-                    <h3 className="text-lg font-semibold font-display mb-3 text-foreground group-hover:text-primary transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
-                      {service.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Mobile Scroll-Linked Horizontal Carousel */}
-        <div className="sm:hidden h-[100dvh] sticky top-0 flex flex-col items-start justify-center overflow-hidden z-10">
-          {/* Section Header (re-rendered inside sticky container for mobile only) */}
-          <div className="w-full text-center px-4 mb-10">
-            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-3">
-              Premium Services
-            </span>
-            <h2 className="text-xl font-bold font-display text-balance leading-tight">
-              Smart E-Commerce Support for <span className="text-primary">Sharp Sellers</span>
-            </h2>
-=======
->>>>>>> bda2a48109088443a6983e8ad05d01d34683371a
           </div>
 
           {/* Desktop Speedometer Carousel */}
