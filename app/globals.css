@@ -151,3 +151,19 @@
 html {
   scroll-padding-top: 5rem;
 }
+
+/* Scroll-snap section for capabilities */
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Prevent body scroll when in snap section */
+body.snap-active {
+  overflow: hidden;
+}
+
+/* Smooth transitions for feature changes */
+.feature-transition {
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
