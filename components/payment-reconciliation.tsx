@@ -141,7 +141,7 @@ const StickyCapabilitiesFeatures = () => {
             </div>
 
             {/* Combined Image and Content */}
-            <div className="w-full lg:col-span-9 relative h-[420px] lg:h-[400px] flex items-center">
+            <div className="w-full lg:col-span-9 relative h-[400px] lg:h-[400px] flex items-center">
               {coreFeatures.map((feature, i) => {
                 const isSmallImage = feature.image === "/img--1.webp" || feature.image === "/img-4.webp" || feature.image === "/img-6.png" || feature.image === "/img-3.webp";
                 const isAdImage = feature.image === "/img-4.webp";
@@ -157,10 +157,10 @@ const StickyCapabilitiesFeatures = () => {
                       pointerEvents: activeIndex === i ? "auto" : "none",
                     }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 grid grid-cols-1 lg:grid-cols-[1.4fr_1.6fr] gap-2 lg:gap-16 items-center"
+                    className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-[1.4fr_1.6fr] gap-0 lg:gap-16 items-center justify-center"
                   >
                     {/* Big Image */}
-                    <div className="relative aspect-square flex items-center justify-center overflow-visible h-[180px] lg:h-auto mx-auto lg:mx-0">
+                    <div className="relative aspect-square flex items-center justify-center overflow-visible h-[220px] lg:h-auto mx-auto lg:mx-0 mb-0">
                       <div className={`absolute -inset-10 lg:-inset-20 ${feature.color} blur-[60px] lg:blur-[100px] opacity-30 rounded-full`} />
                       <motion.div
                         animate={{ y: [0, -10, 0] }}
@@ -170,13 +170,13 @@ const StickyCapabilitiesFeatures = () => {
                         <img
                           src={feature.image}
                           alt={feature.title}
-                          className="max-w-[180px] md:max-w-md lg:max-w-full max-h-full object-contain drop-shadow-2xl mx-auto"
+                          className="max-w-[220px] md:max-w-md lg:max-w-full max-h-full object-contain drop-shadow-2xl mx-auto"
                         />
                       </motion.div>
                     </div>
 
                     {/* Text Content */}
-                    <div className="flex flex-col justify-center space-y-2 lg:space-y-6 text-center lg:text-left">
+                    <div className="flex flex-col justify-center space-y-2 lg:space-y-6 text-center lg:text-left -mt-2">
                       <h3 className="text-xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1] dark:text-white">
                         {feature.title}
                       </h3>
@@ -190,7 +190,7 @@ const StickyCapabilitiesFeatures = () => {
             </div>
 
             {/* Mobile Navigation Dots */}
-            <div className="flex lg:hidden gap-2 mt-2 justify-center relative z-20">
+            <div className="flex lg:hidden gap-2 -mt-4 justify-center relative z-20">
               {coreFeatures.map((_, i) => (
                 <button
                   key={i}
