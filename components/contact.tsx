@@ -79,7 +79,7 @@ export function Contact() {
             </p>
 
             {/* Contact Cards */}
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
               {contactInfo.map((item, index) => (
                 <motion.div
                   key={item.label}
@@ -90,20 +90,20 @@ export function Contact() {
                   viewport={{ once: true, margin: "-30px" }}
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 >
-                  <Card className="group hover:border-primary/20 hover:shadow-lg transition-all">
-                    <CardContent className="p-5">
-                      <div className="flex gap-4">
+                  <Card className="group hover:border-primary/20 hover:shadow-lg transition-all h-full">
+                    <CardContent className="p-3 sm:p-5 h-full flex flex-col">
+                      <div className="flex flex-col gap-2 sm:gap-4 items-center text-center sm:items-start sm:text-left h-full">
                         <div className="shrink-0">
                           <motion.div
                             whileHover={{ scale: 1.15, rotate: 10 }}
                             transition={{ type: "spring", stiffness: 300 }}
-                            className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center"
+                            className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center"
                           >
-                            <item.icon className="w-5 h-5" />
+                            <item.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                           </motion.div>
                         </div>
-                        <div className="min-w-0">
-                          <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
+                        <div className="min-w-0 flex-1 flex flex-col justify-center">
+                          <div className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-1">
                             {item.label}
                           </div>
                           {item.href ? (
@@ -111,12 +111,12 @@ export function Contact() {
                               href={item.href}
                               target={item.href.startsWith("http") ? "_blank" : undefined}
                               rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                              className="text-sm font-medium text-foreground hover:text-primary transition-colors break-words"
+                              className="text-[11px] sm:text-sm font-medium text-foreground hover:text-primary transition-colors break-words leading-tight"
                             >
                               {item.value}
                             </a>
                           ) : (
-                            <span className="text-sm font-medium text-foreground">{item.value}</span>
+                            <span className="text-[11px] sm:text-sm font-medium text-foreground leading-tight">{item.value}</span>
                           )}
                         </div>
                       </div>

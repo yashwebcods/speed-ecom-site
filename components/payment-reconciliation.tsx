@@ -279,11 +279,11 @@ export const PaymentReconciliation = () => {
                   <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/20 items-center justify-center text-white mb-4 md:mb-6 hidden md:flex">
                     <BarChart3 className="w-6 h-6 md:w-7 md:h-7" />
                   </div>
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 tracking-tight text-center md:text-left">Stop Financial Leakage</h3>
-                  <p className="text-white/90 text-sm sm:text-base lg:text-lg mb-4 md:mb-6 leading-relaxed text-center md:text-left">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 tracking-tight text-left md:text-left">Stop Financial Leakage</h3>
+                  <p className="text-white/90 text-sm sm:text-base lg:text-lg mb-4 md:mb-6 leading-relaxed text-left md:text-left">
                     Most e-commerce sellers lose 2-5% of their revenue to unrecorded returns, incorrect commissions, and hidden penalties.
                   </p>
-                  <p className="text-white/90 text-sm sm:text-base lg:text-lg mb-0 md:mb-8 leading-relaxed text-center md:text-left">
+                  <p className="text-white/90 text-sm sm:text-base lg:text-lg mb-0 md:mb-8 leading-relaxed text-left md:text-left">
                     Our AI scans every transaction across <span className="text-white font-bold">Amazon, Flipkart, and Myntra</span> to ensure you get every rupee you're owed.
                   </p>
                 </div>
@@ -313,19 +313,19 @@ export const PaymentReconciliation = () => {
                 <h4 className="text-xl sm:text-4xl lg:text-5xl font-bold mb-4 lg:mb-8 leading-tight">Built for Scale, <br />Designed for Clarity.</h4>
               </div>
 
-              <div className="space-y-4 lg:space-y-6">
+              <div className="grid grid-cols-3 gap-2 lg:flex lg:flex-col lg:space-y-6">
                 {[
                   { title: "Universal Integration", desc: "One-click connection to all major marketplaces.", icon: <Globe className="w-4 h-4 lg:w-5 lg:h-5" /> },
                   { title: "Granular Analysis", desc: "Every SKU, every transaction, every penny accounted for.", icon: <Search className="w-4 h-4 lg:w-5 lg:h-5" /> },
                   { title: "AI-Powered Strategy", desc: "Predictive insights to optimize your ad spend and pricing.", icon: <Bot className="w-4 h-4 lg:w-5 lg:h-5" /> },
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-4 lg:gap-6 group">
-                    <div className="flex-shrink-0 w-10 h-10 lg:w-12 lg:h-12 rounded-xl lg:rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                  <div key={i} className="flex lg:gap-6 group">
+                    <div className="hidden lg:flex flex-shrink-0 w-12 h-12 rounded-2xl bg-primary/5 border border-primary/10 items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
                       {item.icon}
                     </div>
-                    <div>
-                      <h5 className="text-lg lg:text-xl font-bold mb-1 lg:mb-2">{item.title}</h5>
-                      <p className="text-xs lg:text-base text-muted-foreground leading-relaxed">{item.desc}</p>
+                    <div className="w-full p-2 lg:p-0 bg-card lg:bg-transparent rounded-lg lg:rounded-xl border border-border lg:border-none shadow-sm lg:shadow-none flex items-center justify-center min-h-[60px] lg:min-h-0">
+                      <h5 className="text-[10px] sm:text-sm lg:text-xl font-bold text-center lg:text-left leading-tight">{item.title}</h5>
+                      <p className="hidden lg:block text-base text-muted-foreground leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}

@@ -123,24 +123,27 @@ export function WhyUs() {
           </motion.div>
 
           <div className="relative">
-            {/* Mobile: Horizontal Scroll Slider */}
-            <div className="lg:hidden -mx-4 px-4 pb-8 overflow-x-auto hide-scrollbar flex gap-4 snap-x snap-mandatory">
+            {/* Mobile: Unique Journey Style (Improved from Blog Card style) */}
+            <div className="lg:hidden relative space-y-8 before:absolute before:left-7 before:top-2 before:bottom-2 before:w-px before:bg-gradient-to-b before:from-primary/50 before:via-primary/20 before:to-transparent">
               {reasons.map((reason, index) => (
                 <motion.div
                   key={reason.title}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  className="flex-none w-[85%] snap-center"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative flex gap-5 pl-2"
                 >
-                  <div className="h-full p-6 bg-card rounded-3xl border border-border shadow-sm flex flex-col items-center text-center">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-                      <reason.icon className="w-8 h-8" />
+                  <div className="relative z-10 shrink-0">
+                    <div className="w-14 h-14 rounded-2xl bg-card border border-primary/20 shadow-lg shadow-primary/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                      <reason.icon className="w-7 h-7" />
                     </div>
-                    <div className="mb-2">
-                      <span className="text-[10px] font-bold text-primary px-2 py-0.5 bg-primary/10 rounded-full">0{index + 1}</span>
+                    <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center border-2 border-background">
+                      {index + 1}
                     </div>
-                    <h4 className="font-bold text-foreground text-lg mb-2">{reason.title}</h4>
+                  </div>
+                  <div className="flex-1 pt-1">
+                    <h4 className="font-bold text-foreground text-lg mb-1 leading-tight">{reason.title}</h4>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {reason.description}
                     </p>
