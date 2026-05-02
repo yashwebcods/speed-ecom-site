@@ -44,8 +44,12 @@ export function AnimeText({ text, className = "", animationType = "letters", del
       return text.split("").map((char, index) => (
         <span
           key={index}
-          className="anime-item inline-block"
-          style={{ opacity: 0, whiteSpace: char === " " ? "pre" : "normal" }}
+          className="anime-item inline-block bg-inherit bg-clip-inherit text-inherit"
+          style={{ 
+            opacity: 0, 
+            whiteSpace: char === " " ? "pre" : "normal",
+            WebkitTextFillColor: "inherit"
+          }}
         >
           {char}
         </span>
@@ -54,8 +58,11 @@ export function AnimeText({ text, className = "", animationType = "letters", del
       return text.split(" ").map((word, index) => (
         <span
           key={index}
-          className="anime-item inline-block mr-[0.25em]"
-          style={{ opacity: 0 }}
+          className="anime-item inline-block mr-[0.25em] bg-inherit bg-clip-inherit text-inherit"
+          style={{ 
+            opacity: 0,
+            WebkitTextFillColor: "inherit"
+          }}
         >
           {word}
         </span>

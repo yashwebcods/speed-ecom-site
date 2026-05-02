@@ -103,7 +103,7 @@ export function WhyUs() {
             </motion.span>
             <h2 className="text-2xl lg:text-5xl font-bold font-display mb-4 text-balance">
               More Than a Service —{" "}
-              <span className="text-primary">A Success Partner!</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">A Success Partner!</span>
             </h2>
             <p className="text-sm lg:text-lg text-muted-foreground mb-6 text-pretty">
               With a mission to help online sellers maximize profits and scale smartly,
@@ -123,8 +123,8 @@ export function WhyUs() {
           </motion.div>
 
           <div className="relative">
-            {/* Mobile: Unique Journey Style (Improved from Blog Card style) */}
-            <div className="lg:hidden relative space-y-8 before:absolute before:left-7 before:top-2 before:bottom-2 before:w-px before:bg-gradient-to-b before:from-primary/50 before:via-primary/20 before:to-transparent">
+            {/* Mobile: Unique Journey Style (Line removed for cleaner mobile look) */}
+            <div className="lg:hidden relative space-y-8">
               {reasons.map((reason, index) => (
                 <motion.div
                   key={reason.title}
@@ -192,7 +192,7 @@ export function WhyUs() {
           className="text-center mb-12"
         >
           <h3 className="text-xl lg:text-4xl font-bold font-display mb-3">
-            Advantages of Choosing Us
+            Advantages of <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Choosing Us</span>
           </h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Helping online sellers maximize profit, minimize losses, and grow strategically

@@ -52,14 +52,10 @@ export function Header() {
             transition={{ duration: 0.5 }}
           >
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="relative w-40 h-10 lg:w-48 lg:h-12">
-                <Image
-                  src="/navbar.png"
-                  alt="Speed E-Com Logo"
-                  fill
-                  className="object-contain object-left"
-                  priority
-                />
+              <div className="relative w-40 h-10 lg:w-48 lg:h-12 flex items-center">
+                <span className="text-xl lg:text-2xl font-bold font-display tracking-tight text-slate-900 dark:text-white">
+                  Speed <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">E-Com</span>
+                </span>
               </div>
             </Link>
           </motion.div>

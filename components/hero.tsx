@@ -102,12 +102,10 @@ export function Hero() {
 
             {/* Headline */}
             <motion.h1 variants={itemVariants} className="text-2xl sm:text-4xl lg:text-6xl font-bold font-display leading-[1.1] mb-4 flex flex-wrap justify-center lg:justify-start gap-x-2">
-              <AnimeText text="Know Where Your" animationType="words" delay={2700} />
-              <span className="text-primary">
-                <AnimeText text="E-Commerce" animationType="letters" delay={3100} />
-              </span>
-              <AnimeText text="Money Goes" animationType="words" delay={3600} />
-              <AnimeText text="." animationType="fade-up" delay={4000} className="text-accent -ml-2" />
+              <span className="text-slate-900 dark:text-white">Know Where Your</span>
+              <span className="text-primary">E-Commerce</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Money Goes</span>
+              <span className="text-accent">.</span>
             </motion.h1>
 
             <motion.p variants={itemVariants} className="text-sm sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-6 text-pretty">

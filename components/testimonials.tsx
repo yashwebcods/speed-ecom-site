@@ -63,7 +63,7 @@ export function Testimonials() {
             Testimonials
           </motion.span>
           <h2 className="text-3xl lg:text-5xl font-bold font-display mb-4">
-            What Our <span className="text-primary">Clients Say</span>
+            What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Clients Say</span>
           </h2>
           <p className="text-lg text-muted-foreground">
             Real stories from real sellers who transformed their businesses with us.

@@ -190,7 +190,7 @@ export function Services() {
               Premium Services
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold font-display text-balance leading-tight mb-4">
-              Smart E-Commerce Support for <span className="text-primary">Sharp Sellers</span>
+              Smart E-Commerce Support for <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Sharp Sellers</span>
             </h2>
             <p className="hidden sm:block text-sm sm:text-lg text-muted-foreground text-pretty">
               Choose only what grows your business. Our comprehensive suite of services
