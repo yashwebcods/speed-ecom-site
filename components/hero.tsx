@@ -76,18 +76,6 @@ export function Hero() {
               </motion.div>
             </div>
 
-            {/* Desktop Only Badge (Hidden on mobile as we replaced it above) */}
-            <motion.div variants={itemVariants} className="hidden lg:inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
-              <div className="flex -space-x-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-accent fill-accent" />
-                ))}
-              </div>
-              <span className="text-sm font-medium text-foreground">
-                4.8 — Trusted by 100+ Online Businesses
-              </span>
-            </motion.div>
-
             {/* Headline */}
             <motion.h1 variants={itemVariants} className="text-2xl sm:text-4xl lg:text-6xl font-bold font-display leading-[1.1] mb-4 flex flex-wrap justify-center lg:justify-start gap-x-2">
               <span className="text-slate-900 dark:text-white">Know Where Your</span>
@@ -116,7 +104,7 @@ export function Hero() {
             </motion.div>
 
             {/* Platform Strip - Improved for Mobile */}
-            <motion.div variants={itemVariants} className="pt-6 border-t border-border/50 lg:border-none">
+            <motion.div variants={itemVariants} className="pt-6 border-t border-border/50 lg:hidden">
               <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4 lg:hidden">Supported Platforms</p>
               <div className="flex flex-row justify-between lg:justify-start gap-2 sm:gap-6 items-center overflow-x-auto hide-scrollbar">
                 <div className="bg-white rounded-lg p-1 shadow-sm border border-border/50 flex items-center justify-center h-8 w-14 sm:h-12 sm:w-28 transition-transform hover:scale-105 shrink-0">

@@ -34,7 +34,7 @@ const cardVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.15,
+      delay: i * 0.1,
       duration: 0.7,
       ease: [0.22, 1, 0.36, 1] as any,
     },
@@ -120,8 +120,8 @@ export function Testimonials() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="relative pl-10"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative pl-10 transform-gpu"
               >
                 {/* Profile Pic Indicator */}
                 <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary border-4 border-background flex items-center justify-center text-white text-[10px] font-bold shadow-lg z-10">

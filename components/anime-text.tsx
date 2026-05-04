@@ -45,8 +45,8 @@ export function AnimeText({ text, className = "", animationType = "letters", del
         <span
           key={index}
           className="anime-item inline-block bg-inherit bg-clip-inherit text-inherit"
-          style={{ 
-            opacity: 0, 
+          style={{
+            opacity: 0,
             whiteSpace: char === " " ? "pre" : "normal",
             WebkitTextFillColor: "inherit"
           }}
@@ -59,7 +59,7 @@ export function AnimeText({ text, className = "", animationType = "letters", del
         <span
           key={index}
           className="anime-item inline-block mr-[0.25em] bg-inherit bg-clip-inherit text-inherit"
-          style={{ 
+          style={{
             opacity: 0,
             WebkitTextFillColor: "inherit"
           }}

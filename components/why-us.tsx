@@ -65,7 +65,7 @@ const reasonCardVariants: Variants = {
     opacity: 1,
     x: 0,
     transition: {
-      delay: i * 0.15,
+      delay: i * 0.1,
       duration: 0.6,
       ease: [0.22, 1, 0.36, 1] as any,
     },
@@ -207,9 +207,9 @@ export function WhyUs() {
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] as any }}
+              transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] as any }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group text-center p-3 sm:p-5 lg:p-8 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-xl transition-all"
+              className="group text-center p-3 sm:p-5 lg:p-8 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-xl transition-all transform-gpu will-change-transform"
             >
               <motion.div
                 whileHover={{ scale: 1.2, rotate: 10 }}

@@ -185,7 +185,13 @@ export function Services() {
         <div className="sticky top-0 h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden z-10 pt-16">
 
           {/* Shared Header */}
-          <div className="w-full text-center px-4 mb-8 sm:mb-12 max-w-3xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="w-full text-center px-4 mb-8 sm:mb-12 max-w-3xl mx-auto"
+          >
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs sm:text-sm font-semibold rounded-full mb-3">
               Premium Services
             </span>
@@ -196,7 +202,7 @@ export function Services() {
               Choose only what grows your business. Our comprehensive suite of services
               is designed to maximize your profits and minimize losses.
             </p>
-          </div>
+          </motion.div>
 
           {/* Desktop Speedometer Carousel */}
           <div className="hidden sm:block w-full max-w-7xl mx-auto px-4 lg:px-8">

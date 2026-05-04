@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState, useCallback, useEffect } from "react"
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion"
+import { motion, useScroll, useTransform, useMotionValueEvent, Variants } from "framer-motion"
 import {
   CheckCircle2,
   ArrowRight,
@@ -25,6 +25,26 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+const fadeUpItem: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as any },
+  },
+}
+
 
 // Core Features Data - defined outside components so both can access
 const coreFeatures = [
@@ -155,30 +175,30 @@ const StickyCapabilitiesFeatures = () => {
                 const isAdImage = feature.image === "/img-4.webp";
                 
                 return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.9, x: 30 }}
-                    animate={{
-                      opacity: activeIndex === i ? 1 : 0,
-                      scale: activeIndex === i ? 1 : 0.9,
-                      x: activeIndex === i ? 0 : 30,
-                      pointerEvents: activeIndex === i ? "auto" : "none",
-                    }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-[1.4fr_1.6fr] gap-0 lg:gap-16 items-center justify-center"
-                  >
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0.9, x: 30 }}
+                      animate={{
+                        opacity: activeIndex === i ? 1 : 0,
+                        scale: activeIndex === i ? 1 : 0.9,
+                        x: activeIndex === i ? 0 : 30,
+                        pointerEvents: activeIndex === i ? "auto" : "none",
+                      }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-[1.4fr_1.6fr] gap-0 lg:gap-16 items-center justify-center transform-gpu will-change-transform"
+                    >
                     {/* Big Image */}
                     <div className="relative aspect-square flex items-center justify-center overflow-visible h-[220px] lg:h-auto mx-auto lg:mx-0 mb-0">
                       <div className={`absolute -inset-10 lg:-inset-20 ${feature.color} blur-[60px] lg:blur-[100px] opacity-30 rounded-full`} />
                       <motion.div
                         animate={{ y: [0, -10, 0] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        className={`relative z-10 w-full flex items-center justify-center ${isAdImage ? 'scale-75 lg:scale-[0.85]' : (isSmallImage ? 'scale-90 lg:scale-[1.1]' : 'scale-100 lg:scale-125')}`}
+                        className={`relative z-10 w-full flex items-center justify-center transform-gpu ${isAdImage ? 'scale-75 lg:scale-[0.85]' : (isSmallImage ? 'scale-90 lg:scale-[1.1]' : 'scale-100 lg:scale-125')}`}
                       >
                         <img
                           src={feature.image}
                           alt={feature.title}
-                          className="max-w-[220px] md:max-w-md lg:max-w-full max-h-full object-contain drop-shadow-2xl mx-auto"
+                          className="max-w-[220px] md:max-w-md lg:max-w-full max-h-full object-contain drop-shadow-2xl mx-auto will-change-transform"
                         />
                       </motion.div>
                     </div>
@@ -248,7 +268,13 @@ export const PaymentReconciliation = () => {
           className="max-w-7xl mx-auto"
         >
           {/* Hero Section of Reconciliation */}
-          <div className="text-left lg:text-center mb-12 sm:mb-16 mt-8 sm:mt-12 relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-left lg:text-center mb-12 sm:mb-16 mt-8 sm:mt-12 relative"
+          >
             <div className="inline-flex items-center gap-2 mb-4 sm:mb-6 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-violet-500/10 to-indigo-500/10 border border-violet-500/20 text-violet-700 dark:text-violet-300 text-[10px] sm:text-sm font-bold uppercase tracking-wider shadow-sm">
               <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-violet-500" />
               <span>Real-Time SKU Intelligence with AI</span>
@@ -269,23 +295,39 @@ export const PaymentReconciliation = () => {
               Powered by our advanced Speedy AI engine. Get instant clarity on your marketplace performance across Amazon, Flipkart, Myntra, and more.
             </p>
 
-            <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-start lg:justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 mb-12 sm:mb-16 px-0 sm:px-4">
+            <motion.div 
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-2 sm:flex sm:flex-wrap justify-start lg:justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 mb-12 sm:mb-16 px-0 sm:px-4"
+            >
               {[
                 { label: "Live SKU-wise tracking", icon: <BarChart3 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, color: "from-blue-500/10 to-cyan-500/10 border-blue-500/30 text-blue-700 dark:text-blue-300" },
                 { label: "Real-time updates", icon: <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, color: "from-amber-500/10 to-orange-500/10 border-amber-500/30 text-amber-700 dark:text-amber-300" },
                 { label: "Interactive dashboards", icon: <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, color: "from-emerald-500/10 to-teal-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-300" },
                 { label: "AI instant analysis", icon: <Bot className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, color: "from-violet-500/10 to-purple-500/10 border-violet-500/30 text-violet-700 dark:text-violet-300" },
               ].map((point, i) => (
-                <div key={i} className={`flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r ${point.color} border text-[10px] sm:text-xs md:text-sm font-bold shadow-sm whitespace-nowrap`}>
+                <motion.div 
+                  key={i} 
+                  variants={fadeUpItem}
+                  className={`flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r ${point.color} border text-[10px] sm:text-xs md:text-sm font-bold shadow-sm whitespace-nowrap`}
+                >
                   {point.icon}
                   <span className="truncate">{point.label}</span>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Speedy AI Section (Main Selling Point) */}
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-20 items-center mb-16 sm:mb-20 lg:mb-32 px-0 sm:px-0">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-20 items-center mb-16 sm:mb-20 lg:mb-32 px-0 sm:px-0"
+          >
             <div className="space-y-5 sm:space-y-8 order-2 lg:order-1 px-4 sm:px-0">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-violet-500/15 to-indigo-500/15 border border-violet-500/25 text-violet-700 dark:text-violet-300 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-sm">
                 <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-violet-500" /> Speedy AI Engine
@@ -302,18 +344,24 @@ export const PaymentReconciliation = () => {
                 <p className="font-medium">
                   It automatically analyzes your orders, SKUs, payments, and charges — and converts them into easy-to-understand reports, tables, and charts.
                 </p>
-                <ul className="space-y-3 sm:space-y-4 pt-2 sm:pt-4">
+                <motion.ul 
+                  variants={staggerContainer}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="space-y-3 sm:space-y-4 pt-2 sm:pt-4"
+                >
                   {[
                     "No manual Excel work",
                     "No confusion",
                     "Just clear business insights"
                   ].map((text, i) => (
-                    <li key={i} className="flex items-center gap-2 sm:gap-3 text-slate-800 dark:text-slate-200 font-bold">
+                    <motion.li key={i} variants={fadeUpItem} className="flex items-center gap-2 sm:gap-3 text-slate-800 dark:text-slate-200 font-bold">
                       <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 flex-shrink-0" />
                       {text}
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               </div>
             </div>
             <div className="relative order-1 lg:order-2 w-full">
@@ -365,10 +413,16 @@ export const PaymentReconciliation = () => {
                 </div>
               </Card>
             </div>
-          </div>
+          </motion.div>
 
           {/* Real-Time Dashboard Section */}
-          <div className="mb-16 sm:mb-20 lg:mb-32 px-0 sm:px-0">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-16 sm:mb-20 lg:mb-32 px-0 sm:px-0"
+          >
             <div className="text-left lg:text-center mb-10 sm:mb-12 lg:mb-16 px-4 sm:px-0">
               <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-2 sm:px-0">
                 <span className="text-slate-900 dark:text-white">Live Dashboard with </span>
@@ -380,30 +434,38 @@ export const PaymentReconciliation = () => {
             </div>
 
             <div className="grid lg:grid-cols-12 gap-4 lg:gap-8 items-start">
-              <div className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 lg:gap-6 px-4 lg:px-0 w-full lg:max-w-none">
+              <motion.div 
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 lg:gap-6 px-4 lg:px-0 w-full lg:max-w-none"
+              >
                 {[
                   { title: "SKU-wise tables", desc: "Granular data for every product.", icon: <Layers className="w-5 h-5" />, color: "bg-blue-500/10 text-blue-600" },
                   { title: "Visual charts", desc: "Understand trends at a glance.", icon: <BarChart3 className="w-5 h-5" />, color: "bg-violet-500/10 text-violet-600" },
                   { title: "Profit & loss", desc: "Monitor your bottom line.", icon: <TrendingUp className="w-5 h-5" />, color: "bg-emerald-500/10 text-emerald-600" },
                   { title: "Error detection", desc: "Find discrepancies early.", icon: <Search className="w-5 h-5" />, color: "bg-amber-500/10 text-amber-600" },
                 ].map((item, i) => (
-                  <Card key={i} className="p-3 sm:p-4 hover:shadow-lg transition-all border-border/50 bg-white dark:bg-card shadow-sm rounded-xl flex flex-col justify-center min-h-[90px] sm:min-h-0">
-                    <div className="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                      <div className={`flex w-8 h-8 sm:w-10 sm:h-10 rounded-lg ${item.color} items-center justify-center flex-shrink-0 mb-1 lg:mb-0`}>
-                        {item.icon}
+                  <motion.div key={i} variants={fadeUpItem}>
+                    <Card className="p-3 sm:p-4 hover:shadow-lg transition-all border-border/50 bg-white dark:bg-card shadow-sm rounded-xl flex flex-col justify-center min-h-[90px] sm:min-h-0">
+                      <div className="flex flex-col lg:flex-row gap-2 lg:gap-4">
+                        <div className={`flex w-8 h-8 sm:w-10 sm:h-10 rounded-lg ${item.color} items-center justify-center flex-shrink-0 mb-1 lg:mb-0`}>
+                          {item.icon}
+                        </div>
+                        <div className="px-0 lg:px-0 text-left">
+                          <h5 className="font-bold text-xs sm:text-sm lg:text-base mb-1 text-slate-900 dark:text-white leading-tight">
+                            {item.title}
+                          </h5>
+                          <p className="text-[10px] sm:text-xs lg:text-sm text-slate-600 dark:text-slate-400 leading-tight">
+                            {item.desc}
+                          </p>
+                        </div>
                       </div>
-                      <div className="px-0 lg:px-0 text-left">
-                        <h5 className="font-bold text-xs sm:text-sm lg:text-base mb-1 text-slate-900 dark:text-white leading-tight">
-                          {item.title}
-                        </h5>
-                        <p className="text-[10px] sm:text-xs lg:text-sm text-slate-600 dark:text-slate-400 leading-tight">
-                          {item.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
+                    </Card>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
               <div className="lg:col-span-8 mt-4 lg:mt-0 w-full overflow-hidden px-4 sm:px-0">
                 <Card className="p-4 sm:p-6 lg:p-8 border-primary/20 shadow-xl bg-white dark:bg-card/80 relative rounded-xl sm:rounded-3xl w-full box-border">
@@ -428,21 +490,30 @@ export const PaymentReconciliation = () => {
                           <TableHead className="text-right text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Profit</TableHead>
                         </TableRow>
                       </TableHeader>
-                      <TableBody>
+                      <motion.tbody 
+                        variants={staggerContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                      >
                         {[
                           { sku: "SP-WIRELESS-EARBUDS", sales: "₹45,000", charges: "₹12,400", profit: "+₹8,500", color: "text-emerald-600" },
                           { sku: "SP-SMART-WATCH-01", sales: "₹82,500", charges: "₹24,150", profit: "+₹15,200", color: "text-emerald-600" },
                           { sku: "SP-PHONE-CASE-GLS", sales: "₹12,200", charges: "₹4,800", profit: "-₹1,200", color: "text-red-600" },
                           { sku: "SP-FAST-CHARGER-20W", sales: "₹28,400", charges: "₹8,200", profit: "+₹4,100", color: "text-emerald-600" },
                         ].map((row, i) => (
-                          <TableRow key={i} className="border-slate-100 dark:border-slate-800">
+                          <motion.tr 
+                            key={i} 
+                            variants={fadeUpItem}
+                            className="border-slate-100 dark:border-slate-800"
+                          >
                             <TableCell className="font-semibold text-xs sm:text-sm text-slate-900 dark:text-slate-200">{row.sku}</TableCell>
                             <TableCell className="text-xs sm:text-sm text-slate-700 dark:text-slate-400 font-medium">{row.sales}</TableCell>
                             <TableCell className="text-xs sm:text-sm text-slate-700 dark:text-slate-400 font-medium">{row.charges}</TableCell>
                             <TableCell className={`text-right font-bold text-xs sm:text-sm ${row.color}`}>{row.profit}</TableCell>
-                          </TableRow>
+                          </motion.tr>
                         ))}
-                      </TableBody>
+                      </motion.tbody>
                     </Table>
                   </div>
 
@@ -481,10 +552,16 @@ export const PaymentReconciliation = () => {
                 </Card>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* AI Insights Section (VERY IMPORTANT) */}
-          <div className="mb-16 lg:mb-32 relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-16 lg:mb-32 relative"
+          >
              <div className="absolute inset-0 bg-primary/5 rounded-[2rem] lg:rounded-[3rem] -z-10 blur-2xl" />
              <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center p-6 lg:p-16">
                <div className="order-2 lg:order-1">
@@ -520,10 +597,16 @@ export const PaymentReconciliation = () => {
                  </div>
                </div>
              </div>
-          </div>
+          </motion.div>
 
           {/* Innovative Features Section - Restored */}
-          <div className="mt-16 md:mt-24 mb-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mt-16 md:mt-24 mb-12"
+          >
             <div className="text-center mb-0 md:mb-4">
               <h3 className="text-2xl sm:text-4xl lg:text-7xl font-bold font-display mb-4 tracking-tight">
                 Innovative <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Features</span>
@@ -533,7 +616,7 @@ export const PaymentReconciliation = () => {
               </p>
             </div>
             <StickyCapabilitiesFeatures />
-          </div>
+          </motion.div>
 
       
 
