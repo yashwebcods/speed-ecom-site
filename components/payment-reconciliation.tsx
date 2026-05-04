@@ -16,7 +16,15 @@ import {
   FileSearch,
   Globe,
   Package,
+  LineChart,
+  PieChart,
+  Sparkles,
+  ArrowUpRight,
 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 // Core Features Data - defined outside components so both can access
 const coreFeatures = [
@@ -88,10 +96,10 @@ const StickyCapabilitiesFeatures = () => {
   }
 
   return (
-    <div ref={containerRef} style={{ height: `${totalFeatures * 60}vh` }} className="relative w-full">
-      <section className="sticky top-20 h-[500px] w-full flex items-center overflow-hidden">
+    <div ref={containerRef} style={{ height: `${totalFeatures * 80}vh` }} className="relative w-full">
+      <section className="sticky top-20 h-[500px] lg:h-[500px] w-full flex items-center overflow-hidden">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-12 items-center h-full">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-center h-full">
 
             {/* Feature Navigation List */}
             <div className="hidden lg:block lg:col-span-3 relative h-[400px] overflow-hidden -ml-4 lg:-ml-8">
@@ -141,7 +149,7 @@ const StickyCapabilitiesFeatures = () => {
             </div>
 
             {/* Combined Image and Content */}
-            <div className="w-full lg:col-span-9 relative h-[400px] flex items-center">
+            <div className="w-full lg:col-span-9 relative h-[400px] lg:h-[400px] flex items-center">
               {coreFeatures.map((feature, i) => {
                 const isSmallImage = feature.image === "/img--1.webp" || feature.image === "/img-4.webp" || feature.image === "/img-6.png" || feature.image === "/img-3.webp";
                 const isAdImage = feature.image === "/img-4.webp";
@@ -157,10 +165,10 @@ const StickyCapabilitiesFeatures = () => {
                       pointerEvents: activeIndex === i ? "auto" : "none",
                     }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute inset-0 grid grid-cols-1 lg:grid-cols-[1.4fr_1.6fr] gap-8 lg:gap-16 items-center"
+                    className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-[1.4fr_1.6fr] gap-0 lg:gap-16 items-center justify-center"
                   >
                     {/* Big Image */}
-                    <div className="relative aspect-square flex items-center justify-center overflow-visible">
+                    <div className="relative aspect-square flex items-center justify-center overflow-visible h-[220px] lg:h-auto mx-auto lg:mx-0 mb-0">
                       <div className={`absolute -inset-10 lg:-inset-20 ${feature.color} blur-[60px] lg:blur-[100px] opacity-30 rounded-full`} />
                       <motion.div
                         animate={{ y: [0, -10, 0] }}
@@ -170,17 +178,17 @@ const StickyCapabilitiesFeatures = () => {
                         <img
                           src={feature.image}
                           alt={feature.title}
-                          className="max-w-[320px] md:max-w-md lg:max-w-full max-h-full object-contain drop-shadow-2xl"
+                          className="max-w-[220px] md:max-w-md lg:max-w-full max-h-full object-contain drop-shadow-2xl mx-auto"
                         />
                       </motion.div>
                     </div>
 
                     {/* Text Content */}
-                    <div className="flex flex-col justify-center space-y-4 lg:space-y-6 text-center lg:text-left">
-                      <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1] dark:text-white">
+                    <div className="flex flex-col justify-center space-y-2 lg:space-y-6 text-center lg:text-left -mt-2">
+                      <h3 className="text-xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1] dark:text-white">
                         {feature.title}
                       </h3>
-                      <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed">
+                      <p className="text-[13px] sm:text-lg lg:text-2xl text-muted-foreground leading-relaxed px-4 lg:px-0">
                         {feature.description}
                       </p>
                     </div>
@@ -190,7 +198,7 @@ const StickyCapabilitiesFeatures = () => {
             </div>
 
             {/* Mobile Navigation Dots */}
-            <div className="flex lg:hidden gap-2 mt-4 justify-center">
+            <div className="flex lg:hidden gap-2 -mt-4 justify-center relative z-20">
               {coreFeatures.map((_, i) => (
                 <button
                   key={i}
@@ -215,7 +223,7 @@ export const PaymentReconciliation = () => {
   })
 
   const scale = useTransform(scrollYProgress, [0, 0.2], [0.95, 1])
-  const opacity = useTransform(scrollYProgress, [0, 0.15], [0, 1])
+  const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 1])
 
   const steps = [
     { title: "Connect", desc: "Connect your marketplace accounts", icon: <Layers className="w-5 h-5" /> },
@@ -240,145 +248,294 @@ export const PaymentReconciliation = () => {
           className="max-w-7xl mx-auto"
         >
           {/* Hero Section of Reconciliation */}
-          <div className="text-center mb-12 mt-10 relative">
-           
+          <div className="text-left lg:text-center mb-12 sm:mb-16 mt-8 sm:mt-12 relative">
+            <div className="inline-flex items-center gap-2 mb-4 sm:mb-6 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-violet-500/10 to-indigo-500/10 border border-violet-500/20 text-violet-700 dark:text-violet-300 text-[10px] sm:text-sm font-bold uppercase tracking-wider shadow-sm">
+              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-violet-500" />
+              <span>Real-Time SKU Intelligence with AI</span>
+            </div>
 
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold font-display mb-6 md:mb-8 tracking-tight leading-[1.2] md:leading-[1.1]">
-              Scale Your Profits with <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-500 to-blue-600 px-1">AI-Powered Precision</span>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold font-display mb-4 sm:mb-6 md:mb-8 tracking-tight leading-[1.15] md:leading-[1.1] px-2 sm:px-0">
+              <span className="text-slate-900 dark:text-white">Track every </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">order</span>
+              <span className="text-slate-900 dark:text-white">, every </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">SKU</span>
+              <br className="hidden md:block" />
+              <span className="text-slate-900 dark:text-white"> and every </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">rupee</span>
+              <span className="text-slate-900 dark:text-white"> in real-time</span>
             </h2>
 
-            <p className="text-base md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed font-medium">
-              The ultimate financial command center for Amazon, Flipkart, and beyond. Track every rupee, detect leaks, and maximize ROI.
+            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto mb-6 sm:mb-8 md:mb-12 leading-relaxed font-medium px-4 sm:px-6 lg:px-0">
+              Powered by our advanced Speedy AI engine. Get instant clarity on your marketplace performance across Amazon, Flipkart, Myntra, and more.
             </p>
 
-
-
-
-          </div>
-
-          {/* About Section */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-16 lg:mb-24">
-            <div className="relative order-2 lg:order-1">
-              <div className="absolute -inset-10 bg-gradient-to-tr from-primary/10 to-indigo-500/10 rounded-[3rem] -z-10 blur-3xl opacity-60" />
-              <div className="bg-card/50 backdrop-blur-xl border border-border/80 p-6 md:p-12 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 md:p-8">
-                  <div className="flex -space-x-2 md:-space-x-3">
-                    {[1, 2, 3].map(i => (
-                      <div key={i} className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-background bg-muted flex items-center justify-center overflow-hidden">
-                        <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="User" />
-                      </div>
-                    ))}
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-background bg-primary flex items-center justify-center text-[8px] md:text-[10px] font-bold text-white">
-                      +2k
-                    </div>
-                  </div>
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-start lg:justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 mb-12 sm:mb-16 px-0 sm:px-4">
+              {[
+                { label: "Live SKU-wise tracking", icon: <BarChart3 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, color: "from-blue-500/10 to-cyan-500/10 border-blue-500/30 text-blue-700 dark:text-blue-300" },
+                { label: "Real-time updates", icon: <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, color: "from-amber-500/10 to-orange-500/10 border-amber-500/30 text-amber-700 dark:text-amber-300" },
+                { label: "Interactive dashboards", icon: <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, color: "from-emerald-500/10 to-teal-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-300" },
+                { label: "AI instant analysis", icon: <Bot className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, color: "from-violet-500/10 to-purple-500/10 border-violet-500/30 text-violet-700 dark:text-violet-300" },
+              ].map((point, i) => (
+                <div key={i} className={`flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r ${point.color} border text-[10px] sm:text-xs md:text-sm font-bold shadow-sm whitespace-nowrap`}>
+                  {point.icon}
+                  <span className="truncate">{point.label}</span>
                 </div>
-
-                <div className="mb-6 md:mb-8">
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 mb-4 md:mb-6">
-                    <BarChart3 className="w-6 h-6 md:w-7 md:h-7" />
-                  </div>
-                  <h3 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 tracking-tight">Stop Financial Leakage</h3>
-                  <p className="text-muted-foreground text-base md:text-lg mb-4 md:mb-6 leading-relaxed">
-                    Most e-commerce sellers lose 2-5% of their revenue to unrecorded returns, incorrect commissions, and hidden penalties.
-                  </p>
-                  <p className="text-muted-foreground text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
-                    Our AI scans every transaction across <span className="text-foreground font-semibold">Amazon, Flipkart, and Myntra</span> to ensure you get every rupee you're owed.
-                  </p>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="p-5 bg-emerald-500/5 rounded-2xl border border-emerald-500/10">
-                    <div className="flex items-center gap-2 text-emerald-600 font-bold mb-1">
-                      <TrendingUp className="w-4 h-4" />
-                      +24% ROI
-                    </div>
-                    <p className="text-sm text-muted-foreground">Average increase in profit margins</p>
-                  </div>
-                  <div className="p-5 bg-blue-500/5 rounded-2xl border border-blue-500/10">
-                    <div className="flex items-center gap-2 text-blue-600 font-bold mb-1">
-                      <Zap className="w-4 h-4" />
-                      10x Faster
-                    </div>
-                    <p className="text-sm text-muted-foreground">Automated reconciliation speed</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-10 order-1 lg:order-2">
-              <div>
-                <h3 className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-4">Why Speed E-com?</h3>
-                <h4 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">Built for Scale, <br />Designed for Clarity.</h4>
-              </div>
-
-              <div className="space-y-6">
-                {[
-                  { title: "Universal Integration", desc: "One-click connection to all major marketplaces.", icon: <Globe className="w-5 h-5" /> },
-                  { title: "Granular Analysis", desc: "Every SKU, every transaction, every penny accounted for.", icon: <Search className="w-5 h-5" /> },
-                  { title: "AI-Powered Strategy", desc: "Predictive insights to optimize your ad spend and pricing.", icon: <Bot className="w-5 h-5" /> },
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-6 group">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h5 className="text-xl font-bold mb-2">{item.title}</h5>
-                      <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Powerful Capabilities Section - Sticky Scroll with Left Nav, Center Image, Right Content */}
-          <div className="mt-16 md:mt-24 mb-12">
-            <div className="text-center mb-0 md:mb-4">
-              <h3 className="text-3xl md:text-7xl font-bold font-display mb-4 tracking-tight">
-                Innovative Features
+          {/* Speedy AI Section (Main Selling Point) */}
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-20 items-center mb-16 sm:mb-20 lg:mb-32 px-0 sm:px-0">
+            <div className="space-y-5 sm:space-y-8 order-2 lg:order-1 px-4 sm:px-0">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-violet-500/15 to-indigo-500/15 border border-violet-500/25 text-violet-700 dark:text-violet-300 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-sm">
+                <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-violet-500" /> Speedy AI Engine
+              </div>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+                <span className="text-slate-900 dark:text-white">Meet Your Personal </span>
+                <br className="hidden sm:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">AI Analyst</span>
               </h3>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-                Smart tools tailored to enhance the success of sellers, D2C brands, and retailers.
+              <div className="space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="font-medium">
+                  Our Speedy AI works in real-time with your live marketplace data to give you instant insights.
+                </p>
+                <p className="font-medium">
+                  It automatically analyzes your orders, SKUs, payments, and charges — and converts them into easy-to-understand reports, tables, and charts.
+                </p>
+                <ul className="space-y-3 sm:space-y-4 pt-2 sm:pt-4">
+                  {[
+                    "No manual Excel work",
+                    "No confusion",
+                    "Just clear business insights"
+                  ].map((text, i) => (
+                    <li key={i} className="flex items-center gap-2 sm:gap-3 text-slate-800 dark:text-slate-200 font-bold">
+                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 flex-shrink-0" />
+                      {text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="relative order-1 lg:order-2 w-full">
+              <Card className="p-4 sm:p-6 bg-gradient-to-br from-primary to-primary/90 border-primary/30 shadow-2xl shadow-primary/20 overflow-hidden relative group rounded-none sm:rounded-3xl">
+                <div className="absolute top-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-white/10 blur-[80px] sm:blur-[100px] -mr-16 sm:-mr-32 -mt-16 sm:-mt-32 rounded-full" />
+                <div className="absolute bottom-0 left-0 w-32 sm:w-48 h-32 sm:h-48 bg-violet-400/20 blur-[60px] sm:blur-[80px] -ml-10 sm:-ml-20 -mb-10 sm:-mb-20 rounded-full" />
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-5 sm:mb-8">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center">
+                        <Bot className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-white font-bold text-sm sm:text-base">Speedy AI Analyst</p>
+                        <p className="text-white/70 text-xs sm:text-xs">Live processing...</p>
+                      </div>
+                    </div>
+                    <Badge className="bg-emerald-400/20 text-emerald-300 border-emerald-400/30 text-xs">Active</Badge>
+                  </div>
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="p-3 sm:p-4 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
+                      <p className="text-white text-xs sm:text-sm mb-2">"Analyze today's SKU performance"</p>
+                      <div className="h-1.5 sm:h-2 w-full bg-white/20 rounded-full overflow-hidden">
+                        <motion.div 
+                          className="h-full bg-gradient-to-r from-white to-violet-200"
+                          initial={{ width: "0%" }}
+                          animate={{ width: "100%" }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 sm:gap-4">
+                      <div className="p-3 sm:p-4 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
+                        <p className="text-white/80 text-[10px] sm:text-xs mb-1">Total Sales</p>
+                        <p className="text-lg sm:text-xl font-bold text-white">₹4,28,450</p>
+                        <span className="text-emerald-300 text-[10px] sm:text-xs flex items-center gap-1 mt-1">
+                          <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> +12.5%
+                        </span>
+                      </div>
+                      <div className="p-3 sm:p-4 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
+                        <p className="text-white/80 text-[10px] sm:text-xs mb-1">Net Profit</p>
+                        <p className="text-lg sm:text-xl font-bold text-white">₹85,200</p>
+                        <span className="text-emerald-300 text-[10px] sm:text-xs flex items-center gap-1 mt-1">
+                          <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> +8.2%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+
+          {/* Real-Time Dashboard Section */}
+          <div className="mb-16 sm:mb-20 lg:mb-32 px-0 sm:px-0">
+            <div className="text-left lg:text-center mb-10 sm:mb-12 lg:mb-16 px-4 sm:px-0">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-2 sm:px-0">
+                <span className="text-slate-900 dark:text-white">Live Dashboard with </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">SKU-Level Insights</span>
+              </h3>
+              <p className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-medium">
+                All data is updated in real-time directly from marketplaces like Amazon, Flipkart, Myntra, Meesho, and Ajio.
               </p>
             </div>
 
-            <StickyCapabilitiesFeatures />
-          </div>
-
-          {/* How It Works */}
-          <div className="mb-12 lg:mb-16 relative">
-            <div className="absolute inset-0 bg-primary/[0.03] rounded-[2rem] md:rounded-[4rem] -rotate-1" />
-            <div className="relative p-8 md:p-24 overflow-hidden">
-              <div className="text-center mb-12 md:mb-24">
-                <h3 className="text-3xl md:text-6xl font-bold mb-4 md:mb-6">How It Works</h3>
-                <p className="text-muted-foreground text-lg md:text-xl">From connection to clarity in minutes</p>
+            <div className="grid lg:grid-cols-12 gap-4 lg:gap-8 items-start">
+              <div className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 lg:gap-6 px-4 lg:px-0 w-full lg:max-w-none">
+                {[
+                  { title: "SKU-wise tables", desc: "Granular data for every product.", icon: <Layers className="w-5 h-5" />, color: "bg-blue-500/10 text-blue-600" },
+                  { title: "Visual charts", desc: "Understand trends at a glance.", icon: <BarChart3 className="w-5 h-5" />, color: "bg-violet-500/10 text-violet-600" },
+                  { title: "Profit & loss", desc: "Monitor your bottom line.", icon: <TrendingUp className="w-5 h-5" />, color: "bg-emerald-500/10 text-emerald-600" },
+                  { title: "Error detection", desc: "Find discrepancies early.", icon: <Search className="w-5 h-5" />, color: "bg-amber-500/10 text-amber-600" },
+                ].map((item, i) => (
+                  <Card key={i} className="p-3 sm:p-4 hover:shadow-lg transition-all border-border/50 bg-white dark:bg-card shadow-sm rounded-xl flex flex-col justify-center min-h-[90px] sm:min-h-0">
+                    <div className="flex flex-col lg:flex-row gap-2 lg:gap-4">
+                      <div className={`flex w-8 h-8 sm:w-10 sm:h-10 rounded-lg ${item.color} items-center justify-center flex-shrink-0 mb-1 lg:mb-0`}>
+                        {item.icon}
+                      </div>
+                      <div className="px-0 lg:px-0 text-left">
+                        <h5 className="font-bold text-xs sm:text-sm lg:text-base mb-1 text-slate-900 dark:text-white leading-tight">
+                          {item.title}
+                        </h5>
+                        <p className="text-[10px] sm:text-xs lg:text-sm text-slate-600 dark:text-slate-400 leading-tight">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8 relative">
-                {steps.map((step, i) => (
-                  <div key={i} className="relative group">
-                    {i < steps.length - 1 && (
-                      <div className="hidden lg:block absolute top-12 left-full w-full h-[2px] bg-gradient-to-r from-primary/30 to-transparent -translate-x-4 z-0" />
-                    )}
-                    <div className="relative z-10 flex flex-row lg:flex-col items-center gap-6 lg:gap-0">
-                      <div className="w-16 h-16 md:w-24 md:h-24 flex-shrink-0 rounded-2xl md:rounded-3xl bg-background border-2 border-primary/20 flex items-center justify-center text-primary lg:mb-8 shadow-xl group-hover:scale-110 group-hover:border-primary transition-all duration-300">
-                        <div className="absolute -top-2 -right-2 md:-top-3 md:-right-3 w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary text-white text-xs md:text-sm font-bold flex items-center justify-center shadow-lg">
-                          0{i + 1}
-                        </div>
-                        {step.icon}
+              <div className="lg:col-span-8 mt-4 lg:mt-0 w-full overflow-hidden px-4 sm:px-0">
+                <Card className="p-4 sm:p-6 lg:p-8 border-primary/20 shadow-xl bg-white dark:bg-card/80 relative rounded-xl sm:rounded-3xl w-full box-border">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5 sm:mb-8 gap-3">
+                    <div>
+                      <h4 className="font-bold text-lg sm:text-xl text-slate-900 dark:text-white">Top Performing SKUs</h4>
+                      <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Live Data. Smart Decisions.</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <Badge variant="secondary" className="text-xs">Amazon</Badge>
+                      <Badge variant="secondary" className="text-xs">Flipkart</Badge>
+                    </div>
+                  </div>
+                  
+                  <div className="overflow-x-auto pb-2 relative z-10">
+                    <Table className="min-w-[450px]">
+                      <TableHeader>
+                        <TableRow className="border-slate-200 dark:border-slate-700">
+                          <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">SKU Name</TableHead>
+                          <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Sales</TableHead>
+                          <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Charges</TableHead>
+                          <TableHead className="text-right text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Profit</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {[
+                          { sku: "SP-WIRELESS-EARBUDS", sales: "₹45,000", charges: "₹12,400", profit: "+₹8,500", color: "text-emerald-600" },
+                          { sku: "SP-SMART-WATCH-01", sales: "₹82,500", charges: "₹24,150", profit: "+₹15,200", color: "text-emerald-600" },
+                          { sku: "SP-PHONE-CASE-GLS", sales: "₹12,200", charges: "₹4,800", profit: "-₹1,200", color: "text-red-600" },
+                          { sku: "SP-FAST-CHARGER-20W", sales: "₹28,400", charges: "₹8,200", profit: "+₹4,100", color: "text-emerald-600" },
+                        ].map((row, i) => (
+                          <TableRow key={i} className="border-slate-100 dark:border-slate-800">
+                            <TableCell className="font-semibold text-xs sm:text-sm text-slate-900 dark:text-slate-200">{row.sku}</TableCell>
+                            <TableCell className="text-xs sm:text-sm text-slate-700 dark:text-slate-400 font-medium">{row.sales}</TableCell>
+                            <TableCell className="text-xs sm:text-sm text-slate-700 dark:text-slate-400 font-medium">{row.charges}</TableCell>
+                            <TableCell className={`text-right font-bold text-xs sm:text-sm ${row.color}`}>{row.profit}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+
+                  <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 px-0 sm:px-0">
+                    <div className="h-40 sm:h-48 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-700 border border-blue-100 dark:border-slate-600 flex flex-col items-center justify-center p-3 sm:p-4">
+                      <p className="text-xs font-bold text-slate-700 dark:text-slate-300 mb-3 sm:mb-4 uppercase tracking-wider">Sales Trend</p>
+                      <div className="flex items-end gap-1.5 sm:gap-2 h-full w-full max-w-[200px]">
+                        {[40, 70, 45, 90, 65, 80, 55].map((h, i) => (
+                          <motion.div 
+                            key={i} 
+                            initial={{ height: 0 }}
+                            animate={{ height: `${h}%` }}
+                            transition={{ duration: 1, delay: i * 0.1 }}
+                            className="flex-1 bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-sm"
+                          />
+                        ))}
                       </div>
-                      <div className="flex flex-col lg:items-center">
-                        <h5 className="text-lg md:text-xl font-bold mb-1 md:mb-3">{step.title}</h5>
-                        <p className="text-sm text-muted-foreground lg:text-center font-medium leading-relaxed">{step.desc}</p>
+                    </div>
+                    <div className="h-40 sm:h-48 rounded-xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-slate-800 dark:to-slate-700 border border-emerald-100 dark:border-slate-600 flex flex-col items-center justify-center p-3 sm:p-4">
+                      <p className="text-xs font-bold text-slate-700 dark:text-slate-300 mb-3 sm:mb-4 uppercase tracking-wider">Charges Breakdown</p>
+                      <div className="relative w-24 sm:w-32 h-24 sm:h-32">
+                        <svg className="w-full h-full" viewBox="0 0 32 32">
+                          <circle cx="16" cy="16" r="14" fill="transparent" stroke="#e2e8f0" strokeWidth="4" />
+                          <circle cx="16" cy="16" r="14" fill="transparent" stroke="#6366f1" strokeWidth="4" strokeDasharray="65 100" strokeDashoffset="0" />
+                          <circle cx="16" cy="16" r="14" fill="transparent" stroke="#10b981" strokeWidth="4" strokeDasharray="20 100" strokeDashoffset="-65" />
+                        </svg>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <p className="text-[9px] sm:text-[10px] font-bold text-center text-slate-700 dark:text-slate-300">Marketplace<br/>Fees</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                ))}
+                  <div className="mt-4 text-right">
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 italic font-medium">"Every SKU. Every Transaction. Fully Tracked."</p>
+                  </div>
+                </Card>
               </div>
             </div>
           </div>
+
+          {/* AI Insights Section (VERY IMPORTANT) */}
+          <div className="mb-16 lg:mb-32 relative">
+             <div className="absolute inset-0 bg-primary/5 rounded-[2rem] lg:rounded-[3rem] -z-10 blur-2xl" />
+             <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center p-6 lg:p-16">
+               <div className="order-2 lg:order-1">
+                 <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 lg:gap-4">
+                    {[
+                      { title: "Identify loss-making SKUs", icon: <Package className="text-red-500" /> },
+                      { title: "Detect hidden charges", icon: <ShieldCheck className="text-emerald-500" /> },
+                      { title: "Analyze ad performance", icon: <TrendingUp className="text-indigo-500" /> },
+                      { title: "Suggest profit growth", icon: <Sparkles className="text-amber-500" /> },
+                    ].map((item, i) => (
+                      <Card key={i} className="p-4 lg:p-6 bg-background/80 backdrop-blur-sm border-primary/10 hover:border-primary/30 transition-all group">
+                        <div className="mb-2 lg:mb-4 group-hover:scale-110 transition-transform">{item.icon}</div>
+                        <h5 className="font-bold text-xs sm:text-sm lg:text-base leading-tight">{item.title}</h5>
+                      </Card>
+                    ))}
+                 </div>
+               </div>
+               <div className="space-y-4 lg:space-y-6 order-1 lg:order-2">
+                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 text-xs font-bold uppercase tracking-wider">
+                   💡 Intelligent Growth
+                 </div>
+                 <h3 className="text-2xl sm:text-3xl lg:text-5xl font-bold leading-tight">
+                   Smart Insights That <br />
+                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Grow Your Profit</span>
+                 </h3>
+                 <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed">
+                   Our AI doesn't just show data — it tells you what to do next. It's like having a financial expert working 24/7 for your business.
+                 </p>
+                 <div className="pt-2 lg:pt-4">
+                    <p className="text-lg sm:text-xl lg:text-2xl font-display font-bold italic text-slate-900 dark:text-white">
+                      "From Raw Data to Clear Profit Insights."
+                    </p>
+                 </div>
+               </div>
+             </div>
+          </div>
+
+          {/* Innovative Features Section - Restored */}
+          <div className="mt-16 md:mt-24 mb-12">
+            <div className="text-center mb-0 md:mb-4">
+              <h3 className="text-2xl sm:text-4xl lg:text-7xl font-bold font-display mb-4 tracking-tight">
+                Innovative <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Features</span>
+              </h3>
+              <p className="text-sm sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+                Smart tools tailored to enhance the success of sellers, D2C brands, and retailers.
+              </p>
+            </div>
+            <StickyCapabilitiesFeatures />
+          </div>
+
+      
 
         </motion.div>
       </div>

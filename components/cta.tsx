@@ -60,7 +60,7 @@ export function CTA() {
             className="text-2xl sm:text-4xl lg:text-6xl font-bold font-display text-white mb-4 text-balance leading-tight"
           >
             Struggling With Online Business Losses?{" "}
-            <span>Let Us Fix It!</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-400">Let Us Fix It!</span>
           </motion.h2>
 
           <motion.p

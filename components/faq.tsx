@@ -77,7 +77,7 @@ export function FAQ() {
             </motion.span>
             <h2 className="text-2xl lg:text-5xl font-bold font-display mb-4 text-balance">
               Frequently Asked{" "}
-              <span className="text-primary">Questions</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Questions</span>
             </h2>
             <p className="text-sm lg:text-lg text-muted-foreground mb-6 text-pretty">
               Got questions? We&apos;ve got answers. If you can&apos;t find what you&apos;re looking for,
