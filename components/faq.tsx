@@ -1,139 +1,186 @@
 "use client"
-import { motion } from "framer-motion"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ChevronRight } from "lucide-react"
 
-const faqs = [
-  {
-    question: "Which platforms do you support?",
-    answer:
-      "We work with all major e-commerce platforms including Flipkart, Amazon, Meesho, JioMart, Myntra, and more. Our team is experienced in handling platform-specific issues and optimizations.",
-  },
-  {
-    question: "How will your services solve my online business problems?",
-    answer:
-      "We provide complete analysis and reporting on cash flow issues, wrong shipment weight charges, high shipping costs, illegal deductions, and settlement disputes. Our experts identify problem areas and provide actionable solutions.",
-  },
-  {
-    question: "Do I need to share my seller account access?",
-    answer:
-      "Yes, for accurate analysis we need limited access or data from your seller accounts. However, your data is 100% secure with us. We follow strict security protocols and only access what&apos;s necessary for the analysis.",
-  },
-  {
-    question: "What are your pricing plans?",
-    answer:
-      "Our plans start from just ₹249/month, which includes detailed reporting and expert support. We have different tiers based on the number of platforms and level of support you need. Contact us for a customized quote.",
-  },
-  {
-    question: "How quickly can I see results?",
-    answer:
-      "Most clients start seeing improvements within the first month. Our initial audit typically reveals immediate savings from wrong commission recoveries and shipping discrepancy fixes. Long-term strategic improvements build over 2-3 months.",
-  },
-  {
-    question: "What makes you different from other service providers?",
-    answer:
-      "We provide a dedicated Relationship Manager for personalized support, platform-specific expertise, and transparent financial tracking. We&apos;re not just service providers – we&apos;re your growth partners committed to your success.",
-  },
+const categories = [
+  { id: "GENERAL", label: "GENERAL" },
+  { id: "DATA", label: "DATA / NETWORKS" },
+  { id: "PAYMENTS", label: "PAYMENTS / WALLET" },
 ]
 
-const faqItemVariants = {
-  hidden: { opacity: 0, x: 40 },
-  visible: (i: number) => ({
-    opacity: 1,
-    x: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1] as any,
+const faqData = {
+  GENERAL: [
+    {
+      question: "Which platforms do you support?",
+      answer: "We work with all major e-commerce platforms including Flipkart, Amazon, Meesho, JioMart, Myntra, and more. Our team is experienced in handling platform-specific issues and optimizations."
     },
-  }),
+    {
+      question: "How will your services solve my online business problems?",
+      answer: "We provide complete analysis and reporting on cash flow issues, wrong shipment weight charges, high shipping costs, illegal deductions, and settlement disputes."
+    },
+    {
+      question: "Do I need to share my seller account access?",
+      answer: "Yes, for accurate analysis we need limited access or data from your seller accounts. However, your data is 100% secure with us following strict security protocols."
+    },
+    {
+      question: "What are your pricing plans?",
+      answer: "Our plans start from just ₹249/month, which includes detailed reporting and expert support. We have different tiers based on the number of platforms."
+    },
+    {
+      question: "How quickly can I see results?",
+      answer: "Most clients start seeing improvements within the first month. Our initial audit typically reveals immediate savings from wrong commission recoveries."
+    }
+  ],
+  DATA: [
+    {
+      question: "How is my data security handled?",
+      answer: "We use enterprise-grade encryption for all data storage. Your seller account data is only used for analysis and is never shared with third parties."
+    },
+    {
+      question: "Do you offer API integration for real-time tracking?",
+      answer: "Yes, we provide API integration options for major platforms to fetch real-time data for more accurate and timely reporting."
+    },
+    {
+      question: "What kind of network infrastructure do you use?",
+      answer: "Our systems run on secure, high-speed cloud infrastructure ensuring 99.9% uptime and fast processing of large volume transaction data."
+    },
+    {
+      question: "Can I export my data and reports?",
+      answer: "Absolutely. All reports and analyzed data can be exported in various formats including Excel, CSV, and PDF for your internal records."
+    },
+    {
+      question: "How often is the data synced from platforms?",
+      answer: "Data is typically synced every 24 hours, but we can configure high-frequency sync for businesses with large daily transaction volumes."
+    }
+  ],
+  PAYMENTS: [
+    {
+      question: "How do you track payment discrepancies?",
+      answer: "We cross-reference every order with actual bank settlements, identifying missing payments, wrong deductions, or delayed transfers automatically."
+    },
+    {
+      question: "What is the Wallet feature in Speed E-Com?",
+      answer: "The Wallet feature tracks your virtual balance across platforms, helping you understand your net receivable amount at any given time."
+    },
+    {
+      question: "How do you handle refund and return adjustments?",
+      answer: "Our system tracks every return and ensures that the platform correctly adjusts the commission and shipping fees in your favor."
+    },
+    {
+      question: "Can you help with tax reconciliation?",
+      answer: "Yes, we provide detailed reports on GST deductions and TCS/TDS withheld by platforms to simplify your monthly tax filing process."
+    },
+    {
+      question: "What happens if I find a payment error in my report?",
+      answer: "Our experts help you raise formal disputes with the respective e-commerce platforms using the detailed evidence generated by our system."
+    }
+  ]
 }
 
 export function FAQ() {
+  const [activeCategory, setActiveCategory] = useState("GENERAL")
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const currentFaqs = faqData[activeCategory as keyof typeof faqData]
+
   return (
-    <section id="faq" className="py-12 lg:py-32">
+    <section id="faq" className="py-12 lg:py-24 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as any }}
-            className="lg:sticky lg:top-32 lg:self-start"
+        {/* Main Heading Center */}
+        <div className="text-center mb-16">
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-block px-4 py-1.5 bg-violet-100 text-violet-700 text-sm font-bold rounded-full mb-4 uppercase tracking-wider"
           >
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-4"
-            >
-              FAQ
-            </motion.span>
-            <h2 className="text-2xl lg:text-5xl font-bold font-display mb-4 text-balance">
-              Frequently Asked{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Questions</span>
-            </h2>
-            <p className="text-sm lg:text-lg text-muted-foreground mb-6 text-pretty">
-              Got questions? We&apos;ve got answers. If you can&apos;t find what you&apos;re looking for,
-              feel free to contact us directly.
-            </p>
+            FAQ
+          </motion.span>
+          <h2 className="text-3xl lg:text-6xl font-bold font-display mb-4">
+            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Questions</span>
+          </h2>
+          <p className="text-base lg:text-xl text-muted-foreground max-w-2xl mx-auto">
+            Got questions? We've got answers. If you can't find what you're looking for,
+            feel free to contact us directly.
+          </p>
+        </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              whileHover={{ scale: 1.02 }}
-              className="p-6 bg-primary/5 rounded-2xl border border-primary/10"
+        {/* Category Tabs */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => {
+                setActiveCategory(cat.id)
+                setActiveIndex(0)
+              }}
+              className={`px-6 py-3 rounded-full font-bold transition-all duration-300 ${
+                activeCategory === cat.id
+                  ? "bg-violet-600 text-white shadow-lg"
+                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+              }`}
             >
-              <h3 className="font-semibold text-foreground mb-2">Still have questions?</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Can&apos;t find the answer you&apos;re looking for? Please chat with our friendly team.
-              </p>
-              <a
-                href="tel:+919913315809"
-                className="inline-flex items-center text-sm font-medium text-primary hover:underline"
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid lg:grid-cols-12 gap-8 items-start max-w-7xl mx-auto">
+          {/* Left Side - Questions */}
+          <div className="lg:col-span-5 space-y-3">
+            {currentFaqs.map((faq, index) => (
+              <motion.button
+                key={`${activeCategory}-${index}`}
+                onClick={() => setActiveIndex(index)}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className={`w-full text-left p-4 lg:p-6 rounded-2xl transition-all duration-300 flex items-center justify-between group ${
+                  activeIndex === index
+                    ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-xl shadow-violet-200 scale-[1.02]"
+                    : "bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-100"
+                }`}
               >
-              
-              </a>
-            </motion.div>
-          </motion.div>
+                <span className={`font-bold text-sm lg:text-lg pr-4 ${activeIndex === index ? "text-white" : "text-slate-900 group-hover:text-violet-600"}`}>
+                  {faq.question}
+                </span>
+                <ChevronRight 
+                  className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
+                    activeIndex === index ? "rotate-0 text-white" : "-rotate-90 text-slate-400 group-hover:text-violet-600"
+                  }`} 
+                />
+              </motion.button>
+            ))}
+          </div>
 
-          {/* Right Content - Accordion */}
-          <div>
-            <Accordion type="single" collapsible className="space-y-4">
-              {faqs.map((faq, index) => (
+          {/* Right Side - Answer */}
+          <div className="lg:col-span-7 h-full">
+            <div className="bg-slate-50/50 border border-slate-100 rounded-[2rem] p-8 lg:p-12 min-h-[300px] lg:min-h-[400px] flex items-center sticky top-32">
+              <AnimatePresence mode="wait">
                 <motion.div
-                  key={index}
-                  custom={index}
-                  variants={faqItemVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-30px" }}
+                  key={`${activeCategory}-${activeIndex}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-6"
                 >
-                  <AccordionItem
-                    value={`item-${index}`}
-                    className="bg-card border border-border rounded-xl px-4 lg:px-6 data-[state=open]:border-primary/20 data-[state=open]:shadow-lg transition-all"
-                  >
-                    <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary py-4 lg:py-5 hover:no-underline text-sm lg:text-base">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground pb-4 lg:pb-5 text-[13px] lg:text-sm">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
+                  <div className="w-12 h-1 bg-gradient-to-r from-violet-600 to-indigo-600 rounded-full" />
+                  <h3 className="text-2xl lg:text-4xl font-bold text-slate-900 leading-tight">
+                    {currentFaqs[activeIndex].question}
+                  </h3>
+                  <p className="text-lg lg:text-xl text-slate-600 leading-relaxed">
+                    {currentFaqs[activeIndex].answer}
+                  </p>
+                 
                 </motion.div>
-              ))}
-            </Accordion>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </div>
     </section>
   )
 }
+
