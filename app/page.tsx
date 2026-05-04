@@ -2,6 +2,7 @@
 
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
+import { TrustedBy } from "@/components/trusted-by"
 import { PaymentReconciliation } from "@/components/payment-reconciliation"
 import { Services } from "@/components/services"
 import { WhyUs } from "@/components/why-us"
@@ -22,6 +23,7 @@ export default function Home() {
       <Header />
       <main className="w-full overflow-x-clip">
         <Hero />
+        <TrustedBy />
         <PaymentReconciliation />
         <Services />
         <WhyUs />
