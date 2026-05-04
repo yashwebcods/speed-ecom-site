@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { motion, Variants } from "framer-motion"
 import { ArrowRight, Play, Star, CheckCircle2 } from "lucide-react"
 import { AnimeText } from "@/components/anime-text"
+import { HeroThreeScene } from "@/components/hero-three-scene"
 
 const stats = [
   { value: "40+", label: "Team Members" },
@@ -51,7 +52,7 @@ const floatingVariants: Variants = {
 
 export function Hero() {
   return (
-    <section className="relative lg:min-h-screen flex items-center pt-24 pb-4 sm:pt-32 sm:pb-8 lg:pt-0 lg:pb-0 overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-20 pb-8 sm:pt-28 sm:pb-10 lg:pt-0 lg:pb-0 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
@@ -59,7 +60,7 @@ export function Hero() {
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 py-8 lg:py-16">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-20 items-center">
           {/* Left Content */}
           <motion.div
             variants={containerVariants}
@@ -67,24 +68,11 @@ export function Hero() {
             animate="visible"
             className="text-center lg:text-left w-full min-w-0"
           >
-            {/* Mobile Only: Quote & Stats Header */}
-            <div className="lg:hidden mb-8 space-y-6">
+            {/* Mobile Only: Trusted badge */}
+            <div className="lg:hidden mb-4">
               <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 rounded-full border border-accent/20">
                 <Star className="w-3 h-3 text-accent fill-accent" />
                 <span className="text-[10px] font-bold uppercase tracking-widest text-accent-foreground">Trusted by 700+ Sellers</span>
-              </motion.div>
-
-              <motion.h2 variants={itemVariants} className="text-2xl font-bold font-display text-primary">
-                બિઝનેસ તમારો, હિસાબ અમારો
-              </motion.h2>
-
-              <motion.div variants={itemVariants} className="flex justify-center gap-2 overflow-x-auto pb-2 snap-x hide-scrollbar">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="bg-card border border-border/50 p-3 rounded-2xl min-w-[100px] snap-center shadow-sm">
-                    <div className="text-lg font-bold text-primary">{stat.value}</div>
-                    <div className="text-[9px] text-muted-foreground uppercase tracking-wider">{stat.label}</div>
-                  </div>
-                ))}
               </motion.div>
             </div>
 
@@ -150,53 +138,14 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Content - Stats Card (Hidden on small mobile, shown on lg) */}
+          {/* Right Content – 3D Orbital Scene (visible on all screens) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 2.7 }}
-            className="hidden lg:block relative"
+            transition={{ duration: 1, delay: 2.7, ease: [0.22, 1, 0.36, 1] }}
+            className="hidden lg:flex relative w-full h-full min-h-[520px] items-center justify-center"
           >
-            <motion.div
-              variants={floatingVariants}
-              animate="animate"
-              className="relative bg-card rounded-[2.5rem] p-12 shadow-2xl shadow-primary/10 border border-border/50 overflow-hidden"
-            >
-              {/* Floating Pricing Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 3.4 }}
-                className="absolute top-8 right-8 bg-accent text-accent-foreground px-5 py-2 rounded-2xl text-sm font-bold shadow-lg rotate-3"
-              >
-                Starting ₹249/mo
-              </motion.div>
-
-              <div className="space-y-10">
-                <div className="space-y-2">
-                  <p className="text-sm text-primary font-bold uppercase tracking-[0.3em]">Our Impact</p>
-                  <h3 className="text-4xl font-bold font-display tracking-tight">Real Data. <br />Real Growth.</h3>
-                </div>
-
-                <div className="grid grid-cols-1 gap-6">
-                  {stats.map((stat, i) => (
-                    <motion.div
-                      key={stat.label}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 3.2 + i * 0.1 }}
-                      className="flex items-center gap-6 p-6 bg-secondary/30 rounded-3xl border border-white/50"
-                    >
-                      <div className="text-4xl font-bold text-primary font-display">{stat.value}</div>
-                      <div className="text-sm text-muted-foreground font-medium uppercase tracking-wider">{stat.label}</div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Decorative Circle */}
-              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
-            </motion.div>
+            <HeroThreeScene />
           </motion.div>
         </div>
 
