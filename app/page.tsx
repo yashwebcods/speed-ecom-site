@@ -6,6 +6,7 @@ import { TrustedBy } from "@/components/trusted-by"
 import { PaymentReconciliation } from "@/components/payment-reconciliation"
 import { Services } from "@/components/services"
 import { WhyUs } from "@/components/why-us"
+import { Advantages } from "@/components/advantages"
 import { CTA } from "@/components/cta"
 import { Testimonials } from "@/components/testimonials"
 import { FAQ } from "@/components/faq"
@@ -25,9 +26,10 @@ export default function Home() {
         <Hero />
         <TrustedBy />
         <PaymentReconciliation />
-        <Services />
         <WhyUs />
-        <CTA />
+        <Services />
+        <CTA/>
+        <Advantages />
         <Testimonials />
         <FAQ />
         <Contact />

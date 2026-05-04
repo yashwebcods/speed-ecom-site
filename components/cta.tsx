@@ -37,21 +37,6 @@ export function CTA() {
           style={{ scale: bgScale, opacity: bgOpacity }}
           className="text-center max-w-4xl mx-auto"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            className="hidden lg:inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 text-white mb-6"
-          >
-            <motion.div
-              animate={{ rotate: [0, 15, -15, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <Rocket className="w-8 h-8" />
-            </motion.div>
-          </motion.div>
-
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -60,7 +45,7 @@ export function CTA() {
             className="text-2xl sm:text-4xl lg:text-6xl font-bold font-display text-white mb-4 text-balance leading-tight"
           >
             Struggling With Online Business Losses?{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-400">Let Us Fix It!</span>
+            <span className="text-[#facc15]">Let Us Fix It!</span>
           </motion.h2>
 
           <motion.p

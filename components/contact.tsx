@@ -49,158 +49,105 @@ const contactCardVariants = {
 
 export function Contact() {
   return (
-    <section id="contact" className="py-12 lg:py-32 bg-card">
+    <section id="contact" className="py-20 lg:py-28 bg-slate-50/50">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as any }}
-          >
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-4"
-            >
-              Contact Us
-            </motion.span>
-            <h2 className="text-2xl lg:text-5xl font-bold font-display mb-4 text-balance leading-tight">
-              Get in Touch With{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Speed E-Com</span>
-            </h2>
-            <p className="text-sm lg:text-lg text-muted-foreground mb-8 text-pretty">
-              If you&apos;ve faced problems in your online business like cash flow issues,
-              settlement delays, or high shipping charges, we&apos;ve got you covered.
-              Our experts are here to provide complete support from start to finish.
-            </p>
-
-            {/* Contact Cards */}
-            <div className="grid grid-cols-2 gap-2 sm:gap-6">
-              {contactInfo.map((item, index) => (
-                <motion.div
-                  key={item.label}
-                  custom={index}
-                  variants={contactCardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-30px" }}
-                  className="relative group"
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* Left Content */}
+            <div className="lg:col-span-7 space-y-10">
+              <div className="max-w-2xl">
+                <motion.span
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="text-violet-600 text-xs font-bold uppercase tracking-[0.2em] mb-4 block"
                 >
-                  <Card className="overflow-hidden border-none bg-muted/30 shadow-sm hover:shadow-md transition-all duration-300 ring-1 ring-border/50 rounded-xl">
-                    <CardContent className="p-2 sm:p-6 h-full flex flex-col sm:flex-col items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-4">
-                      <div className="relative shrink-0">
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          className="w-8 h-8 sm:w-14 sm:h-14 rounded-lg sm:rounded-2xl bg-primary/10 text-primary flex items-center justify-center"
+                  Contact Us
+                </motion.span>
+                <h2 className="text-3xl lg:text-5xl font-bold font-display text-slate-900 mb-6 leading-tight">
+                  Get in Touch with <span className="text-violet-600">Speed E-Com</span>
+                </h2>
+                <p className="text-slate-600 text-base lg:text-lg leading-relaxed">
+                  Have questions about your online business? Our experts are here to help you solve cash flow, settlement disputes, and platform growth challenges.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
+                {contactInfo.map((item, index) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-start gap-5 p-5 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all h-full"
+                  >
+                    <div className="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center shrink-0 group-hover:bg-violet-600 group-hover:text-white transition-colors mt-0.5">
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">{item.label}</p>
+                      {item.href ? (
+                        <a 
+                          href={item.href} 
+                          className="text-sm lg:text-base font-bold text-slate-900 hover:text-violet-600 transition-colors block leading-relaxed break-words"
                         >
-                          <item.icon className="w-4 h-4 sm:w-7 sm:h-7" />
-                        </motion.div>
-                      </div>
-                      
-                      <div className="min-w-0 w-full">
-                        <p className="text-[8px] sm:text-xs font-bold text-primary uppercase tracking-wider mb-0.5 opacity-70">
-                          {item.label}
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p className="text-sm lg:text-base font-bold text-slate-900 leading-relaxed break-words">
+                          {item.value}
                         </p>
-                        {item.href ? (
-                          <a
-                            href={item.href}
-                            target={item.href.startsWith("http") ? "_blank" : undefined}
-                            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                            className="text-[9px] sm:text-sm font-semibold text-slate-900 dark:text-white hover:text-primary transition-colors block leading-tight truncate sm:whitespace-normal"
-                          >
-                            {item.value}
-                          </a>
-                        ) : (
-                          <p className="text-[9px] sm:text-sm font-semibold text-slate-900 dark:text-white leading-tight truncate sm:whitespace-normal">
-                            {item.value}
-                          </p>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </motion.div>
 
-          {/* Right Content - CTA Card */}
-          <motion.div
-            initial={{ opacity: 0, x: 60, rotateY: 5 }}
-            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] as any }}
-            className="flex items-center"
-          >
-            <div className="w-full p-8 lg:p-12 bg-primary rounded-3xl text-white relative overflow-hidden">
-              {/* Decorative Elements */}
+            {/* Right Content - Compact CTA */}
+            <div className="lg:col-span-5 h-full">
               <motion.div
-                animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.15, 0.1] }}
-                transition={{ duration: 8, repeat: Infinity }}
-                className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"
-              />
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.25, 0.2] }}
-                transition={{ duration: 10, repeat: Infinity, delay: 1 }}
-                className="absolute bottom-0 left-0 w-48 h-48 bg-accent/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"
-              />
-
-              <div className="relative z-10">
-                <motion.h3
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="text-xl lg:text-3xl font-bold font-display mb-3 text-balance leading-tight"
-                >
-                  Enough Talk, Let&apos;s Grow Your Online Business Together!
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                  className="text-white/80 mb-8 text-pretty"
-                >
-                  Ready to transform your e-commerce business? Book a free demo today
-                  and discover how we can help you maximize profits.
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.6 }}
-                  className="flex gap-3 sm:gap-4"
-                >
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="bg-[#022c43] rounded-[3rem] p-10 lg:p-14 text-white relative overflow-hidden shadow-2xl h-full flex flex-col justify-center"
+              >
+                <div className="relative z-10 space-y-8">
+                  <h3 className="text-3xl lg:text-4xl font-bold leading-tight">
+                    Ready to grow your business?
+                  </h3>
+                  <p className="text-white/70 text-base lg:text-lg leading-relaxed">
+                    Book a free demo today and discover how our automated solutions can maximize your marketplace profits.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-5 pt-4">
                     <Button
                       asChild
                       size="lg"
-                      className="bg-white text-primary hover:bg-white/90 rounded-full px-4 sm:px-8 group h-12 lg:h-11 w-full text-xs sm:text-sm"
+                      className="bg-white text-[#022c43] hover:bg-slate-100 rounded-full px-10 h-14 font-bold transition-transform hover:scale-105 active:scale-95 text-base"
                     >
                       <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
                         Book Demo
                       </Link>
                     </Button>
-                  </motion.div>
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1">
                     <Button
                       asChild
                       variant="outline"
                       size="lg"
-                      className="border-white/30 text-white bg-white/10 hover:bg-white/20 rounded-full px-4 sm:px-8 h-12 lg:h-11 w-full text-xs sm:text-sm"
+                      className="border-white/20 text-white bg-white/5 hover:bg-white/10 rounded-full px-10 h-14 font-bold backdrop-blur-sm transition-transform hover:scale-105 active:scale-95 text-base"
                     >
                       <Link href="tel:+919913315809">Call Now</Link>
                     </Button>
-                  </motion.div>
-                </motion.div>
-              </div>
+                  </div>
+                </div>
+
+                {/* Subtle Decorative Circle */}
+                <div className="absolute -top-24 -right-24 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
+                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-violet-500/10 rounded-full blur-2xl" />
+              </motion.div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

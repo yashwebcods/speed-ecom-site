@@ -242,16 +242,7 @@ export const PaymentReconciliation = () => {
     offset: ["start end", "end start"],
   })
 
-  const scale = useTransform(scrollYProgress, [0, 0.2], [0.95, 1])
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 1])
-
-  const steps = [
-    { title: "Connect", desc: "Connect your marketplace accounts", icon: <Layers className="w-5 h-5" /> },
-    { title: "Fetch", desc: "System fetches all order & payment data", icon: <Zap className="w-5 h-5" /> },
-    { title: "Process", desc: "AI processes and matches transactions", icon: <Bot className="w-5 h-5" /> },
-    { title: "Reports", desc: "Dashboard shows SKU-wise reports", icon: <FileSearch className="w-5 h-5" /> },
-    { title: "Insights", desc: "Get insights on profit, ads & charges", icon: <TrendingUp className="w-5 h-5" /> },
-  ]
 
   return (
     <section ref={containerRef} className="relative bg-background overflow-clip">
@@ -321,13 +312,7 @@ export const PaymentReconciliation = () => {
           </motion.div>
 
           {/* Speedy AI Section (Main Selling Point) */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-20 items-center mb-16 sm:mb-20 lg:mb-32 px-0 sm:px-0"
-          >
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-20 items-center mb-16 sm:mb-20 lg:mb-32 px-0 sm:px-0">
             <div className="space-y-5 sm:space-y-8 order-2 lg:order-1 px-4 sm:px-0">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-violet-500/15 to-indigo-500/15 border border-violet-500/25 text-violet-700 dark:text-violet-300 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-sm">
                 <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-violet-500" /> Speedy AI Engine
@@ -344,24 +329,18 @@ export const PaymentReconciliation = () => {
                 <p className="font-medium">
                   It automatically analyzes your orders, SKUs, payments, and charges — and converts them into easy-to-understand reports, tables, and charts.
                 </p>
-                <motion.ul 
-                  variants={staggerContainer}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="space-y-3 sm:space-y-4 pt-2 sm:pt-4"
-                >
+                <ul className="space-y-3 sm:space-y-4 pt-2 sm:pt-4">
                   {[
                     "No manual Excel work",
                     "No confusion",
                     "Just clear business insights"
                   ].map((text, i) => (
-                    <motion.li key={i} variants={fadeUpItem} className="flex items-center gap-2 sm:gap-3 text-slate-800 dark:text-slate-200 font-bold">
+                    <li key={i} className="flex items-center gap-2 sm:gap-3 text-slate-800 dark:text-slate-200 font-bold">
                       <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 flex-shrink-0" />
                       {text}
-                    </motion.li>
+                    </li>
                   ))}
-                </motion.ul>
+                </ul>
               </div>
             </div>
             <div className="relative order-1 lg:order-2 w-full">
@@ -413,42 +392,30 @@ export const PaymentReconciliation = () => {
                 </div>
               </Card>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Real-Time Dashboard Section */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-16 sm:mb-20 lg:mb-32 px-0 sm:px-0"
-          >
-            <div className="text-left lg:text-center mb-10 sm:mb-12 lg:mb-16 px-4 sm:px-0">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-2 sm:px-0">
-                <span className="text-slate-900 dark:text-white">Live Dashboard with </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">SKU-Level Insights</span>
-              </h3>
-              <p className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-medium">
-                All data is updated in real-time directly from marketplaces like Amazon, Flipkart, Myntra, Meesho, and Ajio.
-              </p>
-            </div>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+            {/* Real-Time Dashboard Section */}
+            <div className="mb-16 sm:mb-20 lg:mb-32 px-0 sm:px-0">
+              <div className="text-left lg:text-center mb-10 sm:mb-12 lg:mb-16 px-4 sm:px-0">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-2 sm:px-0">
+                  <span className="text-slate-900 dark:text-white">Live Dashboard with </span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">SKU-Level Insights</span>
+                </h3>
+                <p className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-medium">
+                  All data is updated in real-time directly from marketplaces like Amazon, Flipkart, Myntra, Meesho, and Ajio.
+                </p>
+              </div>
 
-            <div className="grid lg:grid-cols-12 gap-4 lg:gap-8 items-start">
-              <motion.div 
-                variants={staggerContainer}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 lg:gap-6 px-4 lg:px-0 w-full lg:max-w-none"
-              >
-                {[
-                  { title: "SKU-wise tables", desc: "Granular data for every product.", icon: <Layers className="w-5 h-5" />, color: "bg-blue-500/10 text-blue-600" },
-                  { title: "Visual charts", desc: "Understand trends at a glance.", icon: <BarChart3 className="w-5 h-5" />, color: "bg-violet-500/10 text-violet-600" },
-                  { title: "Profit & loss", desc: "Monitor your bottom line.", icon: <TrendingUp className="w-5 h-5" />, color: "bg-emerald-500/10 text-emerald-600" },
-                  { title: "Error detection", desc: "Find discrepancies early.", icon: <Search className="w-5 h-5" />, color: "bg-amber-500/10 text-amber-600" },
-                ].map((item, i) => (
-                  <motion.div key={i} variants={fadeUpItem}>
-                    <Card className="p-3 sm:p-4 hover:shadow-lg transition-all border-border/50 bg-white dark:bg-card shadow-sm rounded-xl flex flex-col justify-center min-h-[90px] sm:min-h-0">
+              <div className="grid lg:grid-cols-12 gap-4 lg:gap-8 items-start">
+                <div className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 lg:gap-6 px-4 lg:px-0 w-full lg:max-w-none">
+                  {[
+                    { title: "SKU-wise tables", desc: "Granular data for every product.", icon: <Layers className="w-5 h-5" />, color: "bg-blue-500/10 text-blue-600" },
+                    { title: "Visual charts", desc: "Understand trends at a glance.", icon: <BarChart3 className="w-5 h-5" />, color: "bg-violet-500/10 text-violet-600" },
+                    { title: "Profit & loss", desc: "Monitor your bottom line.", icon: <TrendingUp className="w-5 h-5" />, color: "bg-emerald-500/10 text-emerald-600" },
+                    { title: "Error detection", desc: "Find discrepancies early.", icon: <Search className="w-5 h-5" />, color: "bg-amber-500/10 text-amber-600" },
+                  ].map((item, i) => (
+                    <Card key={i} className="p-3 sm:p-4 hover:shadow-lg transition-all border-border/50 bg-white dark:bg-card shadow-sm rounded-xl flex flex-col justify-center min-h-[90px] sm:min-h-0">
                       <div className="flex flex-col lg:flex-row gap-2 lg:gap-4">
                         <div className={`flex w-8 h-8 sm:w-10 sm:h-10 rounded-lg ${item.color} items-center justify-center flex-shrink-0 mb-1 lg:mb-0`}>
                           {item.icon}
@@ -463,163 +430,163 @@ export const PaymentReconciliation = () => {
                         </div>
                       </div>
                     </Card>
-                  </motion.div>
-                ))}
-              </motion.div>
+                  ))}
+                </div>
 
-              <div className="lg:col-span-8 mt-4 lg:mt-0 w-full overflow-hidden px-4 sm:px-0">
-                <Card className="p-4 sm:p-6 lg:p-8 border-primary/20 shadow-xl bg-white dark:bg-card/80 relative rounded-xl sm:rounded-3xl w-full box-border">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5 sm:mb-8 gap-3">
-                    <div>
-                      <h4 className="font-bold text-lg sm:text-xl text-slate-900 dark:text-white">Top Performing SKUs</h4>
-                      <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Live Data. Smart Decisions.</p>
-                    </div>
-                    <div className="flex gap-2">
-                      <Badge variant="secondary" className="text-xs">Amazon</Badge>
-                      <Badge variant="secondary" className="text-xs">Flipkart</Badge>
-                    </div>
-                  </div>
-                  
-                  <div className="overflow-x-auto pb-2 relative z-10">
-                    <Table className="min-w-[450px]">
-                      <TableHeader>
-                        <TableRow className="border-slate-200 dark:border-slate-700">
-                          <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">SKU Name</TableHead>
-                          <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Sales</TableHead>
-                          <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Charges</TableHead>
-                          <TableHead className="text-right text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Profit</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <motion.tbody 
-                        variants={staggerContainer}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                      >
-                        {[
-                          { sku: "SP-WIRELESS-EARBUDS", sales: "₹45,000", charges: "₹12,400", profit: "+₹8,500", color: "text-emerald-600" },
-                          { sku: "SP-SMART-WATCH-01", sales: "₹82,500", charges: "₹24,150", profit: "+₹15,200", color: "text-emerald-600" },
-                          { sku: "SP-PHONE-CASE-GLS", sales: "₹12,200", charges: "₹4,800", profit: "-₹1,200", color: "text-red-600" },
-                          { sku: "SP-FAST-CHARGER-20W", sales: "₹28,400", charges: "₹8,200", profit: "+₹4,100", color: "text-emerald-600" },
-                        ].map((row, i) => (
-                          <motion.tr 
-                            key={i} 
-                            variants={fadeUpItem}
-                            className="border-slate-100 dark:border-slate-800"
-                          >
-                            <TableCell className="font-semibold text-xs sm:text-sm text-slate-900 dark:text-slate-200">{row.sku}</TableCell>
-                            <TableCell className="text-xs sm:text-sm text-slate-700 dark:text-slate-400 font-medium">{row.sales}</TableCell>
-                            <TableCell className="text-xs sm:text-sm text-slate-700 dark:text-slate-400 font-medium">{row.charges}</TableCell>
-                            <TableCell className={`text-right font-bold text-xs sm:text-sm ${row.color}`}>{row.profit}</TableCell>
-                          </motion.tr>
-                        ))}
-                      </motion.tbody>
-                    </Table>
-                  </div>
-
-                  <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 px-0 sm:px-0">
-                    <div className="h-40 sm:h-48 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-700 border border-blue-100 dark:border-slate-600 flex flex-col items-center justify-center p-3 sm:p-4">
-                      <p className="text-xs font-bold text-slate-700 dark:text-slate-300 mb-3 sm:mb-4 uppercase tracking-wider">Sales Trend</p>
-                      <div className="flex items-end gap-1.5 sm:gap-2 h-full w-full max-w-[200px]">
-                        {[40, 70, 45, 90, 65, 80, 55].map((h, i) => (
-                          <motion.div 
-                            key={i} 
-                            initial={{ height: 0 }}
-                            animate={{ height: `${h}%` }}
-                            transition={{ duration: 1, delay: i * 0.1 }}
-                            className="flex-1 bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-sm"
-                          />
-                        ))}
+                <div className="lg:col-span-8 mt-4 lg:mt-0 w-full overflow-hidden px-4 sm:px-0">
+                  <Card className="p-4 sm:p-6 lg:p-8 border-primary/20 shadow-xl bg-white dark:bg-card/80 relative rounded-xl sm:rounded-3xl w-full box-border">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5 sm:mb-8 gap-3">
+                      <div>
+                        <h4 className="font-bold text-lg sm:text-xl text-slate-900 dark:text-white">Top Performing SKUs</h4>
+                        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Live Data. Smart Decisions.</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <Badge variant="secondary" className="text-xs">Amazon</Badge>
+                        <Badge variant="secondary" className="text-xs">Flipkart</Badge>
                       </div>
                     </div>
-                    <div className="h-40 sm:h-48 rounded-xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-slate-800 dark:to-slate-700 border border-emerald-100 dark:border-slate-600 flex flex-col items-center justify-center p-3 sm:p-4">
-                      <p className="text-xs font-bold text-slate-700 dark:text-slate-300 mb-3 sm:mb-4 uppercase tracking-wider">Charges Breakdown</p>
-                      <div className="relative w-24 sm:w-32 h-24 sm:h-32">
-                        <svg className="w-full h-full" viewBox="0 0 32 32">
-                          <circle cx="16" cy="16" r="14" fill="transparent" stroke="#e2e8f0" strokeWidth="4" />
-                          <circle cx="16" cy="16" r="14" fill="transparent" stroke="#6366f1" strokeWidth="4" strokeDasharray="65 100" strokeDashoffset="0" />
-                          <circle cx="16" cy="16" r="14" fill="transparent" stroke="#10b981" strokeWidth="4" strokeDasharray="20 100" strokeDashoffset="-65" />
-                        </svg>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <p className="text-[9px] sm:text-[10px] font-bold text-center text-slate-700 dark:text-slate-300">Marketplace<br/>Fees</p>
+                    
+                    <div className="overflow-x-auto pb-2 relative z-10">
+                      <Table className="min-w-[450px]">
+                        <TableHeader>
+                          <TableRow className="border-slate-200 dark:border-slate-700">
+                            <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">SKU Name</TableHead>
+                            <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Sales</TableHead>
+                            <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Charges</TableHead>
+                            <TableHead className="text-right text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Profit</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {[
+                            { sku: "SP-WIRELESS-EARBUDS", sales: "₹45,000", charges: "₹12,400", profit: "+₹8,500", color: "text-emerald-600" },
+                            { sku: "SP-SMART-WATCH-01", sales: "₹82,500", charges: "₹24,150", profit: "+₹15,200", color: "text-emerald-600" },
+                            { sku: "SP-PHONE-CASE-GLS", sales: "₹12,200", charges: "₹4,800", profit: "-₹1,200", color: "text-red-600" },
+                            { sku: "SP-FAST-CHARGER-20W", sales: "₹28,400", charges: "₹8,200", profit: "+₹4,100", color: "text-emerald-600" },
+                          ].map((row, i) => (
+                            <TableRow key={i} className="border-slate-100 dark:border-slate-800">
+                              <TableCell className="font-semibold text-xs sm:text-sm text-slate-900 dark:text-slate-200">{row.sku}</TableCell>
+                              <TableCell className="text-xs sm:text-sm text-slate-700 dark:text-slate-400 font-medium">{row.sales}</TableCell>
+                              <TableCell className="text-xs sm:text-sm text-slate-700 dark:text-slate-400 font-medium">{row.charges}</TableCell>
+                              <TableCell className={`text-right font-bold text-xs sm:text-sm ${row.color}`}>{row.profit}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+
+                    <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                        <div className="flex items-center justify-between mb-6">
+                          <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">7-Day Sales Trend</p>
+                          <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400">+24.5%</p>
+                        </div>
+                        <div className="flex items-end gap-2 h-24">
+                          {[40, 70, 45, 90, 65, 80, 55].map((h, i) => (
+                            <motion.div 
+                              key={i} 
+                              initial={{ height: 0 }}
+                              animate={{ height: `${h}%` }}
+                              transition={{ duration: 1, delay: i * 0.1 }}
+                              className="flex-1 bg-gradient-to-t from-violet-600/50 to-violet-500 rounded-t-md hover:from-violet-600 hover:to-violet-400 transition-all cursor-pointer relative group/bar"
+                            >
+                              <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-2 py-1 rounded text-[10px] font-bold opacity-0 group-hover/bar:opacity-100 transition-opacity">
+                                ₹{h}k
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center gap-6">
+                        <div className="relative w-24 h-24 shrink-0">
+                          <svg className="w-full h-full -rotate-90" viewBox="0 0 32 32">
+                            <circle cx="16" cy="16" r="14" fill="transparent" stroke="rgba(0,0,0,0.05)" className="dark:stroke-white/5" strokeWidth="4" />
+                            <circle cx="16" cy="16" r="14" fill="transparent" stroke="#8b5cf6" strokeWidth="4" strokeDasharray="65 100" strokeDashoffset="0" strokeLinecap="round" />
+                            <circle cx="16" cy="16" r="14" fill="transparent" stroke="#10b981" strokeWidth="4" strokeDasharray="20 100" strokeDashoffset="-65" strokeLinecap="round" />
+                          </svg>
+                          <div className="absolute inset-0 flex flex-col items-center justify-center">
+                            <p className="text-slate-900 dark:text-white font-black text-xs leading-none">85%</p>
+                            <p className="text-[8px] text-slate-500 dark:text-slate-400 font-bold mt-1 uppercase">ROI</p>
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3">Profitability Index</p>
+                          <div className="space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 rounded-full bg-violet-500" />
+                              <p className="text-xs text-slate-900 dark:text-white font-medium">Marketplace: 65%</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                              <p className="text-xs text-slate-900 dark:text-white font-medium">Net Profit: 20%</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="mt-4 text-right">
-                    <p className="text-[10px] text-slate-500 dark:text-slate-400 italic font-medium">"Every SKU. Every Transaction. Fully Tracked."</p>
-                  </div>
-                </Card>
+                  </Card>
+                </div>
               </div>
             </div>
-          </motion.div>
 
-          {/* AI Insights Section (VERY IMPORTANT) */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-16 lg:mb-32 relative"
-          >
-             <div className="absolute inset-0 bg-primary/5 rounded-[2rem] lg:rounded-[3rem] -z-10 blur-2xl" />
-             <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center p-6 lg:p-16">
-               <div className="order-2 lg:order-1">
-                 <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 lg:gap-4">
-                    {[
-                      { title: "Identify loss-making SKUs", icon: <Package className="text-red-500" /> },
-                      { title: "Detect hidden charges", icon: <ShieldCheck className="text-emerald-500" /> },
-                      { title: "Analyze ad performance", icon: <TrendingUp className="text-indigo-500" /> },
-                      { title: "Suggest profit growth", icon: <Sparkles className="text-amber-500" /> },
-                    ].map((item, i) => (
-                      <Card key={i} className="p-4 lg:p-6 bg-background/80 backdrop-blur-sm border-primary/10 hover:border-primary/30 transition-all group">
-                        <div className="mb-2 lg:mb-4 group-hover:scale-110 transition-transform">{item.icon}</div>
-                        <h5 className="font-bold text-xs sm:text-sm lg:text-base leading-tight">{item.title}</h5>
-                      </Card>
-                    ))}
+            {/* AI Insights Section (VERY IMPORTANT) */}
+            <div className="mb-16 lg:mb-32 relative">
+               <div className="absolute inset-0 bg-primary/5 rounded-[2rem] lg:rounded-[3rem] -z-10 blur-2xl" />
+               <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center p-6 lg:p-16">
+                 <div className="order-2 lg:order-1">
+                   <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 lg:gap-4">
+                      {[
+                        { title: "Identify loss-making SKUs", icon: <Package className="text-red-500" /> },
+                        { title: "Detect hidden charges", icon: <ShieldCheck className="text-emerald-500" /> },
+                        { title: "Analyze ad performance", icon: <TrendingUp className="text-indigo-500" /> },
+                        { title: "Suggest profit growth", icon: <Sparkles className="text-amber-500" /> },
+                      ].map((item, i) => (
+                        <Card key={i} className="p-4 lg:p-6 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-violet-500/30 transition-all group">
+                          <div className="mb-2 lg:mb-4 group-hover:scale-110 transition-transform">{item.icon}</div>
+                          <h5 className="font-bold text-xs sm:text-sm lg:text-base leading-tight text-white">{item.title}</h5>
+                        </Card>
+                      ))}
+                   </div>
+                 </div>
+                 <div className="space-y-4 lg:space-y-6 order-1 lg:order-2">
+                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-sm">
+                     💡 Intelligent Growth
+                   </div>
+                   <h3 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-white">
+                     Smart Insights That <br />
+                     <span className="text-[#facc15]">Grow Your Profit</span>
+                   </h3>
+                   <p className="text-sm sm:text-base lg:text-xl text-slate-300 leading-relaxed">
+                     Our AI doesn't just show data — it tells you what to do next. It's like having a financial expert working 24/7 for your business.
+                   </p>
+                   <div className="pt-2 lg:pt-4">
+                      <p className="text-lg sm:text-xl lg:text-2xl font-display font-bold italic text-white">
+                        "From Raw Data to Clear Profit Insights."
+                      </p>
+                   </div>
                  </div>
                </div>
-               <div className="space-y-4 lg:space-y-6 order-1 lg:order-2">
-                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 text-xs font-bold uppercase tracking-wider">
-                   💡 Intelligent Growth
-                 </div>
-                 <h3 className="text-2xl sm:text-3xl lg:text-5xl font-bold leading-tight">
-                   Smart Insights That <br />
-                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Grow Your Profit</span>
-                 </h3>
-                 <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed">
-                   Our AI doesn't just show data — it tells you what to do next. It's like having a financial expert working 24/7 for your business.
-                 </p>
-                 <div className="pt-2 lg:pt-4">
-                    <p className="text-lg sm:text-xl lg:text-2xl font-display font-bold italic text-slate-900 dark:text-white">
-                      "From Raw Data to Clear Profit Insights."
-                    </p>
-                 </div>
-               </div>
-             </div>
-          </motion.div>
-
-          {/* Innovative Features Section - Restored */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mt-16 md:mt-24 mb-12"
-          >
-            <div className="text-center mb-0 md:mb-4">
-              <h3 className="text-2xl sm:text-4xl lg:text-7xl font-bold font-display mb-4 tracking-tight">
-                Innovative <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Features</span>
-              </h3>
-              <p className="text-sm sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-                Smart tools tailored to enhance the success of sellers, D2C brands, and retailers.
-              </p>
             </div>
-            <StickyCapabilitiesFeatures />
+
+            {/* Innovative Features Section - Restored */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="mt-16 md:mt-24 mb-12"
+            >
+              <div className="text-center mb-0 md:mb-4">
+                <h3 className="text-2xl sm:text-4xl lg:text-7xl font-bold font-display mb-4 tracking-tight">
+                  Innovative <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Features</span>
+                </h3>
+                <p className="text-sm sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+                  Smart tools tailored to enhance the success of sellers, D2C brands, and retailers.
+                </p>
+              </div>
+              <StickyCapabilitiesFeatures />
+            </motion.div>
           </motion.div>
-
-      
-
         </motion.div>
       </div>
     </section>
