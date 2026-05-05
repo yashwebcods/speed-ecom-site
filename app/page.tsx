@@ -9,6 +9,7 @@ import { WhyUs } from "@/components/why-us"
 import { Advantages } from "@/components/advantages"
 import { CTA } from "@/components/cta"
 import { Testimonials } from "@/components/testimonials"
+import { Pricing } from "@/components/pricing"
 import { FAQ } from "@/components/faq"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
@@ -31,6 +32,7 @@ export default function Home() {
         <CTA/>
         <Advantages />
         <Testimonials />
+        <Pricing />
         <FAQ />
         <Contact />
       </main>

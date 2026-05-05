@@ -3,10 +3,14 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 
-const logos = [1, 2, 3, 4, 5]
+const brands = [
+  "UrbanMonkey", "Snitch", "Bewakoof", "The Souled Store", 
+  "Dennis Lingo", "Campus Sutra", "WROGN", "Highlander",
+  "FabIndia", "Biba"
+]
 
-// Repeat set enough times to fill the container width
-const repeated = [...logos, ...logos, ...logos, ...logos, ...logos, ...logos]
+// Repeat to fill the marquee
+const repeatedBrands = [...brands, ...brands]
 
 export function TrustedBy() {
   return (
@@ -19,9 +23,9 @@ export function TrustedBy() {
         className="container mx-auto px-4 md:px-8 max-w-7xl"
       >
         {/* "Trusted by" label */}
-        <div className="mb-6 md:mb-8">
-          <h2 className="text-xl md:text-2xl font-medium text-slate-500 tracking-tight">
-            Trusted by
+        <div className="mb-6 md:mb-8 text-center md:text-left">
+          <h2 className="text-sm md:text-base font-bold text-slate-400 tracking-widest uppercase">
+            Empowering Top E-Commerce Brands
           </h2>
         </div>
 
@@ -34,32 +38,28 @@ export function TrustedBy() {
           className="relative overflow-hidden w-full transform-gpu"
         >
           <motion.div
-            className="flex whitespace-nowrap items-center will-change-transform"
+            className="flex whitespace-nowrap items-center will-change-transform py-2"
             animate={{ x: ["0%", "-50%"] }}
             initial={{ x: 0 }}
             transition={{
-              duration: 35,
+              duration: 40,
               repeat: Infinity,
               ease: "linear",
               repeatType: "loop",
             }}
           >
-            {repeated.map((num, i) => (
+            {repeatedBrands.map((brand, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: (i % logos.length) * 0.05 }}
-                className="flex-shrink-0 mx-6 md:mx-10 relative h-8 md:h-12 w-24 md:w-40 transform-gpu"
+                transition={{ duration: 0.5, delay: (i % brands.length) * 0.05 }}
+                className="flex-shrink-0 mx-6 md:mx-10 relative transform-gpu"
               >
-                <Image
-                  src={`/b${num}.jpg`}
-                  alt={`Brand ${num}`}
-                  fill
-                  sizes="(max-width: 768px) 96px, 160px"
-                  className="object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 will-change-transform"
-                />
+                <span className="text-xl md:text-3xl font-display font-bold text-slate-300 hover:text-slate-800 transition-colors duration-500 cursor-default">
+                  {brand}
+                </span>
               </motion.div>
             ))}
           </motion.div>

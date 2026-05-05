@@ -30,6 +30,14 @@ const faqData = {
     {
       question: "How quickly can I see results?",
       answer: "Most clients start seeing improvements within the first month. Our initial audit typically reveals immediate savings from wrong commission recoveries."
+    },
+    {
+      question: "How long does the onboarding process take?",
+      answer: "Our onboarding is seamless. Once you sign up and provide necessary access, our system will start fetching and analyzing data within 24 to 48 hours."
+    },
+    {
+      question: "What is your cancellation policy?",
+      answer: "We offer a flexible, no-lock-in month-to-month subscription. You can cancel at any time without any hidden exit fees."
     }
   ],
   DATA: [

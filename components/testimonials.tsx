@@ -89,7 +89,7 @@ export function Testimonials() {
                     <Quote className="w-10 h-10 text-primary/20 mb-6" />
                     <div className="flex gap-1 mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-accent fill-accent" />
+                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                       ))}
                     </div>
                     <p className="text-muted-foreground leading-relaxed flex-grow mb-6 italic">
@@ -134,7 +134,7 @@ export function Testimonials() {
                     <span className="text-[10px] font-bold text-primary uppercase tracking-wider">{testimonial.name}</span>
                     <div className="flex gap-0.5">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-2 h-2 text-accent fill-accent" />
+                        <Star key={i} className="w-3 h-3 text-yellow-400 fill-yellow-400" />
                       ))}
                     </div>
                   </div>

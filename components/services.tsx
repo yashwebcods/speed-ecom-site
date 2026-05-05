@@ -205,7 +205,7 @@ export function Services() {
           </motion.div>
 
           {/* Desktop Speedometer Carousel */}
-          <div className="hidden sm:block w-full max-w-7xl mx-auto px-4 lg:px-8">
+          <div className="hidden md:block w-full max-w-7xl mx-auto px-4 lg:px-8">
             <div
               className="h-[300px] lg:h-[340px] overflow-hidden relative"
               style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)' }}
@@ -238,7 +238,7 @@ export function Services() {
           </div>
 
           {/* Mobile Scroll-Linked Horizontal Carousel */}
-          <div className="sm:hidden w-full overflow-hidden">
+          <div className="block md:hidden w-full overflow-hidden">
             <motion.div
               className="flex gap-4 px-6"
               style={{ x: xTransform, width: "max-content" }}

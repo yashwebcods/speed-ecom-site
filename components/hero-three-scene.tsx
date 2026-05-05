@@ -2,13 +2,13 @@
 
 import { useRef, useMemo, useEffect, useState, Suspense } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { useTexture } from "@react-three/drei"
+import { useTexture, Billboard } from "@react-three/drei"
 import * as THREE from "three"
 
 const SECONDARY = new THREE.Color("#4f72d4")
-const ACCENT    = new THREE.Color("#dfc94a")
-const GLOW      = new THREE.Color("#7899f0")
-const PRIMARY   = new THREE.Color("#1a2a5e")
+const ACCENT = new THREE.Color("#dfc94a")
+const GLOW = new THREE.Color("#7899f0")
+const PRIMARY = new THREE.Color("#1a2a5e")
 
 const PLATFORM_LOGOS = [
   "/meesho.jpg",
@@ -18,36 +18,30 @@ const PLATFORM_LOGOS = [
   "/jioMart.jpg",
 ]
 
-// Keep orbits tighter so logos never clip outside canvas
-const ORBIT_CONFIG = [
-  { tiltX:  0.30, tiltZ:  0.10, radius: 0.95, speed: 0.42, offset: 0.0  },
-  { tiltX: -0.50, tiltZ:  0.40, radius: 1.20, speed: 0.32, offset: 1.26 },
-  { tiltX:  0.70, tiltZ: -0.30, radius: 1.45, speed: 0.24, offset: 2.51 },
-  { tiltX:  0.10, tiltZ:  0.60, radius: 1.10, speed: 0.36, offset: 3.77 },
-  { tiltX: -0.60, tiltZ: -0.20, radius: 1.30, speed: 0.28, offset: 5.03 },
+// Two distinct intersecting rings as requested
+const RINGS = [
+  { tiltX: 0.45, tiltZ: 0.15, radius: 1.25, speed: 0.35 },
+  { tiltX: -0.15, tiltZ: -0.45, radius: 1.50, speed: 0.25 },
+]
+
+const LOGO_CONFIG = [
+  { ringIndex: 0, offset: 0.0 }, // Meesho
+  { ringIndex: 1, offset: 0.0 }, // Flipkart
+  { ringIndex: 0, offset: 2.1 }, // Amazon
+  { ringIndex: 1, offset: 3.14 }, // Myntra
+  { ringIndex: 0, offset: 4.2 }, // JioMart
 ]
 
 // ─── Orbit ring ───────────────────────────────────────────────────────────────
-function OrbitRing({ radius, tiltX = 0, tiltZ = 0, color }: {
-  radius: number; tiltX?: number; tiltZ?: number; color: THREE.Color
+function OrbitRing({ radius, tiltX = 0, tiltZ = 0 }: {
+  radius: number; tiltX?: number; tiltZ?: number;
 }) {
-  const positions = useMemo(() => {
-    const pts: number[] = []
-    for (let i = 0; i <= 128; i++) {
-      const a = (i / 128) * Math.PI * 2
-      pts.push(Math.cos(a) * radius, 0, Math.sin(a) * radius)
-    }
-    return new Float32Array(pts)
-  }, [radius])
-
   return (
     <group rotation={[tiltX, 0, tiltZ]}>
-      <line>
-        <bufferGeometry>
-          <bufferAttribute attach="attributes-position" args={[positions, 3]} />
-        </bufferGeometry>
-        <lineBasicMaterial color={color} transparent opacity={0.20} />
-      </line>
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[radius, 0.012, 16, 100]} />
+        <meshBasicMaterial transparent opacity={0.6} />
+      </mesh>
     </group>
   )
 }
@@ -73,13 +67,13 @@ const fragmentShader = `
 `
 
 // ─── Logo orbiting node ────────────────────────────────────────────────────────
-function LogoOrbit({ texturePath, orbitRadius, speed, offset, tiltX, tiltZ }: {
-  texturePath: string; orbitRadius: number; speed: number
-  offset: number; tiltX: number; tiltZ: number
+function LogoOrbit({ texturePath, ringIndex, offset }: {
+  texturePath: string; ringIndex: number; offset: number
 }) {
-  const groupRef = useRef<THREE.Group>(null!)
-  const meshRef  = useRef<THREE.Mesh>(null!)
-  const texture  = useTexture(texturePath)
+  const pivotRef = useRef<THREE.Group>(null!)
+  const meshRef = useRef<THREE.Mesh>(null!)
+  const texture = useTexture(texturePath)
+  const ring = RINGS[ringIndex]
 
   const mat = useMemo(() => {
     texture.minFilter = THREE.LinearFilter
@@ -96,24 +90,26 @@ function LogoOrbit({ texturePath, orbitRadius, speed, offset, tiltX, tiltZ }: {
   }, [texture])
 
   useFrame(({ clock }) => {
-    const t = clock.getElapsedTime() * speed + offset
-    const x = Math.cos(t) * orbitRadius
-    const z = Math.sin(t) * orbitRadius
-    const tiltedY = -z * Math.sin(tiltX)
-    const tiltedZ =  z * Math.cos(tiltX)
-    groupRef.current.position.set(
-      x * Math.cos(tiltZ) - tiltedY * Math.sin(tiltZ),
-      x * Math.sin(tiltZ) + tiltedY * Math.cos(tiltZ),
-      tiltedZ
-    )
-    meshRef.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.4 + offset) * 0.25
+    const t = clock.getElapsedTime() * ring.speed + offset
+    if (pivotRef.current) {
+      pivotRef.current.rotation.y = -t
+    }
+    if (meshRef.current) {
+      meshRef.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.4 + offset) * 0.15
+    }
   })
 
   return (
-    <group ref={groupRef}>
-      <mesh ref={meshRef} material={mat}>
-        <planeGeometry args={[0.46, 0.46]} />
-      </mesh>
+    <group rotation={[ring.tiltX, 0, ring.tiltZ]}>
+      <group ref={pivotRef}>
+        <group position={[ring.radius, 0, 0]}>
+          <Billboard>
+            <mesh ref={meshRef} material={mat}>
+              <planeGeometry args={[0.46, 0.46]} />
+            </mesh>
+          </Billboard>
+        </group>
+      </group>
     </group>
   )
 }
@@ -122,16 +118,13 @@ function LogoOrbits() {
   return (
     <>
       {PLATFORM_LOGOS.map((src, i) => {
-        const cfg = ORBIT_CONFIG[i]
+        const cfg = LOGO_CONFIG[i]
         return (
           <LogoOrbit
             key={src}
             texturePath={src}
-            orbitRadius={cfg.radius}
-            speed={cfg.speed}
+            ringIndex={cfg.ringIndex}
             offset={cfg.offset}
-            tiltX={cfg.tiltX}
-            tiltZ={cfg.tiltZ}
           />
         )
       })}
@@ -186,10 +179,10 @@ function Particles() {
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3)
     for (let i = 0; i < count; i++) {
-      const r     = 1.6 + Math.random() * 2.0
+      const r = 1.6 + Math.random() * 2.0
       const theta = Math.random() * Math.PI * 2
-      const phi   = Math.acos(2 * Math.random() - 1)
-      arr[i * 3]     = r * Math.sin(phi) * Math.cos(theta)
+      const phi = Math.acos(2 * Math.random() - 1)
+      arr[i * 3] = r * Math.sin(phi) * Math.cos(theta)
       arr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta)
       arr[i * 3 + 2] = r * Math.cos(phi)
     }
@@ -211,12 +204,12 @@ function Particles() {
 
 // ─── Mouse parallax rig ───────────────────────────────────────────────────────
 function CameraRig() {
-  const mouse  = useRef({ x: 0, y: 0 })
+  const mouse = useRef({ x: 0, y: 0 })
   const target = useRef({ x: 0, y: 0 })
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      mouse.current.x = (e.clientX / window.innerWidth  - 0.5) * 2
+      mouse.current.x = (e.clientX / window.innerWidth - 0.5) * 2
       mouse.current.y = -(e.clientY / window.innerHeight - 0.5) * 2
     }
     window.addEventListener("mousemove", handler)
@@ -244,13 +237,12 @@ function Scene() {
       <pointLight position={[-3, -2, -2]} intensity={0.6} color={ACCENT} />
       <directionalLight position={[0, 5, 5]} intensity={0.5} />
 
-      {ORBIT_CONFIG.map((cfg, i) => (
+      {RINGS.map((ring, i) => (
         <OrbitRing
           key={i}
-          radius={cfg.radius}
-          tiltX={cfg.tiltX}
-          tiltZ={cfg.tiltZ}
-          color={i % 2 === 0 ? SECONDARY : GLOW}
+          radius={ring.radius}
+          tiltX={ring.tiltX}
+          tiltZ={ring.tiltZ}
         />
       ))}
 
