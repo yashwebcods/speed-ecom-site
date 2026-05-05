@@ -123,8 +123,8 @@ export function WhyUs() {
           </motion.div>
 
           <div className="relative">
-            {/* Mobile: Unique Journey Style (Line removed for cleaner mobile look) */}
-            <div className="lg:hidden relative space-y-8">
+            {/* Mobile: Unique Journey Style */}
+            <div className="flex flex-col md:hidden relative space-y-8">
               {reasons.map((reason, index) => (
                 <motion.div
                   key={reason.title}
@@ -153,7 +153,7 @@ export function WhyUs() {
             </div>
 
             {/* Desktop: Clean Original List */}
-            <div className="hidden lg:flex flex-col gap-6">
+            <div className="hidden md:flex flex-col gap-6">
               {reasons.map((reason, index) => (
                 <motion.div
                   key={reason.title}

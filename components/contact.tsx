@@ -113,38 +113,57 @@ export function Contact() {
                 viewport={{ once: true }}
                 className="bg-[#022c43] rounded-[3rem] p-10 lg:p-14 text-white relative overflow-hidden shadow-2xl h-full flex flex-col justify-center"
               >
-                <div className="relative z-10 space-y-8">
-                  <h3 className="text-3xl lg:text-4xl font-bold leading-tight">
-                    Ready to grow your business?
-                  </h3>
-                  <p className="text-white/70 text-base lg:text-lg leading-relaxed">
-                    Book a free demo today and discover how our automated solutions can maximize your marketplace profits.
-                  </p>
-                  
-                  <div className="flex flex-col sm:flex-row gap-5 pt-4">
-                    <Button
-                      asChild
-                      size="lg"
-                      className="bg-white text-[#022c43] hover:bg-slate-100 rounded-full px-10 h-14 font-bold transition-transform hover:scale-105 active:scale-95 text-base"
-                    >
-                      <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
-                        Book Demo
-                      </Link>
-                    </Button>
-                    <Button
-                      asChild
-                      variant="outline"
-                      size="lg"
-                      className="border-white/20 text-white bg-white/5 hover:bg-white/10 rounded-full px-10 h-14 font-bold backdrop-blur-sm transition-transform hover:scale-105 active:scale-95 text-base"
-                    >
-                      <Link href="tel:+919913315809">Call Now</Link>
-                    </Button>
+                <div className="relative z-10 space-y-6">
+                  <div>
+                    <h3 className="text-3xl lg:text-4xl font-bold leading-tight mb-2">
+                      Ready to grow your business?
+                    </h3>
+                    <p className="text-white/70 text-base lg:text-lg leading-relaxed">
+                      Send us a message and our team will get back to you shortly.
+                    </p>
                   </div>
+                  
+                  <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                    <div className="space-y-4 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-4">
+                      <input 
+                        type="text" 
+                        placeholder="Your Name" 
+                        className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder:text-white/50 border border-white/20 focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all"
+                        required
+                      />
+                      <input 
+                        type="email" 
+                        placeholder="Email Address" 
+                        className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder:text-white/50 border border-white/20 focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all"
+                        required
+                      />
+                    </div>
+                    <input 
+                      type="tel" 
+                      placeholder="Phone Number" 
+                      className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder:text-white/50 border border-white/20 focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all"
+                    />
+                    <textarea 
+                      placeholder="Tell us about your business goals..." 
+                      rows={3} 
+                      className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder:text-white/50 border border-white/20 focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all resize-none"
+                      required
+                    ></textarea>
+                    
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full bg-white text-[#022c43] hover:bg-slate-100 rounded-xl h-14 font-bold transition-all hover:scale-[1.02] active:scale-[0.98] text-base group"
+                    >
+                      Send Message
+                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </form>
                 </div>
 
                 {/* Subtle Decorative Circle */}
-                <div className="absolute -top-24 -right-24 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
-                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-violet-500/10 rounded-full blur-2xl" />
+                <div className="absolute -top-24 -right-24 w-80 h-80 bg-white/5 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-violet-500/10 rounded-full blur-2xl pointer-events-none" />
               </motion.div>
             </div>
           </div>
@@ -153,3 +172,4 @@ export function Contact() {
     </section>
   )
 }
+ 

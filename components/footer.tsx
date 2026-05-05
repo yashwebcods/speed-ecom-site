@@ -162,10 +162,10 @@ export function Footer() {
               © {new Date().getFullYear()} Speed E-Com Solution. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <Link href="#" className="text-sm text-primary-foreground/50 hover:text-accent transition-colors">
+              <Link href="/privacy-policy" className="text-sm text-primary-foreground/50 hover:text-accent transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="#" className="text-sm text-primary-foreground/50 hover:text-accent transition-colors">
+              <Link href="/terms-of-service" className="text-sm text-primary-foreground/50 hover:text-accent transition-colors">
                 Terms of Service
               </Link>
             </div>
