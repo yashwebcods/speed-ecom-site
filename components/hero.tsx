@@ -6,6 +6,7 @@ import { motion, Variants } from "framer-motion"
 import { ArrowRight, Play, Star, CheckCircle2 } from "lucide-react"
 import { AnimeText } from "@/components/anime-text"
 import { HeroThreeScene } from "@/components/hero-three-scene"
+import { TrustedBy } from "@/components/trusted-by"
 
 const stats = [
   { value: "40+", label: "Team Members" },
@@ -52,15 +53,15 @@ const floatingVariants: Variants = {
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 pb-8 sm:pt-28 sm:pb-10 lg:pt-0 lg:pb-0 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-center lg:justify-between pt-20 pb-0 sm:pt-28 lg:pt-24 lg:pb-0 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 py-8 lg:py-16">
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-20 items-center">
+      <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center justify-center">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-20 items-center w-full">
           {/* Left Content */}
           <motion.div
             variants={containerVariants}
@@ -140,6 +141,11 @@ export function Hero() {
         {/* Decorative Elements */}
         <div className="absolute -z-10 -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-3xl blur-2xl" />
         <div className="absolute -z-10 -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-3xl blur-2xl" />
+      </div>
+
+      {/* Trusted By Section integrated at the bottom of the Hero screen */}
+      <div className="w-full mt-auto bg-white/60 backdrop-blur-md relative z-20">
+        <TrustedBy />
       </div>
     </section>
   )

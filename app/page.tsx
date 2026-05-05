@@ -25,7 +25,6 @@ export default function Home() {
       <Header />
       <main className="w-full overflow-x-clip">
         <Hero />
-        <TrustedBy />
         <PaymentReconciliation />
         <WhyUs />
         <Services />

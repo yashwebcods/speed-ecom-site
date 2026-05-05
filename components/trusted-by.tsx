@@ -3,14 +3,16 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 
-const brands = [
-  "UrbanMonkey", "Snitch", "Bewakoof", "The Souled Store", 
-  "Dennis Lingo", "Campus Sutra", "WROGN", "Highlander",
-  "FabIndia", "Biba"
+const brandImages = [
+  "/b1.jpg", 
+  "/b2.jpg", 
+  "/b3.jpg", 
+  "/b4.jpg", 
+  "/b5.jpg"
 ]
 
 // Repeat to fill the marquee
-const repeatedBrands = [...brands, ...brands]
+const repeatedBrands = [...brandImages, ...brandImages, ...brandImages, ...brandImages]
 
 export function TrustedBy() {
   return (
@@ -48,18 +50,20 @@ export function TrustedBy() {
               repeatType: "loop",
             }}
           >
-            {repeatedBrands.map((brand, i) => (
+            {repeatedBrands.map((brandSrc, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: (i % brands.length) * 0.05 }}
-                className="flex-shrink-0 mx-6 md:mx-10 relative transform-gpu"
+                transition={{ duration: 0.5, delay: (i % brandImages.length) * 0.05 }}
+                className="flex-shrink-0 mx-6 md:mx-10 relative transform-gpu flex items-center justify-center h-12 md:h-16 w-24 md:w-32"
               >
-                <span className="text-xl md:text-3xl font-display font-bold text-slate-300 hover:text-slate-800 transition-colors duration-500 cursor-default">
-                  {brand}
-                </span>
+                <img
+                  src={brandSrc}
+                  alt={`Trusted Brand ${i}`}
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 cursor-default mix-blend-multiply"
+                />
               </motion.div>
             ))}
           </motion.div>

@@ -117,9 +117,19 @@ const StickyCapabilitiesFeatures = () => {
 
   return (
     <div ref={containerRef} style={{ height: `${totalFeatures * 80}vh` }} className="relative w-full">
-      <section className="sticky top-20 h-[500px] lg:h-[500px] w-full flex items-center overflow-hidden">
+      <section className="sticky top-20 w-full flex flex-col justify-center overflow-hidden min-h-[650px]">
+        {/* Sticky Heading */}
+        <div className="text-center mb-8 lg:mb-12 shrink-0">
+          <h3 className="text-2xl sm:text-4xl lg:text-6xl font-bold font-display mb-3 tracking-tight">
+            Innovative <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Features</span>
+          </h3>
+          <p className="text-sm sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+            Smart tools tailored to enhance the success of sellers, D2C brands, and retailers.
+          </p>
+        </div>
+
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-center h-full">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-center">
 
             {/* Feature Navigation List */}
             <div className="hidden lg:block lg:col-span-3 relative h-[400px] overflow-hidden -ml-4 lg:-ml-8">
@@ -619,14 +629,6 @@ export const PaymentReconciliation = () => {
               transition={{ duration: 0.8 }}
               className="mt-16 md:mt-24 mb-12"
             >
-              <div className="text-center mb-0 md:mb-4">
-                <h3 className="text-2xl sm:text-4xl lg:text-7xl font-bold font-display mb-4 tracking-tight">
-                  Innovative <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Features</span>
-                </h3>
-                <p className="text-sm sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-                  Smart tools tailored to enhance the success of sellers, D2C brands, and retailers.
-                </p>
-              </div>
               <StickyCapabilitiesFeatures />
             </motion.div>
           </motion.div>

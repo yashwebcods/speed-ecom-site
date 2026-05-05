@@ -2,7 +2,7 @@
 
 import { useRef, useMemo, useEffect, useState, Suspense } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { useTexture, Billboard } from "@react-three/drei"
+import { useTexture, Billboard, RoundedBox } from "@react-three/drei"
 import * as THREE from "three"
 
 const SECONDARY = new THREE.Color("#4f72d4")
@@ -15,7 +15,7 @@ const PLATFORM_LOGOS = [
   "/flipkart.jpg",
   "/amazon.png",
   "/myntra.png",
-  "/jioMart.jpg",
+  "/Snapdeal.png",
 ]
 
 // Two distinct intersecting rings as requested
@@ -29,7 +29,7 @@ const LOGO_CONFIG = [
   { ringIndex: 1, offset: 0.0 }, // Flipkart
   { ringIndex: 0, offset: 2.1 }, // Amazon
   { ringIndex: 1, offset: 3.14 }, // Myntra
-  { ringIndex: 0, offset: 4.2 }, // JioMart
+  { ringIndex: 0, offset: 5.2 }, // Snapdeal
 ]
 
 // ─── Orbit ring ───────────────────────────────────────────────────────────────
@@ -132,40 +132,90 @@ function LogoOrbits() {
   )
 }
 
-// ─── Central glowing sphere ───────────────────────────────────────────────────
-function CentralSphere() {
-  const meshRef = useRef<THREE.Mesh>(null!)
-  const glowRef = useRef<THREE.Mesh>(null!)
+// ─── Central glowing box ──────────────────────────────────────────────────────
+function CentralBox() {
+  const meshRef = useRef<THREE.Group>(null!)
+  const glowRef = useRef<THREE.Group>(null!)
+  const logoTexture = useTexture("/logo_light.png")
+
+  useMemo(() => {
+    logoTexture.colorSpace = THREE.SRGBColorSpace
+    // Reset wrapping to ensure clean 1:1 application on planes
+    logoTexture.wrapS = THREE.ClampToEdgeWrapping
+    logoTexture.wrapT = THREE.ClampToEdgeWrapping
+    logoTexture.repeat.set(1, 1)
+    logoTexture.offset.set(0, 0)
+  }, [logoTexture])
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime()
-    meshRef.current.rotation.y = t * 0.25
-    meshRef.current.rotation.x = Math.sin(t * 0.18) * 0.08
-    glowRef.current.scale.setScalar(1 + Math.sin(t * 1.6) * 0.05)
+    if (meshRef.current) {
+      // Horizontal rotation
+      meshRef.current.rotation.y = t * 0.4
+
+      // Vertical movement (floating up and down)
+      meshRef.current.position.y = Math.sin(t * 0.8) * 0.15
+
+      // Subtle tilt for extra depth
+      meshRef.current.rotation.x = Math.sin(t * 0.4) * 0.1
+    }
+    if (glowRef.current) {
+      glowRef.current.scale.setScalar(1 + Math.sin(t * 1.6) * 0.05)
+      // Sync glow with mesh position
+      glowRef.current.position.y = Math.sin(t * 0.8) * 0.15
+    }
   })
 
   return (
     <group>
-      <mesh ref={meshRef}>
-        <sphereGeometry args={[0.38, 64, 64]} />
-        <meshStandardMaterial
-          color={PRIMARY}
-          emissive={SECONDARY}
-          emissiveIntensity={0.6}
-          roughness={0.2}
-          metalness={0.85}
-        />
-      </mesh>
-      <mesh ref={glowRef}>
-        <sphereGeometry args={[0.46, 32, 32]} />
-        <meshBasicMaterial color={GLOW} transparent opacity={0.10} />
-      </mesh>
-      <mesh>
-        <sphereGeometry args={[0.65, 16, 16]} />
+      <group ref={meshRef}>
+        <RoundedBox args={[0.6, 0.6, 0.6]} radius={0.1} smoothness={4}>
+          <meshStandardMaterial
+            color="#ffffff" // White base
+            emissive={SECONDARY}
+            emissiveIntensity={0.2}
+            roughness={0.3}
+            metalness={0.6}
+          />
+        </RoundedBox>
+        {/* Logos mapped explicitly using planes to guarantee perfect layout on all 6 sides */}
+        <mesh position={[0, 0, 0.31]} rotation={[0, 0, 0]}>
+          <planeGeometry args={[0.38, 0.38]} />
+          <meshBasicMaterial map={logoTexture} side={THREE.DoubleSide} />
+        </mesh>
+        <mesh position={[0, 0, -0.31]} rotation={[0, Math.PI, 0]}>
+          <planeGeometry args={[0.38, 0.38]} />
+          <meshBasicMaterial map={logoTexture} side={THREE.DoubleSide} />
+        </mesh>
+        <mesh position={[0.31, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
+          <planeGeometry args={[0.38, 0.38]} />
+          <meshBasicMaterial map={logoTexture} side={THREE.DoubleSide} />
+        </mesh>
+        <mesh position={[-0.31, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
+          <planeGeometry args={[0.38, 0.38]} />
+          <meshBasicMaterial map={logoTexture} side={THREE.DoubleSide} />
+        </mesh>
+        <mesh position={[0, 0.31, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[0.38, 0.38]} />
+          <meshBasicMaterial map={logoTexture} side={THREE.DoubleSide} />
+        </mesh>
+        <mesh position={[0, -0.31, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[0.38, 0.38]} />
+          <meshBasicMaterial map={logoTexture} side={THREE.DoubleSide} />
+        </mesh>
+      </group>
+
+      <group ref={glowRef}>
+        <RoundedBox args={[0.72, 0.72, 0.72]} radius={0.12} smoothness={4}>
+          <meshBasicMaterial color={GLOW} transparent opacity={0.10} />
+        </RoundedBox>
+      </group>
+      <RoundedBox args={[1.0, 1.0, 1.0]} radius={0.15} smoothness={4}>
         <meshBasicMaterial color={GLOW} transparent opacity={0.04} />
-      </mesh>
+      </RoundedBox>
+
       {/* Gold accent dot */}
-      <mesh position={[0.25, 0.25, 0.18]}>
+      <mesh position={[0.3, 0.3, 0.35]}>
         <sphereGeometry args={[0.05, 8, 8]} />
         <meshStandardMaterial color={ACCENT} emissive={ACCENT} emissiveIntensity={1.2} />
       </mesh>
@@ -246,7 +296,7 @@ function Scene() {
         />
       ))}
 
-      <CentralSphere />
+      <CentralBox />
 
       <Suspense fallback={null}>
         <LogoOrbits />
