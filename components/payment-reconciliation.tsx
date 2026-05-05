@@ -310,141 +310,165 @@ export const PaymentReconciliation = () => {
               ))}
             </motion.div>
           </motion.div>
+        </motion.div>
+      </div>
 
-          {/* Speedy AI Section (Main Selling Point) */}
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-20 items-center mb-16 sm:mb-20 lg:mb-32 px-0 sm:px-0">
-            <div className="space-y-5 sm:space-y-8 order-2 lg:order-1 px-4 sm:px-0">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-violet-500/15 to-indigo-500/15 border border-violet-500/25 text-violet-700 dark:text-violet-300 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-sm">
-                <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-violet-500" /> Speedy AI Engine
-              </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                <span className="text-slate-900 dark:text-white">Meet Your Personal </span>
-                <br className="hidden sm:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">AI Analyst</span>
-              </h3>
-              <div className="space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                <p className="font-medium">
-                  Our Speedy AI works in real-time with your live marketplace data to give you instant insights.
-                </p>
-                <p className="font-medium">
-                  It automatically analyzes your orders, SKUs, payments, and charges — and converts them into easy-to-understand reports, tables, and charts.
-                </p>
-                <ul className="space-y-3 sm:space-y-4 pt-2 sm:pt-4">
-                  {[
-                    "No manual Excel work",
-                    "No confusion",
-                    "Just clear business insights"
-                  ].map((text, i) => (
-                    <li key={i} className="flex items-center gap-2 sm:gap-3 text-slate-800 dark:text-slate-200 font-bold">
-                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 flex-shrink-0" />
-                      {text}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+      {/* Speedy AI Section (Main Selling Point) - Full Width */}
+      <div className="relative mb-16 sm:mb-20 lg:mb-32 overflow-hidden bg-primary">
+        {/* Background decorative elements matching CTA */}
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <motion.div
+            animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-3xl"
+          />
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_0%,transparent_49%,rgba(255,255,255,0.05)_50%,transparent_51%,transparent_100%)] bg-[size:80px_80px] pointer-events-none" />
+        
+        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 p-8 lg:p-16 max-w-7xl mx-auto px-4 lg:px-8">
+          {/* Left Side: Heading and Text */}
+          <div className="lg:w-[60%] text-left space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider">
+              <Sparkles className="w-4 h-4 text-[#FACC15]" /> Speedy AI Engine
             </div>
-            <div className="relative order-1 lg:order-2 w-full">
-              <Card className="p-4 sm:p-6 bg-gradient-to-br from-primary to-primary/90 border-primary/30 shadow-2xl shadow-primary/20 overflow-hidden relative group rounded-none sm:rounded-3xl">
-                <div className="absolute top-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-white/10 blur-[80px] sm:blur-[100px] -mr-16 sm:-mr-32 -mt-16 sm:-mt-32 rounded-full" />
-                <div className="absolute bottom-0 left-0 w-32 sm:w-48 h-32 sm:h-48 bg-violet-400/20 blur-[60px] sm:blur-[80px] -ml-10 sm:-ml-20 -mb-10 sm:-mb-20 rounded-full" />
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-5 sm:mb-8">
-                    <div className="flex items-center gap-2 sm:gap-3">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center">
-                        <Bot className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                      </div>
-                      <div>
-                        <p className="text-white font-bold text-sm sm:text-base">Speedy AI Analyst</p>
-                        <p className="text-white/70 text-xs sm:text-xs">Live processing...</p>
-                      </div>
-                    </div>
-                    <Badge className="bg-emerald-400/20 text-emerald-300 border-emerald-400/30 text-xs">Active</Badge>
-                  </div>
-                  <div className="space-y-3 sm:space-y-4">
-                    <div className="p-3 sm:p-4 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
-                      <p className="text-white text-xs sm:text-sm mb-2">"Analyze today's SKU performance"</p>
-                      <div className="h-1.5 sm:h-2 w-full bg-white/20 rounded-full overflow-hidden">
-                        <motion.div 
-                          className="h-full bg-gradient-to-r from-white to-violet-200"
-                          initial={{ width: "0%" }}
-                          animate={{ width: "100%" }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-2 sm:gap-4">
-                      <div className="p-3 sm:p-4 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
-                        <p className="text-white/80 text-[10px] sm:text-xs mb-1">Total Sales</p>
-                        <p className="text-lg sm:text-xl font-bold text-white">₹4,28,450</p>
-                        <span className="text-emerald-300 text-[10px] sm:text-xs flex items-center gap-1 mt-1">
-                          <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> +12.5%
-                        </span>
-                      </div>
-                      <div className="p-3 sm:p-4 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm">
-                        <p className="text-white/80 text-[10px] sm:text-xs mb-1">Net Profit</p>
-                        <p className="text-lg sm:text-xl font-bold text-white">₹85,200</p>
-                        <span className="text-emerald-300 text-[10px] sm:text-xs flex items-center gap-1 mt-1">
-                          <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> +8.2%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
+            <h3 className="text-4xl lg:text-6xl font-bold font-display leading-[1.1] text-white">
+              Meet Your Personal <br className="hidden lg:block" />
+              <span className="text-[#FACC15]">AI Analyst</span>
+            </h3>
+            <div className="space-y-4 text-base lg:text-lg text-white/90 leading-relaxed max-w-xl">
+              <p>Our Speedy AI works in real-time with your live marketplace data to give you instant insights.</p>
+              <p>It automatically analyzes your orders, SKUs, payments, and charges — and converts them into reports, tables, and charts.</p>
+              <ul className="space-y-3 pt-2">
+                {["No manual Excel work", "No confusion", "Just clear business insights"].map((text, i) => (
+                  <li key={i} className="flex items-center gap-3 text-white font-bold">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                    {text}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
+          {/* Right Side: AI Analyst Card (Compact Size) */}
+          <div className="lg:w-[40%] w-full">
+            <Card className="p-5 sm:p-8 bg-white border-white shadow-2xl rounded-[2rem] relative overflow-hidden">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-indigo-100">
+                    <Bot className="w-7 h-7 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-slate-900 font-bold text-base leading-tight">Speedy AI Analyst</p>
+                    <div className="flex items-center gap-1.5 mt-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <p className="text-slate-400 text-[10px] font-medium">Live processing...</p>
+                    </div>
+                  </div>
+                </div>
+                <Badge className="bg-emerald-50 text-emerald-600 border-emerald-100 text-[9px] font-bold px-2 py-0.5 uppercase tracking-wider">Active</Badge>
+              </div>
+              
+              <div className="space-y-5">
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                  <p className="text-slate-500 text-xs italic mb-3 font-medium">"Analyze today's SKU performance"</p>
+                  <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                    <motion.div 
+                      className="h-full bg-primary"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "40%" }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1.5">Total Sales</p>
+                    <p className="text-xl font-black text-slate-900">₹4,28,450</p>
+                    <span className="text-emerald-500 text-[10px] flex items-center gap-1 mt-1 font-bold">
+                      <ArrowUpRight className="w-3 h-3" /> +12.5%
+                    </span>
+                  </div>
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1.5">Net Profit</p>
+                    <p className="text-xl font-black text-slate-900">₹85,200</p>
+                    <span className="text-emerald-500 text-[10px] flex items-center gap-1 mt-1 font-bold">
+                      <ArrowUpRight className="w-3 h-3" /> +8.2%
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
             {/* Real-Time Dashboard Section */}
-            <div className="mb-16 sm:mb-20 lg:mb-32 px-0 sm:px-0">
-              <div className="text-left lg:text-center mb-10 sm:mb-12 lg:mb-16 px-4 sm:px-0">
-                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-2 sm:px-0">
-                  <span className="text-slate-900 dark:text-white">Live Dashboard with </span>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">SKU-Level Insights</span>
-                </h3>
-                <p className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-medium">
-                  All data is updated in real-time directly from marketplaces like Amazon, Flipkart, Myntra, Meesho, and Ajio.
-                </p>
-              </div>
+            <div className="mb-16 sm:mb-20 lg:mb-32">
+              <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 max-w-7xl mx-auto px-4 lg:px-0">
+                {/* Left Side: Heading */}
+                <div className="lg:w-[60%] text-left">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 text-violet-600 border border-violet-100 text-xs font-bold uppercase tracking-wider mb-6">
+                    <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" /> Live Data Processing
+                  </div>
+                  <h3 className="text-4xl lg:text-7xl font-bold mb-6 font-display leading-[1.1]">
+                    <span className="text-slate-900 dark:text-white">Live Dashboard with </span>
+                    <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">SKU-Level Insights</span>
+                  </h3>
+                  <p className="text-base lg:text-xl text-slate-600 dark:text-slate-300 max-w-2xl font-medium leading-relaxed">
+                    All data is updated in real-time directly from marketplaces like Amazon, Flipkart, Myntra, Meesho, and Ajio.
+                  </p>
+                </div>
 
-              <div className="grid lg:grid-cols-12 gap-4 lg:gap-8 items-start">
-                <div className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 lg:gap-6 px-4 lg:px-0 w-full lg:max-w-none">
+                {/* Right Side: 2x2 Grid (Compact Cards) */}
+                <div className="lg:w-[40%] grid grid-cols-2 gap-4 lg:gap-6">
                   {[
-                    { title: "SKU-wise tables", desc: "Granular data for every product.", icon: <Layers className="w-5 h-5" />, color: "bg-blue-500/10 text-blue-600" },
-                    { title: "Visual charts", desc: "Understand trends at a glance.", icon: <BarChart3 className="w-5 h-5" />, color: "bg-violet-500/10 text-violet-600" },
-                    { title: "Profit & loss", desc: "Monitor your bottom line.", icon: <TrendingUp className="w-5 h-5" />, color: "bg-emerald-500/10 text-emerald-600" },
-                    { title: "Error detection", desc: "Find discrepancies early.", icon: <Search className="w-5 h-5" />, color: "bg-amber-500/10 text-amber-600" },
+                    { title: "SKU-wise tables", desc: "Granular data", icon: <Layers className="w-5 h-5" />, color: "bg-blue-50 text-blue-600" },
+                    { title: "Visual charts", desc: "Understand trends", icon: <BarChart3 className="w-5 h-5" />, color: "bg-violet-50 text-violet-600" },
+                    { title: "Profit & loss", desc: "Monitor line", icon: <TrendingUp className="w-5 h-5" />, color: "bg-emerald-50 text-emerald-600" },
+                    { title: "Error detection", desc: "Find early", icon: <Search className="w-5 h-5" />, color: "bg-amber-50 text-amber-600" },
                   ].map((item, i) => (
-                    <Card key={i} className="p-3 sm:p-4 hover:shadow-lg transition-all border-border/50 bg-white dark:bg-card shadow-sm rounded-xl flex flex-col justify-center min-h-[90px] sm:min-h-0">
-                      <div className="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div className={`flex w-8 h-8 sm:w-10 sm:h-10 rounded-lg ${item.color} items-center justify-center flex-shrink-0 mb-1 lg:mb-0`}>
-                          {item.icon}
-                        </div>
-                        <div className="px-0 lg:px-0 text-left">
-                          <h5 className="font-bold text-xs sm:text-sm lg:text-base mb-1 text-slate-900 dark:text-white leading-tight">
-                            {item.title}
-                          </h5>
-                          <p className="text-[10px] sm:text-xs lg:text-sm text-slate-600 dark:text-slate-400 leading-tight">
-                            {item.desc}
-                          </p>
-                        </div>
+                    <Card key={i} className="p-6 hover:shadow-xl transition-all border-slate-100 bg-white shadow-sm rounded-3xl flex flex-col items-start gap-3">
+                      <div className={`flex w-12 h-12 rounded-2xl ${item.color} items-center justify-center flex-shrink-0`}>
+                        {item.icon}
+                      </div>
+                      <div className="text-left">
+                        <h5 className="font-bold text-sm lg:text-base text-slate-900 mb-1">
+                          {item.title}
+                        </h5>
+                        <p className="text-xs text-slate-500 font-medium leading-tight">
+                          {item.desc}
+                        </p>
                       </div>
                     </Card>
                   ))}
                 </div>
+              </div>
 
-                <div className="lg:col-span-8 mt-4 lg:mt-0 w-full overflow-hidden px-4 sm:px-0">
-                  <Card className="p-4 sm:p-6 lg:p-8 border-primary/20 shadow-xl bg-white dark:bg-card/80 relative rounded-xl sm:rounded-3xl w-full box-border">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5 sm:mb-8 gap-3">
-                      <div>
-                        <h4 className="font-bold text-lg sm:text-xl text-slate-900 dark:text-white">Top Performing SKUs</h4>
-                        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Live Data. Smart Decisions.</p>
-                      </div>
-                      <div className="flex gap-2">
-                        <Badge variant="secondary" className="text-xs">Amazon</Badge>
-                        <Badge variant="secondary" className="text-xs">Flipkart</Badge>
+              {/* Data Table Section */}
+              <div className="mt-16 w-full max-w-7xl mx-auto px-4 sm:px-0">
+                <Card className="p-6 sm:p-10 border-slate-100 shadow-2xl bg-white relative rounded-[2.5rem] overflow-hidden">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-10 gap-4">
+                    <div>
+                      <h4 className="font-bold text-2xl text-slate-900">Top Performing SKUs</h4>
+                      <div className="flex items-center gap-2 mt-1">
+                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Live Metrics</p>
                       </div>
                     </div>
+                    <Button variant="outline" className="rounded-full px-6 font-bold text-xs uppercase tracking-widest hover:bg-slate-50 group">
+                      View All <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
                     
                     <div className="overflow-x-auto pb-2 relative z-10">
                       <Table className="min-w-[450px]">
@@ -527,47 +551,66 @@ export const PaymentReconciliation = () => {
                   </Card>
                 </div>
               </div>
-            </div>
+          </motion.div>
+        </div>
+      </div>
 
-            {/* AI Insights Section (VERY IMPORTANT) */}
-            <div className="mb-16 lg:mb-32 relative">
-               <div className="absolute inset-0 bg-primary/5 rounded-[2rem] lg:rounded-[3rem] -z-10 blur-2xl" />
-               <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center p-6 lg:p-16">
-                 <div className="order-2 lg:order-1">
-                   <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 lg:gap-4">
-                      {[
-                        { title: "Identify loss-making SKUs", icon: <Package className="text-red-500" /> },
-                        { title: "Detect hidden charges", icon: <ShieldCheck className="text-emerald-500" /> },
-                        { title: "Analyze ad performance", icon: <TrendingUp className="text-indigo-500" /> },
-                        { title: "Suggest profit growth", icon: <Sparkles className="text-amber-500" /> },
-                      ].map((item, i) => (
-                        <Card key={i} className="p-4 lg:p-6 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-violet-500/30 transition-all group">
-                          <div className="mb-2 lg:mb-4 group-hover:scale-110 transition-transform">{item.icon}</div>
-                          <h5 className="font-bold text-xs sm:text-sm lg:text-base leading-tight text-white">{item.title}</h5>
-                        </Card>
-                      ))}
-                   </div>
-                 </div>
-                 <div className="space-y-4 lg:space-y-6 order-1 lg:order-2">
-                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-sm">
-                     💡 Intelligent Growth
-                   </div>
-                   <h3 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-white">
-                     Smart Insights That <br />
-                     <span className="text-[#facc15]">Grow Your Profit</span>
-                   </h3>
-                   <p className="text-sm sm:text-base lg:text-xl text-slate-300 leading-relaxed">
-                     Our AI doesn't just show data — it tells you what to do next. It's like having a financial expert working 24/7 for your business.
-                   </p>
-                   <div className="pt-2 lg:pt-4">
-                      <p className="text-lg sm:text-xl lg:text-2xl font-display font-bold italic text-white">
-                        "From Raw Data to Clear Profit Insights."
-                      </p>
-                   </div>
-                 </div>
-               </div>
-            </div>
+      {/* AI Insights Section (VERY IMPORTANT) - Full Width */}
+      <div className="relative mb-16 sm:mb-20 lg:mb-32 overflow-hidden bg-primary">
+        {/* Background decorative elements matching CTA */}
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <motion.div
+            animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-3xl"
+          />
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_0%,transparent_49%,rgba(255,255,255,0.05)_50%,transparent_51%,transparent_100%)] bg-[size:80px_80px] pointer-events-none" />
 
+        <div className="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-20 items-center p-8 lg:p-16 max-w-7xl mx-auto px-4 lg:px-8">
+          <div className="order-2 lg:order-1">
+            <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 lg:gap-4">
+              {[
+                { title: "Identify loss-making SKUs", icon: <Package className="text-red-500" /> },
+                { title: "Detect hidden charges", icon: <ShieldCheck className="text-emerald-500" /> },
+                { title: "Analyze ad performance", icon: <TrendingUp className="text-indigo-500" /> },
+                { title: "Suggest profit growth", icon: <Sparkles className="text-amber-500" /> },
+              ].map((item, i) => (
+                <Card key={i} className="p-4 lg:p-6 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-violet-500/30 transition-all group shadow-none">
+                  <div className="mb-2 lg:mb-4 group-hover:scale-110 transition-transform">{item.icon}</div>
+                  <h5 className="font-bold text-xs sm:text-sm lg:text-base leading-tight text-white">{item.title}</h5>
+                </Card>
+              ))}
+            </div>
+          </div>
+          <div className="space-y-4 lg:space-y-6 order-1 lg:order-2">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-sm">
+              💡 Intelligent Growth
+            </div>
+            <h3 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-white">
+              Smart Insights That <br />
+              <span className="text-[#facc15]">Grow Your Profit</span>
+            </h3>
+            <p className="text-sm sm:text-base lg:text-xl text-white/90 leading-relaxed">
+              Our AI doesn't just show data — it tells you what to do next. It's like having a financial expert working 24/7 for your business.
+            </p>
+            <div className="pt-2 lg:pt-4">
+              <p className="text-lg sm:text-xl lg:text-2xl font-display font-bold italic text-white">
+                "From Raw Data to Clear Profit Insights."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
             {/* Innovative Features Section - Restored */}
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
@@ -587,7 +630,7 @@ export const PaymentReconciliation = () => {
               <StickyCapabilitiesFeatures />
             </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

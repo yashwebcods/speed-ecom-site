@@ -64,26 +64,26 @@ export function CTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-row gap-3 justify-center mt-2 sm:mt-0"
+            className="flex flex-col sm:flex-row gap-3 justify-center mt-2 sm:mt-0"
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1 sm:w-auto">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="sm:w-auto">
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-primary hover:bg-white/90 rounded-full px-4 sm:px-8 group h-10 sm:h-12 lg:h-11 w-full text-xs sm:text-base"
+                className="bg-white text-primary hover:bg-white/90 rounded-full px-8 group h-10 sm:h-12 lg:h-11 min-w-[180px] text-xs sm:text-base"
               >
                 <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
                   Book Free Demo
-                  <ArrowRight className="hidden sm:block ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1 sm:w-auto">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="sm:w-auto">
               <Button
                 asChild
                 variant="outline"
                 size="lg"
-                className="bg-white/10 border-white/40 text-white hover:bg-white/20 rounded-full px-4 sm:px-8 h-10 sm:h-12 lg:h-11 w-full backdrop-blur-sm text-xs sm:text-base"
+                className="bg-white/10 border-white/40 text-white hover:bg-white/20 rounded-full px-8 h-10 sm:h-12 lg:h-11 min-w-[180px] backdrop-blur-sm text-xs sm:text-base"
               >
                 <Link href="tel:+919913315809">Contact Us</Link>
               </Button>
