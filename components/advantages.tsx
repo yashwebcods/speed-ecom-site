@@ -50,7 +50,7 @@ export function Advantages() {
           </motion.div>
 
           {/* Right Side: 2x2 Grid (Smaller and more compact) */}
-          <div className="lg:w-[45%] grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="lg:w-[45%] grid grid-cols-2 gap-3 sm:gap-4">
             {advantages.map((advantage, index) => (
               <motion.div
                 key={advantage.title}
@@ -59,15 +59,15 @@ export function Advantages() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] as any }}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="group p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all flex flex-col items-start"
+                className="group p-3 sm:p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all flex flex-col items-start"
               >
-                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-violet-50 text-violet-600 mb-3 group-hover:bg-violet-600 group-hover:text-white transition-colors duration-300">
-                  <advantage.icon className="w-5 h-5" />
+                <div className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-violet-50 text-violet-600 mb-2 sm:mb-3 group-hover:bg-violet-600 group-hover:text-white transition-colors duration-300">
+                  <advantage.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
-                <h4 className="font-bold font-display text-slate-900 mb-2 group-hover:text-violet-600 transition-colors text-base leading-tight text-left">
+                <h4 className="font-bold font-display text-slate-900 mb-1 sm:mb-2 group-hover:text-violet-600 transition-colors text-xs sm:text-base leading-tight text-left">
                   {advantage.title}
                 </h4>
-                <p className="text-xs text-slate-500 leading-relaxed text-left">
+                <p className="text-[10px] sm:text-xs text-slate-500 leading-relaxed text-left">
                   {advantage.description}
                 </p>
               </motion.div>

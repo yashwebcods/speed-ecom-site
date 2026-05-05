@@ -137,12 +137,12 @@ export function Header() {
         <motion.div 
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex lg:hidden items-center gap-3 pb-4"
+          className="flex lg:hidden items-center gap-2 pb-4 px-2"
         >
-          <Button asChild variant="outline" className="flex-1 rounded-xl h-11 text-xs font-bold border-border/50 hover:bg-yellow-400 hover:text-black transition-all">
+          <Button asChild variant="outline" className="flex-1 rounded-xl h-10 text-[10px] font-bold border-border/50 hover:bg-yellow-400 hover:text-black transition-all px-2">
             <Link href="/login">Seller Login</Link>
           </Button>
-          <Button asChild className="flex-1 rounded-xl h-11 text-xs font-bold shadow-lg shadow-primary/10">
+          <Button asChild className="flex-1 rounded-xl h-10 text-[10px] font-bold shadow-lg shadow-primary/10 px-2">
             <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">Book Free Demo</Link>
           </Button>
         </motion.div>
