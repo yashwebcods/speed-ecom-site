@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { motion, Variants } from "framer-motion"
 import { ArrowRight, Play, Star, CheckCircle2 } from "lucide-react"
 import { AnimeText } from "@/components/anime-text"
-import { HeroThreeScene } from "@/components/hero-three-scene"
+import { HeroChatScene } from "@/components/hero-chat-scene"
 import { TrustedBy } from "@/components/trusted-by"
 
 const stats = [
@@ -134,7 +134,7 @@ export function Hero() {
             transition={{ duration: 1, delay: 2.7, ease: [0.22, 1, 0.36, 1] }}
             className="hidden lg:flex relative w-full h-full min-h-[520px] items-center justify-center"
           >
-            <HeroThreeScene />
+            <HeroChatScene />
           </motion.div>
         </div>
 

@@ -28,6 +28,8 @@ const columnVariants: Variants = {
   }),
 }
 
+const CURRENT_YEAR = 2025
+
 export function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground py-16 lg:py-20">
@@ -159,7 +161,7 @@ export function Footer() {
         >
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-primary-foreground/50">
-              © {new Date().getFullYear()} Speed E-Com Solution. All rights reserved.
+              © {CURRENT_YEAR} Speed E-Com Solution. All rights reserved.
             </p>
             <div className="flex gap-6">
               <Link href="/privacy-policy" className="text-sm text-primary-foreground/50 hover:text-accent transition-colors">
