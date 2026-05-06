@@ -8,11 +8,14 @@ const brandImages = [
   "/b2.jpg", 
   "/b3.jpg", 
   "/b4.jpg", 
-  "/b5.jpg"
+  "/b5.jpg",
+  "/b6.jpg",
+  "/b7.jpg",
+  "/b8.jpg"
 ]
 
 // Repeat to fill the marquee
-const repeatedBrands = [...brandImages, ...brandImages, ...brandImages, ...brandImages]
+const repeatedBrands = [...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages]
 
 export function TrustedBy() {
   return (
