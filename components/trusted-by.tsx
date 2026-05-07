@@ -19,7 +19,7 @@ const repeatedBrands = [...brandImages, ...brandImages, ...brandImages, ...brand
 
 export function TrustedBy() {
   return (
-    <section className="w-full bg-white py-8 md:py-10 border-b border-gray-100 relative z-10 overflow-hidden">
+    <section className="w-full bg-background py-10 relative z-10 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -28,7 +28,7 @@ export function TrustedBy() {
         className="container mx-auto px-4 md:px-8 max-w-7xl"
       >
         {/* "Trusted by" label */}
-        <div className="mb-6 md:mb-8 text-center md:text-left">
+        <div className="mb-8 md:mb-12 text-center">
           <h2 className="text-sm md:text-base font-bold text-slate-400 tracking-widest uppercase">
             Empowering Top E-Commerce Brands
           </h2>
@@ -43,7 +43,7 @@ export function TrustedBy() {
           className="relative overflow-hidden w-full transform-gpu"
         >
           <motion.div
-            className="flex whitespace-nowrap items-center will-change-transform py-2"
+            className="flex whitespace-nowrap items-center will-change-transform py-4"
             animate={{ x: ["0%", "-50%"] }}
             initial={{ x: 0 }}
             transition={{
@@ -60,20 +60,20 @@ export function TrustedBy() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (i % brandImages.length) * 0.05 }}
-                className="flex-shrink-0 mx-6 md:mx-10 relative transform-gpu flex items-center justify-center h-12 md:h-16 w-24 md:w-32"
+                className="flex-shrink-0 mx-8 md:mx-12 relative transform-gpu flex items-center justify-center h-12 md:h-16 w-28 md:w-36"
               >
                 <img
                   src={brandSrc}
                   alt={`Trusted Brand ${i}`}
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 cursor-default mix-blend-multiply"
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-500 cursor-default mix-blend-multiply"
                 />
               </motion.div>
             ))}
           </motion.div>
 
           {/* Fade edges within the container */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-20 bg-gradient-to-r from-white to-transparent z-10" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-20 bg-gradient-to-l from-white to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-24 bg-gradient-to-r from-background to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-24 bg-gradient-to-l from-background to-transparent z-10" />
         </motion.div>
       </motion.div>
     </section>
