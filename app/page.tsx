@@ -28,7 +28,7 @@ export default function Home() {
         <PaymentReconciliation />
         <WhyUs />
         <Services />
-        <CTA/>
+        <CTA />
         <Advantages />
         <Testimonials />
         <Pricing />

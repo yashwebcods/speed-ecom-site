@@ -7,22 +7,22 @@ const advantages = [
   {
     icon: Sparkles,
     title: "Smart & Strategic Insights",
-    description: "Data-driven pricing strategy, competition analysis, and sales forecasting.",
+    description: "Stay ahead with data-backed pricing models, deep competitor benchmarking, and predictive sales forecasting.",
   },
   {
     icon: Target,
     title: "Platform-Specific Expertise",
-    description: "Dedicated support tailored to Meesho, Flipkart, Amazon, and Myntra.",
+    description: "Native optimization for Meesho, Flipkart, Amazon, and Myntra—leveraging platform-specific algorithms to win.",
   },
   {
     icon: Shield,
     title: "Transparent Financial Tracking",
-    description: "Track settlements, catch wrong commissions, identify illegal deductions.",
+    description: "Eliminate revenue leakage with automated settlement audits, commission dispute management, and hidden fee detection.",
   },
   {
     icon: LineChart,
     title: "Proven Profit Techniques",
-    description: "Weekend optimization, discount strategy, and real-time numbers clarity.",
+    description: "Scale faster with high-conversion weekend strategies, ROI-focused discount models, and automated return claim tracking.",
   },
 ]
 
@@ -44,13 +44,13 @@ export function Advantages() {
             </h3>
             <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl">
               Helping online sellers maximize profit, minimize losses, and grow strategically
-              on platforms like Meesho, Flipkart, and Amazon. Our data-driven approach 
+              on platforms like Meesho, Flipkart, and Amazon. Our data-driven approach
               ensures your business stays ahead of the competition.
             </p>
           </motion.div>
 
           {/* Right Side: 2x2 Grid (Smaller and more compact) */}
-          <div className="lg:w-[45%] grid grid-cols-2 gap-3 sm:gap-4">
+          <div className="lg:w-[45%] grid grid-cols-2 gap-3 sm:gap-6">
             {advantages.map((advantage, index) => (
               <motion.div
                 key={advantage.title}
