@@ -2,11 +2,9 @@
 
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
-import { TrustedBy } from "@/components/trusted-by"
 import { PaymentReconciliation } from "@/components/payment-reconciliation"
 import { Services } from "@/components/services"
 import { WhyUs } from "@/components/why-us"
-import { Advantages } from "@/components/advantages"
 import { CTA } from "@/components/cta"
 import { Testimonials } from "@/components/testimonials"
 import { Pricing } from "@/components/pricing"
@@ -29,7 +27,6 @@ export default function Home() {
         <WhyUs />
         <Services />
         <CTA />
-        <Advantages />
         <Testimonials />
         <Pricing />
         <FAQ />
