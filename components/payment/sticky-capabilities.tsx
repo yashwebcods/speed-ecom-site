@@ -7,32 +7,32 @@ import { BarChart3, Search, TrendingUp, Bot } from "lucide-react"
 // Core Features Data
 const coreFeatures = [
   {
-    title: "SKU-wise Profit & Loss",
-    description: "Get granular insights into profitability at the SKU level with comprehensive financial reporting.",
+    title: "Return Reconciliation",
+    description: "Ensure every returned unit is accounted for. We reconcile your returns against settlements to recover lost revenue from missing or damaged items.",
     icon: <BarChart3 className="w-6 h-6 text-indigo-500" />,
     color: "bg-indigo-500/10",
+    image: "/img-6.png"
+  },
+  {
+    title: "Return Claim Tracking",
+    description: "Automate your claim lifecycle. From filing to settlement, we track every claim to ensure you receive full compensation for marketplace errors.",
+    icon: <Search className="w-6 h-6 text-emerald-500" />,
+    color: "bg-emerald-500/10",
     image: "/img-2.webp"
   },
   {
-    title: "Smart Charges Verification",
-    description: "Automatically detect hidden charges, unexpected deductions, and marketplace discrepancies.",
-    icon: <Search className="w-6 h-6 text-amber-500" />,
+    title: "High Shipping Charges",
+    description: "Identify and eliminate excessive logistics costs. We audit weight discrepancies and carrier overcharges to protect your profit margins.",
+    icon: <TrendingUp className="w-6 h-6 text-amber-500" />,
     color: "bg-amber-500/10",
-    image: "/img-3.webp"
-  },
-  {
-    title: "Advertisement Analysis",
-    description: "Track ad spend, ROI analysis, and profitable product ads platform-wise.",
-    icon: <TrendingUp className="w-6 h-6 text-emerald-500" />,
-    color: "bg-emerald-500/10",
     image: "/img-4.webp"
   },
   {
-    title: "Unified Analytics Hub",
-    description: "Centralized analytics and operations hub to monitor performance and drive business growth.",
+    title: "Hidden Charges",
+    description: "Expose invisible marketplace fees. Our AI audits commission errors, storage costs, and unexpected deductions that eat into your bottom line.",
     icon: <Bot className="w-6 h-6 text-violet-500" />,
     color: "bg-violet-500/10",
-    image: "/img-7.webp"
+    image: "/img-3.webp"
   },
 ]
 
