@@ -8,6 +8,7 @@ import Image from "next/image"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
 
 const navLinks = [
+  { href: "/", label: "Home" },
   { href: "#services", label: "Services" },
   { href: "#why-us", label: "Why Us" },
   { href: "#testimonials", label: "Testimonials" },
