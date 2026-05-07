@@ -48,34 +48,34 @@ const fadeUpItem: Variants = {
 
 // Core Features Data - defined outside components so both can access
 const coreFeatures = [
-  
+
   {
-    title: "SKU-wise Profit & Loss",
-    description: "Get granular insights into profitability at the SKU level with comprehensive financial reporting.",
-    icon: <BarChart3 className="w-6 h-6 text-indigo-500" />,
+    title: "Return Reconciliation",
+    description: "Ensure every returned unit is accounted for. We reconcile your returns against settlements to recover lost revenue from missing or damaged items.",
+    icon: <Package className="w-6 h-6 text-indigo-500" />,
     color: "bg-indigo-500/10",
+    image: "/img-6.png"
+  },
+  {
+    title: "Return Claim Tracking",
+    description: "Automate your claim lifecycle. From filing to settlement, we track every claim to ensure you receive full compensation for marketplace errors.",
+    icon: <CheckCircle2 className="w-6 h-6 text-emerald-500" />,
+    color: "bg-emerald-500/10",
     image: "/img-2.webp"
   },
   {
-    title: "Smart Charges Verification",
-    description: "Automatically detect hidden charges, unexpected deductions, and marketplace discrepancies.",
-    icon: <Search className="w-6 h-6 text-amber-500" />,
+    title: "High Shipping Charges",
+    description: "Identify and eliminate excessive logistics costs. We audit weight discrepancies and carrier overcharges to protect your profit margins.",
+    icon: <TrendingUp className="w-6 h-6 text-amber-500" />,
     color: "bg-amber-500/10",
-    image: "/img-3.webp"
-  },
-  {
-    title: "Advertisement Analysis",
-    description: "Track ad spend, ROI analysis, and profitable product ads platform-wise.",
-    icon: <TrendingUp className="w-6 h-6 text-emerald-500" />,
-    color: "bg-emerald-500/10",
     image: "/img-4.webp"
   },
   {
-    title: "Unified Analytics Hub",
-    description: "Centralized analytics and operations hub to monitor performance and drive business growth.",
-    icon: <Bot className="w-6 h-6 text-violet-500" />,
+    title: "Hidden Charges",
+    description: "Expose invisible marketplace fees. Our AI audits commission errors, storage costs, and unexpected deductions that eat into your bottom line.",
+    icon: <Search className="w-6 h-6 text-violet-500" />,
     color: "bg-violet-500/10",
-    image: "/img-7.webp"
+    image: "/img-3.webp"
   },
 ]
 
@@ -183,20 +183,20 @@ const StickyCapabilitiesFeatures = () => {
               {coreFeatures.map((feature, i) => {
                 const isSmallImage = feature.image === "/img--1.webp" || feature.image === "/img-4.webp" || feature.image === "/img-6.png" || feature.image === "/img-3.webp";
                 const isAdImage = feature.image === "/img-4.webp";
-                
+
                 return (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.9, x: 30 }}
-                      animate={{
-                        opacity: activeIndex === i ? 1 : 0,
-                        scale: activeIndex === i ? 1 : 0.9,
-                        x: activeIndex === i ? 0 : 30,
-                        pointerEvents: activeIndex === i ? "auto" : "none",
-                      }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-[1.4fr_1.6fr] gap-0 lg:gap-16 items-center justify-center transform-gpu will-change-transform"
-                    >
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.9, x: 30 }}
+                    animate={{
+                      opacity: activeIndex === i ? 1 : 0,
+                      scale: activeIndex === i ? 1 : 0.9,
+                      x: activeIndex === i ? 0 : 30,
+                      pointerEvents: activeIndex === i ? "auto" : "none",
+                    }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 flex flex-col lg:grid lg:grid-cols-[1.4fr_1.6fr] gap-0 lg:gap-16 items-center justify-center transform-gpu will-change-transform"
+                  >
                     {/* Big Image */}
                     <div className="relative aspect-square flex items-center justify-center overflow-visible h-[220px] lg:h-auto mx-auto lg:mx-0 mb-0">
                       <div className={`absolute -inset-10 lg:-inset-20 ${feature.color} blur-[60px] lg:blur-[100px] opacity-30 rounded-full`} />
@@ -269,7 +269,7 @@ export const PaymentReconciliation = () => {
           className="max-w-7xl mx-auto"
         >
           {/* Hero Section of Reconciliation */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -281,7 +281,7 @@ export const PaymentReconciliation = () => {
               <span>Real-Time SKU Intelligence with AI</span>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold font-display mb-4 sm:mb-6 md:mb-8 tracking-tight leading-[1.15] md:leading-[1.1] px-2 sm:px-0">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold font-display mb-4 sm:mb-6 md:mb-8 track xing-tight leading-[1.15] md:leading-[1.1] px-2 sm:px-0">
               <span className="text-slate-900 dark:text-white">Track every </span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">order</span>
               <span className="text-slate-900 dark:text-white">, every </span>
@@ -296,7 +296,7 @@ export const PaymentReconciliation = () => {
               Powered by our advanced Speedy AI engine. Get instant clarity on your marketplace performance across Amazon, Flipkart, Myntra, and more.
             </p>
 
-            <motion.div 
+            <motion.div
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
@@ -309,8 +309,8 @@ export const PaymentReconciliation = () => {
                 { label: "Interactive dashboards", icon: <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, color: "from-emerald-500/10 to-teal-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-300" },
                 { label: "AI instant analysis", icon: <Bot className="w-3.5 h-3.5 sm:w-4 sm:h-4" />, color: "from-violet-500/10 to-purple-500/10 border-violet-500/30 text-violet-700 dark:text-violet-300" },
               ].map((point, i) => (
-                <motion.div 
-                  key={i} 
+                <motion.div
+                  key={i}
                   variants={fadeUpItem}
                   className={`flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r ${point.color} border text-[10px] sm:text-xs md:text-sm font-bold shadow-sm whitespace-nowrap`}
                 >
@@ -339,7 +339,7 @@ export const PaymentReconciliation = () => {
           />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_0%,transparent_49%,rgba(255,255,255,0.05)_50%,transparent_51%,transparent_100%)] bg-[size:80px_80px] pointer-events-none" />
-        
+
         <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 p-8 lg:p-16 max-w-7xl mx-auto px-4 lg:px-8">
           {/* Left Side: Heading and Text */}
           <div className="lg:w-[60%] text-left space-y-6">
@@ -382,12 +382,12 @@ export const PaymentReconciliation = () => {
                 </div>
                 <Badge className="bg-emerald-50 text-emerald-600 border-emerald-100 text-[9px] font-bold px-2 py-0.5 uppercase tracking-wider">Active</Badge>
               </div>
-              
+
               <div className="space-y-5">
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
                   <p className="text-slate-500 text-xs italic mb-3 font-medium">"Analyze today's SKU performance"</p>
                   <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
-                    <motion.div 
+                    <motion.div
                       className="h-full bg-primary"
                       initial={{ width: "0%" }}
                       animate={{ width: "40%" }}
@@ -395,7 +395,7 @@ export const PaymentReconciliation = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-3">
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
                     <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1.5">Total Sales</p>
@@ -435,7 +435,7 @@ export const PaymentReconciliation = () => {
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">SKU-Level Insights</span>
                   </h3>
                   <p className="text-base lg:text-xl text-slate-600 dark:text-slate-300 max-w-2xl font-medium leading-relaxed">
-                    All data is updated in real-time directly from marketplaces like Amazon, Flipkart, Myntra, Meesho, and Ajio.
+                    All data is updated in real-time directly from marketplaces like Amazon, Flipkart, Myntra, Meesho, and Snapdeal.
                   </p>
                 </div>
 
@@ -444,8 +444,8 @@ export const PaymentReconciliation = () => {
                   {[
                     { title: "SKU-wise tables", desc: "Granular data", icon: <Layers className="w-5 h-5" />, color: "bg-blue-50 text-blue-600" },
                     { title: "Visual charts", desc: "Understand trends", icon: <BarChart3 className="w-5 h-5" />, color: "bg-violet-50 text-violet-600" },
-                    { title: "Profit & loss", desc: "Monitor line", icon: <TrendingUp className="w-5 h-5" />, color: "bg-emerald-50 text-emerald-600" },
-                    { title: "Error detection", desc: "Find early", icon: <Search className="w-5 h-5" />, color: "bg-amber-50 text-amber-600" },
+                    { title: "Hidden Charges", desc: "Monitor deductions", icon: <TrendingUp className="w-5 h-5" />, color: "bg-emerald-50 text-emerald-600" },
+                    { title: "Return Tracking", desc: "Monitor claims", icon: <Search className="w-5 h-5" />, color: "bg-amber-50 text-amber-600" },
                   ].map((item, i) => (
                     <Card key={i} className="p-6 hover:shadow-xl transition-all border-slate-100 bg-white shadow-sm rounded-3xl flex flex-col items-start gap-3">
                       <div className={`flex w-12 h-12 rounded-2xl ${item.color} items-center justify-center flex-shrink-0`}>
@@ -479,88 +479,88 @@ export const PaymentReconciliation = () => {
                       View All <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </div>
-                    
-                    <div className="overflow-x-auto pb-2 relative z-10">
-                      <Table className="min-w-[450px]">
-                        <TableHeader>
-                          <TableRow className="border-slate-200 dark:border-slate-700">
-                            <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">SKU Name</TableHead>
-                            <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Sales</TableHead>
-                            <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Charges</TableHead>
-                            <TableHead className="text-right text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Profit</TableHead>
+
+                  <div className="overflow-x-auto pb-2 relative z-10">
+                    <Table className="min-w-[450px]">
+                      <TableHeader>
+                        <TableRow className="border-slate-200 dark:border-slate-700">
+                          <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">SKU Name</TableHead>
+                          <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Sales</TableHead>
+                          <TableHead className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Charges</TableHead>
+                          <TableHead className="text-right text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300">Profit</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {[
+                          { sku: "SP-WIRELESS-EARBUDS", sales: "₹45,000", charges: "₹12,400", profit: "+₹8,500", color: "text-emerald-600" },
+                          { sku: "SP-SMART-WATCH-01", sales: "₹82,500", charges: "₹24,150", profit: "+₹15,200", color: "text-emerald-600" },
+                          { sku: "SP-PHONE-CASE-GLS", sales: "₹12,200", charges: "₹4,800", profit: "-₹1,200", color: "text-red-600" },
+                          { sku: "SP-FAST-CHARGER-20W", sales: "₹28,400", charges: "₹8,200", profit: "+₹4,100", color: "text-emerald-600" },
+                        ].map((row, i) => (
+                          <TableRow key={i} className="border-slate-100 dark:border-slate-800">
+                            <TableCell className="font-semibold text-xs sm:text-sm text-slate-900 dark:text-slate-200">{row.sku}</TableCell>
+                            <TableCell className="text-xs sm:text-sm text-slate-700 dark:text-slate-400 font-medium">{row.sales}</TableCell>
+                            <TableCell className="text-xs sm:text-sm text-slate-700 dark:text-slate-400 font-medium">{row.charges}</TableCell>
+                            <TableCell className={`text-right font-bold text-xs sm:text-sm ${row.color}`}>{row.profit}</TableCell>
                           </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {[
-                            { sku: "SP-WIRELESS-EARBUDS", sales: "₹45,000", charges: "₹12,400", profit: "+₹8,500", color: "text-emerald-600" },
-                            { sku: "SP-SMART-WATCH-01", sales: "₹82,500", charges: "₹24,150", profit: "+₹15,200", color: "text-emerald-600" },
-                            { sku: "SP-PHONE-CASE-GLS", sales: "₹12,200", charges: "₹4,800", profit: "-₹1,200", color: "text-red-600" },
-                            { sku: "SP-FAST-CHARGER-20W", sales: "₹28,400", charges: "₹8,200", profit: "+₹4,100", color: "text-emerald-600" },
-                          ].map((row, i) => (
-                            <TableRow key={i} className="border-slate-100 dark:border-slate-800">
-                              <TableCell className="font-semibold text-xs sm:text-sm text-slate-900 dark:text-slate-200">{row.sku}</TableCell>
-                              <TableCell className="text-xs sm:text-sm text-slate-700 dark:text-slate-400 font-medium">{row.sales}</TableCell>
-                              <TableCell className="text-xs sm:text-sm text-slate-700 dark:text-slate-400 font-medium">{row.charges}</TableCell>
-                              <TableCell className={`text-right font-bold text-xs sm:text-sm ${row.color}`}>{row.profit}</TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+
+                  <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                      <div className="flex items-center justify-between mb-6">
+                        <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">7-Day Sales Trend</p>
+                        <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400">+24.5%</p>
+                      </div>
+                      <div className="flex items-end gap-2 h-24">
+                        {[40, 70, 45, 90, 65, 80, 55].map((h, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ height: 0 }}
+                            animate={{ height: `${h}%` }}
+                            transition={{ duration: 1, delay: i * 0.1 }}
+                            className="flex-1 bg-gradient-to-t from-violet-600/50 to-violet-500 rounded-t-md hover:from-violet-600 hover:to-violet-400 transition-all cursor-pointer relative group/bar"
+                          >
+                            <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-2 py-1 rounded text-[10px] font-bold opacity-0 group-hover/bar:opacity-100 transition-opacity">
+                              ₹{h}k
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
 
-                    <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10">
-                        <div className="flex items-center justify-between mb-6">
-                          <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">7-Day Sales Trend</p>
-                          <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400">+24.5%</p>
-                        </div>
-                        <div className="flex items-end gap-2 h-24">
-                          {[40, 70, 45, 90, 65, 80, 55].map((h, i) => (
-                            <motion.div 
-                              key={i} 
-                              initial={{ height: 0 }}
-                              animate={{ height: `${h}%` }}
-                              transition={{ duration: 1, delay: i * 0.1 }}
-                              className="flex-1 bg-gradient-to-t from-violet-600/50 to-violet-500 rounded-t-md hover:from-violet-600 hover:to-violet-400 transition-all cursor-pointer relative group/bar"
-                            >
-                              <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-2 py-1 rounded text-[10px] font-bold opacity-0 group-hover/bar:opacity-100 transition-opacity">
-                                ₹{h}k
-                              </div>
-                            </motion.div>
-                          ))}
+                    <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center gap-6">
+                      <div className="relative w-24 h-24 shrink-0">
+                        <svg className="w-full h-full -rotate-90" viewBox="0 0 32 32">
+                          <circle cx="16" cy="16" r="14" fill="transparent" stroke="rgba(0,0,0,0.05)" className="dark:stroke-white/5" strokeWidth="4" />
+                          <circle cx="16" cy="16" r="14" fill="transparent" stroke="#8b5cf6" strokeWidth="4" strokeDasharray="65 100" strokeDashoffset="0" strokeLinecap="round" />
+                          <circle cx="16" cy="16" r="14" fill="transparent" stroke="#10b981" strokeWidth="4" strokeDasharray="20 100" strokeDashoffset="-65" strokeLinecap="round" />
+                        </svg>
+                        <div className="absolute inset-0 flex flex-col items-center justify-center">
+                          <p className="text-slate-900 dark:text-white font-black text-xs leading-none">85%</p>
+                          <p className="text-[8px] text-slate-500 dark:text-slate-400 font-bold mt-1 uppercase">ROI</p>
                         </div>
                       </div>
-
-                      <div className="p-6 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center gap-6">
-                        <div className="relative w-24 h-24 shrink-0">
-                          <svg className="w-full h-full -rotate-90" viewBox="0 0 32 32">
-                            <circle cx="16" cy="16" r="14" fill="transparent" stroke="rgba(0,0,0,0.05)" className="dark:stroke-white/5" strokeWidth="4" />
-                            <circle cx="16" cy="16" r="14" fill="transparent" stroke="#8b5cf6" strokeWidth="4" strokeDasharray="65 100" strokeDashoffset="0" strokeLinecap="round" />
-                            <circle cx="16" cy="16" r="14" fill="transparent" stroke="#10b981" strokeWidth="4" strokeDasharray="20 100" strokeDashoffset="-65" strokeLinecap="round" />
-                          </svg>
-                          <div className="absolute inset-0 flex flex-col items-center justify-center">
-                            <p className="text-slate-900 dark:text-white font-black text-xs leading-none">85%</p>
-                            <p className="text-[8px] text-slate-500 dark:text-slate-400 font-bold mt-1 uppercase">ROI</p>
+                      <div>
+                        <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3">Profitability Index</p>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-violet-500" />
+                            <p className="text-xs text-slate-900 dark:text-white font-medium">Marketplace: 65%</p>
                           </div>
-                        </div>
-                        <div>
-                          <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3">Profitability Index</p>
-                          <div className="space-y-2">
-                            <div className="flex items-center gap-2">
-                              <div className="w-2 h-2 rounded-full bg-violet-500" />
-                              <p className="text-xs text-slate-900 dark:text-white font-medium">Marketplace: 65%</p>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                              <p className="text-xs text-slate-900 dark:text-white font-medium">Net Profit: 20%</p>
-                            </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                            <p className="text-xs text-slate-900 dark:text-white font-medium">Net Profit: 20%</p>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </Card>
-                </div>
+                  </div>
+                </Card>
               </div>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -587,7 +587,10 @@ export const PaymentReconciliation = () => {
             <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 lg:gap-4">
               {[
                 { title: "Identify loss-making SKUs", icon: <Package className="text-red-500" /> },
+                { title: "Return Claim Tracking", icon: <Package className="text-emerald-500" /> },
                 { title: "Detect hidden charges", icon: <ShieldCheck className="text-emerald-500" /> },
+                { title: "High shipping charges", icon: <TrendingUp className="text-indigo-500" /> },
+                { title: "Return reconciliation", icon: <Sparkles className="text-amber-500" /> },
                 { title: "Analyze ad performance", icon: <TrendingUp className="text-indigo-500" /> },
                 { title: "Suggest profit growth", icon: <Sparkles className="text-amber-500" /> },
               ].map((item, i) => (
@@ -622,7 +625,7 @@ export const PaymentReconciliation = () => {
         <div className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
             {/* Innovative Features Section - Restored */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

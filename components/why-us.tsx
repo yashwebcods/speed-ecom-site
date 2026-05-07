@@ -22,19 +22,19 @@ const reasons = [
     icon: Users,
     title: "Dedicated Relationship Manager",
     description:
-      "Your personal point of contact who understands your brand, resolves queries, and ensures seamless coordination.",
+      "Your personal growth strategist who deeply understands your brand, streamlines communications, and ensures your goals are met with dedicated support.",
   },
   {
     icon: Headphones,
     title: "E-commerce Business Expert",
     description:
-      "An expert who manages all your platform accounts and optimizes performance across every marketplace.",
+      "Professional account management by industry veterans who optimize your listings, marketing, and operations across all major marketplaces.",
   },
   {
     icon: BarChart2,
     title: "Monthly Financial Analysis",
     description:
-      "Get regular reports that clearly show your profit, loss, ad spend, and overall business performance.",
+      "Gain absolute clarity with comprehensive monthly audits covering profit margins, ad efficiency, and precise business health metrics.",
   },
 ]
 
@@ -42,22 +42,22 @@ const advantages = [
   {
     icon: Sparkles,
     title: "Smart & Strategic Insights",
-    description: "Data-driven pricing strategy, competition analysis, and sales forecasting.",
+    description: "Stay ahead with data-backed pricing models, deep competitor benchmarking, and predictive sales forecasting.",
   },
   {
     icon: Target,
     title: "Platform-Specific Expertise",
-    description: "Dedicated support tailored to Meesho, Flipkart, Amazon, and Myntra.",
+    description: "Native optimization for Meesho, Flipkart, Amazon, and Myntra—leveraging platform-specific algorithms to win.",
   },
   {
     icon: Shield,
     title: "Transparent Financial Tracking",
-    description: "Track settlements, catch wrong commissions, identify illegal deductions.",
+    description: "Eliminate revenue leakage with automated settlement audits, commission dispute management, and hidden fee detection.",
   },
   {
     icon: LineChart,
     title: "Proven Profit Techniques",
-    description: "Weekend optimization, discount strategy, and real-time numbers clarity.",
+    description: "Scale faster with high-conversion weekend strategies, ROI-focused discount models, and automated return claim tracking.",
   },
 ]
 
@@ -161,14 +161,14 @@ export function WhyUs() {
                             0{index + 1}
                           </div>
                         </div>
-                        
+
                         <h4 className="font-bold text-foreground text-lg mb-3 leading-tight">
                           {reason.title}
                         </h4>
                         <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                           {reason.description}
                         </p>
-                        
+
                         <div className="mt-auto flex items-center gap-2 text-primary font-bold text-sm">
                           <span>Learn more</span>
                           <ArrowRight className="w-4 h-4" />

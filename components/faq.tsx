@@ -35,10 +35,6 @@ const faqData = {
       question: "How long does the onboarding process take?",
       answer: "Our onboarding is seamless. Once you sign up and provide necessary access, our system will start fetching and analyzing data within 24 to 48 hours."
     },
-    {
-      question: "What is your cancellation policy?",
-      answer: "We offer a flexible, no-lock-in month-to-month subscription. You can cancel at any time without any hidden exit fees."
-    }
   ],
   DATA: [
     {
@@ -55,11 +51,11 @@ const faqData = {
     },
     {
       question: "Can I export my data and reports?",
-      answer: "Absolutely. All reports and analyzed data can be exported in various formats including Excel, CSV, and PDF for your internal records."
+      answer: "Absolutely. All reports and analyzed data can be exported in Excel for your internal records."
     },
     {
       question: "How often is the data synced from platforms?",
-      answer: "Data is typically synced every 24 hours, but we can configure high-frequency sync for businesses with large daily transaction volumes."
+      answer: "Data is typically synced every week, but we can configure high-frequency sync for businesses with large daily transaction volumes."
     }
   ],
   PAYMENTS: [
@@ -74,10 +70,6 @@ const faqData = {
     {
       question: "How do you handle refund and return adjustments?",
       answer: "Our system tracks every return and ensures that the platform correctly adjusts the commission and shipping fees in your favor."
-    },
-    {
-      question: "Can you help with tax reconciliation?",
-      answer: "Yes, we provide detailed reports on GST deductions and TCS/TDS withheld by platforms to simplify your monthly tax filing process."
     },
     {
       question: "What happens if I find a payment error in my report?",
@@ -123,11 +115,10 @@ export function FAQ() {
                 setActiveCategory(cat.id)
                 setActiveIndex(0)
               }}
-              className={`px-6 py-3 rounded-full font-bold transition-all duration-300 ${
-                activeCategory === cat.id
-                  ? "bg-violet-600 text-white shadow-lg"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-              }`}
+              className={`px-6 py-3 rounded-full font-bold transition-all duration-300 ${activeCategory === cat.id
+                ? "bg-violet-600 text-white shadow-lg"
+                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                }`}
             >
               {cat.label}
             </button>
@@ -144,19 +135,17 @@ export function FAQ() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={`w-full text-left p-4 lg:p-6 rounded-2xl transition-all duration-300 flex items-center justify-between group ${
-                  activeIndex === index
-                    ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-xl shadow-violet-200 scale-[1.02]"
-                    : "bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-100"
-                }`}
+                className={`w-full text-left p-4 lg:p-6 rounded-2xl transition-all duration-300 flex items-center justify-between group ${activeIndex === index
+                  ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-xl shadow-violet-200 scale-[1.02]"
+                  : "bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-100"
+                  }`}
               >
                 <span className={`font-bold text-sm lg:text-lg pr-4 ${activeIndex === index ? "text-white" : "text-slate-900 group-hover:text-violet-600"}`}>
                   {faq.question}
                 </span>
-                <ChevronRight 
-                  className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
-                    activeIndex === index ? "rotate-0 text-white" : "-rotate-90 text-slate-400 group-hover:text-violet-600"
-                  }`} 
+                <ChevronRight
+                  className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${activeIndex === index ? "rotate-0 text-white" : "-rotate-90 text-slate-400 group-hover:text-violet-600"
+                    }`}
                 />
               </motion.button>
             ))}
@@ -181,7 +170,7 @@ export function FAQ() {
                   <p className="text-lg lg:text-xl text-slate-600 leading-relaxed">
                     {currentFaqs[activeIndex].answer}
                   </p>
-                 
+
                 </motion.div>
               </AnimatePresence>
             </div>

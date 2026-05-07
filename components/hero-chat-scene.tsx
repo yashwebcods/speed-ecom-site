@@ -7,28 +7,28 @@ import { motion, AnimatePresence } from "framer-motion"
 const QA_DATA = [
   {
     question: "Where is my profit going?",
-    answer: "You're losing 18% in hidden marketplace fees.",
+    answer: "You're losing 18% in hidden marketplace fees and high shipping charges.",
+  },
+  {
+    question: "Can I track my returns?",
+    answer: "Yes, our return claim tracking tool ensures every return is accounted for.",
   },
   {
     question: "Which platform costs me the most?",
     answer: "Amazon fees are 2.3x higher than Flipkart for your products.",
   },
   {
-    question: "How can I increase my profit?",
-    answer: "Shift 30% of your listings to Meesho to improve margins.",
-  },
-  {
-    question: "Can I track all platforms in one place?",
-    answer: "Yes, our dashboard gives you real-time profit insights across all marketplaces.",
+    question: "Are there hidden charges?",
+    answer: "Yes, our engine detected 4.2% hidden charges in your last 30 days.",
   },
 ]
 
-const TYPING_SPEED_Q      = 72
-const TYPING_SPEED_A      = 38
-const PAUSE_AFTER_Q       = 600
-const INDICATOR_DURATION  = 1600
-const PAUSE_AFTER_A       = 2200
-const CLEAR_DELAY         = 2400
+const TYPING_SPEED_Q = 72
+const TYPING_SPEED_A = 38
+const PAUSE_AFTER_Q = 600
+const INDICATOR_DURATION = 1600
+const PAUSE_AFTER_A = 2200
+const CLEAR_DELAY = 2400
 
 // ─── Highlight numbers ────────────────────────────────────────────────────────
 function highlightText(text: string) {
@@ -55,7 +55,7 @@ type Phase =
 // ─── 🤖 Spherical Robot Avatar ────────────────────────────────────────────────
 function RobotAvatar({ phase }: { phase: Phase }) {
   const isThinking = phase === "showing-indicator"
-  const isTalking  = phase === "typing-answer"
+  const isTalking = phase === "typing-answer"
   const [blink, setBlink] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
@@ -76,12 +76,12 @@ function RobotAvatar({ phase }: { phase: Phase }) {
 
   return (
     <motion.div
-      animate={{ 
+      animate={{
         y: phase === "initial-wait" ? 12 : phase === "greeting" ? [12, -15, 0] : isThinking ? [0, -3, 0] : [0, -5, 0],
         rotate: phase === "greeting" ? [0, -4, 4, -2, 0] : isHovered ? [0, -5, 5, 0] : 0,
         scale: isHovered ? 1.05 : 1
       }}
-      transition={{ 
+      transition={{
         y: { duration: phase === "greeting" ? 1.4 : isThinking ? 1.2 : 2.6, repeat: (phase === "initial-wait" || phase === "greeting") ? 0 : Infinity, ease: "easeInOut" },
         rotate: { duration: phase === "greeting" ? 1.4 : 0.5 },
         scale: { duration: 0.3 }
@@ -118,23 +118,23 @@ function RobotAvatar({ phase }: { phase: Phase }) {
           phase === "initial-wait"
             ? { rotate: 25, y: 8, x: -3 }
             : phase === "greeting"
-            ? { 
-                rotate: [25, -25, -5, 0], 
+              ? {
+                rotate: [25, -25, -5, 0],
                 x: [-3, 6, 0, 0],
                 y: [8, -8, 0, 0]
               }
-            : isTalking
-            ? { rotate: [0, 10, -5, 0], y: [0, -2, 1, 0] }
-            : isHovered
-            ? { rotate: [0, 15, 0], y: [0, -4, 0] }
-            : isThinking
-            ? { rotate: [0, -10, 0], y: [0, 5, 0] }
-            : { rotate: [0, 4, 0] }
+              : isTalking
+                ? { rotate: [0, 10, -5, 0], y: [0, -2, 1, 0] }
+                : isHovered
+                  ? { rotate: [0, 15, 0], y: [0, -4, 0] }
+                  : isThinking
+                    ? { rotate: [0, -10, 0], y: [0, 5, 0] }
+                    : { rotate: [0, 4, 0] }
         }
-        transition={{ 
-          duration: phase === "greeting" ? 1.4 : isTalking ? 0.6 : (isHovered ? 0.4 : 3), 
-          repeat: phase === "greeting" || phase === "initial-wait" ? 0 : Infinity, 
-          ease: "easeInOut" 
+        transition={{
+          duration: phase === "greeting" ? 1.4 : isTalking ? 0.6 : (isHovered ? 0.4 : 3),
+          repeat: phase === "greeting" || phase === "initial-wait" ? 0 : Infinity,
+          ease: "easeInOut"
         }}
         style={{ position: "absolute", top: "42%", right: -25, transformOrigin: "top left", zIndex: 1 }}
       >
@@ -174,21 +174,21 @@ function RobotAvatar({ phase }: { phase: Phase }) {
           phase === "initial-wait"
             ? { rotate: -25, y: 8, x: 3 }
             : phase === "greeting"
-            ? { 
-                rotate: [-25, 25, 5, 0], 
+              ? {
+                rotate: [-25, 25, 5, 0],
                 x: [3, -6, 0, 0],
                 y: [8, -8, 0, 0]
               }
-            : isTalking
-            ? { rotate: [0, -8, 6, 0], y: [0, -1, 2, 0] }
-            : isHovered
-            ? { rotate: [0, -15, 0], y: [0, -4, 0] }
-            : { rotate: [0, -3, 0] }
+              : isTalking
+                ? { rotate: [0, -8, 6, 0], y: [0, -1, 2, 0] }
+                : isHovered
+                  ? { rotate: [0, -15, 0], y: [0, -4, 0] }
+                  : { rotate: [0, -3, 0] }
         }
-        transition={{ 
-          duration: phase === "greeting" ? 1.4 : isTalking ? 0.6 : (isHovered ? 0.4 : 2.5), 
-          repeat: phase === "greeting" || phase === "initial-wait" ? 0 : Infinity, 
-          ease: "easeInOut", delay: phase === "greeting" ? 0 : 0.2 
+        transition={{
+          duration: phase === "greeting" ? 1.4 : isTalking ? 0.6 : (isHovered ? 0.4 : 2.5),
+          repeat: phase === "greeting" || phase === "initial-wait" ? 0 : Infinity,
+          ease: "easeInOut", delay: phase === "greeting" ? 0 : 0.2
         }}
         style={{ position: "absolute", top: "45%", left: -22, transformOrigin: "top right" }}
       >
@@ -267,9 +267,9 @@ function RobotAvatar({ phase }: { phase: Phase }) {
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}>
                   <motion.div
-                    animate={{ 
-                      opacity: phase === "initial-wait" ? 0 : [0.8, 1, 0.8], 
-                      scale: phase === "initial-wait" ? 0 : isHovered ? 1.2 : 1 
+                    animate={{
+                      opacity: phase === "initial-wait" ? 0 : [0.8, 1, 0.8],
+                      scale: phase === "initial-wait" ? 0 : isHovered ? 1.2 : 1
                     }}
                     transition={{ opacity: { duration: 1.0, repeat: Infinity, delay: i * 0.3 }, scale: { duration: phase === "greeting" ? 0.8 : 0.3, ease: "backOut" } }}
                     style={{
@@ -287,10 +287,10 @@ function RobotAvatar({ phase }: { phase: Phase }) {
           <motion.div
             animate={
               phase === "initial-wait" ? { scaleY: 0, opacity: 0 } :
-              phase === "greeting" ? { scaleY: [0, 1.5, 1], opacity: [0, 1, 1] } :
-              isHovered ? { scaleY: 1.5, scaleX: 1.2 } :
-              isTalking ? { scaleY: [1, 1.3, 0.8, 1] } : 
-              { scaleY: 1, opacity: 1 }
+                phase === "greeting" ? { scaleY: [0, 1.5, 1], opacity: [0, 1, 1] } :
+                  isHovered ? { scaleY: 1.5, scaleX: 1.2 } :
+                    isTalking ? { scaleY: [1, 1.3, 0.8, 1] } :
+                      { scaleY: 1, opacity: 1 }
             }
             transition={{ duration: phase === "greeting" ? 1.2 : isHovered ? 0.3 : 0.4, repeat: isHovered ? 0 : Infinity }}
             style={{
@@ -383,16 +383,14 @@ function ChatBubble({ message, showCursor }: { message: ChatMessage; showCursor:
       transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
       className={`flex items-end gap-2 ${isUser ? "flex-row-reverse" : "flex-row"}`}
     >
-      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 shadow ${
-        isUser ? "bg-slate-200 text-slate-600" : "bg-gradient-to-br from-indigo-500 to-violet-600 text-white"
-      }`}>
+      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 shadow ${isUser ? "bg-slate-200 text-slate-600" : "bg-gradient-to-br from-indigo-500 to-violet-600 text-white"
+        }`}>
         {isUser ? "U" : "AI"}
       </div>
-      <div className={`max-w-[82%] px-4 py-2.5 rounded-2xl shadow text-sm leading-relaxed ${
-        isUser
+      <div className={`max-w-[82%] px-4 py-2.5 rounded-2xl shadow text-sm leading-relaxed ${isUser
           ? "bg-slate-100 text-slate-800 rounded-tr-sm"
           : "bg-gradient-to-br from-indigo-600 to-violet-600 text-white rounded-tl-sm"
-      }`}>
+        }`}>
         {isUser ? (
           <span>{message.text}</span>
         ) : (
@@ -414,18 +412,18 @@ function ChatBubble({ message, showCursor }: { message: ChatMessage; showCursor:
 
 // ─── Main component ───────────────────────────────────────────────────────────
 export function HeroChatScene() {
-  const [messages, setMessages]         = useState<ChatMessage[]>([])
-  const [phase, setPhase]               = useState<Phase>("initial-wait")
-  const [qaIndex, setQaIndex]           = useState(0)
-  const [inputText, setInputText]       = useState("")
+  const [messages, setMessages] = useState<ChatMessage[]>([])
+  const [phase, setPhase] = useState<Phase>("initial-wait")
+  const [qaIndex, setQaIndex] = useState(0)
+  const [inputText, setInputText] = useState("")
   const [showIndicator, setShowIndicator] = useState(false)
   const [answerTypingId, setAnswerTypingId] = useState<string | null>(null)
-  const scrollRef   = useRef<HTMLDivElement>(null)
-  const timerRef    = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const clearTimers = useCallback(() => {
-    if (timerRef.current)    clearTimeout(timerRef.current)
+    if (timerRef.current) clearTimeout(timerRef.current)
     if (intervalRef.current) clearInterval(intervalRef.current)
   }, [])
 
@@ -525,9 +523,9 @@ export function HeroChatScene() {
 
         {/* ── Robot avatar + header ── */}
         <div className="flex flex-col items-center mb-2" style={{ paddingTop: 10 }}>
-          <motion.div 
+          <motion.div
             initial={{ scale: 1.5, y: 100 }}
-            animate={{ 
+            animate={{
               scale: (phase === "greeting" || phase === "initial-wait") ? 1.5 : 0.8,
               y: (phase === "greeting" || phase === "initial-wait") ? 100 : 0
             }}
@@ -536,7 +534,7 @@ export function HeroChatScene() {
           >
             <RobotAvatar phase={phase} />
           </motion.div>
-          <motion.div 
+          <motion.div
             className="mt-1 text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: (phase === "greeting" || phase === "initial-wait") ? 0 : 1 }}
@@ -553,9 +551,9 @@ export function HeroChatScene() {
               />
               <span className="text-xs text-slate-500 dark:text-slate-400">
                 {phase === "showing-indicator" ? "Thinking…" :
-                 phase === "typing-answer"     ? "Responding…" :
-                 phase === "typing-input"      ? "Listening…" :
-                 "Online · Analyzing your data"}
+                  phase === "typing-answer" ? "Responding…" :
+                    phase === "typing-input" ? "Listening…" :
+                      "Online · Analyzing your data"}
               </span>
             </div>
           </motion.div>
@@ -606,11 +604,10 @@ export function HeroChatScene() {
                 {/* Input bar */}
                 <div className="px-3 py-3 border-t border-slate-100 dark:border-slate-700/50 bg-white/60 dark:bg-slate-800/60 flex items-center gap-2">
                   <div className="flex-1">
-                    <div className={`w-full bg-slate-50 dark:bg-slate-700/50 border rounded-xl px-3 py-2 text-sm min-h-[36px] flex items-center transition-all duration-300 ${
-                      phase === "typing-input"
+                    <div className={`w-full bg-slate-50 dark:bg-slate-700/50 border rounded-xl px-3 py-2 text-sm min-h-[36px] flex items-center transition-all duration-300 ${phase === "typing-input"
                         ? "border-indigo-400 ring-2 ring-indigo-200 dark:ring-indigo-800"
                         : "border-slate-200 dark:border-slate-600"
-                    }`}>
+                      }`}>
                       {inputText ? (
                         <span className="text-slate-700 dark:text-slate-200">
                           {inputText}
