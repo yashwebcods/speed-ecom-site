@@ -70,7 +70,7 @@ export function CTA() {
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-primary hover:bg-white/90 rounded-full px-3 sm:px-8 group h-10 sm:h-12 lg:h-11 w-full sm:min-w-[180px] text-[10px] sm:text-base"
+                className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-3 sm:px-8 group h-10 sm:h-12 lg:h-11 w-full sm:min-w-[180px] text-[10px] sm:text-base"
               >
                 <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
                   Book Free Demo

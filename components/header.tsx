@@ -86,9 +86,9 @@ export function Header() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="hidden lg:flex items-center gap-4"
           >
-            <Button asChild variant="outline" className="rounded-full px-6 bg-blue-50/50 dark:bg-blue-900/20 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 transition-all duration-300 group border-blue-200 dark:border-blue-900/50">
+            <Button asChild variant="outline" className="rounded-full px-6 border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 group">
               <Link href="/login" className="flex items-center gap-2">
-                <User className="w-4 h-4 text-blue-600 dark:text-blue-400 group-hover:text-black" />
+                <User className="w-4 h-4 text-primary group-hover:text-primary-foreground" />
                 Seller Login
               </Link>
             </Button>
@@ -141,9 +141,9 @@ export function Header() {
           animate={{ opacity: 1, y: 0 }}
           className="flex lg:hidden items-center gap-2 pb-4 px-2"
         >
-          <Button asChild variant="outline" className="flex-1 rounded-xl h-10 text-[10px] font-bold bg-blue-50/50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-900/50 hover:bg-yellow-400 hover:text-black transition-all px-2 group">
+          <Button asChild variant="outline" className="flex-1 rounded-xl h-10 text-[10px] font-bold border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground transition-all px-2 group">
             <Link href="/login" className="flex items-center justify-center gap-2">
-              <User className="w-3 h-3 text-blue-600 dark:text-blue-400 group-hover:text-black" />
+              <User className="w-3 h-3 text-primary group-hover:text-primary-foreground" />
               Seller Login
             </Link>
           </Button>

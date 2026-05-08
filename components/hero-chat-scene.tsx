@@ -352,10 +352,10 @@ function TypingIndicator() {
       exit={{ opacity: 0 }}
       className="flex items-end gap-2"
     >
-      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white text-[10px] font-bold shrink-0 shadow">
+      <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-white text-[10px] font-bold shrink-0 shadow">
         AI
       </div>
-      <div className="bg-gradient-to-br from-indigo-600 to-violet-600 rounded-2xl rounded-bl-sm px-4 py-3 shadow">
+      <div className="bg-primary rounded-2xl rounded-bl-sm px-4 py-3 shadow">
         <div className="flex gap-1 items-center h-4">
           {[0, 1, 2].map((i) => (
             <motion.span
@@ -383,13 +383,13 @@ function ChatBubble({ message, showCursor }: { message: ChatMessage; showCursor:
       transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
       className={`flex items-end gap-2 ${isUser ? "flex-row-reverse" : "flex-row"}`}
     >
-      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 shadow ${isUser ? "bg-slate-200 text-slate-600" : "bg-gradient-to-br from-indigo-500 to-violet-600 text-white"
+      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 shadow ${isUser ? "bg-slate-200 text-slate-600" : "bg-primary text-white"
         }`}>
         {isUser ? "U" : "AI"}
       </div>
       <div className={`max-w-[82%] px-4 py-2.5 rounded-2xl shadow text-sm leading-relaxed ${isUser
           ? "bg-slate-100 text-slate-800 rounded-tr-sm"
-          : "bg-gradient-to-br from-indigo-600 to-violet-600 text-white rounded-tl-sm"
+          : "bg-primary text-white rounded-tl-sm"
         }`}>
         {isUser ? (
           <span>{message.text}</span>
@@ -605,7 +605,7 @@ export function HeroChatScene() {
                 <div className="px-3 py-3 border-t border-slate-100 dark:border-slate-700/50 bg-white/60 dark:bg-slate-800/60 flex items-center gap-2">
                   <div className="flex-1">
                     <div className={`w-full bg-slate-50 dark:bg-slate-700/50 border rounded-xl px-3 py-2 text-sm min-h-[36px] flex items-center transition-all duration-300 ${phase === "typing-input"
-                        ? "border-indigo-400 ring-2 ring-indigo-200 dark:ring-indigo-800"
+                        ? "border-primary ring-2 ring-primary/20"
                         : "border-slate-200 dark:border-slate-600"
                       }`}>
                       {inputText ? (
@@ -613,7 +613,7 @@ export function HeroChatScene() {
                           {inputText}
                           {phase === "typing-input" && (
                             <motion.span
-                              className="inline-block w-0.5 h-4 bg-indigo-500 ml-0.5 align-middle"
+                              className="inline-block w-0.5 h-4 bg-primary ml-0.5 align-middle"
                               animate={{ opacity: [1, 0] }}
                               transition={{ duration: 0.5, repeat: Infinity }}
                             />
@@ -629,7 +629,7 @@ export function HeroChatScene() {
                   <motion.button
                     animate={isSending ? { scale: [1, 1.25, 1] } : { scale: 1 }}
                     transition={{ duration: 0.35 }}
-                    className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-md shrink-0"
+                    className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-md shrink-0"
                   >
                     <motion.svg
                       className="w-4 h-4 text-white"
