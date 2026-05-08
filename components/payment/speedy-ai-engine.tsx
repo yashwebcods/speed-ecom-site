@@ -19,7 +19,7 @@ export const SpeedyAIEngine = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
 
   return (
-    <div ref={containerRef} className="relative mb-16 sm:mb-20 lg:mb-32 overflow-hidden bg-primary min-h-[600px] flex items-center">
+    <div ref={containerRef} className="relative mb-0 overflow-hidden bg-primary min-h-fit py-12 lg:py-20 flex items-center">
       {/* Background decorative elements */}
       <motion.div style={{ y: yBg }} className="absolute inset-0 opacity-30 pointer-events-none transform-gpu will-change-transform">
         <motion.div
@@ -54,7 +54,7 @@ export const SpeedyAIEngine = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl lg:text-7xl font-bold font-display leading-[1.1] text-white tracking-tight"
+            className="text-3xl lg:text-5xl font-bold font-display leading-[1.1] text-white tracking-tight"
           >
             Meet Your Personal <br className="hidden lg:block" />
             <span className="text-[#FACC15]">AI Analyst</span>
@@ -64,7 +64,7 @@ export const SpeedyAIEngine = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="space-y-4 text-base lg:text-lg text-white/90 leading-relaxed max-w-xl font-medium"
+            className="space-y-4 text-sm lg:text-base text-white/90 leading-relaxed max-w-xl font-medium"
           >
             <p>Our Speedy AI works in real-time with your live marketplace data to give you instant insights.</p>
             <p>It automatically analyzes your orders, SKUs, payments, and charges — and converts them into reports, tables, and charts.</p>

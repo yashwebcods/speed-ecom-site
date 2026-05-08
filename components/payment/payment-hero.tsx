@@ -56,7 +56,7 @@ export const PaymentHero = () => {
             <span>Real-Time SKU Intelligence with AI</span>
           </motion.div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-black font-display mb-6 sm:mb-8 md:mb-12 tracking-tight leading-[1.1] px-2 sm:px-0 relative group">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black font-display mb-6 sm:mb-8 md:mb-10 tracking-tight leading-[1.15] px-2 sm:px-0 relative group">
             <span className="text-slate-900 dark:text-white relative z-10">Track every </span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 relative z-10">order</span>
             <span className="text-slate-900 dark:text-white relative z-10">, every </span>
@@ -70,7 +70,7 @@ export const PaymentHero = () => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.1)_0%,transparent_70%)] blur-[100px] pointer-events-none -z-10" />
           </h2>
 
-          <p className="text-base sm:text-xl md:text-2xl lg:text-3xl text-slate-600 dark:text-slate-300 max-w-5xl mx-auto mb-8 sm:mb-12 md:mb-20 leading-relaxed font-bold tracking-tight px-4 sm:px-6 lg:px-0">
+          <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto mb-8 sm:mb-10 md:mb-12 leading-relaxed font-bold tracking-tight px-4 sm:px-6 lg:px-0">
             Powered by our advanced <span className="text-violet-600">Speedy AI engine</span>. Get instant clarity on your marketplace performance across Amazon, Flipkart, Myntra, and more.
           </p>
 
@@ -80,7 +80,7 @@ export const PaymentHero = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-2 sm:flex sm:flex-wrap justify-start lg:justify-center gap-3 sm:gap-6 md:gap-8 lg:gap-10 mb-12 sm:mb-16 px-0 sm:px-4 transform-gpu will-change-transform"
+            className="grid grid-cols-2 lg:grid-cols-4 items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-4 mb-12 sm:mb-16 px-2 sm:px-4 transform-gpu will-change-transform"
           >
             {[
               { label: "Live SKU Tracking", icon: <BarChart3 className="w-4 h-4" />, color: "from-blue-500/10 to-cyan-500/10 border-blue-500/30 text-blue-700 dark:text-blue-300" },
@@ -93,9 +93,9 @@ export const PaymentHero = () => {
                 variants={fadeUpItem}
                 whileHover={{ y: -5, scale: 1.05, filter: "brightness(1.1)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                className={`flex items-center justify-start sm:justify-center gap-2 sm:gap-3 px-3 sm:px-5 md:px-6 py-2 sm:py-3 rounded-2xl bg-gradient-to-r ${point.color} border text-[11px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-widest shadow-lg shadow-black/5 cursor-default group transition-all duration-300`}
+                className={`flex items-center justify-center gap-2 px-2 sm:px-4 py-2.5 sm:py-3 rounded-2xl bg-gradient-to-r ${point.color} border text-[8px] sm:text-[10px] lg:text-xs font-black uppercase tracking-wider sm:tracking-widest shadow-lg shadow-black/5 cursor-default group transition-all duration-300 w-full`}
               >
-                <span className="group-hover:rotate-12 transition-transform duration-300">{point.icon}</span>
+                <span className="group-hover:rotate-12 transition-transform duration-300 shrink-0">{point.icon}</span>
                 <span className="truncate">{point.label}</span>
               </motion.div>
             ))}
