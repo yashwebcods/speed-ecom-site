@@ -130,8 +130,8 @@ function MobileServiceCard({ service, index }: {
   }
 
   return (
-    <div className="w-[82vw] flex-shrink-0">
-      <div className={`h-[250px] rounded-2xl p-5 ${bgClass} shadow-xl border border-border/10 flex flex-col relative overflow-hidden`}>
+    <div className="w-full">
+      <div className={`rounded-2xl p-6 ${bgClass} shadow-xl border border-border/10 flex flex-col relative overflow-hidden`}>
         <div className="mb-4">
           <span className="inline-flex px-3 py-1 bg-white/10 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider rounded border border-white/10">
             0{index + 1}
@@ -165,31 +165,17 @@ function MobileServiceCard({ service, index }: {
 
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null)
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-
-  const { scrollYProgress } = useScroll({
-    target: scrollContainerRef,
-    offset: ["start start", "end end"],
-  })
-
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
-
-  // Transform scroll progress to x translation for mobile
-  const xTransform = useTransform(scrollYProgress, [0, 1], ["0vw", "-600vw"])
-
-  const opacityTransform = useTransform(scrollYProgress, [0, 0.05], [0, 1])
-  const scaleTransform = useTransform(scrollYProgress, [0, 0.05], [0.95, 1])
 
   return (
-    <section id="services" className="bg-background relative py-20 overflow-hidden" ref={sectionRef}>
+    <section id="services" className="bg-background relative py-4 overflow-hidden" ref={sectionRef}>
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] animate-pulse delay-700" />
       </div>
 
-      <div ref={scrollContainerRef} className="h-[250vh] relative">
-        <div className="sticky top-0 min-h-screen w-full flex flex-col items-center justify-center overflow-y-auto z-10 pt-24 pb-12">
+      <div className="relative">
+        <div className="w-full flex flex-col items-center justify-center z-10 pt-4 pb-4">
           
           {/* Section Header */}
           <motion.div 
@@ -197,7 +183,7 @@ export function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full text-center px-4 mb-8 sm:mb-12 max-w-3xl mx-auto relative shrink-0"
+            className="w-full text-center px-4 mb-4 sm:mb-6 max-w-3xl mx-auto relative shrink-0"
           >
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs sm:text-sm font-semibold rounded-full mb-3">
               Premium Services
@@ -212,7 +198,7 @@ export function Services() {
           </motion.div>
 
           {/* Desktop Bento Grid Design */}
-          <div className="hidden md:flex w-full max-w-[1600px] mx-auto px-6 lg:px-12 flex-1 items-center pb-20">
+          <div className="hidden md:flex w-full max-w-[1600px] mx-auto lg:px-12 flex-1 items-center pb-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
               {services.map((service, idx) => {
                 return (
@@ -270,12 +256,9 @@ export function Services() {
             </div>
           </div>
 
-          {/* Mobile Scroll-Linked Horizontal Carousel */}
-          <div className="block md:hidden w-full overflow-hidden mt-8">
-            <motion.div
-              className="flex gap-4 px-6"
-              style={{ x: xTransform, width: "max-content" }}
-            >
+          {/* Mobile Grid Design */}
+          <div className="block md:hidden w-full px-6 mt-8">
+            <div className="grid grid-cols-1 gap-6">
               {services.map((service, index) => (
                 <MobileServiceCard
                   key={service.title}
@@ -283,7 +266,7 @@ export function Services() {
                   index={index}
                 />
               ))}
-            </motion.div>
+            </div>
           </div>
 
         </div>
