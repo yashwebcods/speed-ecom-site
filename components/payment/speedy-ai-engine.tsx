@@ -1,104 +1,153 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef } from "react"
 import { Sparkles, CheckCircle2, Bot, ArrowUpRight } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
 export const SpeedyAIEngine = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  })
+
+  const yBg = useTransform(scrollYProgress, [0, 1], [0, -150])
+  const yContent = useTransform(scrollYProgress, [0, 1], [50, -50])
+  const rotateCard = useTransform(scrollYProgress, [0, 0.5, 1], [-2, 0, 2])
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+
   return (
-    <div className="relative mb-16 sm:mb-20 lg:mb-32 overflow-hidden bg-primary">
-      {/* Background decorative elements matching CTA */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none">
+    <div ref={containerRef} className="relative mb-16 sm:mb-20 lg:mb-32 overflow-hidden bg-primary min-h-[600px] flex items-center">
+      {/* Background decorative elements */}
+      <motion.div style={{ y: yBg }} className="absolute inset-0 opacity-30 pointer-events-none transform-gpu will-change-transform">
         <motion.div
-          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
+          animate={{ x: [0, 40, 0], y: [0, -30, 0], scale: [1, 1.1, 1] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-3xl"
+          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-white/10 rounded-full blur-[120px]"
         />
-      </div>
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_0%,transparent_49%,rgba(255,255,255,0.05)_50%,transparent_51%,transparent_100%)] bg-[size:80px_80px] pointer-events-none" />
+        <motion.div
+          animate={{ x: [0, -30, 0], y: [0, 40, 0], scale: [1, 1.2, 1] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/20 rounded-full blur-[100px]"
+        />
+      </motion.div>
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_0%,transparent_49%,rgba(255,255,255,0.05)_50%,transparent_51%,transparent_100%)] bg-[size:80px_80px] pointer-events-none opacity-20" />
       
-      <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 p-8 lg:p-16 max-w-7xl mx-auto px-4 lg:px-8">
+      <motion.div 
+        style={{ y: yContent, opacity }}
+        className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 p-8 lg:p-16 max-w-7xl mx-auto px-4 lg:px-8 transform-gpu will-change-transform"
+      >
         {/* Left Side: Heading and Text */}
         <div className="lg:w-[60%] text-left space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider"
+          >
             <Sparkles className="w-4 h-4 text-[#FACC15]" /> Speedy AI Engine
-          </div>
-          <h3 className="text-4xl lg:text-6xl font-bold font-display leading-[1.1] text-white">
+          </motion.div>
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl lg:text-7xl font-bold font-display leading-[1.1] text-white tracking-tight"
+          >
             Meet Your Personal <br className="hidden lg:block" />
             <span className="text-[#FACC15]">AI Analyst</span>
-          </h3>
-          <div className="space-y-4 text-base lg:text-lg text-white/90 leading-relaxed max-w-xl">
+          </motion.h3>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="space-y-4 text-base lg:text-lg text-white/90 leading-relaxed max-w-xl font-medium"
+          >
             <p>Our Speedy AI works in real-time with your live marketplace data to give you instant insights.</p>
             <p>It automatically analyzes your orders, SKUs, payments, and charges — and converts them into reports, tables, and charts.</p>
-            <ul className="space-y-3 pt-2">
+            <ul className="space-y-4 pt-2">
               {["No manual Excel work", "No confusion", "Just clear business insights"].map((text, i) => (
-                <li key={i} className="flex items-center gap-3 text-white font-bold">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                <motion.li 
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + (i * 0.1) }}
+                  className="flex items-center gap-3 text-white font-bold"
+                >
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-400/20 flex items-center justify-center">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  </div>
                   {text}
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Right Side: AI Analyst Card (Compact Size) */}
-        <div className="lg:w-[40%] w-full">
-          <Card className="p-5 sm:p-8 bg-white border-white shadow-2xl rounded-[2rem] relative overflow-hidden">
+        {/* Right Side: AI Analyst Card */}
+        <motion.div 
+          style={{ rotate: rotateCard }}
+          initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
+          className="lg:w-[40%] w-full transform-gpu will-change-transform"
+        >
+          <Card className="p-5 sm:p-8 bg-white border-white shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] rounded-[2.5rem] relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-indigo-100">
-                  <Bot className="w-7 h-7 text-white" />
+                <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-indigo-100 transform group-hover:scale-110 transition-transform duration-500">
+                  <Bot className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <p className="text-slate-900 font-bold text-base leading-tight">Speedy AI Analyst</p>
+                  <p className="text-slate-900 font-black text-lg leading-tight">Speedy AI Analyst</p>
                   <div className="flex items-center gap-1.5 mt-1">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <p className="text-slate-400 text-[10px] font-medium">Live processing...</p>
+                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                    <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Live processing</p>
                   </div>
                 </div>
               </div>
-              <Badge className="bg-emerald-50 text-emerald-600 border-emerald-100 text-[9px] font-bold px-2 py-0.5 uppercase tracking-wider">Active</Badge>
+              <Badge className="bg-emerald-50 text-emerald-600 border-emerald-100 text-[10px] font-black px-3 py-1 uppercase tracking-widest rounded-full">Active</Badge>
             </div>
             
-            <div className="space-y-5">
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-                <p className="text-slate-500 text-xs italic mb-3 font-medium">"Analyze today's SKU performance"</p>
-                <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+            <div className="space-y-6">
+              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 group-hover:border-primary/20 transition-colors duration-500">
+                <p className="text-slate-500 text-xs italic mb-4 font-bold tracking-tight">"Analyze today's SKU performance"</p>
+                <div className="h-2 w-full bg-slate-200 rounded-full overflow-hidden shadow-inner">
                   <motion.div 
-                    className="h-full bg-primary"
+                    className="h-full bg-gradient-to-r from-violet-600 to-indigo-600 shadow-[0_0_12px_rgba(124,58,237,0.5)]"
                     initial={{ width: "0%" }}
-                    animate={{ width: "40%" }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                    animate={{ width: "65%" }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                   />
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-3">
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-                  <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1.5">Total Sales</p>
-                  <p className="text-xl font-black text-slate-900">₹4,28,450</p>
-                  <span className="text-emerald-500 text-[10px] flex items-center gap-1 mt-1 font-bold">
-                    <ArrowUpRight className="w-3 h-3" /> +12.5%
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all duration-300">
+                  <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Total Sales</p>
+                  <p className="text-2xl font-black text-slate-900 tracking-tight">₹4,28,450</p>
+                  <span className="text-emerald-500 text-xs flex items-center gap-1 mt-2 font-black">
+                    <ArrowUpRight className="w-4 h-4" /> +12.5%
                   </span>
                 </div>
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-                  <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1.5">Net Profit</p>
-                  <p className="text-xl font-black text-slate-900">₹85,200</p>
-                  <span className="text-emerald-500 text-[10px] flex items-center gap-1 mt-1 font-bold">
-                    <ArrowUpRight className="w-3 h-3" /> +8.2%
+                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all duration-300">
+                  <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Net Profit</p>
+                  <p className="text-2xl font-black text-slate-900 tracking-tight">₹85,200</p>
+                  <span className="text-emerald-500 text-xs flex items-center gap-1 mt-2 font-black">
+                    <ArrowUpRight className="w-4 h-4" /> +8.2%
                   </span>
                 </div>
               </div>
             </div>
           </Card>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   )
 }

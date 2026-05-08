@@ -1,13 +1,24 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef } from "react"
 import { Package, ShieldCheck, TrendingUp, Sparkles } from "lucide-react"
 import { Card } from "@/components/ui/card"
 
 export const AIInsights = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  })
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [50, -50])
+  const y2 = useTransform(scrollYProgress, [0, 1], [-50, 50])
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+
   return (
-    <div className="relative mb-16 sm:mb-20 lg:mb-32 overflow-hidden bg-primary">
-      {/* Background decorative elements matching CTA */}
+    <div ref={containerRef} className="relative mb-16 sm:mb-20 lg:mb-32 overflow-hidden bg-primary min-h-[500px] flex items-center">
+      {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-30 pointer-events-none">
         <motion.div
           animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
@@ -22,8 +33,11 @@ export const AIInsights = () => {
       </div>
       <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_0%,transparent_49%,rgba(255,255,255,0.05)_50%,transparent_51%,transparent_100%)] bg-[size:80px_80px] pointer-events-none" />
 
-      <div className="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-20 items-center p-8 lg:p-16 max-w-7xl mx-auto px-4 lg:px-8">
-        <div className="order-2 lg:order-1">
+      <motion.div 
+        style={{ opacity }}
+        className="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-20 items-center p-8 lg:p-16 max-w-7xl mx-auto px-4 lg:px-8"
+      >
+        <motion.div style={{ y: y1 }} className="order-2 lg:order-1">
           <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 lg:gap-4">
             {[
               { title: "Identify loss-making SKUs", icon: <Package className="text-red-500" /> },
@@ -31,14 +45,23 @@ export const AIInsights = () => {
               { title: "Analyze ad performance", icon: <TrendingUp className="text-indigo-500" /> },
               { title: "Suggest profit growth", icon: <Sparkles className="text-amber-500" /> },
             ].map((item, i) => (
-              <Card key={i} className="p-4 lg:p-6 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-violet-500/30 transition-all group shadow-none">
-                <div className="mb-2 lg:mb-4 group-hover:scale-110 transition-transform">{item.icon}</div>
-                <h5 className="font-bold text-xs sm:text-sm lg:text-base leading-tight text-white">{item.title}</h5>
-              </Card>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <Card className="p-4 lg:p-6 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-violet-500/30 transition-all group shadow-none">
+                  <div className="mb-2 lg:mb-4 group-hover:scale-110 transition-transform">{item.icon}</div>
+                  <h5 className="font-bold text-xs sm:text-sm lg:text-base leading-tight text-white">{item.title}</h5>
+                </Card>
+              </motion.div>
             ))}
           </div>
-        </div>
-        <div className="space-y-4 lg:space-y-6 order-1 lg:order-2">
+        </motion.div>
+        
+        <motion.div style={{ y: y2 }} className="space-y-4 lg:space-y-6 order-1 lg:order-2">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-sm">
             💡 Intelligent Growth
           </div>
@@ -54,8 +77,8 @@ export const AIInsights = () => {
               "From Raw Data to Clear Profit Insights."
             </p>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   )
 }

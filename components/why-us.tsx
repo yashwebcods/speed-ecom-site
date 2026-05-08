@@ -94,7 +94,7 @@ export function WhyUs() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as any }}
-            className="z-20"
+            className="z-20 transform-gpu will-change-transform"
           >
             <motion.span
               initial={{ opacity: 0, scale: 0.8 }}
@@ -142,7 +142,7 @@ export function WhyUs() {
                   }}
                   animate={{ x: -(activeIndex * 300) }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="flex gap-5 cursor-grab active:cursor-grabbing"
+                  className="flex gap-5 cursor-grab active:cursor-grabbing transform-gpu will-change-transform"
                 >
                   {reasons.map((reason, index) => (
                     <motion.div
@@ -202,7 +202,7 @@ export function WhyUs() {
                   whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
                   whileHover={{ x: 8, transition: { duration: 0.2 } }}
-                  className="flex gap-4 p-6 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-lg transition-all cursor-default"
+                  className="flex gap-4 p-6 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-lg transition-all cursor-default transform-gpu will-change-transform"
                 >
                   <div className="shrink-0">
                     <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">

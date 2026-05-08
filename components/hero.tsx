@@ -7,6 +7,7 @@ import { ArrowRight, Play, Star, CheckCircle2 } from "lucide-react"
 import { AnimeText } from "@/components/anime-text"
 import { HeroChatScene } from "@/components/hero-chat-scene"
 import { TrustedBy } from "@/components/trusted-by"
+import { useState, useEffect } from "react"
 
 const stats = [
   { value: "40+", label: "Team Members" },
@@ -52,12 +53,21 @@ const floatingVariants: Variants = {
 }
 
 export function Hero() {
+  const [isDesktop, setIsDesktop] = useState(true)
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024)
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
   return (
     <section className="relative min-h-screen flex flex-col justify-center lg:justify-between pt-20 pb-0 sm:pt-28 lg:pt-24 lg:pb-0 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl transform-gpu" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl transform-gpu" />
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center justify-center">
@@ -135,19 +145,21 @@ export function Hero() {
           </motion.div>
 
           {/* Right Content – 3D Orbital Scene (visible on all screens) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 2.7, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden lg:flex relative w-full h-full min-h-[520px] items-center justify-center"
-          >
-            <HeroChatScene />
-          </motion.div>
+          {isDesktop && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 2.7, ease: [0.22, 1, 0.36, 1] }}
+              className="hidden lg:flex relative w-full h-full min-h-[520px] items-center justify-center transform-gpu will-change-transform"
+            >
+              <HeroChatScene />
+            </motion.div>
+          )}
         </div>
 
         {/* Decorative Elements */}
-        <div className="absolute -z-10 -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-3xl blur-2xl" />
-        <div className="absolute -z-10 -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-3xl blur-2xl" />
+        <div className="absolute -z-10 -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-3xl blur-2xl transform-gpu" />
+        <div className="absolute -z-10 -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-3xl blur-2xl transform-gpu" />
       </div>
 
       {/* Trusted By Section integrated at the bottom of the Hero screen */}
@@ -157,3 +169,4 @@ export function Hero() {
     </section>
   )
 }
+
