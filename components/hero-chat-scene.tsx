@@ -101,13 +101,15 @@ function RobotAvatar({ phase }: { phase: Phase }) {
       }} />
       {/* ── Antenna ball ── */}
       <motion.div
-        animate={{ boxShadow: [`0 0 6px 3px rgba(100,180,255,${0.4 * eyeGlow})`, `0 0 12px 6px rgba(100,180,255,${0.8 * eyeGlow})`, `0 0 6px 3px rgba(100,180,255,${0.4 * eyeGlow})`] }}
+        animate={{ scale: [1, 1.1, 1], opacity: [0.8, 1, 0.8] }}
         transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+        className="transform-gpu will-change-transform"
         style={{
           position: "absolute", left: "50%", top: -26,
           transform: "translateX(-50%)",
           width: 11, height: 11, borderRadius: "50%",
           background: "radial-gradient(circle at 40% 35%, #a0d8ff, #4090ff)",
+          boxShadow: `0 0 8px 4px rgba(100,180,255,${0.6 * eyeGlow})`,
         }}
       />
 
@@ -245,20 +247,16 @@ function RobotAvatar({ phase }: { phase: Phase }) {
                 key={i}
                 animate={{
                   scaleY: phase === "initial-wait" ? 0.05 : blink ? 0.05 : 1,
-                  boxShadow: (phase === "initial-wait" || blink) ? "none" : [
-                    `0 0 0 2px rgba(30,80,200,0.8), 0 0 ${12 * eyeGlow}px ${8 * eyeGlow}px rgba(40,130,255,0.7)`,
-                    `0 0 0 2px rgba(30,80,200,0.8), 0 0 ${20 * eyeGlow}px ${12 * eyeGlow}px rgba(80,180,255,0.9)`,
-                    `0 0 0 2px rgba(30,80,200,0.8), 0 0 ${12 * eyeGlow}px ${8 * eyeGlow}px rgba(40,130,255,0.7)`,
-                  ],
                 }}
                 transition={{
                   scaleY: { duration: phase === "greeting" ? 0.8 : 0.08, ease: "backOut" },
-                  boxShadow: { duration: 1.2, repeat: Infinity, ease: "easeInOut", delay: i * 0.25 },
                 }}
+                className="transform-gpu will-change-transform"
                 style={{
                   width: 22, height: 22, borderRadius: "50%",
                   background: "radial-gradient(circle at 45% 40%, #204890, #000408)",
                   display: "flex", alignItems: "center", justifyContent: "center",
+                  boxShadow: `0 0 0 2px rgba(30,80,200,0.8), 0 0 ${16 * eyeGlow}px ${10 * eyeGlow}px rgba(40,130,255,0.8)`,
                 }}
               >
                 <div style={{
@@ -285,6 +283,7 @@ function RobotAvatar({ phase }: { phase: Phase }) {
 
           {/* ── Smile ── */}
           <motion.div
+            className="transform-gpu will-change-transform"
             animate={
               phase === "initial-wait" ? { scaleY: 0, opacity: 0 } :
                 phase === "greeting" ? { scaleY: [0, 1.5, 1], opacity: [0, 1, 1] } :
@@ -309,6 +308,7 @@ function RobotAvatar({ phase }: { phase: Phase }) {
         <motion.div
           animate={{ opacity: [0.6, 1, 0.6], scaleX: [0.8, 1, 0.8] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="transform-gpu will-change-transform"
           style={{
             position: "absolute", bottom: "8%", left: "28%", right: "28%",
             height: 7, borderRadius: "50%",
@@ -332,11 +332,11 @@ function RobotAvatar({ phase }: { phase: Phase }) {
       <motion.div
         animate={{ scaleX: [0.85, 1, 0.85], opacity: [0.18, 0.28, 0.18] }}
         transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+        className="transform-gpu will-change-transform"
         style={{
           position: "absolute", bottom: -12, left: "15%", right: "15%",
           height: 8, borderRadius: "50%",
           background: "rgba(0,0,0,0.35)",
-          filter: "blur(4px)",
         }}
       />
     </motion.div>
