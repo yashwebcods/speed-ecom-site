@@ -95,7 +95,7 @@ export const LiveDashboard = () => {
                       <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em]">Live Insights Engine</p>
                     </div>
                   </div>
-                  <Button variant="outline" className="rounded-full px-8 h-12 font-black text-xs uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all group/btn border-slate-200">
+                  <Button variant="outline" className="rounded-full px-8 h-12 font-black text-xs uppercase tracking-widest border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground transition-all group/btn">
                     Full Analytics <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </div>

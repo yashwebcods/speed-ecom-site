@@ -116,7 +116,7 @@ export function FAQ() {
                 setActiveIndex(0)
               }}
               className={`px-6 py-3 rounded-full font-bold transition-all duration-300 ${activeCategory === cat.id
-                ? "bg-violet-600 text-white shadow-lg"
+                ? "bg-primary text-primary-foreground shadow-lg"
                 : "bg-slate-100 text-slate-600 hover:bg-slate-200"
                 }`}
             >
@@ -136,15 +136,15 @@ export function FAQ() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
                 className={`w-full text-left p-4 lg:p-6 rounded-2xl transition-all duration-300 flex items-center justify-between group ${activeIndex === index
-                  ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-xl shadow-violet-200 scale-[1.02]"
+                  ? "bg-primary text-primary-foreground shadow-xl shadow-primary/20 scale-[1.02]"
                   : "bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-100"
                   }`}
               >
-                <span className={`font-bold text-sm lg:text-lg pr-4 ${activeIndex === index ? "text-white" : "text-slate-900 group-hover:text-violet-600"}`}>
+                <span className={`font-bold text-sm lg:text-lg pr-4 ${activeIndex === index ? "text-primary-foreground" : "text-slate-900 group-hover:text-primary"}`}>
                   {faq.question}
                 </span>
                 <ChevronRight
-                  className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${activeIndex === index ? "rotate-0 text-white" : "-rotate-90 text-slate-400 group-hover:text-violet-600"
+                  className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${activeIndex === index ? "rotate-0 text-primary-foreground" : "-rotate-90 text-slate-400 group-hover:text-primary"
                     }`}
                 />
               </motion.button>

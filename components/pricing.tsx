@@ -79,7 +79,7 @@ export function Pricing() {
               </div>
 
               <Button
-                className="w-full sm:w-fit px-12 py-7 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white font-bold text-lg rounded-full shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40 hover:scale-[1.05] active:scale-[0.98] transition-all duration-300 border-none"
+                className="w-full sm:w-fit px-12 py-7 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:scale-[1.05] active:scale-[0.98] transition-all duration-300 border-none"
               >
                 {tier.ctaText}
               </Button>
