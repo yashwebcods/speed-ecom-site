@@ -90,7 +90,7 @@ export function Hero() {
             {/* Brand Tagline */}
             <motion.div variants={itemVariants} className="mb-4 flex justify-center lg:justify-start">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm sm:text-base font-semibold tracking-wide backdrop-blur-sm">
-                ✨ બિઝનેસ તમારો, હિસાબ અમારો
+                બિઝનેસ તમારો, હિસાબ અમારો
               </div>
             </motion.div>
 
