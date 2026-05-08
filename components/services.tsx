@@ -22,63 +22,72 @@ const services = [
     title: "Advertising & ROI Understanding",
     description:
       "Maximize return on every ad spend with strategic plans, ROI tracking, and continuous optimization for measurable results.",
-    color: "bg-primary/10 text-primary",
+    color: "bg-blue-500/10 text-blue-500",
+    size: "large"
   },
   {
     icon: TrendingUp,
-    title: "Sales-Wise Participant Analysis",
+    title: "Sales Analysis",
     description:
-      "Understand sales trends through detailed analysis. Identify top SKUs, marketplaces, or campaigns and replicate success.",
-    color: "bg-accent/10 text-accent",
+      "Understand sales trends through detailed analysis. Identify top SKUs, marketplaces, and replicate success.",
+    color: "bg-emerald-500/10 text-emerald-500",
+    size: "small"
   },
   {
     icon: CalendarDays,
-    title: "Discount & Festival Strategy",
+    title: "Festival Strategy",
     description:
-      "Boost seasonal revenue with expert discount structuring, festival sales planning, and smart promotional timing.",
-    color: "bg-primary/10 text-primary",
+      "Boost seasonal revenue with expert discount structuring and smart promotional timing.",
+    color: "bg-orange-500/10 text-orange-500",
+    size: "small"
   },
   {
     icon: Package,
     title: "Shipping & Weight Reports",
     description:
       "Eliminate unnecessary costs by identifying shipping weight mismatches and charges for full transparency.",
-    color: "bg-accent/10 text-accent",
+    color: "bg-purple-500/10 text-purple-500",
+    size: "medium"
   },
   {
     icon: AlertCircle,
     title: "Wrong Commission Detection",
     description:
       "We audit platform statements to detect wrong commission charges or settlement issues ensuring accurate payouts.",
-    color: "bg-primary/10 text-primary",
+    color: "bg-rose-500/10 text-rose-500",
+    size: "medium"
   },
   {
     icon: DollarSign,
-    title: "Pricing Strategy & Profit Analysis",
+    title: "Profit Analysis",
     description:
       "Stay competitive while protecting margins with dynamic pricing and SKU-wise profit tracking.",
-    color: "bg-accent/10 text-accent",
+    color: "bg-cyan-500/10 text-cyan-500",
+    size: "small"
   },
   {
     icon: Warehouse,
-    title: "Warehouse & Settlement Reports",
+    title: "Warehouse & Settlements",
     description:
-      "Gain clarity into warehouse operations with structured FBA/FBF analysis revealing inefficiencies and profit leaks.",
-    color: "bg-primary/10 text-primary",
+      "Gain clarity into warehouse operations with structured FBA/FBF analysis revealing inefficiencies.",
+    color: "bg-amber-500/10 text-amber-500",
+    size: "large"
   },
   {
     icon: Lightbulb,
-    title: "Business Growth Insights",
+    title: "Growth Insights",
     description:
-      "From sales forecasts to competitor benchmarking, we deliver actionable insights for consistent growth.",
-    color: "bg-accent/10 text-accent",
+      "From sales forecasts to competitor benchmarking, we deliver actionable insights for growth.",
+    color: "bg-indigo-500/10 text-indigo-500",
+    size: "small"
   },
   {
     icon: Zap,
-    title: "Weekend Sales Optimization",
+    title: "Weekend Optimization",
     description:
-      "Capitalize on high-traffic days with tailored weekend strategies that drive purchases and improve your bottom line.",
-    color: "bg-primary/10 text-primary",
+      "Capitalize on high-traffic days with tailored weekend strategies that drive purchases.",
+    color: "bg-yellow-500/10 text-yellow-500",
+    size: "small"
   },
 ]
 
@@ -136,8 +145,18 @@ function MobileServiceCard({ service, index }: {
             {service.description}
           </p>
         </div>
-        <div className="absolute -bottom-6 -right-6 opacity-20">
-          <ThreeDCardIcon title={service.title} color={service.color} />
+        <div className="absolute -bottom-8 -right-8 pointer-events-none">
+          <motion.div
+            initial={{ scale: 0.2, opacity: 0, rotate: 15 }}
+            whileInView={{ scale: 1, opacity: 0.15, rotate: 12 }}
+            viewport={{ once: false }}
+            transition={{ 
+              duration: 1.2, 
+              ease: [0.16, 1, 0.3, 1]
+            }}
+          >
+            <ThreeDCardIcon title={service.title} color={service.color} />
+          </motion.div>
         </div>
       </div>
     </div>
@@ -156,46 +175,34 @@ export function Services() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
 
   // Transform scroll progress to x translation for mobile
-  const xTransform = useTransform(scrollYProgress, [0, 1], ["0vw", "-698vw"])
+  const xTransform = useTransform(scrollYProgress, [0, 1], ["0vw", "-600vw"])
 
-  // Transform scroll progress to y translation for desktop counter effect
-  // 3 rows total. Translate by -66.666% to reach the 3rd row.
-  const desktopYTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-66.666%"])
-
-  // Group services into chunks of 3 for the desktop rows
-  const desktopRows = [];
-  for (let i = 0; i < services.length; i += 3) {
-    desktopRows.push(services.slice(i, i + 3));
-  }
+  const opacityTransform = useTransform(scrollYProgress, [0, 0.05], [0, 1])
+  const scaleTransform = useTransform(scrollYProgress, [0, 0.05], [0.95, 1])
 
   return (
-    <section id="services" className="bg-card relative" ref={sectionRef}>
-      {/* Parallax background decoration */}
-      <motion.div
-        style={{ y: backgroundY }}
-        className="hidden sm:block absolute -top-20 -right-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none"
-      />
+    <section id="services" className="bg-background relative py-20 overflow-hidden" ref={sectionRef}>
+      {/* Dynamic Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] animate-pulse delay-700" />
+      </div>
 
-      {/* 
-        This is the container for the sticky section.
-        We make it very tall so the user has to scroll a lot, 
-        driving the horizontal animation.
-      */}
-      <div ref={scrollContainerRef} className="h-[300vh] relative">
-        <div className="sticky top-0 h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden z-10 pt-16">
-
-          {/* Shared Header */}
+      <div ref={scrollContainerRef} className="h-[250vh] relative">
+        <div className="sticky top-0 min-h-screen w-full flex flex-col items-center justify-center overflow-y-auto z-10 pt-24 pb-12">
+          
+          {/* Section Header */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full text-center px-4 mb-8 sm:mb-12 max-w-3xl mx-auto"
+            className="w-full text-center px-4 mb-8 sm:mb-12 max-w-3xl mx-auto relative shrink-0"
           >
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs sm:text-sm font-semibold rounded-full mb-3">
               Premium Services
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold font-display text-balance leading-tight mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold font-display text-foreground text-balance leading-tight mb-4">
               Smart E-Commerce Support for <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Sharp Sellers</span>
             </h2>
             <p className="hidden sm:block text-sm sm:text-lg text-muted-foreground text-pretty">
@@ -204,41 +211,67 @@ export function Services() {
             </p>
           </motion.div>
 
-          {/* Desktop Speedometer Carousel */}
-          <div className="hidden md:block w-full max-w-7xl mx-auto px-4 lg:px-8">
-            <div
-              className="h-[300px] lg:h-[340px] overflow-hidden relative"
-              style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)' }}
-            >
-              <motion.div
-                style={{ y: desktopYTransform }}
-                className="flex flex-col"
-              >
-                {desktopRows.map((row, rowIndex) => (
-                  <div key={rowIndex} className="grid grid-cols-3 gap-6 h-[300px] lg:h-[340px] shrink-0 py-4">
-                    {row.map((service) => (
-                      <Card key={service.title} className="group h-full hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 border-border hover:border-primary/20 bg-card/50">
-                        <CardContent className="p-6 lg:p-8 flex flex-col h-full">
-                          <div className="mb-5">
-                            <ThreeDCardIcon title={service.title} color={service.color} />
-                          </div>
-                          <h3 className="text-lg font-semibold font-display mb-3 text-foreground group-hover:text-primary transition-colors">
-                            {service.title}
-                          </h3>
-                          <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
-                            {service.description}
-                          </p>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                ))}
-              </motion.div>
+          {/* Desktop Bento Grid Design */}
+          <div className="hidden md:flex w-full max-w-[1600px] mx-auto px-6 lg:px-12 flex-1 items-center pb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+              {services.map((service, idx) => {
+                return (
+                  <motion.div
+                    key={service.title}
+                    variants={itemVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    custom={idx}
+                    className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 flex flex-col min-h-[320px]"
+                  >
+                    {/* Hover Background Effect */}
+                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 ${service.color}`} />
+                    
+                    <div className="relative p-6 lg:p-8 h-full flex flex-col justify-between z-10">
+                      <div>
+                        <div className={`w-12 h-12 rounded-2xl ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                          <service.icon className="w-6 h-6" />
+                        </div>
+                        <h3 className="text-xl lg:text-2xl font-bold font-display mb-3 group-hover:text-primary transition-colors">
+                          {service.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm lg:text-base leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+                          {service.description}
+                        </p>
+                      </div>
+                      
+                      <div className="mt-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                        <span className="text-xs font-bold uppercase tracking-widest text-primary">Learn More</span>
+                        <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+                          <Zap className="w-4 h-4 fill-current" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Decorative Element */}
+                    <div className="absolute -bottom-8 -right-8 overflow-hidden pointer-events-none">
+                      <motion.div
+                        initial={{ scale: 0.2, opacity: 0, rotate: 15 }}
+                        whileInView={{ scale: 1, opacity: 0.15, rotate: 12 }}
+                        viewport={{ once: false, margin: "-100px" }}
+                        transition={{ 
+                          duration: 1.5, 
+                          ease: [0.16, 1, 0.3, 1], // Custom cubic-bezier for a "growing" feel
+                          delay: idx * 0.05 
+                        }}
+                      >
+                        <service.icon className="w-48 h-48" />
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
           {/* Mobile Scroll-Linked Horizontal Carousel */}
-          <div className="block md:hidden w-full overflow-hidden">
+          <div className="block md:hidden w-full overflow-hidden mt-8">
             <motion.div
               className="flex gap-4 px-6"
               style={{ x: xTransform, width: "max-content" }}
@@ -246,7 +279,7 @@ export function Services() {
               {services.map((service, index) => (
                 <MobileServiceCard
                   key={service.title}
-                  service={service}
+                  service={service as any}
                   index={index}
                 />
               ))}
