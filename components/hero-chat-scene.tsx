@@ -77,13 +77,34 @@ function RobotAvatar({ phase }: { phase: Phase }) {
   return (
     <motion.div
       animate={{
-        y: phase === "initial-wait" ? 12 : phase === "greeting" ? [12, -15, 0] : isThinking ? [0, -3, 0] : [0, -5, 0],
-        rotate: phase === "greeting" ? [0, -4, 4, -2, 0] : isHovered ? [0, -5, 5, 0] : 0,
-        scale: isHovered ? 1.05 : 1
+        y: phase === "initial-wait" 
+          ? [12, 15, 12] 
+          : phase === "greeting" 
+            ? [12, -45, 0, -25, 0] // Excited jumping for greeting
+            : isThinking 
+              ? [0, -8, 0] 
+              : isTalking 
+                ? [0, -15, 0, -10, 0] // Bouncing while talking
+                : [0, -5, 0], // Default floating
+        rotate: phase === "greeting" 
+          ? [0, -10, 10, -5, 5, 0] 
+          : isTalking 
+            ? [0, -2, 2, 0]
+            : isHovered 
+              ? [0, -5, 5, 0] 
+              : 0,
+        scale: phase === "greeting" ? [1, 1.15, 1] : isHovered ? 1.05 : 1
       }}
       transition={{
-        y: { duration: phase === "greeting" ? 1.4 : isThinking ? 1.2 : 2.6, repeat: (phase === "initial-wait" || phase === "greeting") ? 0 : Infinity, ease: "easeInOut" },
-        rotate: { duration: phase === "greeting" ? 1.4 : 0.5 },
+        y: { 
+          duration: phase === "greeting" ? 1.2 : isTalking ? 0.8 : isThinking ? 1.0 : 2.6, 
+          repeat: (phase === "initial-wait") ? Infinity : Infinity, 
+          ease: phase === "greeting" ? "easeOut" : "easeInOut" 
+        },
+        rotate: { 
+          duration: phase === "greeting" ? 1.2 : 0.5,
+          repeat: isTalking ? Infinity : 0
+        },
         scale: { duration: 0.3 }
       }}
       style={{ position: "relative", width: 90, height: 100, cursor: "pointer" }}
