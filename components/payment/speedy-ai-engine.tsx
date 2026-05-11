@@ -13,13 +13,13 @@ export const SpeedyAIEngine = () => {
     offset: ["start end", "end start"]
   })
 
-  const yBg = useTransform(scrollYProgress, [0, 1], [0, -150])
-  const yContent = useTransform(scrollYProgress, [0, 1], [50, -50])
+  const yBg = useTransform(scrollYProgress, [0, 1], [0, -50])
+  const yContent = useTransform(scrollYProgress, [0, 1], [20, -20])
   const rotateCard = useTransform(scrollYProgress, [0, 0.5, 1], [-2, 0, 2])
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
 
   return (
-    <div ref={containerRef} className="relative mb-0 overflow-hidden bg-primary min-h-fit py-12 lg:py-20 flex items-center">
+    <div ref={containerRef} className="relative mb-0 overflow-hidden bg-primary min-h-fit py-8 lg:py-20 flex items-center">
       {/* Background decorative elements */}
       <motion.div style={{ y: yBg }} className="absolute inset-0 opacity-30 pointer-events-none transform-gpu will-change-transform">
         <motion.div
@@ -40,7 +40,7 @@ export const SpeedyAIEngine = () => {
         className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 p-8 lg:p-16 max-w-7xl mx-auto px-4 lg:px-8 transform-gpu will-change-transform"
       >
         {/* Left Side: Heading and Text */}
-        <div className="lg:w-[60%] text-left space-y-6">
+        <div className="lg:w-[60%] text-left space-y-4 lg:space-y-6">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -54,7 +54,7 @@ export const SpeedyAIEngine = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl lg:text-5xl font-bold font-display leading-[1.1] text-white tracking-tight"
+            className="text-2xl sm:text-3xl lg:text-5xl font-bold font-display leading-[1.2] lg:leading-[1.1] text-white tracking-tight"
           >
             Meet Your Personal <br className="hidden lg:block" />
             <span className="text-[#FACC15]">AI Analyst</span>
@@ -64,7 +64,7 @@ export const SpeedyAIEngine = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="space-y-4 text-sm lg:text-base text-white/90 leading-relaxed max-w-xl font-medium"
+            className="space-y-4 text-[13px] sm:text-base text-white/90 leading-relaxed max-w-xl font-medium"
           >
             <p>Our Speedy AI works in real-time with your live marketplace data to give you instant insights.</p>
             <p>It automatically analyzes your orders, SKUs, payments, and charges — and converts them into reports, tables, and charts.</p>
@@ -88,37 +88,36 @@ export const SpeedyAIEngine = () => {
           </motion.div>
         </div>
 
-        {/* Right Side: AI Analyst Card */}
         <motion.div 
           style={{ rotate: rotateCard }}
           initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
           whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
-          className="lg:w-[40%] w-full transform-gpu will-change-transform"
+          className="lg:w-[40%] w-[90%] sm:w-full mx-auto transform-gpu will-change-transform"
         >
-          <Card className="p-5 sm:p-8 bg-white border-white shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] rounded-[2.5rem] relative overflow-hidden group">
+          <Card className="p-4 sm:p-8 bg-white border-white shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] rounded-[1.5rem] sm:rounded-[2.5rem] relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-            <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-indigo-100 transform group-hover:scale-110 transition-transform duration-500">
-                  <Bot className="w-8 h-8 text-white" />
+            <div className="flex items-center justify-between mb-4 sm:mb-8">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-10 h-10 sm:w-14 h-14 rounded-xl sm:rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-indigo-100 transform group-hover:scale-110 transition-transform duration-500">
+                  <Bot className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </div>
                 <div>
-                  <p className="text-slate-900 font-black text-lg leading-tight">Speedy AI Analyst</p>
-                  <div className="flex items-center gap-1.5 mt-1">
-                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-                    <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Live processing</p>
+                  <p className="text-slate-900 font-black text-sm sm:text-lg leading-tight">Speedy AI Analyst</p>
+                  <div className="flex items-center gap-1.5 mt-0.5 sm:mt-1">
+                    <div className="w-1.5 h-1.5 sm:w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                    <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Live processing</p>
                   </div>
                 </div>
               </div>
-              <Badge className="bg-emerald-50 text-emerald-600 border-emerald-100 text-[10px] font-black px-3 py-1 uppercase tracking-widest rounded-full">Active</Badge>
+              <Badge className="bg-emerald-50 text-emerald-600 border-emerald-100 text-[8px] sm:text-[10px] font-black px-2 sm:px-3 py-0.5 sm:py-1 uppercase tracking-widest rounded-full">Active</Badge>
             </div>
             
-            <div className="space-y-6">
-              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 group-hover:border-primary/20 transition-colors duration-500">
-                <p className="text-slate-500 text-xs italic mb-4 font-bold tracking-tight">"Analyze today's SKU performance"</p>
-                <div className="h-2 w-full bg-slate-200 rounded-full overflow-hidden shadow-inner">
+            <div className="space-y-4 sm:space-y-6">
+              <div className="p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-100 group-hover:border-primary/20 transition-colors duration-500">
+                <p className="text-slate-500 text-[10px] sm:text-xs italic mb-2 sm:mb-4 font-bold tracking-tight">"Analyze today's SKU performance"</p>
+                <div className="h-1.5 sm:h-2 w-full bg-slate-200 rounded-full overflow-hidden shadow-inner">
                   <motion.div 
                     className="h-full bg-gradient-to-r from-violet-600 to-indigo-600 shadow-[0_0_12px_rgba(124,58,237,0.5)]"
                     initial={{ width: "0%" }}
@@ -128,19 +127,19 @@ export const SpeedyAIEngine = () => {
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all duration-300">
-                  <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Total Sales</p>
-                  <p className="text-2xl font-black text-slate-900 tracking-tight">₹4,28,450</p>
-                  <span className="text-emerald-500 text-xs flex items-center gap-1 mt-2 font-black">
-                    <ArrowUpRight className="w-4 h-4" /> +12.5%
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all duration-300">
+                  <p className="text-slate-400 text-[8px] sm:text-[10px] font-black uppercase tracking-widest mb-1 sm:mb-2">Total Sales</p>
+                  <p className="text-base sm:text-2xl font-black text-slate-900 tracking-tight">₹4,28,450</p>
+                  <span className="text-emerald-500 text-[10px] sm:text-xs flex items-center gap-1 mt-1 sm:mt-2 font-black">
+                    <ArrowUpRight className="w-3 h-3 sm:w-4 h-4" /> +12.5%
                   </span>
                 </div>
-                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all duration-300">
-                  <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Net Profit</p>
-                  <p className="text-2xl font-black text-slate-900 tracking-tight">₹85,200</p>
-                  <span className="text-emerald-500 text-xs flex items-center gap-1 mt-2 font-black">
-                    <ArrowUpRight className="w-4 h-4" /> +8.2%
+                <div className="p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all duration-300">
+                  <p className="text-slate-400 text-[8px] sm:text-[10px] font-black uppercase tracking-widest mb-1 sm:mb-2">Net Profit</p>
+                  <p className="text-base sm:text-2xl font-black text-slate-900 tracking-tight">₹85,200</p>
+                  <span className="text-emerald-500 text-[10px] sm:text-xs flex items-center gap-1 mt-1 sm:mt-2 font-black">
+                    <ArrowUpRight className="w-3 h-3 sm:w-4 h-4" /> +8.2%
                   </span>
                 </div>
               </div>

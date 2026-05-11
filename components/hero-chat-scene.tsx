@@ -595,7 +595,7 @@ export function HeroChatScene() {
                 <div
                   ref={scrollRef}
                   className="flex flex-col gap-3 p-4 overflow-y-auto"
-                  style={{ minHeight: 240, maxHeight: 240 }}
+                  style={{ minHeight: "clamp(180px, 40vh, 240px)", maxHeight: "clamp(180px, 40vh, 240px)" }}
                 >
                   <AnimatePresence mode="popLayout">
                     {messages.length === 0 && !showIndicator && phase === "typing-input" && (

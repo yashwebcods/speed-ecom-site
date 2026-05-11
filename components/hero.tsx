@@ -63,7 +63,7 @@ export function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center lg:justify-between pt-20 pb-0 sm:pt-28 lg:pt-24 lg:pb-0 overflow-hidden">
+    <section className="relative min-h-[auto] lg:min-h-screen flex flex-col justify-center lg:justify-between pt-16 pb-0 lg:pt-24 lg:pb-0 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl transform-gpu" />
@@ -108,7 +108,7 @@ export function Hero() {
             </motion.p>
 
             {/* CTAs */}
-            <motion.div variants={itemVariants} className="flex flex-row gap-3 justify-center lg:justify-start mb-10 lg:mb-8">
+            <motion.div variants={itemVariants} className="flex flex-row gap-3 justify-center lg:justify-start mb-6 lg:mb-8">
               <Button asChild size="lg" className="rounded-full px-4 sm:px-8 group h-12 lg:h-12 flex-1 sm:flex-none shadow-xl shadow-primary/20 text-xs sm:text-sm">
                 <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
                   Free Demo
@@ -119,6 +119,16 @@ export function Hero() {
                 <Play className="mr-1 sm:mr-2 w-3 h-3 sm:w-4 sm:h-4" />
                 Watch Demo
               </Button>
+            </motion.div>
+
+            {/* Mobile Chat Scene - Placed directly below CTAs */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 2.7, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:hidden relative w-full mb-6"
+            >
+              <HeroChatScene />
             </motion.div>
 
             {/* Platform Strip - Improved for Mobile */}
@@ -144,17 +154,15 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Content – 3D Orbital Scene (visible on all screens) */}
-          {isDesktop && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 2.7, ease: [0.22, 1, 0.36, 1] }}
-              className="hidden lg:flex relative w-full h-full min-h-[520px] items-center justify-center transform-gpu will-change-transform"
-            >
-              <HeroChatScene />
-            </motion.div>
-          )}
+          {/* Desktop Right Content – 3D Orbital Scene (Hidden on Mobile) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 2.7, ease: [0.22, 1, 0.36, 1] }}
+            className="hidden lg:flex relative w-full h-full min-h-[520px] items-center justify-center transform-gpu will-change-transform"
+          >
+            <HeroChatScene />
+          </motion.div>
         </div>
 
         {/* Decorative Elements */}

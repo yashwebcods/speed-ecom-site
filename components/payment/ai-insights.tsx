@@ -17,7 +17,7 @@ export const AIInsights = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
 
   return (
-    <div ref={containerRef} className="relative mb-16 sm:mb-20 lg:mb-32 overflow-hidden bg-primary min-h-[500px] flex items-center">
+    <div ref={containerRef} className="relative mb-16 sm:mb-20 lg:mb-32 overflow-hidden bg-primary min-h-fit py-10 lg:py-20 flex items-center">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-30 pointer-events-none">
         <motion.div
@@ -38,7 +38,7 @@ export const AIInsights = () => {
         className="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-20 items-center p-8 lg:p-16 max-w-7xl mx-auto px-4 lg:px-8"
       >
         <motion.div style={{ y: y1 }} className="order-2 lg:order-1">
-          <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 lg:gap-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
             {[
               { title: "Identify loss-making SKUs", icon: <Package className="text-red-500" /> },
               { title: "Detect hidden charges", icon: <ShieldCheck className="text-emerald-500" /> },
@@ -51,10 +51,11 @@ export const AIInsights = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="h-full"
               >
-                <Card className="p-4 lg:p-6 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-violet-500/30 transition-all group shadow-none">
-                  <div className="mb-2 lg:mb-4 group-hover:scale-110 transition-transform">{item.icon}</div>
-                  <h5 className="font-bold text-xs sm:text-sm lg:text-base leading-tight text-white">{item.title}</h5>
+                <Card className="p-3 sm:p-4 lg:p-6 h-full bg-white/5 backdrop-blur-sm border border-white/10 hover:border-violet-500/30 transition-all group shadow-none">
+                  <div className="mb-2 lg:mb-4 group-hover:scale-110 transition-transform scale-75 sm:scale-100 origin-left">{item.icon}</div>
+                  <h5 className="font-bold text-[10px] sm:text-sm lg:text-base leading-tight text-white">{item.title}</h5>
                 </Card>
               </motion.div>
             ))}
@@ -65,15 +66,15 @@ export const AIInsights = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-sm">
             💡 Intelligent Growth
           </div>
-          <h3 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-white">
-            Smart Insights That <br />
+          <h3 className="text-2xl sm:text-4xl lg:text-6xl font-bold leading-[1.2] lg:leading-[1.1] tracking-tight text-white">
+            Smart Insights That <br className="hidden sm:block" />
             <span className="text-[#facc15]">Grow Your Profit</span>
           </h3>
-          <p className="text-sm sm:text-base lg:text-xl text-white/90 leading-relaxed">
+          <p className="text-[13px] sm:text-base lg:text-xl text-white/90 leading-relaxed">
             Our AI doesn't just show data — it tells you what to do next. It's like having a financial expert working 24/7 for your business.
           </p>
           <div className="pt-2 lg:pt-4">
-            <p className="text-lg sm:text-xl lg:text-2xl font-display font-bold italic text-white">
+            <p className="text-base sm:text-xl lg:text-2xl font-display font-bold italic text-white">
               "From Raw Data to Clear Profit Insights."
             </p>
           </div>

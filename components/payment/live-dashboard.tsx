@@ -33,7 +33,7 @@ export const LiveDashboard = () => {
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-50 text-violet-600 border border-violet-100 text-xs font-black uppercase tracking-widest mb-2">
                   <div className="w-2.5 h-2.5 rounded-full bg-violet-500 animate-ping" /> Live Data Sync
                 </div>
-                <h3 className="text-3xl lg:text-5xl font-bold mb-6 font-display leading-[1.1] tracking-tight">
+                <h3 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-6 font-display leading-[1.2] lg:leading-[1.1] tracking-tight">
                   <span className="text-slate-900 dark:text-white">Live Dashboard with </span>
                   <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">SKU-Level Insights</span>
@@ -43,10 +43,9 @@ export const LiveDashboard = () => {
                 </p>
               </motion.div>
 
-              {/* Right Side: 2x2 Grid (Compact Cards) */}
               <motion.div 
                 style={{ y: y2 }} 
-                className="lg:w-[40%] grid grid-cols-2 gap-4 lg:gap-6 transform-gpu will-change-transform"
+                className="lg:w-[40%] grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6 transform-gpu will-change-transform"
               >
                 {[
                   { title: "SKU-wise tables", desc: "Granular data", icon: <Layers className="w-6 h-6" />, color: "bg-blue-50 text-blue-600", hover: "hover:border-blue-200" },
@@ -58,16 +57,19 @@ export const LiveDashboard = () => {
                     key={i}
                     whileHover={{ y: -5, scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className="h-full"
                   >
-                    <Card className={`p-6 transition-all border-slate-100 bg-white shadow-sm hover:shadow-xl rounded-[2rem] flex flex-col items-start gap-4 ${item.hover} group cursor-default`}>
-                      <div className={`flex w-14 h-14 rounded-2xl ${item.color} items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
-                        {item.icon}
+                    <Card className={`p-4 sm:p-6 h-full transition-all border-slate-100 bg-white shadow-sm hover:shadow-xl rounded-[1.5rem] sm:rounded-[2rem] flex flex-col items-start gap-3 sm:gap-4 ${item.hover} group cursor-default`}>
+                      <div className={`flex w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl ${item.color} items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                        <div className="scale-75 sm:scale-100">
+                          {item.icon}
+                        </div>
                       </div>
                       <div className="text-left">
-                        <h5 className="font-black text-sm lg:text-base text-slate-900 mb-1">
+                        <h5 className="font-black text-[11px] sm:text-sm lg:text-base text-slate-900 mb-0.5 sm:mb-1 leading-tight">
                           {item.title}
                         </h5>
-                        <p className="text-[11px] text-slate-500 font-bold uppercase tracking-wider leading-tight">
+                        <p className="text-[9px] sm:text-[11px] text-slate-500 font-bold uppercase tracking-wider leading-tight">
                           {item.desc}
                         </p>
                       </div>
