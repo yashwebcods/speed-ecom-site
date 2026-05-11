@@ -6,11 +6,10 @@ import { motion, Variants } from "framer-motion"
 import { TrendingUp } from "lucide-react"
 
 const quickLinks = [
-  { href: "#services", label: "Services" },
-  { href: "#why-us", label: "Why Us" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
+  { href: "/services", label: "Services" },
+  { href: "/platform", label: "Platform" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/contact", label: "Contact" },
 ]
 
 const platforms = ["Meesho", "Flipkart", "Amazon", "Myntra", "JioMart", "GlowRoad"]

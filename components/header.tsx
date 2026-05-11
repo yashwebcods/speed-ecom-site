@@ -1,26 +1,26 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
-import { Menu, X, TrendingUp, User } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { Menu, X, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "#services", label: "Services" },
-  { href: "#why-us", label: "Why Us" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
-  { href: "#pricing", label: "Pricing" },
+  { href: "/services", label: "Services" },
+  { href: "/platform", label: "Platform" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/contact", label: "Contact" },
 ]
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
+  const pathname = usePathname()
   const { scrollY } = useScroll()
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -70,10 +70,16 @@ export function Header() {
               >
                 <Link
                   href={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
+                  className={`text-sm font-medium transition-colors relative group ${
+                    pathname === link.href
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all ${
+                    pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                  }`} />
                 </Link>
               </motion.div>
             ))}
@@ -172,7 +178,11 @@ export function Header() {
                   >
                     <Link
                       href={link.href}
-                      className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                      className={`text-base font-medium transition-colors ${
+                        pathname === link.href
+                          ? "text-primary font-semibold"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {link.label}
