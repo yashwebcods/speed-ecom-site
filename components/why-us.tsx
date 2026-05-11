@@ -240,7 +240,7 @@ export function WhyUs() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {advantages.map((advantage, index) => (
               <motion.div
                 key={advantage.title}
@@ -258,10 +258,10 @@ export function WhyUs() {
                 >
                   <advantage.icon className="w-6 lg:w-8 h-6 lg:h-8" />
                 </motion.div>
-                <h4 className="font-bold font-display text-foreground mb-2 group-hover:text-primary transition-colors text-sm sm:text-lg lg:text-xl">
+                <h4 className="font-bold font-display text-foreground mb-3 group-hover:text-primary transition-colors text-xl sm:text-lg lg:text-xl">
                   {advantage.title}
                 </h4>
-                <p className="text-xs sm:text-sm lg:text-base text-muted-foreground leading-relaxed">{advantage.description}</p>
+                <p className="text-base sm:text-sm lg:text-base text-muted-foreground leading-relaxed">{advantage.description}</p>
               </motion.div>
             ))}
           </div>

@@ -63,7 +63,7 @@ export function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-[auto] lg:min-h-screen flex flex-col justify-center lg:justify-between pt-16 pb-0 lg:pt-24 lg:pb-0 overflow-hidden">
+    <section className="relative min-h-[auto] lg:min-h-screen flex flex-col justify-center lg:justify-between pt-36 pb-0 lg:pt-24 lg:pb-0 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl transform-gpu" />
@@ -80,7 +80,7 @@ export function Hero() {
             className="text-center lg:text-left w-full min-w-0"
           >
             {/* Mobile Only: Trusted badge */}
-            <div className="lg:hidden mb-4">
+            <div className="lg:hidden mb-6">
               <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 rounded-full border border-accent/20">
                 <Star className="w-3 h-3 text-accent fill-accent" />
                 <span className="text-[10px] font-bold uppercase tracking-widest text-accent-foreground">Trusted by 700+ Sellers</span>
@@ -88,7 +88,7 @@ export function Hero() {
             </div>
 
             {/* Brand Tagline */}
-            <motion.div variants={itemVariants} className="mb-4 flex justify-center lg:justify-start">
+            <motion.div variants={itemVariants} className="mb-6 lg:mb-4 flex justify-center lg:justify-start">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm sm:text-base font-semibold tracking-wide backdrop-blur-sm">
                 બિઝનેસ તમારો, હિસાબ અમારો
               </div>

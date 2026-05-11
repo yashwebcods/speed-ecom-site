@@ -38,7 +38,7 @@ const faqData = {
   ],
   DATA: [
     {
-      question: "How is my data security handled?",
+      question: "How is my data security ?",
       answer: "We use enterprise-grade encryption for all data storage. Your seller account data is only used for analysis and is never shared with third parties."
     },
     {
