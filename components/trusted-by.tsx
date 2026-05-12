@@ -15,10 +15,11 @@ const brandImages = [
   "/b9.jpg",
   "/b10.jpg",
   "/b11.jpg",
+  "/b12.webp",
 ]
 
 // Repeat to fill the marquee
-const repeatedBrands = [...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages]
+const repeatedBrands = [...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages, ...brandImages]
 
 export function TrustedBy() {
   return (
@@ -28,7 +29,7 @@ export function TrustedBy() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.6 }}
-        className="container mx-auto px-4 md:px-8 max-w-7xl"
+        className="container mx-auto px-4 md:px-8"
       >
         {/* "Trusted by" label */}
         <div className="mb-8 md:mb-12 text-center">
@@ -63,7 +64,7 @@ export function TrustedBy() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (i % brandImages.length) * 0.05 }}
-                className="flex-shrink-0 mx-8 md:mx-12 relative transform-gpu flex items-center justify-center h-12 md:h-16 w-28 md:w-36"
+                className="flex-shrink-0 mx-3 md:mx-4 relative transform-gpu flex items-center justify-center h-8 md:h-12 w-16 md:w-24"
               >
                 <img
                   src={brandSrc}
