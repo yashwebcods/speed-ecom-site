@@ -11,7 +11,10 @@ const brandImages = [
   "/b5.jpg",
   "/b6.jpg",
   "/b7.jpg",
-  "/b8.jpg"
+  "/b8.jpg",
+  "/b9.jpg",
+  "/b10.jpg",
+  "/b11.jpg",
 ]
 
 // Repeat to fill the marquee

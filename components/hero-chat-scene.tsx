@@ -41,7 +41,7 @@ function highlightText(text: string) {
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type ChatMessage = { id: string; role: "user" | "assistant"; text: string }
-type Phase =
+export type Phase =
   | "initial-wait"
   | "greeting"
   | "startup"
@@ -53,7 +53,7 @@ type Phase =
   | "clearing"
 
 // ─── 🤖 Spherical Robot Avatar ────────────────────────────────────────────────
-function RobotAvatar({ phase }: { phase: Phase }) {
+export function RobotAvatar({ phase }: { phase: Phase }) {
   const isThinking = phase === "showing-indicator"
   const isTalking = phase === "typing-answer"
   const [blink, setBlink] = useState(false)
