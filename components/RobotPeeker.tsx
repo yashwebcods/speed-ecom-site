@@ -25,24 +25,18 @@ export default function RobotPeeker() {
   const [leftMsgIndex, setLeftMsgIndex] = useState(0);
   const [rightMsgIndex, setRightMsgIndex] = useState(0);
   
-  const lastScrollY = useRef(0);
   const isAnimatingRef = useRef(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastTriggerSideRef = useRef<'left' | 'right'>('left');
 
   useEffect(() => {
-    lastScrollY.current = window.scrollY;
-
     // 1. Setup Intersection Observer for all sections
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const currentScrollY = window.scrollY;
-          const isScrollDown = currentScrollY >= lastScrollY.current;
-          lastScrollY.current = currentScrollY;
-          
-          // Trigger robot when section comes into view
-          triggerPeek(isScrollDown ? 'right' : 'left');
+          // Alternate sides based on last triggered side
+          const peekSide = lastTriggerSideRef.current === 'left' ? 'right' : 'left';
+          triggerPeek(peekSide);
         }
       });
     }, { threshold: 0.25 }); // Trigger when 25% of section is visible
@@ -53,31 +47,8 @@ export default function RobotPeeker() {
       sections.forEach(sec => observer.observe(sec));
     }, 100);
 
-    // 2. Debounced Scroll Fallback (for long sections)
-    const handleScroll = () => {
-      if (isAnimatingRef.current) return;
-
-      if (debounceTimeoutRef.current) {
-        clearTimeout(debounceTimeoutRef.current);
-      }
-
-      debounceTimeoutRef.current = setTimeout(() => {
-        const currentScrollY = window.scrollY;
-        const scrollDiff = currentScrollY - lastScrollY.current;
-        
-        if (Math.abs(scrollDiff) > 20) {
-          const newSide = scrollDiff > 0 ? 'right' : 'left';
-          triggerPeek(newSide);
-        }
-        lastScrollY.current = currentScrollY;
-      }, 700);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
-      if (debounceTimeoutRef.current) clearTimeout(debounceTimeoutRef.current);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, []);
@@ -86,6 +57,7 @@ export default function RobotPeeker() {
     if (isAnimatingRef.current) return;
     
     isAnimatingRef.current = true;
+    lastTriggerSideRef.current = peekSide;
     setSide(peekSide);
     setIsPeeking(true);
     setShowSpeech(false);
@@ -117,7 +89,7 @@ export default function RobotPeeker() {
           }
         }, 800);
       }, 500); // 0.5s delay before sliding out after speech bubble hides
-    }, 6000); // 6 seconds total visible time to allow proper reading
+    }, 3000); // 3 seconds total visible time for quicker appearance
   };
 
   const currentMessage = side === 'left' 
