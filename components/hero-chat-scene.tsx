@@ -717,17 +717,17 @@ export function HeroChatScene() {
   const isSending = phase === "sending"
 
   return (
-    <div className="w-full h-full flex items-center justify-center px-2">
+    <div className="w-full h-full flex items-center justify-center px-2 pt-24 lg:pt-32">
       <div className="w-full max-w-[460px] relative">
 
         {/* ── Robot avatar (Behind the card) ── */}
-        <div className="absolute left-1/2 -translate-x-1/2 -top-16 z-0 pointer-events-none">
+        <div className="absolute left-1/2 -translate-x-1/2 -top-20 z-0 pointer-events-none">
           <motion.div
-            initial={{ y: 80, opacity: 0 }}
+            initial={{ y: 100, opacity: 0 }}
             animate={{
-              y: (phase === "initial-wait" || phase === "greeting") ? 60 : 0,
+              y: (phase === "initial-wait" || phase === "greeting") ? 70 : 0,
               opacity: 1,
-              scale: (phase === "initial-wait" || phase === "greeting") ? 1.2 : 0.85,
+              scale: (phase === "initial-wait" || phase === "greeting") ? 1.25 : 0.9,
             }}
             transition={{ duration: 0.8, ease: "backOut" }}
           >
