@@ -6,8 +6,19 @@ import { motion, AnimatePresence } from "framer-motion"
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const QA_DATA = [
   {
-    question: "Where is my profit going?",
-    answer: "You're losing 18% in hidden marketplace fees and high shipping charges.",
+    question: "Which SKUs are losing money even after successful delivery?",
+    answer: "I've analyzed your delivered orders. These 3 SKUs are currently running at a loss due to high marketing costs and returns:",
+    component: "ProfitTable"
+  },
+  {
+    question: "Identify SKUs with high losses or high return rates that should be considered for discontinuation.",
+    answer: "Based on recent performance data, these SKUs show unsustainable return rates and negative net margins:",
+    component: "DiscontinuationTable"
+  },
+  {
+    question: "Which of our top-performing SKUs are now showing rising return & RTO trends that may impact future profitability?",
+    answer: "I've flagged 3 top-performers where increasing RTO rates are starting to squeeze margins. Immediate attention recommended:",
+    component: "TrendingReturnsTable"
   },
   {
     question: "Can I track my returns?",
@@ -16,10 +27,6 @@ const QA_DATA = [
   {
     question: "Which platform costs me the most?",
     answer: "Amazon fees are 2.3x higher than Flipkart for your products.",
-  },
-  {
-    question: "Are there hidden charges?",
-    answer: "Yes, our engine detected 4.2% hidden charges in your last 30 days.",
   },
 ]
 
@@ -39,8 +46,175 @@ function highlightText(text: string) {
   )
 }
 
+// ─── Profit Table Component ──────────────────────────────────────────────────
+function ProfitTable() {
+  const data = [
+    { sku: "S-ECOM-HB-01", price: "₹0", sett: "-₹277", profit: "-₹277", status: "Loss" },
+    { sku: "S-ECOM-KC-42", price: "₹397", sett: "₹76", profit: "-₹188", status: "Loss" },
+    { sku: "S-ECOM-WL-09", price: "₹337", sett: "₹313", profit: "-₹91", status: "Loss" },
+  ]
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95, y: 10 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="mt-3 bg-slate-900/40 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden shadow-2xl"
+    >
+      <div className="px-3 py-2 bg-gradient-to-r from-red-500/20 to-transparent border-b border-white/10 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+          <span className="text-[10px] font-black uppercase tracking-[0.15em] text-red-200">Loss Analysis</span>
+        </div>
+        <span className="text-[8px] font-bold text-white/40 uppercase">3 Records Found</span>
+      </div>
+
+      <div className="p-1">
+        <div className="grid grid-cols-4 gap-0 px-2 py-1.5 text-[8px] font-black uppercase tracking-widest text-white/30">
+          <div>SKU</div>
+          <div className="text-right">Price</div>
+          <div className="text-right">Sett.</div>
+          <div className="text-right">Net</div>
+        </div>
+
+        {data.map((row, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -5 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.1 }}
+            className="grid grid-cols-4 gap-0 px-2 py-2 text-[10px] items-center border-b border-white/5 last:border-0 hover:bg-white/5 transition-colors group"
+          >
+            <div className="truncate pr-1 font-bold text-white/90 group-hover:text-white transition-colors">{row.sku}</div>
+            <div className="text-right text-white/60 font-medium">{row.price}</div>
+            <div className="text-right text-white/60 font-medium">{row.sett}</div>
+            <div className="text-right font-black text-red-400 group-hover:text-red-300 transition-colors">{row.profit}</div>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="bg-red-500/10 px-3 py-2 text-[9px] text-red-100/80 font-bold border-t border-white/5 flex items-center gap-2">
+        <div className="flex -space-x-1">
+          {[1, 2, 3].map(i => (
+            <div key={i} className="w-3.5 h-3.5 rounded-full bg-slate-700 border border-slate-600 flex items-center justify-center text-[6px]">⚠️</div>
+          ))}
+        </div>
+        <span>High priority: Negative margin detected</span>
+      </div>
+    </motion.div>
+  )
+}
+
+function DiscontinuationTable() {
+  const data = [
+    { sku: "S-ECOM-IR-88", loss: "-₹285", returns: "50.0%", orders: "4" },
+    { sku: "S-ECOM-CH-12", loss: "-₹1,112", returns: "14.6%", orders: "48" },
+    { sku: "S-ECOM-EC-44", loss: "-₹1,814", returns: "14.3%", orders: "21" },
+  ]
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95, y: 10 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="mt-3 bg-slate-900/40 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden shadow-2xl"
+    >
+      <div className="px-3 py-2 bg-gradient-to-r from-orange-500/20 to-transparent border-b border-white/10 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+          <span className="text-[10px] font-black uppercase tracking-[0.15em] text-orange-200">Discontinuation Alert</span>
+        </div>
+        <span className="text-[8px] font-bold text-white/40 uppercase">Action Required</span>
+      </div>
+
+      <div className="p-1">
+        <div className="grid grid-cols-4 gap-0 px-2 py-1.5 text-[8px] font-black uppercase tracking-widest text-white/30">
+          <div>SKU Name</div>
+          <div className="text-right">Returns</div>
+          <div className="text-right">Orders</div>
+          <div className="text-right">Net Loss</div>
+        </div>
+
+        {data.map((row, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -5 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.1 }}
+            className="grid grid-cols-4 gap-0 px-2 py-2 text-[10px] items-center border-b border-white/5 last:border-0 hover:bg-white/5 transition-colors group"
+          >
+            <div className="truncate pr-1 font-bold text-white/90 group-hover:text-white transition-colors">{row.sku}</div>
+            <div className="text-right text-orange-300 font-medium">{row.returns}</div>
+            <div className="text-right text-white/60 font-medium">{row.orders}</div>
+            <div className="text-right font-black text-red-400 group-hover:text-red-300 transition-colors">{row.loss}</div>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="bg-orange-500/10 px-3 py-2 text-[9px] text-orange-100/80 font-bold border-t border-white/5 flex items-center gap-2">
+        <span className="text-[12px]">⚠️</span>
+        <span>Recommendation: Stop AD spend immediately</span>
+      </div>
+    </motion.div>
+  )
+}
+
+function TrendingReturnsTable() {
+  const data = [
+    { sku: "S-ECOM-BT-11", profit: "₹10,577", retChange: "+12%", rtoChange: "+11.6%" },
+    { sku: "S-ECOM-AP-92", profit: "₹8,240", retChange: "+8.5%", rtoChange: "+5.2%" },
+    { sku: "S-ECOM-KC-55", profit: "₹12,110", retChange: "+4.2%", rtoChange: "+9.8%" },
+  ]
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95, y: 10 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="mt-3 bg-slate-900/40 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden shadow-2xl"
+    >
+      <div className="px-3 py-2 bg-gradient-to-r from-violet-500/20 to-transparent border-b border-white/10 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
+          <span className="text-[10px] font-black uppercase tracking-[0.15em] text-violet-200">Trend Watch</span>
+        </div>
+        <span className="text-[8px] font-bold text-white/40 uppercase">Top Performers</span>
+      </div>
+
+      <div className="p-1">
+        <div className="grid grid-cols-4 gap-0 px-2 py-1.5 text-[8px] font-black uppercase tracking-widest text-white/30">
+          <div>SKU Name</div>
+          <div className="text-right">Profit</div>
+          <div className="text-right">Ret Δ</div>
+          <div className="text-right">RTO Δ</div>
+        </div>
+
+        {data.map((row, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -5 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.1 }}
+            className="grid grid-cols-4 gap-0 px-2 py-2 text-[10px] items-center border-b border-white/5 last:border-0 hover:bg-white/5 transition-colors group"
+          >
+            <div className="truncate pr-1 font-bold text-white/90 group-hover:text-white transition-colors">{row.sku}</div>
+            <div className="text-right text-emerald-400 font-medium">{row.profit}</div>
+            <div className="text-right text-red-400 font-bold">{row.retChange}</div>
+            <div className="text-right text-red-400 font-bold">{row.rtoChange}</div>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="bg-violet-500/10 px-3 py-2 text-[9px] text-violet-100/80 font-bold border-t border-white/5 flex items-center gap-2">
+        <span className="text-[12px]">📈</span>
+        <span>Warning: Return rates rising on high-volume items</span>
+      </div>
+    </motion.div>
+  )
+}
+
 // ─── Types ────────────────────────────────────────────────────────────────────
-type ChatMessage = { id: string; role: "user" | "assistant"; text: string }
+type ChatMessage = { id: string; role: "user" | "assistant"; text: string; component?: string }
 export type Phase =
   | "initial-wait"
   | "greeting"
@@ -50,7 +224,6 @@ export type Phase =
   | "showing-indicator"
   | "typing-answer"
   | "pause"
-  | "clearing"
 
 // ─── 🤖 Spherical Robot Avatar ────────────────────────────────────────────────
 export function RobotAvatar({ phase }: { phase: Phase }) {
@@ -77,33 +250,36 @@ export function RobotAvatar({ phase }: { phase: Phase }) {
   return (
     <motion.div
       animate={{
-        y: phase === "initial-wait" 
-          ? [12, 15, 12] 
-          : phase === "greeting" 
+        y: phase === "initial-wait"
+          ? [12, 15, 12]
+          : phase === "greeting"
             ? [12, -45, 0, -25, 0] // Excited jumping for greeting
-            : isThinking 
-              ? [0, -8, 0] 
-              : isTalking 
+            : isThinking
+              ? [0, -8, 0]
+              : isTalking
                 ? [0, -15, 0, -10, 0] // Bouncing while talking
                 : [0, -5, 0], // Default floating
-        rotate: phase === "greeting" 
-          ? [0, -10, 10, -5, 5, 0] 
-          : isTalking 
+        rotate: phase === "greeting"
+          ? [0, -10, 10, -5, 5, 0]
+          : isTalking
             ? [0, -2, 2, 0]
-            : isHovered 
-              ? [0, -5, 5, 0] 
-              : 0,
+            : phase === "typing-input"
+              ? [-5, 5, -5] // Looking around while listening
+              : isHovered
+                ? [0, -5, 5, 0]
+                : 0,
         scale: phase === "greeting" ? [1, 1.15, 1] : isHovered ? 1.05 : 1
       }}
       transition={{
-        y: { 
-          duration: phase === "greeting" ? 1.2 : isTalking ? 0.8 : isThinking ? 1.0 : 2.6, 
-          repeat: (phase === "initial-wait") ? Infinity : Infinity, 
-          ease: phase === "greeting" ? "easeOut" : "easeInOut" 
+        y: {
+          duration: phase === "greeting" ? 1.2 : isTalking ? 0.8 : isThinking ? 1.0 : 2.6,
+          repeat: Infinity,
+          ease: phase === "greeting" ? "easeOut" : "easeInOut"
         },
-        rotate: { 
-          duration: phase === "greeting" ? 1.2 : 0.5,
-          repeat: isTalking ? Infinity : 0
+        rotate: {
+          duration: phase === "typing-input" ? 2 : (phase === "greeting" ? 1.2 : 0.5),
+          repeat: Infinity,
+          ease: "easeInOut"
         },
         scale: { duration: 0.3 }
       }}
@@ -409,22 +585,27 @@ function ChatBubble({ message, showCursor }: { message: ChatMessage; showCursor:
         {isUser ? "U" : "AI"}
       </div>
       <div className={`max-w-[82%] px-4 py-2.5 rounded-2xl shadow text-sm leading-relaxed ${isUser
-          ? "bg-slate-100 text-slate-800 rounded-tr-sm"
-          : "bg-primary text-white rounded-tl-sm"
+        ? "bg-slate-100 text-slate-800 rounded-tr-sm"
+        : "bg-primary text-white rounded-tl-sm"
         }`}>
         {isUser ? (
           <span>{message.text}</span>
         ) : (
-          <span>
-            {highlightText(message.text)}
-            {showCursor && (
-              <motion.span
-                className="inline-block w-0.5 h-3.5 bg-white/80 ml-0.5 align-middle"
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.5, repeat: Infinity }}
-              />
-            )}
-          </span>
+          <div className="flex flex-col">
+            <span>
+              {highlightText(message.text)}
+              {showCursor && (
+                <motion.span
+                  className="inline-block w-0.5 h-3.5 bg-white/80 ml-0.5 align-middle"
+                  animate={{ opacity: [1, 0] }}
+                  transition={{ duration: 0.5, repeat: Infinity }}
+                />
+              )}
+            </span>
+            {!showCursor && message.component === "ProfitTable" && <ProfitTable />}
+            {!showCursor && message.component === "DiscontinuationTable" && <DiscontinuationTable />}
+            {!showCursor && message.component === "TrendingReturnsTable" && <TrendingReturnsTable />}
+          </div>
         )}
       </div>
     </motion.div>
@@ -502,34 +683,31 @@ export function HeroChatScene() {
       setMessages((prev) => [...prev, { id, role: "assistant", text: "" }])
       intervalRef.current = setInterval(() => {
         idx++
-        setMessages((prev) => prev.map((m) => m.id === id ? { ...m, text: qa.answer.slice(0, idx) } : m))
+        setMessages((prev) => prev.map((m) => m.id === id ? { ...m, text: qa.answer.slice(0, idx), component: idx >= qa.answer.length ? qa.component : undefined } : m))
         if (idx >= qa.answer.length) {
           clearInterval(intervalRef.current!)
           setAnswerTypingId(null)
-          timerRef.current = setTimeout(() => setPhase("pause"), PAUSE_AFTER_A)
+          setPhase("pause")
         }
       }, TYPING_SPEED_A)
     }
 
     if (phase === "pause") {
       const isLast = qaIndex === QA_DATA.length - 1
-      if (isLast) {
-        timerRef.current = setTimeout(() => setPhase("clearing"), 500)
-      } else {
-        setQaIndex((i) => i + 1)
-        timerRef.current = setTimeout(() => setPhase("typing-input"), 400)
-      }
-    }
-
-    if (phase === "clearing") {
       timerRef.current = setTimeout(() => {
+        // Clear for next question
         setMessages([])
         setInputText("")
-        setShowIndicator(false)
         setAnswerTypingId(null)
-        setQaIndex(0)
-        setPhase("typing-input")
-      }, CLEAR_DELAY)
+
+        if (isLast) {
+          setQaIndex(0)
+          setPhase("typing-input")
+        } else {
+          setQaIndex((i) => i + 1)
+          setPhase("typing-input")
+        }
+      }, PAUSE_AFTER_A + (qa.component ? 3000 : 1000))
     }
 
     return clearTimers
@@ -540,43 +718,20 @@ export function HeroChatScene() {
 
   return (
     <div className="w-full h-full flex items-center justify-center px-2">
-      <div className="w-full max-w-[460px] flex flex-col items-center">
+      <div className="w-full max-w-[460px] relative">
 
-        {/* ── Robot avatar + header ── */}
-        <div className="flex flex-col items-center mb-2" style={{ paddingTop: 10 }}>
+        {/* ── Robot avatar (Behind the card) ── */}
+        <div className="absolute left-1/2 -translate-x-1/2 -top-16 z-0 pointer-events-none">
           <motion.div
-            initial={{ scale: 1.5, y: 100 }}
+            initial={{ y: 80, opacity: 0 }}
             animate={{
-              scale: (phase === "greeting" || phase === "initial-wait") ? 1.5 : 0.8,
-              y: (phase === "greeting" || phase === "initial-wait") ? 100 : 0
+              y: (phase === "initial-wait" || phase === "greeting") ? 60 : 0,
+              opacity: 1,
+              scale: (phase === "initial-wait" || phase === "greeting") ? 1.2 : 0.85,
             }}
-            transition={{ duration: 0.8, ease: "backInOut" }}
-            style={{ transformOrigin: "bottom center" }}
+            transition={{ duration: 0.8, ease: "backOut" }}
           >
             <RobotAvatar phase={phase} />
-          </motion.div>
-          <motion.div
-            className="mt-1 text-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: (phase === "greeting" || phase === "initial-wait") ? 0 : 1 }}
-            transition={{ duration: 0.4 }}
-          >
-            <p className="text-sm font-bold text-slate-800 dark:text-slate-100 tracking-tight">
-              Speed AI
-            </p>
-            <div className="flex items-center justify-center gap-1.5 mt-0.5">
-              <motion.span
-                className="w-2 h-2 rounded-full bg-emerald-400 block"
-                animate={{ opacity: [1, 0.4, 1] }}
-                transition={{ duration: 1.8, repeat: Infinity }}
-              />
-              <span className="text-xs text-slate-500 dark:text-slate-400">
-                {phase === "showing-indicator" ? "Thinking…" :
-                  phase === "typing-answer" ? "Responding…" :
-                    phase === "typing-input" ? "Listening…" :
-                      "Online · Analyzing your data"}
-              </span>
-            </div>
           </motion.div>
         </div>
 
@@ -584,18 +739,39 @@ export function HeroChatScene() {
         <AnimatePresence>
           {phase !== "initial-wait" && phase !== "greeting" && phase !== "startup" && (
             <motion.div
-              initial={{ opacity: 0, height: 0, scale: 0.95 }}
-              animate={{ opacity: 1, height: "auto", scale: 1 }}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full flex flex-col"
+              className="w-full flex flex-col relative z-10"
             >
-              <div className="w-full bg-white/85 dark:bg-slate-800/85 backdrop-blur-md border border-slate-200/60 dark:border-slate-700/60 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+              <div className="w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 rounded-3xl shadow-[0_32px_64px_-15px_rgba(0,0,0,0.2)] overflow-hidden flex flex-col">
+
+                {/* Header */}
+                <div className="px-5 py-3 border-b border-slate-100/50 dark:border-slate-800/50 flex items-center justify-between bg-white/40 dark:bg-slate-900/40">
+                  <div className="flex items-center gap-3">
+                    <div className="relative">
+                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                      <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping opacity-40" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-black text-slate-800 dark:text-white uppercase tracking-widest">Speed AI</p>
+                      <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                        {phase === "showing-indicator" ? "Thinking…" :
+                          phase === "typing-answer" ? "Responding…" :
+                            "Online · Analyzing Data"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-1.5">
+                    {[1, 2, 3].map(i => <div key={i} className="w-2 h-2 rounded-full bg-slate-200 dark:bg-slate-800" />)}
+                  </div>
+                </div>
 
                 {/* Messages */}
                 <div
                   ref={scrollRef}
-                  className="flex flex-col gap-3 p-4 overflow-y-auto"
-                  style={{ minHeight: "clamp(180px, 40vh, 240px)", maxHeight: "clamp(180px, 40vh, 240px)" }}
+                  className="flex flex-col gap-4 p-5 overflow-y-auto hide-scrollbar"
+                  style={{ minHeight: "clamp(300px, 50vh, 360px)", maxHeight: "clamp(300px, 50vh, 360px)" }}
                 >
                   <AnimatePresence mode="popLayout">
                     {messages.length === 0 && !showIndicator && phase === "typing-input" && (
@@ -626,8 +802,8 @@ export function HeroChatScene() {
                 <div className="px-3 py-3 border-t border-slate-100 dark:border-slate-700/50 bg-white/60 dark:bg-slate-800/60 flex items-center gap-2">
                   <div className="flex-1">
                     <div className={`w-full bg-slate-50 dark:bg-slate-700/50 border rounded-xl px-3 py-2 text-sm min-h-[36px] flex items-center transition-all duration-300 ${phase === "typing-input"
-                        ? "border-primary ring-2 ring-primary/20"
-                        : "border-slate-200 dark:border-slate-600"
+                      ? "border-primary ring-2 ring-primary/20"
+                      : "border-slate-200 dark:border-slate-600"
                       }`}>
                       {inputText ? (
                         <span className="text-slate-700 dark:text-slate-200">
