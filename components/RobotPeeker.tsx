@@ -32,6 +32,7 @@ export default function RobotPeeker() {
   const lastScrollY = useRef(0);
   const isAnimatingRef = useRef(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastTriggerSideRef = useRef<'left' | 'right'>('left');
 
   useEffect(() => {
@@ -87,7 +88,9 @@ export default function RobotPeeker() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (debounceTimeoutRef.current) clearTimeout(debounceTimeoutRef.current);
     };
   }, []);
 
