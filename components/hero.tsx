@@ -87,12 +87,7 @@ export function Hero() {
               </motion.div>
             </div>
 
-            {/* Brand Tagline */}
-            <motion.div variants={itemVariants} className="mb-6 lg:mb-4 flex justify-center lg:justify-start">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm sm:text-base font-semibold tracking-wide backdrop-blur-sm">
-                બિઝનેસ તમારો, હિસાબ અમારો
-              </div>
-            </motion.div>
+           
 
             {/* Headline */}
             <motion.h1 variants={itemVariants} className="text-2xl sm:text-4xl lg:text-6xl font-bold font-display leading-[1.1] mb-4 flex flex-wrap justify-center lg:justify-start gap-x-2">
