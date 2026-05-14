@@ -32,11 +32,9 @@ export default function RobotPeeker() {
   const lastScrollY = useRef(0);
   const isAnimatingRef = useRef(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastTriggerSideRef = useRef<'left' | 'right'>('left');
 
   useEffect(() => {
-    lastScrollY.current = window.scrollY;
-
     // 1. Setup Intersection Observer for all sections
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -89,8 +87,6 @@ export default function RobotPeeker() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
-      if (debounceTimeoutRef.current) clearTimeout(debounceTimeoutRef.current);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, []);
