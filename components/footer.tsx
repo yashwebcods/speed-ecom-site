@@ -57,9 +57,6 @@ export function Footer() {
               Your trusted partner for e-commerce financial management. We help online sellers
               maximize profits and eliminate hidden losses.
             </p>
-            <p className="text-sm font-medium text-accent">
-              બિઝનેસ તમારો, હિસાબ અમારો
-            </p>
           </motion.div>
 
           {/* Quick Links */}
