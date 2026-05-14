@@ -224,9 +224,10 @@ export type Phase =
   | "showing-indicator"
   | "typing-answer"
   | "pause"
+  | "gesturing"
 
 // ─── 🤖 Spherical Robot Avatar ────────────────────────────────────────────────
-export function RobotAvatar({ phase }: { phase: Phase }) {
+export function RobotAvatar({ phase, disableBounce = false }: { phase: Phase, disableBounce?: boolean }) {
   const isThinking = phase === "showing-indicator"
   const isTalking = phase === "typing-answer"
   const [blink, setBlink] = useState(false)
@@ -249,7 +250,7 @@ export function RobotAvatar({ phase }: { phase: Phase }) {
 
   return (
     <motion.div
-      animate={{
+      animate={disableBounce ? { y: 0, rotate: 0, scale: 1 } : {
         y: phase === "initial-wait"
           ? [12, 15, 12]
           : phase === "greeting"
@@ -270,7 +271,7 @@ export function RobotAvatar({ phase }: { phase: Phase }) {
                 : 0,
         scale: phase === "greeting" ? [1, 1.15, 1] : isHovered ? 1.05 : 1
       }}
-      transition={{
+      transition={disableBounce ? { duration: 0.1 } : {
         y: {
           duration: phase === "greeting" ? 1.2 : isTalking ? 0.8 : isThinking ? 1.0 : 2.6,
           repeat: Infinity,
@@ -318,17 +319,19 @@ export function RobotAvatar({ phase }: { phase: Phase }) {
             ? { rotate: 25, y: 8, x: -3 }
             : phase === "greeting"
               ? {
-                rotate: [25, -25, -5, 0],
-                x: [-3, 6, 0, 0],
-                y: [8, -8, 0, 0]
+                rotate: [0, -45, 20, -30, 0],
+                x: [0, 10, -5, 5, 0],
+                y: [0, -10, 5, -5, 0]
               }
-              : isTalking
-                ? { rotate: [0, 10, -5, 0], y: [0, -2, 1, 0] }
-                : isHovered
-                  ? { rotate: [0, 15, 0], y: [0, -4, 0] }
-                  : isThinking
-                    ? { rotate: [0, -10, 0], y: [0, 5, 0] }
-                    : { rotate: [0, 4, 0] }
+              : phase === "gesturing"
+                ? { rotate: [0, -30, 0], y: [0, -5, 0] }
+                : isTalking
+                  ? { rotate: [0, 10, -5, 0], y: [0, -2, 1, 0] }
+                  : isHovered
+                    ? { rotate: [0, 15, 0], y: [0, -4, 0] }
+                    : isThinking
+                      ? { rotate: [0, -10, 0], y: [0, 5, 0] }
+                      : { rotate: [0, 4, 0] }
         }
         transition={{
           duration: phase === "greeting" ? 1.4 : isTalking ? 0.6 : (isHovered ? 0.4 : 3),
@@ -374,15 +377,17 @@ export function RobotAvatar({ phase }: { phase: Phase }) {
             ? { rotate: -25, y: 8, x: 3 }
             : phase === "greeting"
               ? {
-                rotate: [-25, 25, 5, 0],
-                x: [3, -6, 0, 0],
-                y: [8, -8, 0, 0]
+                rotate: [0, 45, -20, 30, 0],
+                x: [0, -10, 5, -5, 0],
+                y: [0, -10, 5, -5, 0]
               }
-              : isTalking
-                ? { rotate: [0, -8, 6, 0], y: [0, -1, 2, 0] }
-                : isHovered
-                  ? { rotate: [0, -15, 0], y: [0, -4, 0] }
-                  : { rotate: [0, -3, 0] }
+              : phase === "gesturing"
+                ? { rotate: [0, 60, 0], x: [0, -8, 0] }
+                : isTalking
+                  ? { rotate: [0, -8, 6, 0], y: [0, -1, 2, 0] }
+                  : isHovered
+                    ? { rotate: [0, -15, 0], y: [0, -4, 0] }
+                    : { rotate: [0, -3, 0] }
         }
         transition={{
           duration: phase === "greeting" ? 1.4 : isTalking ? 0.6 : (isHovered ? 0.4 : 2.5),
