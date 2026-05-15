@@ -6,27 +6,27 @@ import { motion, AnimatePresence } from "framer-motion"
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const QA_DATA = [
   {
-    question: "Which SKUs are losing money even after successful delivery?",
-    answer: "I've analyzed your delivered orders. These 3 SKUs are currently running at a loss due to high marketing costs and returns:",
+    question: "Kaunse SKUs delivery ke baad bhi loss me chal rahe hain?",
+    answer: "Maine aapke delivered orders analyze kiye hain. Ye 3 SKUs high marketing costs aur returns ki wajah se loss me chal rahe hain:",
     component: "ProfitTable"
   },
   {
-    question: "Identify SKUs with high losses or high return rates that should be considered for discontinuation.",
-    answer: "Based on recent performance data, these SKUs show unsustainable return rates and negative net margins:",
+    question: "Kaunse SKUs high loss ya high return rates ke saath hain jo discontinuation ke liye consider kiye jaane chahiye?",
+    answer: "Recent performance data ke base par, ye SKUs unsustainable return rates aur negative net margins dikh rahe hain:",
     component: "DiscontinuationTable"
   },
   {
-    question: "Which of our top-performing SKUs are now showing rising return & RTO trends that may impact future profitability?",
-    answer: "I've flagged 3 top-performers where increasing RTO rates are starting to squeeze margins. Immediate attention recommended:",
+    question: "Hamare top-performing SKUs mein se kaunse ab rising return & RTO trends dikh rahe hain jo future profitability ko impact kar sakte hain?",
+    answer: "Maine 3 top-performers flag kiye hain jahan increasing RTO rates margins ko squeeze karne lage hain. Immediate attention recommended:",
     component: "TrendingReturnsTable"
   },
   {
-    question: "Can I track my returns?",
-    answer: "Yes, our return claim tracking tool ensures every return is accounted for.",
+    question: "Kya main apne returns track kar sakta hoon?",
+    answer: "Haan, hamara return claim tracking tool har return ko account karta hai.",
   },
   {
-    question: "Which platform costs me the most?",
-    answer: "Amazon fees are 2.3x higher than Flipkart for your products.",
+    question: "Kaunsa platform mere sabse zyada cost kar raha hai?",
+    answer: "Amazon fees aapke products ke liye Flipkart se 2.3x zyada hain.",
   },
 ]
 
