@@ -6,24 +6,24 @@ import { Card, CardContent } from "@/components/ui/card"
 
 const testimonials = [
   {
-    name: "Priya Malhotra",
-    role: "Online Seller, Delhi",
+    name: "Raster Tex",
+    role: "2 reviews • 7 months ago",
     content:
-      "I truly appreciate the detailed monthly reports and profit-loss breakdown shared by my Relationship Manager. Her insights have helped me reduce unnecessary expenses and plan ahead. This kind of personal support is rare – thank you so much!",
+      "I had a great experience with Speed Ecom Service. The platform is simple to use, and their support team is always quick to respond. My orders were processed smoothly, and delivery was on time. It really helped me save effort and grow my online business. Highly recommend to anyone looking for a reliable e-commerce solution!",
     rating: 5,
   },
   {
-    name: "Amit Shah",
-    role: "E-commerce Business Owner, Mumbai",
+    name: "Reewaz 24K",
+    role: "1 review • 7 months ago",
     content:
-      "My dedicated RM takes time every month to explain my store's performance in detail. I never expected such clarity and consistent financial guidance. It's made a real impact on my business decisions. Highly recommended!",
+      "I am an e-commerce businessman and had some doubts regarding my payments and a lost parcel. Speed E-Commerce company helped me quickly to find out my payment issues, track my lost parcel, and even manage my account smoothly. Their support is fast, professional, and very reliable. I truly appreciate their excellent service and highly recommend them to everyone.",
     rating: 5,
   },
   {
-    name: "Rakesh Bansal",
-    role: "Multi-platform Seller, Surat",
+    name: "Prashant Parchani",
+    role: "3 reviews • 9 months ago",
     content:
-      "From day one, my Relationship Manager has been proactive in sharing monthly analysis reports and helping me understand profit margins and losses. The personal touch and professional service have exceeded my expectations.",
+      "Speed Ecom Solution has made managing my e-commerce accounting so much easier! It provides complete accounting management for platforms like Amazon, Flipkart, and Meesho. I can easily track sales, returns, and get clear profit and loss reports. It's user-friendly and saves me a lot of time on manual work. Highly recommended for every online seller!",
     rating: 5,
   },
 ]
