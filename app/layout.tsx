@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SmoothScroll } from '@/components/smooth-scroll'
-import RobotPeeker from '@/components/RobotPeeker'
+import RobotPeekerWrapper from '@/components/RobotPeekerWrapper'
 import './globals.css'
 
 const inter = Inter({
@@ -48,7 +48,7 @@ export default function RootLayout({
       <body className="font-sans antialiased overflow-x-clip">
         <SmoothScroll>
           {children}
-          <RobotPeeker />
+          <RobotPeekerWrapper />
           {process.env.NODE_ENV === 'production' && <Analytics />}
         </SmoothScroll>
       </body>

@@ -31,6 +31,7 @@ export default function RobotPeeker() {
 
   const lastScrollY = useRef(0);
   const isAnimatingRef = useRef(false);
+  const isFirstAppearanceRef = useRef(true);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastTriggerSideRef = useRef<'left' | 'right'>('left');
@@ -110,7 +111,11 @@ export default function RobotPeeker() {
 
       // Set a random height for variety (between 15% and 65% of viewport)
       const randomHeight = Math.floor(Math.random() * 50) + 15;
-      setBottomPos(`${randomHeight}vh`);
+      // Start from bottom and animate up
+      setBottomPos('-100px');
+      setTimeout(() => {
+        setBottomPos(`${randomHeight}vh`);
+      }, 50);
 
       // Set a random depth/offset from the side (0px to 60px)
       const randomOffset = Math.floor(Math.random() * 60);
@@ -118,6 +123,7 @@ export default function RobotPeeker() {
 
       setIsPeeking(true);
       setShowSpeech(false);
+      isFirstAppearanceRef.current = false;
 
       // Cycle through gestures
       setPhase('greeting');
@@ -139,6 +145,7 @@ export default function RobotPeeker() {
 
         setTimeout(() => {
           setIsPeeking(false);
+          setBottomPos('-100px'); // Reset to bottom for next appearance
 
           // 4. Reset for next animation
           setTimeout(() => {
@@ -188,7 +195,11 @@ export default function RobotPeeker() {
 
   const getTransition = () => {
     if (isPeeking) {
-      // Smoother, slightly longer spring-in animation
+      // First appearance: smooth ease-in without bounce
+      if (isFirstAppearanceRef.current) {
+        return 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+      // Subsequent appearances: spring-in animation with bounce
       return 'transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
     }
     // Smooth ease-in-out for exiting
@@ -202,6 +213,7 @@ export default function RobotPeeker() {
         bottom: bottomPos,
         left: side === 'left' ? '0' : 'auto',
         right: side === 'right' ? '0' : 'auto',
+        transition: isPeeking ? 'bottom 0.8s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
       }}
     >
       <div
