@@ -7,21 +7,21 @@ import { Card, CardContent } from "@/components/ui/card"
 const testimonials = [
   {
     name: "Raster Tex",
-    role: "2 reviews • 7 months ago",
+    role: "2 reviews",
     content:
       "I had a great experience with Speed Ecom Service. The platform is simple to use, and their support team is always quick to respond. My orders were processed smoothly, and delivery was on time. It really helped me save effort and grow my online business. Highly recommend to anyone looking for a reliable e-commerce solution!",
     rating: 5,
   },
   {
     name: "Reewaz 24K",
-    role: "1 review • 7 months ago",
+    role: "1 review",
     content:
       "I am an e-commerce businessman and had some doubts regarding my payments and a lost parcel. Speed E-Commerce company helped me quickly to find out my payment issues, track my lost parcel, and even manage my account smoothly. Their support is fast, professional, and very reliable. I truly appreciate their excellent service and highly recommend them to everyone.",
     rating: 5,
   },
   {
     name: "Prashant Parchani",
-    role: "3 reviews • 9 months ago",
+    role: "3 reviews",
     content:
       "Speed Ecom Solution has made managing my e-commerce accounting so much easier! It provides complete accounting management for platforms like Amazon, Flipkart, and Meesho. I can easily track sales, returns, and get clear profit and loss reports. It's user-friendly and saves me a lot of time on manual work. Highly recommended for every online seller!",
     rating: 5,
