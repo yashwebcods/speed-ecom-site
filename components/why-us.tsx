@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react"
-import { motion, Variants, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
@@ -9,12 +9,6 @@ import {
   Headphones,
   BarChart2,
   ArrowRight,
-  Shield,
-  Target,
-  LineChart,
-  Sparkles,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react"
 
 const reasons = [
@@ -23,249 +17,242 @@ const reasons = [
     title: "Dedicated Relationship Manager",
     description:
       "Your personal growth strategist who deeply understands your brand, streamlines communications, and ensures your goals are met with dedicated support.",
+    angle: -90, // 12 o'clock
+    color: "rgba(139, 92, 246, 0.3)",
+    borderColor: "border-purple-500/30",
+    delay: 0.1,
   },
   {
     icon: Headphones,
     title: "E-commerce Business Expert",
     description:
       "Professional account management by industry veterans who optimize your listings, marketing, and operations across all major marketplaces.",
+    angle: 30, // 4 o'clock
+    color: "rgba(59, 130, 246, 0.3)",
+    borderColor: "border-blue-500/30",
+    delay: 0.3,
   },
   {
     icon: BarChart2,
     title: "Monthly Financial Analysis",
     description:
       "Gain absolute clarity with comprehensive monthly audits covering profit margins, ad efficiency, and precise business health metrics.",
+    angle: 150, // 8 o'clock
+    color: "rgba(16, 185, 129, 0.3)",
+    borderColor: "border-emerald-500/30",
+    delay: 0.5,
   },
 ]
-
-const advantages = [
-  {
-    icon: Sparkles,
-    title: "Smart & Strategic Insights",
-    description: "Stay ahead with data-backed pricing models, deep competitor benchmarking, and predictive sales forecasting.",
-  },
-  {
-    icon: Target,
-    title: "Platform-Specific Expertise",
-    description: "Native optimization for Meesho, Flipkart, Amazon, and Myntra—leveraging platform-specific algorithms to win.",
-  },
-  {
-    icon: Shield,
-    title: "Transparent Financial Tracking",
-    description: "Eliminate revenue leakage with automated settlement audits, commission dispute management, and hidden fee detection.",
-  },
-  {
-    icon: LineChart,
-    title: "Proven Profit Techniques",
-    description: "Scale faster with high-conversion weekend strategies, ROI-focused discount models, and automated return claim tracking.",
-  },
-]
-
-const reasonCardVariants: Variants = {
-  hidden: { opacity: 0, x: 60 },
-  visible: (i: number) => ({
-    opacity: 1,
-    x: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] as any,
-    },
-  }),
-}
 
 export function WhyUs() {
   const sectionRef = useRef<HTMLElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (
-    <section id="why-us" className="py-16 lg:py-32 relative" ref={sectionRef}>
-      {/* Background */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+    <section 
+      id="why-us" 
+      className="py-20 lg:py-32 relative overflow-hidden bg-gradient-to-br from-[#051524] via-[#0B2545] to-[#134074]" 
+      ref={sectionRef}
+    >
+      {/* Background decorative glowing layers */}
+      <div className="absolute inset-0 opacity-30 -z-10 overflow-hidden">
+        <motion.div
+          animate={{ x: [0, -35, 0], y: [0, 45, 0] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 right-1/4 w-[380px] h-[380px] bg-blue-500/20 rounded-full blur-3xl animate-pulse"
+        />
+        <motion.div
+          animate={{ x: [0, 45, 0], y: [0, -35, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] bg-indigo-500/20 rounded-full blur-3xl animate-pulse"
+        />
       </div>
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
 
-      <div className="container mx-auto px-4 lg:px-8">
-        {/* Main Reasons */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 lg:mb-32">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as any }}
-            className="z-20 transform-gpu will-change-transform"
-          >
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+        
+        {/* Main Reasons grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24 lg:mb-36">
+          
+          {/* Left Column: Copywriting & Interactive Active Card */}
+          <div className="lg:col-span-7 text-left flex flex-col items-start justify-center">
+            
             <motion.span
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-4"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="inline-block px-4 py-1.5 bg-white/10 text-white border border-white/20 backdrop-blur-sm text-sm font-semibold rounded-full mb-4"
             >
               Why Choose Us
             </motion.span>
-            <h2 className="text-2xl min-[400px]:text-3xl lg:text-5xl font-bold font-display mb-4 sm:text-balance leading-tight lg:leading-[1.2] max-w-[calc(100vw-2rem)] sm:max-w-none">
+            
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="text-2xl min-[400px]:text-3xl lg:text-5xl font-bold font-display mb-6 text-white leading-tight lg:leading-[1.2]"
+            >
               More Than a Service —{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">A Success Partner!</span>
-            </h2>
-            <p className="text-base lg:text-lg text-muted-foreground mb-8 sm:text-pretty max-w-xl">
+              <span className="text-[#facc15] block sm:inline-block drop-shadow-[0_2px_10px_rgba(250,204,21,0.25)]">
+                A Success Partner!
+              </span>
+            </motion.h2>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-base lg:text-lg text-white/80 mb-8 max-w-xl leading-relaxed"
+            >
               With a mission to help online sellers maximize profits and scale smartly,
               Speed Ecom Solution brings together strategy, technology, and support under one roof.
-            </p>
+              Click any of the orbiting circles on the right to explore our core offerings!
+            </motion.p>
+
+            {/* Dynamic Interactive Card with smooth transitions */}
+            <div className="w-full max-w-xl mb-8 min-h-[160px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden"
+                >
+                  <div className="absolute top-0 right-0 text-7xl font-bold text-white/5 select-none leading-none pr-4 pt-2">
+                    0{activeIndex + 1}
+                  </div>
+                  
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xs font-bold text-[#facc15] tracking-widest uppercase bg-[#facc15]/10 px-2 py-0.5 rounded">
+                      Feature 0{activeIndex + 1}
+                    </span>
+                  </div>
+
+                  <h4 className="font-bold text-white text-xl mb-3 leading-tight">
+                    {reasons[activeIndex].title}
+                  </h4>
+                  <p className="text-sm sm:text-base text-white/80 leading-relaxed">
+                    {reasons[activeIndex].description}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Button asChild size="lg" className="rounded-full group h-12 w-fit px-8 text-base">
+              <Button asChild size="lg" className="bg-[#facc15] text-[#0b2545] hover:bg-[#f6d738] rounded-full group h-12 w-fit px-8 text-sm font-bold shadow-lg shadow-[#facc15]/15">
                 <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
                   Get Started Today
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
             </motion.div>
-          </motion.div>
-
-          <div className="relative mt-8 lg:mt-0">
-            {/* Mobile: Interactive Carousel with Framer Motion */}
-            <div className="md:hidden relative px-4">
-              <div className="overflow-hidden py-4 -mx-4 px-4">
-                <motion.div
-                  drag="x"
-                  dragConstraints={{ right: 0, left: -((reasons.length - 1) * 300) }}
-                  onDragEnd={(_, info) => {
-                    if (info.offset.x < -50 && activeIndex < reasons.length - 1) {
-                      setActiveIndex(activeIndex + 1)
-                    } else if (info.offset.x > 50 && activeIndex > 0) {
-                      setActiveIndex(activeIndex - 1)
-                    }
-                  }}
-                  animate={{ x: -(activeIndex * 300) }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="flex gap-5 cursor-grab active:cursor-grabbing transform-gpu will-change-transform"
-                >
-                  {reasons.map((reason, index) => (
-                    <motion.div
-                      key={reason.title}
-                      className="w-[300px] shrink-0"
-                    >
-                      <div className={`h-full p-6 rounded-3xl border border-primary/10 transition-all duration-500 ${activeIndex === index ? 'scale-100 opacity-100' : 'scale-90 opacity-40'}`}>
-                        <div className="relative mb-6">
-                          <div className="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center text-primary relative z-10">
-                            <reason.icon className="w-7 h-7" />
-                          </div>
-                          <div className="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center border-2 border-background">
-                            {index + 1}
-                          </div>
-                          <div className="absolute top-0 right-0 text-5xl font-bold text-primary/5 select-none leading-none">
-                            0{index + 1}
-                          </div>
-                        </div>
-
-                        <h4 className="font-bold text-foreground text-lg mb-3 leading-tight">
-                          {reason.title}
-                        </h4>
-                        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                          {reason.description}
-                        </p>
-
-                        <div className="mt-auto flex items-center gap-2 text-primary font-bold text-sm">
-                          <span>Learn more</span>
-                          <ArrowRight className="w-4 h-4" />
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </div>
-
-              {/* Pagination Dots */}
-              <div className="flex justify-center gap-2 mt-8">
-                {reasons.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveIndex(i)}
-                    className={`h-2 rounded-full transition-all duration-300 ${activeIndex === i ? 'w-8 bg-primary' : 'w-2 bg-primary/20'}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Desktop: Clean Original List */}
-            <div className="hidden md:flex flex-col gap-6">
-              {reasons.map((reason, index) => (
-                <motion.div
-                  key={reason.title}
-                  custom={index}
-                  variants={reasonCardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-50px" }}
-                  whileHover={{ x: 8, transition: { duration: 0.2 } }}
-                  className="flex gap-4 p-6 bg-card rounded-2xl border border-border hover:border-primary/20 hover:shadow-lg transition-all cursor-default transform-gpu will-change-transform"
-                >
-                  <div className="shrink-0">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                      <reason.icon className="w-6 h-6" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs font-bold text-primary">0{index + 1}</span>
-                      <h4 className="font-bold text-foreground text-lg">{reason.title}</h4>
-                    </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{reason.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </div>
-        </div>
 
-        {/* Advantages Grid */}
-        <div className="mt-20 lg:mt-32">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as any }}
-            className="text-center mb-16"
-          >
-            <h3 className="text-2xl lg:text-4xl font-bold font-display mb-4">
-              Advantages of <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Choosing Us</span>
-            </h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-base lg:text-lg">
-              Helping online sellers maximize profit, minimize losses, and grow strategically
-              on platforms like Meesho, Flipkart, and Amazon.
-            </p>
-          </motion.div>
+          {/* Right Column: Interactive Orbital 3-Circle Visual */}
+          <div className="lg:col-span-5 flex items-center justify-center mt-12 lg:mt-0 relative">
+            {/* 1:1 Aspect ratio container to prevent stretch and maintain a perfect circle */}
+            <div className="relative w-full max-w-[260px] sm:max-w-[340px] md:max-w-[400px] lg:max-w-[440px] aspect-square flex items-center justify-center flex-shrink-0 mx-auto">
+              
+              {/* Concentric dashed rings */}
+              <svg className="absolute inset-0 w-full h-full text-white/15 z-0" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" strokeWidth="0.35" strokeDasharray="2 3" />
+                <circle cx="50" cy="50" r="26" fill="none" stroke="currentColor" strokeWidth="0.2" strokeDasharray="1 2" className="opacity-40" />
+              </svg>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {advantages.map((advantage, index) => (
+              {/* Pulsing glow circles in background */}
               <motion.div
-                key={advantage.title}
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] as any }}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="group text-center p-6 lg:p-10 bg-card rounded-[2rem] border border-border hover:border-primary/20 hover:shadow-2xl transition-all transform-gpu will-change-transform"
+                animate={{ scale: [1, 1.25, 1], opacity: [0.35, 0.15, 0.35] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute w-[120px] h-[120px] sm:w-[160px] sm:h-[160px] lg:w-[200px] lg:h-[200px] bg-blue-400/20 rounded-full blur-xl z-0"
+              />
+
+              {/* Center Circle: Speed E-Com Logo */}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="relative z-10 w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 bg-white rounded-full shadow-2xl border border-slate-100 flex items-center justify-center p-3 sm:p-4"
               >
-                <motion.div
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="inline-flex items-center justify-center w-12 lg:w-16 h-12 lg:h-16 rounded-2xl bg-primary/10 text-primary mb-4 lg:mb-6"
-                >
-                  <advantage.icon className="w-6 lg:w-8 h-6 lg:h-8" />
-                </motion.div>
-                <h4 className="font-bold font-display text-foreground mb-3 group-hover:text-primary transition-colors text-xl sm:text-lg lg:text-xl">
-                  {advantage.title}
-                </h4>
-                <p className="text-base sm:text-sm lg:text-base text-muted-foreground leading-relaxed">{advantage.description}</p>
+                <div className="w-full h-full relative flex items-center justify-center">
+                  <img 
+                    src="/logo_dark.png" 
+                    alt="Speed E-Com Logo" 
+                    className="w-full h-full object-contain filter drop-shadow-[0_1px_3px_rgba(0,0,0,0.08)]" 
+                  />
+                </div>
               </motion.div>
-            ))}
+
+              {/* Spaced orbiting circles (3 features) */}
+              {reasons.map((item, index) => {
+                const angleRad = (item.angle * Math.PI) / 180
+                const x = Math.cos(angleRad) * 38
+                const y = Math.sin(angleRad) * 38
+                const isActive = activeIndex === index
+
+                return (
+                  /* Decoupled absolute placement wrapper to avoid Framer Motion transform overrides */
+                  <div
+                    key={item.title}
+                    style={{
+                      left: `calc(50% + ${x}%)`,
+                      top: `calc(50% + ${y}%)`,
+                      transform: "translate(-50%, -50%)",
+                    }}
+                    className="absolute z-20"
+                  >
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: item.delay }}
+                    >
+                      {/* Floating Loop Motion */}
+                      <motion.div
+                        animate={{
+                          y: [0, -4, 0, 4, 0],
+                          x: [0, 3, 0, -3, 0],
+                        }}
+                        transition={{
+                          duration: 4.8 + index * 0.7,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: index * 0.35,
+                        }}
+                        whileHover={{ scale: 1.12 }}
+                        onClick={() => setActiveIndex(index)}
+                        className={`w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 relative border ${
+                          isActive
+                            ? "bg-white border-[#facc15] border-2 shadow-[0_0_25px_rgba(250,204,21,0.4)] text-[#0B2545] scale-105"
+                            : "bg-white border-white/20 text-[#0b2545]/70 hover:text-[#0b2545] shadow-lg hover:shadow-2xl"
+                        }`}
+                      >
+                        <item.icon className="w-6 h-6 sm:w-8 sm:h-8" />
+                        
+                        {/* Custom Number badge on the circle */}
+                        <div className={`absolute -top-1 -right-1 text-[9px] sm:text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md transition-colors ${
+                          isActive 
+                            ? "bg-[#facc15] text-[#0b2545]"
+                            : "bg-[#0b2545] text-white"
+                        }`}>
+                          0{index + 1}
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  </div>
+                )
+              })}
+
+            </div>
           </div>
+
         </div>
+
       </div>
     </section>
   )

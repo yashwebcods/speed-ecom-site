@@ -3,6 +3,7 @@
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
 import { WhyUs } from "@/components/why-us"
+import { Advantages } from "@/components/advantages"
 import { CTA } from "@/components/cta"
 import { Testimonials } from "@/components/testimonials"
 import { Footer } from "@/components/footer"
@@ -19,6 +20,7 @@ export default function Home() {
       <main className="w-full overflow-x-clip">
         <Hero />
         <WhyUs />
+        <Advantages />
         <CTA />
         <Testimonials />
       </main>

@@ -69,7 +69,7 @@ export function TrustedBy() {
                 <img
                   src={brandSrc}
                   alt={`Trusted Brand ${i}`}
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-500 cursor-default mix-blend-multiply"
+                  className="max-h-full max-w-full object-contain hover:scale-105 transition-all duration-300 cursor-default mix-blend-multiply"
                 />
               </motion.div>
             ))}
