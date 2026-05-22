@@ -27,12 +27,14 @@ export default function Home() {
         <Hero />
         <StatsStrip />
         <TrustedBy />
+         <CTA />
         <WhatYouCanDecide/>
-        <WhyUs />
-        <Advantages />
+        
         <AskAI/>
         <Services />
-        <CTA />
+        <WhyUs />
+        <Advantages />
+       
         <ComparisonSection/>
         <Testimonials />
       </main>
