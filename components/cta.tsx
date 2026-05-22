@@ -6,47 +6,56 @@ import { Button } from "@/components/ui/button"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 
-// Marketplace details for the orbital animation
 const marketplaces = [
   {
     name: "Amazon",
     logo: "/amazon.png",
-    angle: -90, // 12 o'clock
+    angle: -90,
     glowColor: "rgba(255, 153, 0, 0.3)",
-    borderColor: "border-[#FF9900]/30",
+    borderColor: "#FF9900",
     delay: 0.1,
+    padding: "p-1.5 sm:p-2",         // less padding — amazon logo needs full space
+    blend: false,                      // no mix-blend-multiply for amazon
   },
   {
     name: "Flipkart",
     logo: "/flipkart.jpg",
-    angle: -18, 
+    angle: -18,
     glowColor: "rgba(40, 116, 240, 0.3)",
-    borderColor: "border-[#2874F0]/30",
+    borderColor: "#2874F0",
     delay: 0.3,
+    padding: "p-2 sm:p-3",
+    blend: true,
   },
   {
     name: "Meesho",
     logo: "/meesho.jpg",
-    angle: 54, 
+    angle: 54,
     glowColor: "rgba(173, 26, 128, 0.3)",
-    borderColor: "border-[#AD1A80]/30",
+    borderColor: "#AD1A80",
     delay: 0.5,
+    padding: "p-2 sm:p-3",
+    blend: true,
   },
   {
     name: "Myntra",
     logo: "/myntra.png",
-    angle: 126, 
+    angle: 126,
     glowColor: "rgba(241, 85, 108, 0.3)",
-    borderColor: "border-[#F1556C]/30",
+    borderColor: "#F1556C",
     delay: 0.7,
+    padding: "p-2 sm:p-3",
+    blend: true,
   },
   {
     name: "Snapdeal",
     logo: "/Snapdeal.png",
-    angle: 198, 
+    angle: 198,
     glowColor: "rgba(228, 0, 70, 0.3)",
-    borderColor: "border-[#E40046]/30",
+    borderColor: "#E40046",
     delay: 0.9,
+    padding: "p-2 sm:p-3",
+    blend: true,
   },
 ]
 
@@ -64,7 +73,6 @@ export function CTA() {
       className="py-16 lg:py-28 relative overflow-hidden bg-primary text-primary-foreground"
       ref={sectionRef}
     >
-      {/* Background decorative glowing layers */}
       <div className="absolute inset-0 opacity-40">
         <motion.div
           animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
@@ -86,18 +94,15 @@ export function CTA() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-            {/* Left Column: Interactive Orbital Marketplaces Visual */}
+            {/* Left Column: Orbital Visual */}
             <div className="lg:col-span-5 flex items-center justify-center order-2 lg:order-1">
-              {/* Using aspect-square and flex-shrink-0 to maintain 1:1 perfect circle structure */}
               <div className="relative w-full max-w-[260px] sm:max-w-[340px] md:max-w-[400px] lg:max-w-[440px] aspect-square flex items-center justify-center flex-shrink-0 mx-auto">
 
-                {/* Orbit Concentric dashed rings */}
                 <svg className="absolute inset-0 w-full h-full text-white/20 z-0" viewBox="0 0 100 100">
                   <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="0.35" strokeDasharray="2 3" />
                   <circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" strokeWidth="0.2" strokeDasharray="1 2" className="opacity-50" />
                 </svg>
 
-                {/* Inner Pulsing glows for center element */}
                 <motion.div
                   animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.15, 0.4] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -109,31 +114,25 @@ export function CTA() {
                   className="absolute w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] lg:w-[280px] lg:h-[280px] bg-indigo-500/10 rounded-full blur-2xl z-0"
                 />
 
-                {/* Center Circle: Speed E-Com Logo */}
+                {/* Center Logo */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   className="relative z-10 w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 bg-white rounded-full shadow-2xl border border-slate-100 flex items-center justify-center p-3 sm:p-4"
                 >
-                  <div className="w-full h-full relative flex items-center justify-center">
-                    <img
-                      src="/logo_dark.png"
-                      alt="Speed E-Com Logo"
-                      className="w-full h-full object-contain filter drop-shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
-                    />
-                  </div>
+                  <img
+                    src="/logo_dark.png"
+                    alt="Speed E-Com Logo"
+                    className="w-full h-full object-contain"
+                  />
                 </motion.div>
 
-                {/* Marketplace Badges orbiting/positioned on the dashed line */}
+                {/* Marketplace Badges */}
                 {marketplaces.map((item, index) => {
-                  // Trigonometry to place them precisely on the circle perimeter of radius 40%
                   const angleRad = (item.angle * Math.PI) / 180
                   const x = Math.cos(angleRad) * 40
                   const y = Math.sin(angleRad) * 40
 
                   return (
-                    /* Outer wrapper holds absolute positioning and translate(-50%, -50%). 
-                       This keeps the badge's center mathematically locked onto the circle path. 
-                       Decouples the alignment calculations from Framer Motion transforms. */
                     <div
                       key={item.name}
                       style={{
@@ -149,7 +148,6 @@ export function CTA() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: item.delay }}
                       >
-                        {/* Floating Motion inside the perfectly centered wrapper */}
                         <motion.div
                           animate={{
                             y: [0, -5, 0, 5, 0],
@@ -161,19 +159,21 @@ export function CTA() {
                             ease: "easeInOut",
                             delay: index * 0.2,
                           }}
-                          whileHover={{
-                            scale: 1.15,
-                            boxShadow: `0 0 25px ${item.glowColor}`,
-                          }}
-                          className={`w-12 h-12 sm:w-16 sm:h-16 lg:w-[72px] lg:h-[72px] bg-white rounded-full shadow-lg border ${item.borderColor} flex items-center justify-center p-2 sm:p-3 lg:p-4 cursor-pointer transition-shadow duration-300`}
+                          whileHover={{ scale: 1.15 }}
+                          className="w-12 h-12 sm:w-16 sm:h-16 lg:w-[72px] lg:h-[72px] bg-white rounded-full shadow-lg flex items-center justify-center cursor-pointer overflow-hidden"
                           style={{
-                            boxShadow: `0 4px 14px -3px ${item.glowColor}, 0 0 4px ${item.glowColor}`,
+                            border: `2px solid ${item.borderColor}`,
+                            boxShadow: `0 4px 14px -3px ${item.glowColor}, 0 0 8px ${item.glowColor}`,
+                            padding: "6px",
                           }}
                         >
                           <img
                             src={item.logo}
                             alt={item.name}
-                            className="w-full h-full object-contain mix-blend-multiply rounded-full"
+                            className="w-full h-full object-contain rounded-full"
+                            style={{
+                              mixBlendMode: item.blend ? "multiply" : "normal",
+                            }}
                           />
                         </motion.div>
                       </motion.div>
@@ -184,7 +184,7 @@ export function CTA() {
               </div>
             </div>
 
-            {/* Right Column: Persuasive Copwriting Content */}
+            {/* Right Column */}
             <div className="lg:col-span-7 text-left order-1 lg:order-2 flex flex-col items-start justify-center">
 
               <motion.div

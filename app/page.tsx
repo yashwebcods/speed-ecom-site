@@ -10,6 +10,12 @@ import { Footer } from "@/components/footer"
 import { LoadingScreen } from "@/components/loading-screen"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { ScrollToTop } from "@/components/scroll-to-top"
+import { Services } from "@/components/services"
+import { TrustedBy } from "@/components/TrustedBy"
+import { StatsStrip } from "@/components/Statsstrip"
+import { AskAI } from "@/components/Ask"
+import { WhatYouCanDecide } from "@/components/WhatYouCanDecide"
+import { ComparisonSection } from "@/components/Comparison"
 
 export default function Home() {
   return (
@@ -19,9 +25,15 @@ export default function Home() {
       <Header />
       <main className="w-full overflow-x-clip">
         <Hero />
+        <StatsStrip />
+        <TrustedBy />
+        <WhatYouCanDecide/>
         <WhyUs />
         <Advantages />
+        <AskAI/>
+        <Services />
         <CTA />
+        <ComparisonSection/>
         <Testimonials />
       </main>
       <Footer />

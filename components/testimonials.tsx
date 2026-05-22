@@ -53,15 +53,6 @@ export function Testimonials() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as any }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-4"
-          >
-            Testimonials
-          </motion.span>
           <h2 className="text-3xl lg:text-5xl font-bold font-display mb-4">
             What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Clients Say</span>
           </h2>

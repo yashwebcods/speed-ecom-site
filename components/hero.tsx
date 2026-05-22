@@ -6,7 +6,7 @@ import { motion, Variants } from "framer-motion"
 import { ArrowRight, Play, Star, CheckCircle2 } from "lucide-react"
 import { AnimeText } from "@/components/anime-text"
 import { HeroChatScene } from "@/components/hero-chat-scene"
-import { TrustedBy } from "@/components/trusted-by"
+import { TrustedBy } from "@/components/TrustedBy"
 import { useState, useEffect } from "react"
 
 const stats = [
@@ -165,10 +165,6 @@ export function Hero() {
         <div className="absolute -z-10 -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-3xl blur-2xl transform-gpu" />
       </div>
 
-      {/* Trusted By Section integrated at the bottom of the Hero screen */}
-      <div className="w-full mt-auto bg-white/60 backdrop-blur-md relative z-20">
-        <TrustedBy />
-      </div>
     </section>
   )
 }
