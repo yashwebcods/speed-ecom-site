@@ -157,7 +157,7 @@ export function AskAI() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative rounded-2xl overflow-hidden border-2 border-primary/60 shadow-xl shadow-primary/10 bg-gradient-to-br from-[#160428] via-[#2a0a52] to-[#160428]"
+          className="relative rounded-2xl overflow-hidden border-2 border-primary/60 shadow-xl shadow-primary/10 bg-gradient-to-br from-[#0f2a52] via-[#1a3d66] to-[#0f2a52]"
         >
           {/* Glow blobs */}
           <div className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full bg-violet-600/20 blur-3xl" />
