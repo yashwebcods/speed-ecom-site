@@ -49,9 +49,9 @@ export function WhyUs() {
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (
-    <section 
-      id="why-us" 
-      className="py-20 lg:py-32 relative overflow-hidden bg-gradient-to-br from-[#051524] via-[#0B2545] to-[#134074]" 
+    <section
+      id="why-us"
+      className="py-8 lg:py-12 relative overflow-hidden bg-gradient-to-br from-[#051524] via-[#0B2545] to-[#134074]"
       ref={sectionRef}
     >
       {/* Background decorative glowing layers */}
@@ -72,7 +72,7 @@ export function WhyUs() {
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         
         {/* Main Reasons grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24 lg:mb-36">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-8 lg:mb-12">
           
           {/* Left Column: Copywriting & Interactive Active Card */}
           <div className="lg:col-span-7 text-left flex flex-col items-start justify-center">
@@ -113,7 +113,7 @@ export function WhyUs() {
             </motion.p>
 
             {/* Dynamic Interactive Card with smooth transitions */}
-            <div className="w-full max-w-xl mb-8 min-h-[160px]">
+            <div className="w-full max-w-xl mb-4 min-h-[160px] hidden lg:block">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
@@ -157,7 +157,7 @@ export function WhyUs() {
           </div>
 
           {/* Right Column: Interactive Orbital 3-Circle Visual */}
-          <div className="lg:col-span-5 flex items-center justify-center mt-12 lg:mt-0 relative">
+          <div className="lg:col-span-5 flex flex-col items-center justify-center mt-12 lg:mt-0 relative">
             {/* 1:1 Aspect ratio container to prevent stretch and maintain a perfect circle */}
             <div className="relative w-full max-w-[260px] sm:max-w-[340px] md:max-w-[400px] lg:max-w-[440px] aspect-square flex items-center justify-center flex-shrink-0 mx-auto">
               
@@ -248,6 +248,37 @@ export function WhyUs() {
                 )
               })}
 
+            </div>
+
+            {/* Mobile-only feature box below the circle */}
+            <div className="w-full max-w-xl mt-8 lg:hidden mx-auto">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden"
+                >
+                  <div className="absolute top-0 right-0 text-7xl font-bold text-white/5 select-none leading-none pr-4 pt-2">
+                    0{activeIndex + 1}
+                  </div>
+                  
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xs font-bold text-[#facc15] tracking-widest uppercase bg-[#facc15]/10 px-2 py-0.5 rounded">
+                      Feature 0{activeIndex + 1}
+                    </span>
+                  </div>
+
+                  <h4 className="font-bold text-white text-xl mb-3 leading-tight">
+                    {reasons[activeIndex].title}
+                  </h4>
+                  <p className="text-sm sm:text-base text-white/80 leading-relaxed">
+                    {reasons[activeIndex].description}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
 
