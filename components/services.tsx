@@ -14,10 +14,10 @@ import {
 const services = [
   {
     icon: TrendingUp,
-    title: "True SKU Profit Engine",
+    title: "AI-Powered Reconciliation Engine",
     description:
-      "Know the exact net profit on every SKU after deducting shipping, platform fees, returns, ads, and COGS. Stop guessing — start scaling what actually earns.",
-    color: "bg-violet-500/10 text-violet-600",
+      "Automatically match every order, payment, and return across all marketplaces.  Detect discrepancies in real-time, reconcile settlements, and know exactly  how much you earned — down to the last rupee.",
+   color: "bg-violet-500/10 text-violet-600",
   },
   {
     icon: AlertTriangle,
