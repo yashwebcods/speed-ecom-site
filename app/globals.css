@@ -4,6 +4,17 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --color-cta-primary: #FF6B00;
+  --color-cta-primary-hover: #E05A00;
+  --color-success: #10B981;
+  --color-success-light: #D1FAE5;
+  --color-success-text: #065F46;
+  --color-navy-darkest: #060C18;
+  --color-navy-dark: #0A0F1E;
+  --color-navy-mid: #0F172A;
+  --color-navy-card: #1E293B;
+  --color-brand-blue: #3B82F6;
+  --color-brand-deep-blue: #1E3A8A;
   --background: oklch(0.985 0.005 260);
   --foreground: oklch(0.15 0.02 260);
   --card: oklch(1 0 0);
@@ -166,4 +177,54 @@ body.snap-active {
 /* Smooth transitions for feature changes */
 .feature-transition {
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Brand CTA buttons */
+.btn-cta-primary {
+  background-color: var(--color-cta-primary);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.btn-cta-primary:hover {
+  background-color: var(--color-cta-primary-hover);
+}
+
+.btn-cta-secondary {
+  background: transparent;
+  border: 1.5px solid var(--color-brand-blue);
+  color: var(--color-brand-blue);
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.btn-cta-secondary:hover {
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.badge-success {
+  background-color: var(--color-success-light);
+  color: var(--color-success-text);
+}
+
+.badge-negative {
+  background-color: #FEE2E2;
+  color: #EF4444;
+}
+
+.section-spacing {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .section-spacing {
+    padding-top: 6.25rem;
+    padding-bottom: 6.25rem;
+  }
 }

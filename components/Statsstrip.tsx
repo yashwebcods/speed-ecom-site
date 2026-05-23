@@ -4,10 +4,10 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 
 const stats = [
-  { value: "4,000+", label: "Live Clients" },
-  { value: "280+", label: "Integrations" },
-  { value: "99.99%", label: "AI Accuracy" },
-  { value: "24/7", label: "Support Available" },
+  { value: "3,500+", label: "Trusted Sellers" },
+  { value: "700+", label: "Verified Reviews" },
+  { value: "40+", label: "Team Members" },
+  { value: "6", label: "Supported Platforms" },
 ]
 
 function AnimatedNumber({ value }: { value: string }) {
@@ -29,25 +29,21 @@ function AnimatedNumber({ value }: { value: string }) {
 
 export function StatsStrip() {
   return (
-    <section className="w-full relative bg-white py-12 lg:py-16">
-      
-      <div className="container mx-auto px-4">
-        
-        {/* Heading */}
+    <section className="w-full relative bg-[var(--color-navy-dark)] section-spacing">
+      <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10 lg:mb-12"
+          className="text-center mb-10 lg:mb-14"
         >
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
             SpeedEcom is Empowering
           </h2>
         </motion.div>7
 
-        {/* Stats Grid - 4 Cards - Smaller size */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -55,26 +51,15 @@ export function StatsStrip() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="text-center"
             >
-              {/* Card - smaller with subtle border */}
-              <div className="bg-white border border-gray-100 rounded-xl p-4 lg:p-5 text-center hover:border-gray-200 transition-all duration-300 shadow-sm hover:shadow">
-                
-                {/* Number - smaller size */}
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-2">
-                  <AnimatedNumber value={stat.value} />
-                </div>
-
-                {/* Label */}
-                <p className="text-gray-800 font-medium text-sm sm:text-base">
-                  {stat.label}
-                </p>
-                
-               
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-cta-primary)] leading-tight mb-2">
+                <AnimatedNumber value={stat.value} />
               </div>
+              <p className="text-sm sm:text-base text-white/60 font-medium">{stat.label}</p>
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   )

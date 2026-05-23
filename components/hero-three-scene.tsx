@@ -11,11 +11,12 @@ const GLOW = new THREE.Color("#7899f0")
 const PRIMARY = new THREE.Color("#1a2a5e")
 
 const PLATFORM_LOGOS = [
-  "/meesho.jpg",
-  "/flipkart.jpg",
   "/amazon.png",
+  "/flipkart.jpg",
+  "/meesho.jpg",
   "/myntra.png",
-  "/Snapdeal.png",
+  "/amazon.png",
+  "/jioMart.jpg",
 ]
 
 // Two distinct intersecting rings as requested
@@ -25,11 +26,12 @@ const RINGS = [
 ]
 
 const LOGO_CONFIG = [
-  { ringIndex: 0, offset: 0.0 }, // Meesho
+  { ringIndex: 0, offset: 0.0 }, // Amazon
   { ringIndex: 1, offset: 0.0 }, // Flipkart
-  { ringIndex: 0, offset: 2.1 }, // Amazon
+  { ringIndex: 0, offset: 2.1 }, // Meesho
   { ringIndex: 1, offset: 3.14 }, // Myntra
-  { ringIndex: 0, offset: 5.2 }, // Snapdeal
+  { ringIndex: 0, offset: 4.2 }, // GlowRoad placeholder
+  { ringIndex: 1, offset: 5.2 }, // JioMart placeholder
 ]
 
 // ─── Orbit ring ───────────────────────────────────────────────────────────────

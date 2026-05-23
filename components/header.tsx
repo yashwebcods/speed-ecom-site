@@ -67,17 +67,15 @@ export function Header() {
               >
                 <Link
                   href={link.href}
-                  className={`text-[1.05rem] font-medium transition-colors relative group ${
-                    pathname === link.href
+                  className={`text-[1.05rem] font-medium transition-colors relative group ${pathname === link.href
                       ? "text-primary"
                       : "text-gray-800 hover:text-gray-900"
-                  }`}
+                    }`}
                 >
                   {link.label}
                   <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all ${
-                      pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all ${pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
                   />
                 </Link>
               </motion.div>
@@ -124,7 +122,7 @@ export function Header() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex items-center justify-center gap-4 pb-4 lg:pb-2"
         >
-            <Button
+          <Button
             asChild
             className="rounded-full px-6 h-10 text-sm font-medium shadow-lg shadow-primary/20 bg-primary text-white hover:bg-primary/90"
           >
@@ -142,7 +140,7 @@ export function Header() {
               Seller Login
             </Link>
           </Button>
-        
+
         </motion.div>
 
         {/* Mobile Navigation Menu (expands below) */}
@@ -165,11 +163,10 @@ export function Header() {
                   >
                     <Link
                       href={link.href}
-                      className={`text-xl font-medium transition-colors ${
-                        pathname === link.href
+                      className={`text-xl font-medium transition-colors ${pathname === link.href
                           ? "text-primary font-semibold"
                           : "text-gray-800 hover:text-gray-900"
-                      }`}
+                        }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {link.label}
