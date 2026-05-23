@@ -63,7 +63,7 @@ export function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center pt-20 pb-0 lg:pt-0 lg:pb-0 overflow-hidden bg-gradient-to-br from-[#0a1f3d] via-[#0f2d4f] to-[#051c34]">
+    <section className="relative min-h-screen flex flex-col justify-center pt-28 lg:pt-32 pb-0 lg:pb-0 overflow-hidden bg-gradient-to-br from-[#0a1f3d] via-[#0f2d4f] to-[#051c34]">
       {/* Premium Dark Navy Gradient Background */}
       <div className="absolute inset-0 -z-20">
         {/* Base dark blue gradient */}

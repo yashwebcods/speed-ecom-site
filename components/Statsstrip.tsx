@@ -5,9 +5,9 @@ import { motion, useInView } from "framer-motion"
 
 const stats = [
   { value: "4,000+", label: "Live Clients" },
-  { value: "101 Cr+", label: "Annual Transaction" },
-  { value: "10,540+", label: "Facilities in" },
   { value: "280+", label: "Integrations" },
+  { value: "99.99%", label: "AI Accuracy" },
+  { value: "24/7", label: "Support Available" },
 ]
 
 function AnimatedNumber({ value }: { value: string }) {
@@ -42,7 +42,7 @@ export function StatsStrip() {
           className="text-center mb-10 lg:mb-12"
         >
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
-            Unicommerce is Empowering
+            SpeedEcom is Empowering
           </h2>
         </motion.div>
 
