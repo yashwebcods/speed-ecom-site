@@ -5,7 +5,6 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
 
 const navLinks = [
@@ -26,7 +25,6 @@ export function Header() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0
     setIsScrolled(latest > 50)
-    // Hide header when scrolling down past 150px, show when scrolling up
     if (latest > 150 && latest > previous) {
       setIsHidden(true)
     } else {
@@ -39,25 +37,27 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: isHidden ? -100 : 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[var(--color-navy-dark)] border-b border-white/[0.08] shadow-sm"
+      className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm"
     >
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
+        {/* Row 1: Logo (Left) + Desktop Navigation (Center) + Mobile Menu Button (Right) */}
+        <div className="flex items-center justify-between lg:justify-between py-3 lg:py-4">
+          {/* Logo - Left side */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
+            className="flex-shrink-0"
           >
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="relative w-40 h-10 lg:w-48 lg:h-12 flex items-center">
+              <div className="relative w-32 h-8 lg:w-40 lg:h-10 flex items-center">
                 <img src="/navbar.png" alt="Logo" className="w-full h-full object-contain" />
               </div>
             </Link>
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          {/* Desktop Navigation Menu - Centered in the available space */}
+          <nav className="hidden lg:flex items-center justify-center gap-8 absolute left-1/2 transform -translate-x-1/2">
             {navLinks.map((link, index) => (
               <motion.div
                 key={link.href}
@@ -67,48 +67,25 @@ export function Header() {
               >
                 <Link
                   href={link.href}
-                  className={`text-sm font-medium transition-colors relative group ${
-                    pathname === link.href
-                      ? "text-white"
-                      : "text-white/80 hover:text-white"
-                  }`}
+                  className={`text-[1.05rem] font-medium transition-colors relative group ${pathname === link.href
+                      ? "text-primary"
+                      : "text-gray-800 hover:text-gray-900"
+                    }`}
                 >
                   {link.label}
-                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-[var(--color-brand-blue)] transition-all ${
-                    pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
-                  }`} />
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all ${pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                  />
                 </Link>
               </motion.div>
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="hidden lg:flex items-center gap-4"
-          >
-            <Button asChild variant="outline" className="rounded-lg px-6 border-white/30 text-white bg-transparent hover:bg-white/10 hover:text-white transition-all duration-300 group">
-              <Link href="/login" className="flex items-center gap-2">
-                <User className="w-4 h-4" />
-                Seller Login
-              </Link>
-            </Button>
-
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button asChild variant="cta" className="rounded-lg">
-                <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
-                  Book Free Demo
-                </Link>
-              </Button>
-            </motion.div>
-          </motion.div>
-
           {/* Mobile Menu Button */}
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className="lg:hidden p-2 text-white"
+            className="lg:hidden p-2 text-gray-800"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -138,24 +115,35 @@ export function Header() {
           </motion.button>
         </div>
 
-        {/* Row 2: Mobile CTAs (Only visible on mobile) */}
-        <motion.div 
+        {/* Row 2: Both Buttons - Centered */}
+        <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex lg:hidden items-center gap-2 pb-4 px-2"
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex items-center justify-center gap-4 pb-4 lg:pb-2"
         >
-          <Button asChild variant="outline" className="flex-1 rounded-lg h-10 text-[10px] font-bold border-white/30 text-white hover:bg-white/10 px-2">
+          <Button
+            asChild
+            className="rounded-full px-6 h-10 text-sm font-medium shadow-lg shadow-primary/20 bg-primary text-white hover:bg-primary/90"
+          >
+            <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
+              Book Free Demo
+            </Link>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            className="rounded-full px-6 h-10 text-sm font-medium border-primary/50 text-primary hover:bg-primary hover:text-white transition-all group"
+          >
             <Link href="/login" className="flex items-center justify-center gap-2">
-              <User className="w-3 h-3" />
+              <User className="w-4 h-4 text-primary group-hover:text-white" />
               Seller Login
             </Link>
           </Button>
-          <Button asChild variant="cta" className="flex-1 rounded-lg h-10 text-[10px] font-bold px-2">
-            <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">Book Free Demo</Link>
-          </Button>
+
         </motion.div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Menu (expands below) */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -165,7 +153,7 @@ export function Header() {
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="lg:hidden overflow-hidden"
             >
-              <nav className="flex flex-col gap-4 py-6 border-t border-white/10">
+              <nav className="flex flex-col items-center gap-5 py-6 border-t border-gray-200 mt-2">
                 {navLinks.map((link, index) => (
                   <motion.div
                     key={link.href}
@@ -175,18 +163,16 @@ export function Header() {
                   >
                     <Link
                       href={link.href}
-                      className={`text-base font-medium transition-colors ${
-                        pathname === link.href
-                          ? "text-white font-semibold"
-                          : "text-white/80 hover:text-white"
-                      }`}
+                      className={`text-xl font-medium transition-colors ${pathname === link.href
+                          ? "text-primary font-semibold"
+                          : "text-gray-800 hover:text-gray-900"
+                        }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {link.label}
                     </Link>
                   </motion.div>
                 ))}
-                {/* Mobile buttons moved to header bar */}
               </nav>
             </motion.div>
           )}

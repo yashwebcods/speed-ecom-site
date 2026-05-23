@@ -9,6 +9,7 @@ import {
   Headphones,
   BarChart2,
   ArrowRight,
+  Zap,
 } from "lucide-react"
 
 const reasons = [
@@ -25,17 +26,18 @@ const reasons = [
     delay: 0.1,
   },
   {
-    icon: Headphones,
-    title: "E-commerce Business Expert",
+    icon: Zap,
+    title: "Speed AI - Instant Reconciliation",
     description:
-      "Professional account management by industry veterans who optimize your listings, marketing, and operations across all major marketplaces.",
-    angle: 30,
-    accentColor: "#60a5fa",
-    glowColor: "rgba(96,165,250,0.25)",
-    badgeBg: "bg-blue-400/15",
-    badgeText: "text-blue-300",
-    delay: 0.3,
+      "Lightning-fast AI that reconciles thousands of orders in seconds. Get real-time discrepancy detection, automated settlement matching, and instant profit insights with 99.99% accuracy.",
+    angle: 150,
+    accentColor: "#f59e0b",
+    glowColor: "rgba(245,158,11,0.25)",
+    badgeBg: "bg-amber-400/15",
+    badgeText: "text-amber-300",
+    delay: 0.5,
   },
+
   {
     icon: BarChart2,
     title: "Monthly Financial Analysis",

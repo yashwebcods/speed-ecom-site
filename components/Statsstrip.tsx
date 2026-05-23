@@ -38,8 +38,8 @@ export function StatsStrip() {
           transition={{ duration: 0.5 }}
           className="text-center mb-10 lg:mb-14"
         >
-          <h2 className="text-[28px] md:text-[32px] font-semibold text-white">
-            Trusted by Online Sellers Across India
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
+            SpeedEcom is Empowering
           </h2>
         </motion.div>
 
