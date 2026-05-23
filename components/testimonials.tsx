@@ -1,168 +1,139 @@
-"use client"
-
-import { motion, Variants } from "framer-motion"
-import { Star, Quote, CheckCircle2 } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
+"use client";
+import { motion, Variants } from "framer-motion";
+import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Raster Tex",
-    role: "2 reviews",
-    content:
-      "I had a great experience with Speed Ecom Service. The platform is simple to use, and their support team is always quick to respond. My orders were processed smoothly, and delivery was on time. It really helped me save effort and grow my online business. Highly recommend to anyone looking for a reliable e-commerce solution!",
+    name: "Priya Malhotra",
+    initials: "PM",
+    role: "Amazon Seller, Mumbai",
+    result: "Expenses Reduced",
+    resultValue: "",
+    resultIcon: "📉",
     rating: 5,
+    content:
+      "The monthly reports and profit-loss breakdown helped me reduce unnecessary expenses immediately. The personal support from my RM is rare — I genuinely know where every rupee goes now.",
   },
   {
-    name: "Reewaz 24K",
-    role: "1 review",
-    content:
-      "I am an e-commerce businessman and had some doubts regarding my payments and a lost parcel. Speed E-Commerce company helped me quickly to find out my payment issues, track my lost parcel, and even manage my account smoothly. Their support is fast, professional, and very reliable. I truly appreciate their excellent service and highly recommend them to everyone.",
+    name: "Amit Shah",
+    initials: "AS",
+    role: "Flipkart Seller, Surat",
+    result: "+28% Revenue",
+    resultValue: "+28%",
+    resultIcon: "📈",
     rating: 5,
+    content:
+      "My RM explains my store performance every month in plain language. The financial clarity has completely changed how I make pricing and ad decisions. Revenue up 28% in just 3 months.",
   },
   {
-    name: "Prashant Parchani",
-    role: "3 reviews",
-    content:
-      "Speed Ecom Solution has made managing my e-commerce accounting so much easier! It provides complete accounting management for platforms like Amazon, Flipkart, and Meesho. I can easily track sales, returns, and get clear profit and loss reports. It's user-friendly and saves me a lot of time on manual work. Highly recommended for every online seller!",
+    name: "Rakesh Bansal",
+    initials: "RB",
+    role: "Meesho Seller, Ahmedabad",
+    result: "₹43K Recovered",
+    resultValue: "₹43K",
+    resultIcon: "💰",
     rating: 5,
+    content:
+      "Speedi AI caught ₹43,000 in wrong commissions in the first audit alone. My RM proactively shared monthly analysis from day one. The personal touch exceeded every expectation.",
   },
-]
+];
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 60 },
-  visible: (i: number) => ({
+  hidden: { opacity: 0, y: 40 },
+  visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.7,
-      ease: [0.22, 1, 0.36, 1] as any,
-    },
-  }),
-}
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-12 lg:py-32 bg-secondary/30">
-      <div className="container mx-auto px-4 lg:px-8">
-        {/* Section Header */}
+    <section id="testimonials" className="bg-gray-50 py-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header - Exactly like the image */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as any }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+          className="text-center mb-14"
         >
-          <h2 className="text-3xl lg:text-5xl font-bold font-display mb-4">
-            What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Clients Say</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-3">
+            What our sellers say
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Real stories from real sellers who transformed their businesses with us.
+          <p className="text-gray-500 text-base sm:text-lg">
+            Real results from real sellers across India.
           </p>
         </motion.div>
 
-        {/* Testimonials Grid (Desktop) / Chat (Mobile) */}
-        <div className="relative">
-          {/* Desktop Grid */}
-          <div className="hidden lg:grid lg:grid-cols-3 gap-8" style={{ perspective: "1000px" }}>
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                custom={index}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              >
-                <Card className="h-full bg-card border-border hover:shadow-xl hover:shadow-primary/5 transition-all">
-                  <CardContent className="p-8 flex flex-col h-full">
-                    <Quote className="w-10 h-10 text-primary/20 mb-6" />
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                      ))}
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed flex-grow mb-6 italic">
-                      &ldquo;{testimonial.content}&rdquo;
-                    </p>
-                    <div className="flex items-center gap-4 pt-6 border-t border-border">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                        {testimonial.name.split(" ").map((n) => n[0]).join("")}
-                      </div>
-                      <div>
-                        <div className="font-semibold text-foreground">{testimonial.name}</div>
-                        <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Mobile WhatsApp-Style Chat */}
-          <div className="lg:hidden space-y-6 max-w-md mx-auto relative px-4">
-            <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-primary/10 -z-10" />
-            
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative pl-10 transform-gpu"
-              >
-                {/* Profile Pic Indicator */}
-                <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary border-4 border-background flex items-center justify-center text-white text-[10px] font-bold shadow-lg z-10">
-                  {testimonial.name.split(" ").map((n) => n[0]).join("")}
-                </div>
-
-                {/* Chat Bubble */}
-                <div className="bg-card border border-border/50 rounded-2xl rounded-tl-none p-4 shadow-sm relative">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold text-primary uppercase tracking-wider">{testimonial.name}</span>
-                    <div className="flex gap-0.5">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <p className="text-[13px] text-foreground/80 leading-relaxed mb-2">
-                    {testimonial.content}
-                  </p>
-                  
-                  <div className="flex items-center justify-end gap-1.5 opacity-40">
-                    <span className="text-[8px] font-medium uppercase tracking-tighter">{testimonial.role}</span>
-                    <div className="flex -space-x-1">
-                      <CheckCircle2 className="w-3 h-3 text-primary fill-primary/20" />
-                      <CheckCircle2 className="w-3 h-3 text-primary fill-primary/20" />
-                    </div>
-                  </div>
-
-                  {/* Bubble Tail */}
-                  <div className="absolute -left-2 top-0 w-4 h-4 bg-card border-l border-t border-border/50 rotate-[-45deg] rounded-sm -z-10" />
-                </div>
-              </motion.div>
-            ))}
-
-            {/* Response Simulation */}
+        {/* Testimonials Grid - 3 columns like the image */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {testimonials.map((testimonial, index) => (
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="flex justify-center pt-2"
+              key={testimonial.name}
+              variants={cardVariants}
+              className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
             >
-              <div className="bg-primary/5 border border-primary/10 rounded-full px-4 py-1.5 text-[9px] font-bold text-primary uppercase tracking-widest flex items-center gap-1.5">
-                <span className="w-1 h-1 bg-primary rounded-full animate-pulse" />
-                Growth is happening now
+              <div className="p-6 flex flex-col gap-4">
+                {/* Rating Stars */}
+                <div className="flex gap-1">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                    />
+                  ))}
+                </div>
+
+                {/* Quote/Content */}
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  &ldquo;{testimonial.content}&rdquo;
+                </p>
+
+                {/* Result Highlight - Green colored like image */}
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-base">{testimonial.resultIcon}</span>
+                  <span className="text-emerald-600 font-bold text-lg">
+                    {testimonial.result}
+                  </span>
+                </div>
+
+                {/* User Info with Initials Avatar */}
+                <div className="flex items-center gap-3 pt-4 mt-2 border-t border-gray-100">
+                  <div className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center">
+                    <span className="text-white text-sm font-medium">
+                      {testimonial.initials}
+                    </span>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900 text-sm">
+                      {testimonial.name}
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      {testimonial.role}
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
-          </div>
-        </div>
+          ))}
+        </motion.div>
       </div>
     </section>
-  )
+  );
 }

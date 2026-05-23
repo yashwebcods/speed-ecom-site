@@ -44,7 +44,7 @@ export function StatsStrip() {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
             SpeedEcom is Empowering
           </h2>
-        </motion.div>
+        </motion.div>7
 
         {/* Stats Grid - 4 Cards - Smaller size */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
