@@ -28,13 +28,15 @@ export default function Home() {
         <StatsStrip />
         <TrustedBy />
          <CTA />
-        <WhatYouCanDecide/>
+         
+        <Services />
         
         <AskAI/>
-        <Services />
+        
+        <WhatYouCanDecide/>
         <WhyUs />
-        <Advantages />
        
+        <Advantages />
         <ComparisonSection/>
         <Testimonials />
       </main>

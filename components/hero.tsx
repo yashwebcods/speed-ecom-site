@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { motion, Variants } from "framer-motion"
-import { ArrowRight, Play, Star, CheckCircle2 } from "lucide-react"
+import { ArrowRight, Play, Star, CheckCircle2, TrendingUp, BarChart3, Sparkles, Eye } from "lucide-react"
 import { AnimeText } from "@/components/anime-text"
 import { HeroChatScene } from "@/components/hero-chat-scene"
 import { TrustedBy } from "@/components/TrustedBy"
@@ -63,107 +63,328 @@ export function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-[auto] lg:min-h-screen flex flex-col justify-center lg:justify-between pt-36 pb-0 lg:pt-24 lg:pb-0 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl transform-gpu" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl transform-gpu" />
+    <section className="relative min-h-screen flex flex-col justify-center pt-20 pb-0 lg:pt-0 lg:pb-0 overflow-hidden bg-gradient-to-br from-[#0a1f3d] via-[#0f2d4f] to-[#051c34]">
+      {/* Premium Dark Navy Gradient Background */}
+      <div className="absolute inset-0 -z-20">
+        {/* Base dark blue gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a1f3d] via-[#0f2d4f] to-[#051c34]" />
+
+        {/* Soft purple/blue overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d1b2a] via-transparent to-transparent opacity-50" />
+
+        {/* Top right cyan/blue glow */}
+        <motion.div
+          animate={{ rotate: [0, 360], scale: [1, 1.1, 1] }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-32 -right-32 w-[900px] h-[900px] bg-gradient-to-br from-[#00D9FF]/15 via-[#0091D5]/10 to-transparent rounded-full blur-3xl"
+        />
+
+        {/* Left cyan glow */}
+        <motion.div
+          animate={{ rotate: [360, 0], scale: [1, 1.05, 1] }}
+          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-20 -left-32 w-[700px] h-[700px] bg-gradient-to-r from-[#0091D5]/12 via-[#00D9FF]/8 to-transparent rounded-full blur-3xl"
+        />
+
+        {/* Center accent glow */}
+        <motion.div
+          animate={{ opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/3 w-[600px] h-[600px] bg-gradient-to-br from-[#00D9FF]/8 via-transparent to-transparent rounded-full blur-3xl"
+        />
+
+        {/* Bottom dark gradient overlays */}
+        <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-[#0a2f5f]/40 via-[#0d1f3f]/20 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-t from-[#001a3f]/30 via-transparent to-transparent" />
+
+
+        {/* Enhanced floating particles with cyan glow */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -40, 0],
+              x: [0, Math.sin(i) * 40, 0],
+              opacity: [0, 0.5, 0],
+              scale: [0.8, 1.2, 0.8],
+            }}
+            transition={{
+              duration: 10 + i * 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 1.2,
+            }}
+            className="absolute w-1.5 h-1.5 bg-gradient-to-r from-[#00D9FF] via-[#0091D5] to-[#00D9FF] rounded-full blur-sm shadow-lg shadow-cyan-500/50"
+            style={{
+              top: `${15 + i * 12}%`,
+              left: `${5 + i * 12}%`,
+            }}
+          />
+        ))}
+
+        {/* Refined grid texture for dark theme */}
+        <div className="absolute inset-0 opacity-[0.05]" style={{
+          backgroundImage: `linear-gradient(0deg, transparent 24%, rgba(0, 217, 255, 0.05) 25%, rgba(0, 217, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 217, 255, 0.05) 75%, rgba(0, 217, 255, 0.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(0, 217, 255, 0.05) 25%, rgba(0, 217, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 217, 255, 0.05) 75%, rgba(0, 217, 255, 0.05) 76%, transparent 77%, transparent)`,
+          backgroundSize: "60px 60px",
+        }} />
+
+        {/* Radial glow from right with cyan */}
+        <div className="absolute -right-64 top-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-20 pointer-events-none blur-3xl" style={{
+          background: 'radial-gradient(circle, rgba(0, 217, 255, 0.15) 0%, transparent 70%)'
+        }} />
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center justify-center">
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-20 items-center w-full">
-          {/* Left Content */}
+      {/* ── Animated Wave Band ── directly in section, z-index 1 so it renders above background ── */}
+      <style>{`
+        @keyframes waveScroll1 { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes waveScroll2 { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        .wave-track-1 { animation: waveScroll1 12s linear infinite; }
+        .wave-track-2 { animation: waveScroll2 16s linear infinite; }
+      `}</style>
+
+      {/* Wave 1 – bright cyan, tallest */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '200px', zIndex: 1, overflow: 'hidden', pointerEvents: 'none' }}>
+        <div className="wave-track-1" style={{ display: 'flex', width: '200%', height: '100%' }}>
+          {[0, 1].map(i => (
+            <svg key={i} viewBox="0 0 1440 200" preserveAspectRatio="none" style={{ width: '50%', height: '100%', flexShrink: 0 }}>
+              <defs>
+                <linearGradient id={`wg1_${i}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#00D9FF" stopOpacity="0.7" />
+                  <stop offset="100%" stopColor="#0091D5" stopOpacity="0.1" />
+                </linearGradient>
+              </defs>
+              <path d="M0,70 C240,140 480,0 720,70 C960,140 1200,0 1440,70 L1440,200 L0,200 Z" fill={`url(#wg1_${i})`} />
+            </svg>
+          ))}
+        </div>
+      </div>
+
+      {/* Wave 2 – blue, shorter, opposite direction */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '140px', zIndex: 2, overflow: 'hidden', pointerEvents: 'none' }}>
+        <div className="wave-track-2" style={{ display: 'flex', width: '200%', height: '100%' }}>
+          {[0, 1].map(i => (
+            <svg key={i} viewBox="0 0 1440 140" preserveAspectRatio="none" style={{ width: '50%', height: '100%', flexShrink: 0 }}>
+              <defs>
+                <linearGradient id={`wg2_${i}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#0091D5" stopOpacity="0.55" />
+                  <stop offset="100%" stopColor="#003a6f" stopOpacity="0.15" />
+                </linearGradient>
+              </defs>
+              <path d="M0,50 C360,110 720,0 1080,55 C1260,80 1350,25 1440,50 L1440,140 L0,140 Z" fill={`url(#wg2_${i})`} />
+            </svg>
+          ))}
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center justify-center relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
+          {/* LEFT SIDE - Content */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="text-center lg:text-left w-full min-w-0"
           >
-            {/* Mobile Only: Trusted badge */}
-            <div className="lg:hidden mb-6">
-              <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 rounded-full border border-accent/20">
-                <Star className="w-3 h-3 text-accent fill-accent" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-accent-foreground">Trusted by 700+ Sellers</span>
-              </motion.div>
-            </div>
-
-           
+            {/* Trusted Badge */}
+            <motion.div
+              variants={itemVariants}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white/50 backdrop-blur-xl rounded-full border border-white/40 mb-6 shadow-lg shadow-blue-500/10 hover:bg-white/60 transition-all"
+            >
+              <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
+              <span className="text-xs font-bold text-[#1D4ED8]">Trusted by 3000+ E-commerce Sellers</span>
+            </motion.div>
 
             {/* Headline */}
-            <motion.h1 variants={itemVariants} className="text-2xl sm:text-4xl lg:text-6xl font-bold font-display leading-[1.1] mb-4 flex flex-wrap justify-center lg:justify-start gap-x-2">
-              <span className="text-slate-900 dark:text-white">Know Where Your</span>
-              <span className="text-primary">E-Commerce</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">Money Goes</span>
-              <span className="text-accent">.</span>
+            <motion.h1
+              variants={itemVariants}
+              className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.15] mb-6 tracking-tight"
+            >
+              <span className="text-[#0F172A]">Know Where Your</span>
+              <br className="hidden sm:block" />
+              <span className="text-[#0F172A]">E-Commerce </span>
+              <span className="inline-block bg-gradient-to-r from-[#1D4ED8] via-[#7C3AED] to-[#06B6D4] text-transparent bg-clip-text font-black">Money Goes</span>
+              <span className="text-[#FCD34D] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl ml-2">.</span>
             </motion.h1>
 
-            <motion.p variants={itemVariants} className="text-sm sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-6 text-pretty">
-              Eliminate revenue leakage from hidden marketplace fees. Get precise financial auditing and scale your 
-              business across Meesho, Flipkart, and Amazon with data-backed confidence.
+            {/* Description */}
+            <motion.p
+              variants={itemVariants}
+              className="text-base lg:text-lg text-[#475569] max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed font-light"
+            >
+              Eliminate revenue leakage from hidden marketplace fees. Get precise financial auditing and scale your business across Meesho, Flipkart, and Amazon with AI-powered confidence.
             </motion.p>
 
             {/* CTAs */}
-            <motion.div variants={itemVariants} className="flex flex-row gap-3 justify-center lg:justify-start mb-6 lg:mb-8">
-              <Button asChild size="lg" className="rounded-full px-4 sm:px-8 group h-12 lg:h-12 flex-1 sm:flex-none shadow-xl shadow-primary/20 text-xs sm:text-sm">
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-4 mb-12"
+            >
+              <Button
+                asChild
+                size="lg"
+                className="rounded-full px-8 h-13 bg-gradient-to-r from-[#1D4ED8] to-[#1E40AF] hover:from-[#1C4BC4] hover:to-[#1E36A0] text-white font-bold shadow-lg shadow-[#1D4ED8]/40 hover:shadow-xl hover:shadow-[#1D4ED8]/50 transition-all duration-300 group"
+              >
                 <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
-                  Free Demo
-                  <ArrowRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                  Book Free Demo
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" className="rounded-full px-4 sm:px-8 h-12 lg:h-12 flex-1 sm:flex-none bg-white/50 backdrop-blur-sm text-xs sm:text-sm">
-                <Play className="mr-1 sm:mr-2 w-3 h-3 sm:w-4 sm:h-4" />
+              <Button
+                size="lg"
+                className="rounded-full px-8 h-13 bg-white/40 backdrop-blur-xl border border-white/50 text-[#0F172A] font-semibold hover:bg-white/60 hover:border-white/70 shadow-lg shadow-blue-500/10 transition-all duration-300"
+              >
+                <Play className="mr-2 w-4 h-4 fill-current" />
                 Watch Demo
               </Button>
             </motion.div>
+          </motion.div>
 
-            {/* Mobile Chat Scene - Placed directly below CTAs */}
+          {/* RIGHT SIDE - Premium Analytics Dashboard with Floating Elements */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 2.5, ease: [0.22, 1, 0.36, 1] }}
+            className="hidden lg:flex relative w-full h-full min-h-[600px] items-center justify-center"
+          >
+            {/* Floating Top Left Card - Accuracy */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 2.7, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:hidden relative w-full mb-6"
+              animate={{ y: [0, -15, 0], x: [0, 10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-16 left-0 bg-white/60 backdrop-blur-2xl rounded-2xl shadow-xl shadow-blue-500/25 p-5 w-48 border border-white/70 hover:shadow-2xl hover:shadow-blue-500/30 transition-all"
             >
-              <HeroChatScene />
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#10B981] to-[#059669] flex items-center justify-center text-white shadow-lg">
+                  <CheckCircle2 className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xl font-bold text-[#0F172A]">99.99%</p>
+                  <p className="text-xs text-[#64748B] font-medium">Accuracy</p>
+                </div>
+              </div>
+              <div className="mt-4 h-8 bg-gradient-to-r from-[#10B981]/15 to-[#059669]/10 rounded-lg flex items-end justify-between px-2 py-1 gap-1">
+                {[40, 60, 45, 80, 65, 90, 75].map((h, i) => (
+                  <div
+                    key={i}
+                    className="flex-1 bg-gradient-to-t from-[#10B981] to-[#6EE7B7] rounded-sm shadow-sm"
+                    style={{ height: `${h}%`, opacity: 0.9 }}
+                  />
+                ))}
+              </div>
             </motion.div>
 
-            {/* Platform Strip - Improved for Mobile */}
-            <motion.div variants={itemVariants} className="pt-6 border-t border-border/50 lg:hidden">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4 lg:hidden">Supported Platforms</p>
-              <div className="flex flex-row justify-between lg:justify-start gap-2 sm:gap-6 items-center overflow-x-auto hide-scrollbar">
-                <div className="bg-white rounded-lg p-1 shadow-sm border border-border/50 flex items-center justify-center h-8 w-14 sm:h-12 sm:w-28 transition-transform hover:scale-105 shrink-0">
-                  <img src="/meesho.jpg" alt="Meesho" className="max-h-full max-w-full object-contain mix-blend-multiply" />
+            {/* Floating Top Right Card - Orders */}
+            <motion.div
+              animate={{ y: [0, -20, 0], x: [0, -10, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+              className="absolute top-32 right-0 bg-white/60 backdrop-blur-2xl rounded-2xl shadow-xl shadow-purple-500/25 p-5 w-48 border border-white/70 hover:shadow-2xl hover:shadow-purple-500/30 transition-all"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] flex items-center justify-center text-white shadow-lg">
+                  <BarChart3 className="w-6 h-6" />
                 </div>
-                <div className="bg-white rounded-lg p-1 shadow-sm border border-border/50 flex items-center justify-center h-8 w-14 sm:h-12 sm:w-28 transition-transform hover:scale-105 shrink-0">
-                  <img src="/flipkart.jpg" alt="Flipkart" className="max-h-full max-w-full object-contain mix-blend-multiply" />
-                </div>
-                <div className="bg-white rounded-lg p-1 shadow-sm border border-border/50 flex items-center justify-center h-8 w-14 sm:h-12 sm:w-28 transition-transform hover:scale-105 shrink-0">
-                  <img src="/amazon.png" alt="Amazon" className="max-h-full max-w-full object-contain mix-blend-multiply" />
-                </div>
-                <div className="bg-white rounded-lg p-1 shadow-sm border border-border/50 flex items-center justify-center h-8 w-14 sm:h-12 sm:w-28 transition-transform hover:scale-105 shrink-0">
-                  <img src="/myntra.png" alt="Myntra" className="max-h-full max-w-full object-contain mix-blend-multiply" />
-                </div>
-                <div className="bg-white rounded-lg p-1 shadow-sm border border-border/50 flex items-center justify-center h-8 w-14 sm:h-12 sm:w-28 transition-transform hover:scale-105 shrink-0">
-                  <img src="/jioMart.jpg" alt="JioMart" className="max-h-full max-w-full object-contain mix-blend-multiply" />
+                <div>
+                  <p className="text-xl font-bold text-[#0F172A]">1Bn+</p>
+                  <p className="text-xs text-[#64748B] font-medium">Processed</p>
                 </div>
               </div>
             </motion.div>
-          </motion.div>
 
-          {/* Desktop Right Content – 3D Orbital Scene (Hidden on Mobile) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 2.7, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden lg:flex relative w-full h-full min-h-[520px] items-center justify-center transform-gpu will-change-transform"
-          >
-            <HeroChatScene />
+            {/* Floating Right Card - Revenue */}
+            <motion.div
+              animate={{ y: [0, -12, 0], x: [0, -15, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+              className="absolute right-8 bottom-32 bg-white/60 backdrop-blur-2xl rounded-2xl shadow-xl shadow-cyan-500/25 p-5 w-48 border border-white/70 hover:shadow-2xl hover:shadow-cyan-500/30 transition-all"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#06B6D4] to-[#0891B2] flex items-center justify-center text-white shadow-lg">
+                  <TrendingUp className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xl font-bold text-[#0F172A]">20-30%</p>
+                  <p className="text-xs text-[#64748B] font-medium">Growth</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Floating Bottom Left Card - AI Detection */}
+            <motion.div
+              animate={{ y: [0, -18, 0] }}
+              transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+              className="absolute bottom-24 left-8 bg-white/60 backdrop-blur-2xl rounded-2xl shadow-xl shadow-blue-500/25 p-5 w-52 border border-white/70 hover:shadow-2xl hover:shadow-blue-500/30 transition-all"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F59E0B] to-[#D97706] flex items-center justify-center text-white shadow-lg">
+                  <Sparkles className="w-6 h-6" />
+                </div>
+                <span className="text-xs font-bold text-[#F59E0B]">AI-Powered</span>
+              </div>
+              <p className="text-sm font-bold text-[#0F172A]">Discrepancy Detection</p>
+              <p className="text-xs text-[#64748B] mt-1 font-medium">Real-time analysis</p>
+            </motion.div>
+
+            {/* Main Premium Dashboard Card */}
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+              className="relative z-10 bg-white/70 backdrop-blur-3xl rounded-3xl shadow-2xl shadow-blue-500/30 border border-white/80 p-8 w-full max-w-md hover:shadow-2xl hover:shadow-blue-500/40 transition-all"
+            >
+              {/* Dashboard Header */}
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/30">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#1D4ED8] to-[#7C3AED] flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                    📊
+                  </div>
+                  <div>
+                    <p className="font-bold text-[#0F172A] text-sm">Dashboard Overview</p>
+                    <p className="text-xs text-[#64748B]">This Month</p>
+                  </div>
+                </div>
+                <div className="w-2 h-2 rounded-full bg-[#10B981]" />
+              </div>
+
+              {/* Key Metrics */}
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                <div className="bg-gradient-to-br from-[#1D4ED8]/10 to-[#60A5FA]/5 rounded-xl p-3 border border-white/40 shadow-sm">
+                  <p className="text-xs text-[#64748B] font-bold mb-1 uppercase">Recovered</p>
+                  <p className="text-lg font-bold text-[#1D4ED8]">₹18.7L</p>
+                  <p className="text-xs text-[#10B981] mt-1 font-semibold">+12.8%</p>
+                </div>
+                <div className="bg-gradient-to-br from-[#7C3AED]/10 to-[#C084FC]/5 rounded-xl p-3 border border-white/40 shadow-sm">
+                  <p className="text-xs text-[#64748B] font-bold mb-1 uppercase">Orders</p>
+                  <p className="text-lg font-bold text-[#7C3AED]">12.4K</p>
+                  <p className="text-xs text-[#10B981] mt-1 font-semibold">+8.1%</p>
+                </div>
+                <div className="bg-gradient-to-br from-[#EF4444]/10 to-[#F87171]/5 rounded-xl p-3 border border-white/40 shadow-sm">
+                  <p className="text-xs text-[#64748B] font-bold mb-1 uppercase">Issues</p>
+                  <p className="text-lg font-bold text-[#EF4444]">25.2K</p>
+                  <p className="text-xs text-[#EF4444] mt-1 font-semibold">-4.5%</p>
+                </div>
+              </div>
+
+              {/* Marketplaces */}
+              <div className="bg-gradient-to-br from-white/40 to-white/20 rounded-xl p-4 border border-white/40 shadow-sm">
+                <p className="text-xs font-bold text-[#64748B] mb-3 uppercase tracking-wide">Top Marketplaces</p>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs group">
+                    <span className="text-[#0F172A] font-bold">Amazon</span>
+                    <span className="text-[#10B981] font-bold">₹9.2L</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-[#0F172A] font-bold">Flipkart</span>
+                    <span className="text-[#10B981] font-bold">₹5.2L</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-[#0F172A] font-bold">Meesho</span>
+                    <span className="text-[#10B981] font-bold">₹3.2L</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
           </motion.div>
         </div>
-
-        {/* Decorative Elements */}
-        <div className="absolute -z-10 -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-3xl blur-2xl transform-gpu" />
-        <div className="absolute -z-10 -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-3xl blur-2xl transform-gpu" />
       </div>
+
 
     </section>
   )
