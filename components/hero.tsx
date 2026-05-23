@@ -97,7 +97,6 @@ export function Hero() {
         <div className="absolute bottom-0 left-0 right-0 h-80 bg-gradient-to-t from-[#0a2f5f]/40 via-[#0d1f3f]/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-t from-[#001a3f]/30 via-transparent to-transparent" />
 
-
         {/* Enhanced floating particles with cyan glow */}
         {[...Array(8)].map((_, i) => (
           <motion.div
@@ -191,25 +190,25 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-white/50 backdrop-blur-xl rounded-full border border-white/40 mb-6 shadow-lg shadow-blue-500/10 hover:bg-white/60 transition-all"
             >
               <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
-              <span className="text-xs font-bold text-[#1D4ED8]">Trusted by 3000+ E-commerce Sellers</span>
+              <span className="text-xs font-bold text-[#1D4ED8]">Trusted by 4000+ E-commerce Sellers</span>
             </motion.div>
 
-            {/* Headline */}
+            {/* Headline - Updated to white text */}
             <motion.h1
               variants={itemVariants}
               className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.15] mb-6 tracking-tight"
             >
-              <span className="text-[#0F172A]">Know Where Your</span>
+              <span className="text-white">Know Where Your</span>
               <br className="hidden sm:block" />
-              <span className="text-[#0F172A]">E-Commerce </span>
+              <span className="text-white">E-Commerce </span>
               <span className="inline-block bg-gradient-to-r from-[#1D4ED8] via-[#7C3AED] to-[#06B6D4] text-transparent bg-clip-text font-black">Money Goes</span>
-              <span className="text-[#FCD34D] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl ml-2">.</span>
+              <span className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl ml-2">.</span>
             </motion.h1>
 
-            {/* Description */}
+            {/* Description - Updated to light color for dark background */}
             <motion.p
               variants={itemVariants}
-              className="text-base lg:text-lg text-[#475569] max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed font-light"
+              className="text-base lg:text-lg text-white/80 max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed font-light"
             >
               Eliminate revenue leakage from hidden marketplace fees. Get precise financial auditing and scale your business across Meesho, Flipkart, and Amazon with AI-powered confidence.
             </motion.p>
@@ -231,7 +230,7 @@ export function Hero() {
               </Button>
               <Button
                 size="lg"
-                className="rounded-full px-8 h-13 bg-white/40 backdrop-blur-xl border border-white/50 text-[#0F172A] font-semibold hover:bg-white/60 hover:border-white/70 shadow-lg shadow-blue-500/10 transition-all duration-300"
+                className="rounded-full px-8 h-13 bg-white/40 backdrop-blur-xl border border-white/50 text-white font-semibold hover:bg-white/60 hover:border-white/70 shadow-lg shadow-blue-500/10 transition-all duration-300"
               >
                 <Play className="mr-2 w-4 h-4 fill-current" />
                 Watch Demo
@@ -384,9 +383,6 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
-
-
     </section>
   )
 }
-
