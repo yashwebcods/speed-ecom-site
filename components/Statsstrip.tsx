@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 
 const stats = [
-  { value: "3,500+", label: "Trusted Sellers" },
+  { value: "4,000+", label: "Trusted Sellers" },
   { value: "700+", label: "Verified Reviews" },
   { value: "40+", label: "Team Members" },
   { value: "6", label: "Supported Platforms" },
@@ -38,7 +38,7 @@ export function StatsStrip() {
           transition={{ duration: 0.5 }}
           className="text-center mb-10 lg:mb-14"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
             SpeedEcom is Empowering
           </h2>
         </motion.div>7
@@ -56,7 +56,7 @@ export function StatsStrip() {
               <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-cta-primary)] leading-tight mb-2">
                 <AnimatedNumber value={stat.value} />
               </div>
-              <p className="text-sm sm:text-base text-white/60 font-medium">{stat.label}</p>
+              <p className="text-sm sm:text-base text-white font-medium">{stat.label}</p>
             </motion.div>
           ))}
         </div>

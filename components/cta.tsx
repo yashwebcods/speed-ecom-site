@@ -20,7 +20,7 @@ const marketplaces = [
   {
     name: "Flipkart",
     logo: "/flipkart.jpg",
-    angle: -30,
+    angle: -20,
     glowColor: "rgba(40, 116, 240, 0.3)",
     borderColor: "#2874F0",
     delay: 0.2,
@@ -30,7 +30,7 @@ const marketplaces = [
   {
     name: "Meesho",
     logo: "/meesho.jpg",
-    angle: 30,
+    angle: 50,
     glowColor: "rgba(173, 26, 128, 0.3)",
     borderColor: "#AD1A80",
     delay: 0.3,
@@ -40,7 +40,7 @@ const marketplaces = [
   {
     name: "Myntra",
     logo: "/myntra.png",
-    angle: 90,
+    angle: 130,
     glowColor: "rgba(241, 85, 108, 0.3)",
     borderColor: "#F1556C",
     delay: 0.4,
@@ -48,19 +48,9 @@ const marketplaces = [
     textOnly: false,
   },
   {
-    name: "GlowRoad",
-    logo: "",
-    angle: 150,
-    glowColor: "rgba(255, 107, 0, 0.3)",
-    borderColor: "#FF6B00",
-    delay: 0.5,
-    blend: false,
-    textOnly: true,
-  },
-  {
     name: "JioMart",
     logo: "/jioMart.jpg",
-    angle: 210,
+    angle: 200,
     glowColor: "rgba(0, 120, 212, 0.3)",
     borderColor: "#0078D4",
     delay: 0.6,
