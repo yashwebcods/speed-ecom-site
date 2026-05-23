@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { motion, Variants } from "framer-motion"
-import { TrendingUp } from "lucide-react"
+import { Instagram, Facebook } from "lucide-react"
 
 const quickLinks = [
   { href: "/services", label: "Services" },
@@ -12,7 +12,7 @@ const quickLinks = [
   { href: "/contact", label: "Contact" },
 ]
 
-const platforms = ["Meesho", "Flipkart", "Amazon", "Myntra", "JioMart", "GlowRoad"]
+const platforms = ["Meesho", "Flipkart", "Amazon", "Myntra", "GlowRoad", "JioMart"]
 
 const columnVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -22,19 +22,18 @@ const columnVariants: Variants = {
     transition: {
       delay: i * 0.12,
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] as any,
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   }),
 }
 
-const CURRENT_YEAR = 2025
+const CURRENT_YEAR = 2026
 
 export function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground py-16 lg:py-20">
+    <footer className="bg-[var(--color-navy-dark)] text-white py-16 lg:py-20">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
-          {/* Brand */}
           <motion.div
             custom={0}
             variants={columnVariants}
@@ -53,13 +52,35 @@ export function Footer() {
                 />
               </div>
             </Link>
-            <p className="text-sm text-primary-foreground/70 mb-5 leading-relaxed">
+            <p className="text-sm text-white/70 mb-3 leading-relaxed">
               Your trusted partner for e-commerce financial management. We help online sellers
               maximize profits and eliminate hidden losses.
             </p>
+            <p className="text-sm text-white/60 mb-5">
+              Proudly based in Surat, Gujarat, India 🇮🇳
+            </p>
+            <div className="flex gap-4">
+              <a
+                href="https://instagram.com/speedecomsolution"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-[var(--color-cta-primary)] transition-colors"
+                aria-label="Instagram @speedecomsolution"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://facebook.com/speedecomsolutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-[var(--color-cta-primary)] transition-colors"
+                aria-label="Facebook /speedecomsolutions"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+            </div>
           </motion.div>
 
-          {/* Quick Links */}
           <motion.div
             custom={1}
             variants={columnVariants}
@@ -67,28 +88,21 @@ export function Footer() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
           >
-            <h4 className="font-semibold font-display mb-5 text-primary-foreground">Quick Links</h4>
+            <h4 className="font-semibold mb-5 text-white">Quick Links</h4>
             <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <motion.li
-                  key={link.href}
-                  initial={{ opacity: 0, x: -15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + index * 0.08 }}
-                >
+              {quickLinks.map((link) => (
+                <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-primary-foreground/70 hover:text-accent hover:translate-x-1 transition-all inline-block"
+                    className="text-sm text-white/70 hover:text-[var(--color-brand-blue)] transition-colors inline-block"
                   >
                     {link.label}
                   </Link>
-                </motion.li>
+                </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Platforms */}
           <motion.div
             custom={2}
             variants={columnVariants}
@@ -96,23 +110,16 @@ export function Footer() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
           >
-            <h4 className="font-semibold font-display mb-5 text-primary-foreground">Supported Platforms</h4>
+            <h4 className="font-semibold mb-5 text-white">Supported Platforms</h4>
             <ul className="space-y-3">
-              {platforms.map((platform, index) => (
-                <motion.li
-                  key={platform}
-                  initial={{ opacity: 0, x: -15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 + index * 0.08 }}
-                >
-                  <span className="text-sm text-primary-foreground/70">{platform}</span>
-                </motion.li>
+              {platforms.map((platform) => (
+                <li key={platform}>
+                  <span className="text-sm text-white/70">{platform}</span>
+                </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Contact */}
           <motion.div
             custom={3}
             variants={columnVariants}
@@ -120,12 +127,12 @@ export function Footer() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
           >
-            <h4 className="font-semibold font-display mb-5 text-primary-foreground">Contact</h4>
+            <h4 className="font-semibold mb-5 text-white">Contact</h4>
             <ul className="space-y-3">
               <li>
                 <a
                   href="tel:+919913315809"
-                  className="text-sm text-primary-foreground/70 hover:text-accent transition-colors"
+                  className="text-sm text-white/70 hover:text-[var(--color-brand-blue)] transition-colors"
                 >
                   +91 99133 15809
                 </a>
@@ -133,37 +140,50 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:speedecomsolution@gmail.com"
-                  className="text-sm text-primary-foreground/70 hover:text-accent transition-colors"
+                  className="text-sm text-white/70 hover:text-[var(--color-brand-blue)] transition-colors"
                 >
                   speedecomsolution@gmail.com
                 </a>
               </li>
-              <li className="text-sm text-primary-foreground/70">
+              <li className="text-sm text-white/70">
                 508, KBC-1, Kiran Chowk,
                 <br />
                 Surat – 395010
+              </li>
+              <li className="text-[13px] text-white/50 pt-2">
+                @speedecomsolution · /speedecomsolutions
               </li>
             </ul>
           </motion.div>
         </div>
 
-        {/* Bottom Bar */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="pt-8 border-t border-primary-foreground/10"
+          className="pt-8 border-t border-white/10"
         >
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-primary-foreground/50">
-              © {CURRENT_YEAR} Speed E-Com Solution. All rights reserved.
-            </p>
+            <div className="text-center sm:text-left">
+              <p className="text-sm text-white/50">
+                © {CURRENT_YEAR} Speed E-Com Solution. All rights reserved.
+              </p>
+              <p className="text-[13px] text-white/40 mt-2">
+                Speed E-Com Solution is a brand of HM Square Solutions LLP
+              </p>
+            </div>
             <div className="flex gap-6">
-              <Link href="/privacy-policy" className="text-sm text-primary-foreground/50 hover:text-accent transition-colors">
+              <Link
+                href="/privacy-policy"
+                className="text-sm text-white/50 hover:text-[var(--color-brand-blue)] transition-colors"
+              >
                 Privacy Policy
               </Link>
-              <Link href="/terms-of-service" className="text-sm text-primary-foreground/50 hover:text-accent transition-colors">
+              <Link
+                href="/terms-of-service"
+                className="text-sm text-white/50 hover:text-[var(--color-brand-blue)] transition-colors"
+              >
                 Terms of Service
               </Link>
             </div>

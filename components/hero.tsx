@@ -9,10 +9,11 @@ import { HeroChatScene } from "@/components/hero-chat-scene"
 import { TrustedBy } from "@/components/TrustedBy"
 import { useState, useEffect } from "react"
 
-const stats = [
+const heroStats = [
+  { value: "3,500+", label: "Trusted Sellers" },
   { value: "40+", label: "Team Members" },
-  { value: "2000+", label: "Client Reviews" },
-  { value: "3500+", label: "Trusted Clients" },
+  { value: "99.9%", label: "Audit Accuracy" },
+  { value: "₹1 Cr+", label: "Monthly Audits" },
 ]
 
 const features = [
@@ -184,57 +185,49 @@ export function Hero() {
             animate="visible"
             className="text-center lg:text-left w-full min-w-0"
           >
-            {/* Trusted Badge */}
-            <motion.div
-              variants={itemVariants}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/50 backdrop-blur-xl rounded-full border border-white/40 mb-6 shadow-lg shadow-blue-500/10 hover:bg-white/60 transition-all"
-            >
-              <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
-              <span className="text-xs font-bold text-[#1D4ED8]">Trusted by 4000+ E-commerce Sellers</span>
-            </motion.div>
-
-            {/* Headline - Updated to white text */}
-            <motion.h1
-              variants={itemVariants}
-              className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.15] mb-6 tracking-tight"
-            >
-              <span className="text-white">Know Where Your</span>
-              <br className="hidden sm:block" />
-              <span className="text-white">E-Commerce </span>
-              <span className="inline-block bg-gradient-to-r from-[#1D4ED8] via-[#7C3AED] to-[#06B6D4] text-transparent bg-clip-text font-black">Money Goes</span>
-              <span className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl ml-2">.</span>
-            </motion.h1>
-
-            {/* Description - Updated to light color for dark background */}
             <motion.p
               variants={itemVariants}
-              className="text-base lg:text-lg text-white/80 max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed font-light"
+              className="text-sm font-medium text-[var(--color-cta-primary)] tracking-[0.04em] mb-4"
             >
-              Eliminate revenue leakage from hidden marketplace fees. Get precise financial auditing and scale your business across Meesho, Flipkart, and Amazon with AI-powered confidence.
+              Bijnes tamaro, hisab amaro
             </motion.p>
 
-            {/* CTAs */}
+            <motion.h1
+              variants={itemVariants}
+              className="text-[40px] sm:text-5xl lg:text-[48px] font-bold leading-[1.15] mb-6 tracking-tight text-white"
+            >
+              Know Where Your E-Commerce Money Goes.
+            </motion.h1>
+
+            <motion.p
+              variants={itemVariants}
+              className="text-[15px] sm:text-base text-white/80 max-w-lg mx-auto lg:mx-0 mb-8 leading-[1.7]"
+            >
+              Eliminate revenue leakage from hidden marketplace fees. Get precise financial auditing
+              and scale your business across Meesho, Flipkart, and Amazon — with Speedi AI.
+            </motion.p>
+
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 mb-12"
+              className="flex flex-col sm:flex-row gap-4 mb-10"
             >
-              <Button
-                asChild
-                size="lg"
-                className="rounded-full px-8 h-13 bg-gradient-to-r from-[#1D4ED8] to-[#1E40AF] hover:from-[#1C4BC4] hover:to-[#1E36A0] text-white font-bold shadow-lg shadow-[#1D4ED8]/40 hover:shadow-xl hover:shadow-[#1D4ED8]/50 transition-all duration-300 group"
-              >
+              <Button asChild variant="cta" size="lg" className="group">
                 <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
                   Book Free Demo
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button
-                size="lg"
-                className="rounded-full px-8 h-13 bg-white/40 backdrop-blur-xl border border-white/50 text-white font-semibold hover:bg-white/60 hover:border-white/70 shadow-lg shadow-blue-500/10 transition-all duration-300"
-              >
+              <Button variant="cta-secondary" size="lg">
                 <Play className="mr-2 w-4 h-4 fill-current" />
                 Watch Demo
               </Button>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 border-t border-white/10"
+            >
+             
             </motion.div>
           </motion.div>
 
@@ -256,8 +249,8 @@ export function Hero() {
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-xl font-bold text-[#0F172A]">99.99%</p>
-                  <p className="text-xs text-[#64748B] font-medium">Accuracy</p>
+                  <p className="text-xl font-bold text-[#0F172A]">99.9%</p>
+                  <p className="text-xs text-[#64748B] font-medium">Audit Accuracy</p>
                 </div>
               </div>
               <div className="mt-4 h-8 bg-gradient-to-r from-[#10B981]/15 to-[#059669]/10 rounded-lg flex items-end justify-between px-2 py-1 gap-1">
@@ -271,19 +264,19 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* Floating Top Right Card - Orders */}
+            {/* Floating Top Right Card - Monthly Audits */}
             <motion.div
               animate={{ y: [0, -20, 0], x: [0, -10, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
               className="absolute top-32 right-0 bg-white/60 backdrop-blur-2xl rounded-2xl shadow-xl shadow-purple-500/25 p-5 w-48 border border-white/70 hover:shadow-2xl hover:shadow-purple-500/30 transition-all"
             >
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] flex items-center justify-center text-white shadow-lg">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center text-white shadow-lg">
                   <BarChart3 className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-xl font-bold text-[#0F172A]">1Bn+</p>
-                  <p className="text-xs text-[#64748B] font-medium">Processed</p>
+                  <p className="text-xl font-bold text-[#0F172A]">₹1 Cr+</p>
+                  <p className="text-xs text-[#64748B] font-medium">Monthly Audits</p>
                 </div>
               </div>
             </motion.div>
@@ -343,9 +336,9 @@ export function Hero() {
 
               {/* Key Metrics */}
               <div className="grid grid-cols-3 gap-3 mb-6">
-                <div className="bg-gradient-to-br from-[#1D4ED8]/10 to-[#60A5FA]/5 rounded-xl p-3 border border-white/40 shadow-sm">
-                  <p className="text-xs text-[#64748B] font-bold mb-1 uppercase">Recovered</p>
-                  <p className="text-lg font-bold text-[#1D4ED8]">₹18.7L</p>
+                <div className="rounded-xl p-3 border border-[#D1FAE5] bg-[#D1FAE5] shadow-sm">
+                  <p className="text-xs text-[#065F46] font-bold mb-1 uppercase">Recovered</p>
+                  <p className="text-lg font-bold text-[#10B981]">₹18.7L</p>
                   <p className="text-xs text-[#10B981] mt-1 font-semibold">+12.8%</p>
                 </div>
                 <div className="bg-gradient-to-br from-[#7C3AED]/10 to-[#C084FC]/5 rounded-xl p-3 border border-white/40 shadow-sm">
@@ -353,8 +346,8 @@ export function Hero() {
                   <p className="text-lg font-bold text-[#7C3AED]">12.4K</p>
                   <p className="text-xs text-[#10B981] mt-1 font-semibold">+8.1%</p>
                 </div>
-                <div className="bg-gradient-to-br from-[#EF4444]/10 to-[#F87171]/5 rounded-xl p-3 border border-white/40 shadow-sm">
-                  <p className="text-xs text-[#64748B] font-bold mb-1 uppercase">Issues</p>
+                <div className="rounded-xl p-3 border border-[#FEE2E2] bg-[#FEE2E2] shadow-sm">
+                  <p className="text-xs text-[#EF4444] font-bold mb-1 uppercase">Issues</p>
                   <p className="text-lg font-bold text-[#EF4444]">25.2K</p>
                   <p className="text-xs text-[#EF4444] mt-1 font-semibold">-4.5%</p>
                 </div>

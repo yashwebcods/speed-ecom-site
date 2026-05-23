@@ -64,7 +64,7 @@ export function Advantages() {
   return (
     <section
       id="advantages"
-      className="py-20 lg:py-28 relative overflow-hidden bg-[#f8f9ff]"
+      className="section-spacing relative overflow-hidden bg-[#f8f9ff]"
     >
       {/* Top diagonal slash */}
       <div className="absolute top-0 left-0 right-0 h-16 bg-background" style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 0)" }} />

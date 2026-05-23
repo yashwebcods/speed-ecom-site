@@ -1,7 +1,7 @@
 "use client"
 
 import { Header } from "@/components/header"
-import { Services } from "@/components/services"
+import { ServicesDetailed } from "@/components/services-detailed"
 import { Footer } from "@/components/footer"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { ScrollToTop } from "@/components/scroll-to-top"
@@ -18,7 +18,7 @@ export default function ServicesPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Services />
+          <ServicesDetailed />
         </motion.div>
       </main>
       <Footer />

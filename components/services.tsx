@@ -89,7 +89,7 @@ const itemVariants: Variants = {
 
 export function Services() {
   return (
-    <section id="services" className="bg-background py-20 px-4">
+    <section id="services" className="bg-background section-spacing px-4">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

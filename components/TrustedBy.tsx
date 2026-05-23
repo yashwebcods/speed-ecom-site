@@ -19,7 +19,7 @@ const brandImages = [
 
 export function TrustedBy() {
   return (
-    <section className="w-full bg-white py-16 sm:py-20 relative overflow-hidden">
+    <section className="w-full bg-white section-spacing relative overflow-hidden">
       <div className="w-full px-4 md:px-8">
 
         {/* Header */}

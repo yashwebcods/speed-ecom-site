@@ -14,48 +14,58 @@ const marketplaces = [
     glowColor: "rgba(255, 153, 0, 0.3)",
     borderColor: "#FF9900",
     delay: 0.1,
-    padding: "p-1.5 sm:p-2",         // less padding — amazon logo needs full space
-    blend: false,                      // no mix-blend-multiply for amazon
+    blend: false,
+    textOnly: false,
   },
   {
     name: "Flipkart",
     logo: "/flipkart.jpg",
-    angle: -18,
+    angle: -30,
     glowColor: "rgba(40, 116, 240, 0.3)",
     borderColor: "#2874F0",
-    delay: 0.3,
-    padding: "p-2 sm:p-3",
+    delay: 0.2,
     blend: true,
+    textOnly: false,
   },
   {
     name: "Meesho",
     logo: "/meesho.jpg",
-    angle: 54,
+    angle: 30,
     glowColor: "rgba(173, 26, 128, 0.3)",
     borderColor: "#AD1A80",
-    delay: 0.5,
-    padding: "p-2 sm:p-3",
+    delay: 0.3,
     blend: true,
+    textOnly: false,
   },
   {
     name: "Myntra",
     logo: "/myntra.png",
-    angle: 126,
+    angle: 90,
     glowColor: "rgba(241, 85, 108, 0.3)",
     borderColor: "#F1556C",
-    delay: 0.7,
-    padding: "p-2 sm:p-3",
+    delay: 0.4,
     blend: true,
+    textOnly: false,
   },
   {
-    name: "Snapdeal",
-    logo: "/Snapdeal.png",
-    angle: 198,
-    glowColor: "rgba(228, 0, 70, 0.3)",
-    borderColor: "#E40046",
-    delay: 0.9,
-    padding: "p-2 sm:p-3",
+    name: "GlowRoad",
+    logo: "",
+    angle: 150,
+    glowColor: "rgba(255, 107, 0, 0.3)",
+    borderColor: "#FF6B00",
+    delay: 0.5,
+    blend: false,
+    textOnly: true,
+  },
+  {
+    name: "JioMart",
+    logo: "/jioMart.jpg",
+    angle: 210,
+    glowColor: "rgba(0, 120, 212, 0.3)",
+    borderColor: "#0078D4",
+    delay: 0.6,
     blend: true,
+    textOnly: false,
   },
 ]
 
@@ -70,7 +80,7 @@ export function CTA() {
 
   return (
     <section
-      className="py-16 lg:py-28 relative overflow-hidden bg-primary text-primary-foreground"
+      className="section-spacing relative overflow-hidden bg-[var(--color-brand-deep-blue)] text-white"
       ref={sectionRef}
     >
       <div className="absolute inset-0 opacity-40">
@@ -167,14 +177,20 @@ export function CTA() {
                             padding: "6px",
                           }}
                         >
-                          <img
-                            src={item.logo}
-                            alt={item.name}
-                            className="w-full h-full object-contain rounded-full"
-                            style={{
-                              mixBlendMode: item.blend ? "multiply" : "normal",
-                            }}
-                          />
+                          {item.textOnly ? (
+                            <span className="text-[9px] sm:text-[10px] font-bold text-slate-700 text-center leading-tight px-1">
+                              {item.name}
+                            </span>
+                          ) : (
+                            <img
+                              src={item.logo}
+                              alt={item.name}
+                              className="w-full h-full object-contain rounded-full"
+                              style={{
+                                mixBlendMode: item.blend ? "multiply" : "normal",
+                              }}
+                            />
+                          )}
                         </motion.div>
                       </motion.div>
                     </div>
@@ -208,7 +224,7 @@ export function CTA() {
                 className="text-2xl sm:text-4xl lg:text-5xl font-bold font-display text-white mb-6 leading-tight"
               >
                 Struggling With Online Business Losses?{" "}
-                <span className="text-[#facc15] block sm:inline-block drop-shadow-[0_2px_10px_rgba(250,204,21,0.25)]">
+                <span className="text-[var(--color-cta-primary)] block sm:inline-block">
                   Let Us Fix It!
                 </span>
               </motion.h2>
@@ -221,7 +237,7 @@ export function CTA() {
                 className="text-sm sm:text-base lg:text-lg text-white/90 mb-8 leading-relaxed max-w-xl"
               >
                 We help e-commerce sellers identify revenue leaks, wrong commission fees, shipping overcharges, and settlement
-                issues across marketplaces like Meesho, Amazon, Flipkart, Myntra, Snapdeal, and more.
+                issues across marketplaces like Meesho, Amazon, Flipkart, Myntra, GlowRoad, and JioMart.
                 Get professional auditing to recover your lost money today!
               </motion.p>
 
@@ -233,11 +249,7 @@ export function CTA() {
                 className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
               >
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-[#facc15] text-[#0b2545] hover:bg-[#f6d738] rounded-full px-8 shadow-lg shadow-[#facc15]/20 group h-12 w-full sm:min-w-[180px] text-xs sm:text-sm font-bold transition-all duration-300"
-                  >
+                  <Button asChild variant="cta" size="lg" className="group w-full sm:min-w-[180px]">
                     <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank" className="flex items-center justify-center">
                       Book Free Demo
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -247,11 +259,11 @@ export function CTA() {
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                   <Button
                     asChild
-                    variant="outline"
+                    variant="cta-secondary"
                     size="lg"
-                    className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 rounded-full px-8 h-12 w-full sm:min-w-[180px] backdrop-blur-sm text-xs sm:text-sm font-semibold transition-all duration-300"
+                    className="border-white/30 text-white hover:bg-white/10 hover:text-white w-full sm:min-w-[180px]"
                   >
-                    <Link href="tel:+919913315809" className="flex items-center justify-center">
+                    <Link href="/contact" className="flex items-center justify-center">
                       Contact Us
                     </Link>
                   </Button>

@@ -13,7 +13,7 @@ const faqData = {
   GENERAL: [
     {
       question: "Which platforms do you support?",
-      answer: "We work with all major e-commerce platforms including Flipkart, Amazon, Meesho, Snapdeal, Myntra, and more. Our team is experienced in handling platform-specific issues and optimizations."
+      answer: "We work with all major e-commerce platforms including Amazon, Flipkart, Meesho, Myntra, GlowRoad, and JioMart. Our team is experienced in handling platform-specific issues and optimizations."
     },
     {
       question: "How will your services solve my online business problems?",

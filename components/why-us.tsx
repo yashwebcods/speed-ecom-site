@@ -56,7 +56,7 @@ export function WhyUs() {
   return (
     <section
       id="why-us"
-      className="py-8 lg:py-16 relative overflow-hidden bg-gradient-to-br from-[#051524] via-[#0B2545] to-[#134074]"
+      className="section-spacing relative overflow-hidden bg-gradient-to-br from-[#051524] via-[#0B2545] to-[#134074]"
       ref={sectionRef}
     >
       {/* Background Decor */}
@@ -88,7 +88,7 @@ export function WhyUs() {
             className="text-2xl min-[400px]:text-3xl lg:text-5xl font-bold font-display mb-4 text-white leading-tight"
           >
             More Than a Service —{" "}
-            <span className="text-[#facc15] block sm:inline-block drop-shadow-[0_2px_10px_rgba(250,204,21,0.25)]">
+            <span className="text-[var(--color-cta-primary)] block sm:inline-block">
               A Success Partner!
             </span>
           </motion.h2>
