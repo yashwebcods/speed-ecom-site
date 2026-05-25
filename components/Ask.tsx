@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import {
   Search, TrendingDown, Zap, FileText, AlertTriangle,
   Tag, Building2, CheckCircle2, Send, MessageSquare,
@@ -168,7 +168,7 @@ export function AskAI() {
               </div>
 
               {/* Right Column - Interactive Chat */}
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col">
                 <p className="text-sm font-semibold text-violet-300 mb-3">
                   Quick questions sellers ask most:
                 </p>
@@ -212,40 +212,36 @@ export function AskAI() {
                 </div>
 
                 {/* AI Output / Response Area (if active) */}
-                <AnimatePresence>
-                  {(isTyping || response) && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0, marginBottom: 0 }}
-                      animate={{ opacity: 1, height: "auto", marginBottom: 24 }}
-                      exit={{ opacity: 0, height: 0, marginBottom: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="bg-violet-900/40 border border-violet-500/30 rounded-2xl p-5 shadow-inner backdrop-blur-sm">
-                        {isTyping ? (
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-violet-600/50 flex items-center justify-center shrink-0">
-                              <Sparkles className="w-4 h-4 text-violet-200 animate-pulse" />
-                            </div>
-                            <div className="flex gap-1.5">
-                              {[0, 1, 2].map((i) => (
-                                <motion.div
-                                  key={i}
-                                  className="w-2 h-2 rounded-full bg-violet-400"
-                                  animate={{ y: [0, -6, 0] }}
-                                  transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.2 }}
-                                />
-                              ))}
-                            </div>
-                          </div>
-                        ) : (
-                          <p className="text-violet-100 text-[15px] leading-relaxed">
-                            {response}
-                          </p>
-                        )}
+                <motion.div
+                  initial={false}
+                  animate={isTyping || response ? { opacity: 1, height: "auto", marginBottom: 24 } : { opacity: 0, height: 0, marginBottom: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden mb-6"
+                >
+                  <div className="bg-violet-900/40 border border-violet-500/30 rounded-2xl p-5 shadow-inner backdrop-blur-sm">
+                    {isTyping ? (
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-violet-600/50 flex items-center justify-center shrink-0">
+                          <Sparkles className="w-4 h-4 text-violet-200 animate-pulse" />
+                        </div>
+                        <div className="flex gap-1.5">
+                          {[0, 1, 2].map((i) => (
+                            <motion.div
+                              key={i}
+                              className="w-2 h-2 rounded-full bg-violet-400"
+                              animate={{ y: [0, -6, 0] }}
+                              transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.2 }}
+                            />
+                          ))}
+                        </div>
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                    ) : (
+                      <p className="text-violet-100 text-[15px] leading-relaxed">
+                        {response}
+                      </p>
+                    )}
+                  </div>
+                </motion.div>
 
                 {/* Input Area */}
                 <div className="mt-auto">
