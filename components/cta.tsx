@@ -227,7 +227,7 @@ export function CTA() {
                 className="text-sm sm:text-base lg:text-lg text-white/90 mb-8 leading-relaxed max-w-xl"
               >
                 We help e-commerce sellers identify revenue leaks, wrong commission fees, shipping overcharges, and settlement
-                issues across marketplaces like Meesho, Amazon, Flipkart, Myntra, GlowRoad, and JioMart.
+                issues across marketplaces like Meesho, Amazon, Flipkart, Myntra, and JioMart.
                 Get professional auditing to recover your lost money today!
               </motion.p>
 

@@ -1,82 +1,56 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
+import {
+  Search, TrendingDown, Zap, FileText, AlertTriangle,
+  Tag, Building2, CheckCircle2, Send, MessageSquare,
+  Lock, Sparkles, ChevronRight, Activity, Shield
+} from "lucide-react"
+import Image from "next/image"
 
 const QUICK_QUESTIONS = [
-  { label: "🔍 What should I fix first?", value: "What should I fix first?" },
-  { label: "📉 Why am I in loss?", value: "Why am I in loss?" },
-  { label: "⚡ Urgent SKU actions", value: "Urgent SKU actions needed?" },
-  { label: "🔄 Order mismatch?", value: "Why are my orders not matching?" },
-  { label: "💰 Settlement discrepancy", value: "Why is my settlement amount different?" },
-  { label: "🏷️ SKU reconciliation", value: "Help me reconcile SKU-level data" },
-  { label: "📊 Platform fee mismatch", value: "Platform fees are higher than expected" },
-  { label: "✅ Auto reconciliation", value: "How does auto reconciliation work?" },
+  { label: "What should I fix first?", icon: Search, value: "What should I fix first?" },
+  { label: "Why am I in loss?", icon: TrendingDown, value: "Why am I in loss?" },
+  { label: "Urgent SKU actions", icon: Zap, value: "Urgent SKU actions needed?" },
+  { label: "Order mismatch?", icon: FileText, value: "Why are my orders not matching?" },
+  { label: "Settlement discrepancy", icon: AlertTriangle, value: "Why is my settlement amount different?" },
+  { label: "SKU reconciliation", icon: Tag, value: "Help me reconcile SKU-level data" },
+  { label: "Platform fee mismatch", icon: Building2, value: "Platform fees are higher than expected" },
+  { label: "Auto reconciliation", icon: CheckCircle2, value: "How does auto reconciliation work?" },
 ]
 
 const CANNED_RESPONSES: Record<string, string> = {
   "What should I fix first?":
     "🔍 Top Priority: Your RTO rate is 34% — above the healthy 20% benchmark. Fix packaging for your top 3 returned SKUs first. This alone could improve net margin by 3–5%. Also review pricing on SKUs with <10% margin before the next sale season.",
-  
+
   "Why am I in loss?":
     "📉 Loss Analysis: Your 15.59% margin is being squeezed by high return shipping costs (₹4.2/order avg), 46 loss-making SKUs, and excess ad spend on low-converting keywords. Reducing RTO by 10% and pausing 5 bottom SKUs can recover ₹40K–₹60K monthly.",
-  
+
   "Urgent SKU actions needed?":
     "⚡ Urgent Actions: 1) Pause SKU #MH-209 (negative margin ₹−8/order). 2) Increase MRP of SKU #GL-445 by 12%. 3) Bundle SKU #TX-118 to reduce per-unit shipping. 4) Add better images to SKU #DP-302 — its conversion rate is 1.2% vs category avg 3.8%.",
-  
+
   "Why are my orders not matching?":
     "🔄 Order Mismatch Detected: 47 orders from last month show discrepancy between Amazon and your system. Possible causes: 1) Order ID format mismatch (AMZ vs your ERP). 2) Split shipments recorded as single orders. 3) Cancelled orders still showing as 'Shipped'. Run our reconciliation tool to auto-match these within 2 minutes.",
-  
+
   "Why is my settlement amount different?":
     "💰 Settlement Discrepancy: ₹23,450 difference found between Meesho settlement report and your bank statement. Breakdown: ₹8,200 TCS deducted (not in your books), ₹6,500 return adjustments, ₹4,800 shipping overcharges, ₹3,950 GST mismatch. Our AI can auto-reconcile and generate a dispute ready report.",
-  
+
   "Help me reconcile SKU-level data":
     "🏷️ SKU Reconciliation: 156 orders have SKU-level mismatches. Top issues: 1) 34 orders - SKU codes changed mid-month. 2) 52 orders - missing variant mapping. 3) 70 orders - bundle SKUs not split correctly. Upload your catalog file and our AI will map all discrepancies in 3 clicks.",
-  
+
   "Platform fees are higher than expected":
     "📊 Platform Fee Analysis: Amazon fees are 8.2% higher this month (₹42,180 extra). Breakdown: Closing fee increased on 320 orders (₹12,800), weight handling fee on 180 orders (₹8,400), storage fee spike (₹21,000 due to 45-day old inventory). Reconciliation report ready for dispute.",
-  
+
   "How does auto reconciliation work?":
     "✅ Auto Reconciliation Process: 1) AI pulls order data from all platforms (Amazon, Flipkart, Meesho). 2) Matches each order with bank settlement. 3) Flags discrepancies in fees, returns, and adjustments. 4) Generates reconciliation report with variance analysis. 5) Creates dispute files for each platform. Average time: 3 minutes for 10,000+ orders.",
 }
 
-const FEATURES = [
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-      </svg>
-    ),
-    title: "Auto Order Matching",
-    desc: "AI matches every order across platforms with bank settlements",
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="1" y="3" width="15" height="13" /><polygon points="16 8 20 8 23 11 23 16 16 16 16 8" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" />
-      </svg>
-    ),
-    title: "Fee & Settlement Audit",
-    desc: "Detect hidden fees, TCS discrepancies, and wrong adjustments",
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-      </svg>
-    ),
-    title: "AI Reconciliation",
-    desc: "Match GSTR-1 with platform settlements, auto-detect mismatches",
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" />
-      </svg>
-    ),
-    title: "Dispute Ready Reports",
-    desc: "Generate platform-ready dispute files with 1 click",
-  },
+const TOP_TAGS = [
+  { label: "Auto Reconciliation", icon: Activity, active: true },
+  { label: "Fee Audit", icon: FileText, active: false },
+  { label: "GST Matching", icon: CheckCircle2, active: false },
+  { label: "Dispute Ready", icon: Shield, active: false },
 ]
 
 export function AskAI() {
@@ -89,10 +63,12 @@ export function AskAI() {
   const handleQuickBtn = (value: string) => {
     setInputValue(value)
     setActiveBtn(value)
+    // Optional: auto-submit when clicking a quick button
+    // handleAsk(value)
   }
 
-  const handleAsk = () => {
-    const q = inputValue.trim()
+  const handleAsk = (overrideQ?: string) => {
+    const q = (overrideQ || inputValue).trim()
     if (!q) return
 
     if (quota <= 0) {
@@ -116,206 +92,208 @@ export function AskAI() {
   }
 
   return (
-    <section className="w-full bg-background py-24 md:py-32 relative overflow-hidden">
-      {/* Subtle dot grid - full width */}
-      <div
-        className="absolute inset-0 opacity-[0.035] pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1.5px 1.5px, currentColor 1px, transparent 0)`,
-          backgroundSize: "28px 28px",
-        }}
-      />
+    <section className="w-full bg-[#F8F9FE] py-8 md:py-10 relative overflow-hidden font-sans">
+      <div className="w-full px-4 md:px-6 relative z-10 max-w-[1440px] mx-auto">
 
-      <div className="w-full px-4 md:px-8 relative z-10">
-
-        {/* ── Header ── */}
+        {/* Main Card Container - Dark Theme */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16 md:mb-20 max-w-7xl mx-auto"
+          transition={{ duration: 0.7 }}
+          className="bg-gradient-to-br from-[#0f2a52] via-[#1a3d66] to-[#0f2a52] rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] border border-violet-500/30 overflow-hidden relative"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display text-foreground mb-5 leading-tight">
-            AI-Powered{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-500">
-              Reconciliation Engine
-            </span>
-          </h2>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            Automatically match every order, payment, and return across all marketplaces. 
-            Detect discrepancies in real-time, reconcile settlements, and know exactly 
-            how much you earned — down to the last rupee. Stop chasing numbers. Let AI do the math.
-          </p>
-        </motion.div>
-
-        {/* ── Main Dark Card - Full Width & Larger ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative rounded-2xl overflow-hidden border-2 border-primary/60 shadow-2xl shadow-primary/20 bg-gradient-to-br from-[#0f2a52] via-[#1a3d66] to-[#0f2a52] max-w-7xl mx-auto"
-        >
-          {/* Glow blobs - larger */}
+          {/* Subtle glow effects in the background */}
           <div className="pointer-events-none absolute -top-32 -right-32 w-96 h-96 rounded-full bg-violet-600/20 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-28 -left-28 w-80 h-80 rounded-full bg-indigo-500/15 blur-3xl" />
-          <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] rounded-full bg-violet-800/10 blur-2xl" />
 
-          <div className="relative z-10 p-8 md:p-12 lg:p-14">
+          <div className="p-5 lg:p-6 relative z-10">
 
-            {/* ── Card top bar ── */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-10 pb-8 border-b border-violet-500/20">
-              <div className="flex flex-wrap gap-3">
-                {["Auto Reconciliation", "Fee Audit", "GST Matching", "Dispute Ready"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-4 py-1.5 rounded-lg bg-violet-500/15 border border-violet-500/20 text-violet-300 text-sm font-medium"
+            {/* Top Bar */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5">
+              <div className="flex flex-wrap items-center gap-3">
+                {TOP_TAGS.map((tag) => (
+                  <div
+                    key={tag.label}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer ${tag.active
+                      ? "bg-violet-500/20 text-violet-200 border border-violet-400/30 shadow-[0_0_15px_rgba(139,92,246,0.2)]"
+                      : "bg-white/5 text-violet-300/70 border border-white/10 hover:bg-white/10"
+                      }`}
                   >
-                    {tag}
-                  </span>
+                    <tag.icon className="w-4 h-4" />
+                    {tag.label}
+                  </div>
                 ))}
               </div>
-              <div className="text-sm text-violet-300/40 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <div className="flex items-center gap-2 text-sm font-semibold text-violet-300/70">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"></span>
                 Live reconciliation active
               </div>
             </div>
 
-            {/* ── Two-column body with more spacing ── */}
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12 mb-10">
+            {/* Main Content Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-              {/* Left — feature list - larger */}
-              <div className="lg:col-span-2 flex flex-col gap-6">
-                <p className="text-violet-100 font-semibold text-lg leading-snug">
-                  Your P&L report holds the answers. Our AI reads every line and tells you exactly what to act on.
+              {/* Left Column - Copy & Visual */}
+              <div className="flex flex-col">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-[1.15] mb-3">
+                  Your P&L report holds<br />the answers.
+                </h2>
+                <p className="text-base text-violet-200 mb-5 max-w-full lg:max-w-md">
+                  Our AI reads every line and tells you exactly what to act on.
                 </p>
-                <div className="flex flex-col gap-5">
-                  {FEATURES.map((f) => (
-                    <div key={f.title} className="flex items-start gap-4">
-                      <span className="shrink-0 mt-0.5 w-10 h-10 rounded-lg bg-violet-500/20 border border-violet-500/25 flex items-center justify-center text-violet-400">
-                        {f.icon}
-                      </span>
-                      <div>
-                        <p className="text-violet-100 text-base font-semibold mb-1">{f.title}</p>
-                        <p className="text-violet-300/55 text-sm leading-relaxed">{f.desc}</p>
-                      </div>
-                    </div>
-                  ))}
+
+                <div className="relative rounded-2xl overflow-hidden flex flex-col items-center justify-center mb-4 w-full">
+                  {/* Image */}
+                  <Image
+                    src="/dashboard.png"
+                    alt="AI Dashboard Illustration"
+                    width={400}
+                    height={280}
+                    className="object-contain w-full max-h-[240px] h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-700"
+                    priority
+                  />
                 </div>
-                <p className="text-violet-300/40 text-sm flex items-center gap-2 mt-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="4" y="4" width="16" height="16" rx="2" /><rect x="9" y="9" width="6" height="6" />
-                    <line x1="9" y1="2" x2="9" y2="4" /><line x1="15" y1="2" x2="15" y2="4" />
-                    <line x1="9" y1="20" x2="9" y2="22" /><line x1="15" y1="20" x2="15" y2="22" />
-                    <line x1="2" y1="9" x2="4" y2="9" /><line x1="2" y1="15" x2="4" y2="15" />
-                    <line x1="20" y1="9" x2="22" y2="9" /><line x1="20" y1="15" x2="22" y2="15" />
-                  </svg>
-                  Powered by <span className="text-violet-300/70 font-semibold ml-0.5">Claude AI</span> with your full reconciliation data
-                </p>
+
+                {/* Badge */}
+                <div className="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 backdrop-blur-sm">
+                  <div className="w-9 h-9 bg-violet-600/30 border border-violet-400/30 text-violet-300 rounded-lg flex items-center justify-center shadow-lg">
+                    <Sparkles className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-bold text-xs">AI-Powered insights</h4>
+                    <p className="text-violet-300/70 text-[10px] font-medium">Trained on 10M+ transactions</p>
+                  </div>
+                </div>
               </div>
 
-              {/* Right — interactive AI - larger */}
-              <div className="lg:col-span-3 flex flex-col gap-5">
-                <p className="text-violet-300/70 text-base font-medium">
+              {/* Right Column - Interactive Chat */}
+              <div className="flex flex-col h-full">
+                <p className="text-sm font-semibold text-violet-300 mb-3">
                   Quick questions sellers ask most:
                 </p>
 
-                {/* Quick buttons 2-col grid - larger buttons */}
-                <div className="grid grid-cols-2 gap-3">
-                  {QUICK_QUESTIONS.map((q) => (
-                    <button
-                      key={q.value}
-                      onClick={() => handleQuickBtn(q.value)}
-                      className={[
-                        "px-4 py-3 rounded-xl text-sm font-medium border text-left transition-all duration-200",
-                        activeBtn === q.value
-                          ? "bg-violet-600/50 border-violet-400 text-white shadow-md shadow-violet-900/40"
-                          : "bg-white/5 border-violet-500/25 text-violet-200 hover:bg-violet-600/25 hover:border-violet-400/55 hover:text-white",
-                      ].join(" ")}
-                    >
-                      {q.label}
-                    </button>
-                  ))}
+                {/* Quick Questions Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-5">
+                  {QUICK_QUESTIONS.map((q) => {
+                    const Icon = q.icon
+                    const isActive = activeBtn === q.value
+                    return (
+                      <button
+                        key={q.value}
+                        onClick={() => handleQuickBtn(q.value)}
+                        className={`group relative text-left p-3 rounded-xl border transition-all duration-300 flex items-center gap-3 overflow-hidden ${isActive
+                          ? "bg-violet-600/40 border-violet-400/50 shadow-[0_0_15px_rgba(139,92,246,0.15)]"
+                          : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
+                          }`}
+                      >
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${isActive ? "bg-violet-500 text-white" : "bg-violet-500/20 text-violet-300 group-hover:bg-violet-500/30"
+                          }`}>
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <span className={`text-[13px] font-semibold leading-tight ${isActive ? "text-white" : "text-violet-100"}`}>
+                          {q.label}
+                        </span>
+
+                        {/* Little arrow */}
+                        <div className={`ml-auto shrink-0 transition-transform duration-300 ${isActive ? "text-violet-300 translate-x-1" : "text-violet-500/50 group-hover:translate-x-1 group-hover:text-violet-400"}`}>
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </div>
+                      </button>
+                    )
+                  })}
                 </div>
 
                 {/* Divider */}
-                <div className="flex items-center gap-4 my-1">
-                  <div className="flex-1 h-px bg-violet-500/20" />
-                  <span className="text-violet-400/45 text-sm">or type your own question</span>
-                  <div className="flex-1 h-px bg-violet-500/20" />
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex-1 h-px bg-white/10" />
+                  <span className="text-violet-400 text-xs font-medium">or type your own question</span>
+                  <div className="flex-1 h-px bg-white/10" />
                 </div>
 
-                {/* Input row - larger */}
-                <div className="flex items-center gap-3 bg-white/5 border border-violet-500/35 rounded-xl px-5 py-3 focus-within:border-violet-400/80 focus-within:bg-white/[0.07] transition-all duration-200">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-violet-400/50 shrink-0">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                  </svg>
-                  <input
-                    type="text"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleAsk()}
-                    placeholder="e.g. Why are my orders not matching?"
-                    className="flex-1 bg-transparent border-none outline-none text-violet-100 text-base placeholder:text-violet-300/35 caret-violet-400 min-w-0 py-1"
-                  />
-                  <button
-                    onClick={handleAsk}
-                    className="shrink-0 inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-violet-700 to-indigo-700 hover:from-violet-600 hover:to-indigo-600 active:scale-95 text-white text-sm font-bold transition-all duration-200 shadow-md shadow-violet-900/40"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="22" y1="2" x2="11" y2="13" />
-                      <polygon points="22 2 15 22 11 13 2 9 22 2" />
-                    </svg>
-                    Ask AI
-                  </button>
-                </div>
+                {/* AI Output / Response Area (if active) */}
+                <AnimatePresence>
+                  {(isTyping || response) && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+                      animate={{ opacity: 1, height: "auto", marginBottom: 24 }}
+                      exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="bg-violet-900/40 border border-violet-500/30 rounded-2xl p-5 shadow-inner backdrop-blur-sm">
+                        {isTyping ? (
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-violet-600/50 flex items-center justify-center shrink-0">
+                              <Sparkles className="w-4 h-4 text-violet-200 animate-pulse" />
+                            </div>
+                            <div className="flex gap-1.5">
+                              {[0, 1, 2].map((i) => (
+                                <motion.div
+                                  key={i}
+                                  className="w-2 h-2 rounded-full bg-violet-400"
+                                  animate={{ y: [0, -6, 0] }}
+                                  transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.2 }}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        ) : (
+                          <p className="text-violet-100 text-[15px] leading-relaxed">
+                            {response}
+                          </p>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
-                {/* Quota */}
-                <p className="text-violet-300/40 text-sm flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
-                  {quota} of 10 AI questions remaining for this report.
-                </p>
+                {/* Input Area */}
+                <div className="mt-auto">
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-2 pl-4 flex flex-col gap-3 md:flex-row md:items-center md:gap-3 shadow-[0_4px_20px_rgba(0,0,0,0.1)] focus-within:border-violet-400 focus-within:ring-2 focus-within:ring-violet-400/20 transition-all">
+                    <MessageSquare className="w-5 h-5 text-violet-400/50 shrink-0" />
+                    <input
+                      type="text"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && handleAsk()}
+                      placeholder="e.g. Why are my orders not matching?"
+                      className="flex-1 min-w-0 bg-transparent border-none outline-none text-white placeholder:text-violet-400/50 font-medium py-2"
+                    />
+                    <button
+                      onClick={() => handleAsk()}
+                      className="w-full md:w-auto bg-violet-600 hover:bg-violet-500 text-white px-6 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-violet-600/30"
+                    >
+                      <Send className="w-4 h-4" />
+                      Ask AI
+                    </button>
+                  </div>
 
-                {/* Typing dots - larger */}
-                {isTyping && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="rounded-xl bg-white/5 border border-violet-500/20 px-5 py-4 flex items-center gap-2"
-                  >
-                    <span className="text-violet-400/60 text-sm mr-2">AI is analyzing your reconciliation data</span>
-                    {[0, 0.2, 0.4].map((delay, i) => (
-                      <motion.span
-                        key={i}
-                        className="w-2.5 h-2.5 rounded-full bg-violet-400"
-                        animate={{ y: [0, -6, 0], opacity: [0.4, 1, 0.4] }}
-                        transition={{ duration: 1.2, repeat: Infinity, delay }}
-                      />
-                    ))}
-                  </motion.div>
-                )}
-
-                {/* Response - larger */}
-                {response && !isTyping && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35 }}
-                    className="rounded-xl bg-white/5 border border-violet-400/25 px-5 py-5 text-violet-100 text-base leading-relaxed"
-                  >
-                    <p className="text-violet-400/60 text-sm font-semibold uppercase tracking-wider mb-2">
-                      AI Reconciliation Response
+                  {/* Quota */}
+                  <div className="flex items-center gap-2 mt-4 ml-2">
+                    <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"></div>
+                    <p className="text-xs font-medium text-violet-300/70">
+                      {quota} of 10 AI questions remaining for this report.
                     </p>
-                    {response}
-                  </motion.div>
-                )}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-medium text-violet-300/60">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-violet-400" />
+                <span>Powered by <strong className="text-white font-semibold">Claude AI</strong> with your full reconciliation data</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <Lock className="w-3.5 h-3.5" />
+                Your data is secure and never shared
               </div>
             </div>
 
           </div>
         </motion.div>
-
       </div>
     </section>
   )

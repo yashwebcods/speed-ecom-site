@@ -7,7 +7,7 @@ const stats = [
   { value: "4,000+", label: "Trusted Sellers" },
   { value: "700+", label: "Verified Reviews" },
   { value: "40+", label: "Team Members" },
-  { value: "6", label: "Supported Platforms" },
+  { value: "5", label: "Supported Platforms" },
 ]
 
 function AnimatedNumber({ value }: { value: string }) {
@@ -41,8 +41,7 @@ export function StatsStrip() {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
             SpeedEcom is Empowering
           </h2>
-        </motion.div>7
-
+        </motion.div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {stats.map((stat, i) => (
             <motion.div

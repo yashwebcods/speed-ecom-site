@@ -722,23 +722,10 @@ export function HeroChatScene() {
   const isSending = phase === "sending"
 
   return (
-    <div className="w-full h-full flex items-center justify-center px-2 pt-24 lg:pt-32">
+    <div className="w-full h-full flex items-center justify-center px-2 py-8 lg:py-12">
       <div className="w-full max-w-[460px] relative">
 
-        {/* ── Robot avatar (Behind the card) ── */}
-        <div className="absolute left-1/2 -translate-x-1/2 -top-20 z-0 pointer-events-none">
-          <motion.div
-            initial={{ y: 100, opacity: 0 }}
-            animate={{
-              y: (phase === "initial-wait" || phase === "greeting") ? 70 : 0,
-              opacity: 1,
-              scale: (phase === "initial-wait" || phase === "greeting") ? 1.25 : 0.9,
-            }}
-            transition={{ duration: 0.8, ease: "backOut" }}
-          >
-            <RobotAvatar phase={phase} />
-          </motion.div>
-        </div>
+        {/* ── Robot avatar removed ── */}
 
         {/* ── Chat card ── */}
         <AnimatePresence>
@@ -754,12 +741,17 @@ export function HeroChatScene() {
                 {/* Header */}
                 <div className="px-5 py-3 border-b border-slate-100/50 dark:border-slate-800/50 flex items-center justify-between bg-white/40 dark:bg-slate-900/40">
                   <div className="flex items-center gap-3">
-                    <div className="relative">
-                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-                      <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping opacity-40" />
-                    </div>
+                    <motion.div 
+                      animate={{ boxShadow: ["0 0 0 0 rgba(56,189,248,0.4)", "0 0 0 6px rgba(56,189,248,0)"] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="flex items-center justify-center w-6 h-6 rounded bg-gradient-to-br from-cyan-400 to-blue-600 shadow-[0_0_10px_rgba(56,189,248,0.5)]"
+                    >
+                      <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </motion.div>
                     <div>
-                      <p className="text-xs font-black text-slate-800 dark:text-white uppercase tracking-widest">Speed AI</p>
+                      <p className="text-xs font-black text-slate-800 dark:text-white uppercase tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-600">Speed AI</p>
                       <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
                         {phase === "showing-indicator" ? "Thinking…" :
                           phase === "typing-answer" ? "Responding…" :

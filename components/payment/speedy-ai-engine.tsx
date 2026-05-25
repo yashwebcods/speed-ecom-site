@@ -34,14 +34,14 @@ export const SpeedyAIEngine = () => {
         />
       </motion.div>
       <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_0%,transparent_49%,rgba(255,255,255,0.05)_50%,transparent_51%,transparent_100%)] bg-[size:80px_80px] pointer-events-none opacity-20" />
-      
-      <motion.div 
+
+      <motion.div
         style={{ y: yContent, opacity }}
         className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 p-8 lg:p-16 max-w-7xl mx-auto px-4 lg:px-8 transform-gpu will-change-transform"
       >
         {/* Left Side: Heading and Text */}
         <div className="lg:w-[60%] text-left space-y-4 lg:space-y-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -49,7 +49,7 @@ export const SpeedyAIEngine = () => {
           >
             <Sparkles className="w-4 h-4 text-[#FACC15]" /> Speedy AI Engine
           </motion.div>
-          <motion.h3 
+          <motion.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -59,7 +59,7 @@ export const SpeedyAIEngine = () => {
             Meet Your Personal <br className="hidden lg:block" />
             <span className="text-[#FACC15]">AI Analyst</span>
           </motion.h3>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -70,7 +70,7 @@ export const SpeedyAIEngine = () => {
             <p>It automatically analyzes your orders, SKUs, payments, and charges — and converts them into reports, tables, and charts.</p>
             <ul className="space-y-4 pt-2">
               {["No manual Excel work", "No confusion", "Just clear business insights"].map((text, i) => (
-                <motion.li 
+                <motion.li
                   key={i}
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -88,7 +88,7 @@ export const SpeedyAIEngine = () => {
           </motion.div>
         </div>
 
-        <motion.div 
+        <motion.div
           style={{ rotate: rotateCard }}
           initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
           whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -113,12 +113,12 @@ export const SpeedyAIEngine = () => {
               </div>
               <Badge className="bg-emerald-50 text-emerald-600 border-emerald-100 text-[8px] sm:text-[10px] font-black px-2 sm:px-3 py-0.5 sm:py-1 uppercase tracking-widest rounded-full">Active</Badge>
             </div>
-            
+
             <div className="space-y-4 sm:space-y-6">
               <div className="p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-100 group-hover:border-primary/20 transition-colors duration-500">
                 <p className="text-slate-500 text-[10px] sm:text-xs italic mb-2 sm:mb-4 font-bold tracking-tight">"Analyze today's SKU performance"</p>
                 <div className="h-1.5 sm:h-2 w-full bg-slate-200 rounded-full overflow-hidden shadow-inner">
-                  <motion.div 
+                  <motion.div
                     className="h-full bg-gradient-to-r from-violet-600 to-indigo-600 shadow-[0_0_12px_rgba(124,58,237,0.5)]"
                     initial={{ width: "0%" }}
                     animate={{ width: "65%" }}
@@ -126,7 +126,7 @@ export const SpeedyAIEngine = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all duration-300">
                   <p className="text-slate-400 text-[8px] sm:text-[10px] font-black uppercase tracking-widest mb-1 sm:mb-2">Total Sales</p>

@@ -4,29 +4,29 @@ import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Priya Malhotra",
+    name: "Sudhir Panchani",
     initials: "PM",
     role: "Amazon Seller, Mumbai",
     resultValue: "",
     rating: 5,
     content:
-      "The monthly reports and profit-loss breakdown helped me reduce unnecessary expenses immediately. The personal support from my RM is rare — I genuinely know where every rupee goes now.",
+      "I am customer from last 3 to 4 months, software is quite easy to use and can get proper idea about loss making SKU, RTO, Customer returns and main loved support team, fast service and quick resolution of each issue. highly recommended.",
   },
   {
-    name: "Amit Shah",
+    name: "Sujal Ramani",
     initials: "AS",
     role: "Flipkart Seller, Surat",
     rating: 5,
     content:
-      "My RM explains my store performance every month in plain language. The financial clarity has completely changed how I make pricing and ad decisions. Revenue up 28% in just 3 months.",
+      "This is the perfect place to calculate profit and loss, track RTO recovery, determine claim amounts, and gain clear insights into all products. A must-visit for business growth!",
   },
   {
-    name: "Rakesh Bansal",
+    name: "Raster Tex",
     initials: "RB",
     role: "Meesho Seller, Ahmedabad",
     rating: 5,
     content:
-      "Speedi AI caught ₹43,000 in wrong commissions in the first audit alone. My RM proactively shared monthly analysis from day one. The personal touch exceeded every expectation.",
+      "I had a great experience with Speed Ecom Service. The platform is simple to use, and their support team is always quick to respond. My orders were processed smoothly, and delivery was on time. It really helped me save effort and grow my online business.",
   },
 ];
 
@@ -79,9 +79,9 @@ export function Testimonials() {
             <motion.div
               key={testimonial.name}
               variants={cardVariants}
-              className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+              className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col h-full"
             >
-              <div className="p-6 flex flex-col gap-4">
+              <div className="p-6 flex flex-col flex-1 gap-4">
                 {/* Rating Stars */}
                 <div className="flex gap-1">
                   {[...Array(testimonial.rating)].map((_, i) => (
@@ -98,7 +98,7 @@ export function Testimonials() {
                 </p>
 
                 {/* User Info with Initials Avatar */}
-                <div className="flex items-center gap-3 pt-4 mt-2 border-t border-gray-100">
+                <div className="flex items-center gap-3 pt-4 mt-auto border-t border-gray-100">
                   <div className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center">
                     <span className="text-white text-sm font-medium">
                       {testimonial.initials}

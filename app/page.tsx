@@ -16,7 +16,6 @@ import { StatsStrip } from "@/components/Statsstrip"
 import { AskAI } from "@/components/Ask"
 import { WhatYouCanDecide } from "@/components/WhatYouCanDecide"
 import { ComparisonSection } from "@/components/Comparison"
-import { SpeediAISection } from "@/components/speedi-ai-section"
 
 export default function Home() {
   return (
@@ -28,19 +27,17 @@ export default function Home() {
         <Hero />
         <StatsStrip />
         <TrustedBy />
-         <CTA />
-         
+        <CTA />
+
         <Services />
 
-        <SpeediAISection />
-
         <Advantages />
-        
-        <AskAI/>
-        
-        <WhatYouCanDecide/>
+
+        <AskAI />
+
+        <WhatYouCanDecide />
         <WhyUs />
-        <ComparisonSection/>
+        <ComparisonSection />
         <Testimonials />
       </main>
       <Footer />

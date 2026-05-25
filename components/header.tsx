@@ -132,11 +132,10 @@ export function Header() {
           </Button>
           <Button
             asChild
-            variant="outline"
-            className="rounded-full px-6 h-10 text-sm font-medium border-primary/50 text-primary hover:bg-primary hover:text-white transition-all group"
+            className="rounded-full px-6 h-10 text-sm font-medium bg-secondary text-white shadow-lg shadow-secondary/20 hover:bg-secondary/90 transition-all"
           >
             <Link href="/login" className="flex items-center justify-center gap-2">
-              <User className="w-4 h-4 text-primary group-hover:text-white" />
+              <User className="w-4 h-4" />
               Seller Login
             </Link>
           </Button>
