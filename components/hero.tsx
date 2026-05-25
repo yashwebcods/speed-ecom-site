@@ -64,7 +64,7 @@ export function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center pt-28 lg:pt-32 pb-0 lg:pb-0 overflow-hidden bg-gradient-to-br from-[#0a1f3d] via-[#0f2d4f] to-[#051c34]">
+    <section className="relative min-h-screen flex flex-col justify-center pt-24 sm:pt-28 lg:pt-32 pb-0 lg:pb-0 overflow-hidden bg-gradient-to-br from-[#0a1f3d] via-[#0f2d4f] to-[#051c34]">
       {/* Premium Dark Navy Gradient Background */}
       <div className="absolute inset-0 -z-20">
         {/* Base dark blue gradient */}
@@ -176,7 +176,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 flex-1 flex items-center justify-center relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex items-center justify-center relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
           {/* LEFT SIDE - Content */}
           <motion.div
@@ -194,14 +194,14 @@ export function Hero() {
 
             <motion.h1
               variants={itemVariants}
-              className="text-[40px] sm:text-5xl lg:text-[48px] font-bold leading-[1.15] mb-6 tracking-tight text-white"
+              className="text-[28px] sm:text-4xl lg:text-[48px] font-bold leading-[1.15] mb-6 tracking-tight text-white"
             >
               Know Where Your E-Commerce Money Goes.
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
-              className="text-[15px] sm:text-base text-white/80 max-w-lg mx-auto lg:mx-0 mb-8 leading-[1.7]"
+              className="text-[14px] sm:text-base text-white/80 max-w-md mx-auto lg:mx-0 lg:max-w-lg mb-8 leading-[1.7]"
             >
               Eliminate revenue leakage from hidden marketplace fees. Get precise financial auditing
               and scale your business across Meesho, Flipkart, and Amazon — with Speedi AI.
@@ -209,16 +209,16 @@ export function Hero() {
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 mb-10"
+              className="flex flex-row gap-3 sm:gap-4 mb-10"
             >
-              <Button asChild variant="cta" size="lg" className="group">
+              <Button asChild variant="cta" size="lg" className="group text-sm sm:text-base px-4 sm:px-6">
                 <Link href="https://forms.gle/XHrALZDXNSWV5eyt9" target="_blank">
                   Book Free Demo
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="cta-secondary" size="lg">
-                <Play className="mr-2 w-4 h-4 fill-current" />
+              <Button variant="cta-secondary" size="lg" className="text-sm sm:text-base px-4 sm:px-6">
+                <Play className="mr-2 w-3 h-3 sm:w-4 sm:h-4 fill-current" />
                 Watch Demo
               </Button>
             </motion.div>
