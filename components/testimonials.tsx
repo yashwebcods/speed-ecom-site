@@ -7,9 +7,7 @@ const testimonials = [
     name: "Priya Malhotra",
     initials: "PM",
     role: "Amazon Seller, Mumbai",
-    result: "Expenses Reduced",
     resultValue: "",
-    resultIcon: "📉",
     rating: 5,
     content:
       "The monthly reports and profit-loss breakdown helped me reduce unnecessary expenses immediately. The personal support from my RM is rare — I genuinely know where every rupee goes now.",
@@ -18,9 +16,6 @@ const testimonials = [
     name: "Amit Shah",
     initials: "AS",
     role: "Flipkart Seller, Surat",
-    result: "+28% Revenue",
-    resultValue: "+28%",
-    resultIcon: "📈",
     rating: 5,
     content:
       "My RM explains my store performance every month in plain language. The financial clarity has completely changed how I make pricing and ad decisions. Revenue up 28% in just 3 months.",
@@ -29,9 +24,6 @@ const testimonials = [
     name: "Rakesh Bansal",
     initials: "RB",
     role: "Meesho Seller, Ahmedabad",
-    result: "₹43K Recovered",
-    resultValue: "₹43K",
-    resultIcon: "💰",
     rating: 5,
     content:
       "Speedi AI caught ₹43,000 in wrong commissions in the first audit alone. My RM proactively shared monthly analysis from day one. The personal touch exceeded every expectation.",
@@ -104,14 +96,6 @@ export function Testimonials() {
                 <p className="text-gray-600 text-sm leading-relaxed">
                   &ldquo;{testimonial.content}&rdquo;
                 </p>
-
-                {/* Result Highlight - Green colored like image */}
-                <div className="flex items-center gap-2 mt-2">
-                  <span className="text-base">{testimonial.resultIcon}</span>
-                  <span className="text-emerald-600 font-bold text-lg">
-                    {testimonial.result}
-                  </span>
-                </div>
 
                 {/* User Info with Initials Avatar */}
                 <div className="flex items-center gap-3 pt-4 mt-2 border-t border-gray-100">
