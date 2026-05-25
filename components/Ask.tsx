@@ -136,27 +136,29 @@ export function AskAI() {
 
               {/* Left Column - Copy & Visual */}
               <div className="flex flex-col">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-[1.15] mb-3">
-                  Your P&L report holds<br />the answers.
-                </h2>
-                <p className="text-base text-violet-200 mb-5 max-w-full lg:max-w-md">
-                  Our AI reads every line and tells you exactly what to act on.
-                </p>
-
-                <div className="relative rounded-2xl overflow-hidden flex flex-col items-center justify-center mb-4 w-full">
-                  {/* Image */}
-                  <Image
-                    src="/dashboard.png"
-                    alt="AI Dashboard Illustration"
-                    width={400}
-                    height={280}
-                    className="object-contain w-full max-h-[240px] h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-700"
-                    priority
-                  />
+                <div className="flex items-start gap-4">
+                  <div className="flex-1">
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-[1.15] mb-3">
+                      Your P&L report holds<br />the answers.
+                    </h2>
+                    <p className="text-base text-violet-200 mb-5">
+                      Our AI reads every line and tells you exactly what to act on.
+                    </p>
+                  </div>
+                  <div className="w-36 sm:w-44 lg:w-72 relative rounded-2xl overflow-hidden flex items-center justify-center flex-shrink-0">
+                    <Image
+                      src="/dashboard.png"
+                      alt="AI Dashboard Illustration"
+                      width={400}
+                      height={280}
+                      className="object-contain w-full h-auto max-h-[140px] sm:max-h-[180px] lg:max-h-[240px] drop-shadow-2xl"
+                      priority
+                    />
+                  </div>
                 </div>
 
                 {/* Badge */}
-                <div className="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 backdrop-blur-sm">
+                <div className="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 backdrop-blur-sm mt-3 lg:mt-0">
                   <div className="w-9 h-9 bg-violet-600/30 border border-violet-400/30 text-violet-300 rounded-lg flex items-center justify-center shadow-lg">
                     <Sparkles className="w-4 h-4" />
                   </div>
@@ -174,7 +176,7 @@ export function AskAI() {
                 </p>
 
                 {/* Quick Questions Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-5">
+                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2.5 mb-5">
                   {QUICK_QUESTIONS.map((q) => {
                     const Icon = q.icon
                     const isActive = activeBtn === q.value
@@ -245,7 +247,7 @@ export function AskAI() {
 
                 {/* Input Area */}
                 <div className="mt-auto">
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-2 pl-4 flex flex-col gap-3 md:flex-row md:items-center md:gap-3 shadow-[0_4px_20px_rgba(0,0,0,0.1)] focus-within:border-violet-400 focus-within:ring-2 focus-within:ring-violet-400/20 transition-all">
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-2 pl-4 flex items-center gap-3 shadow-[0_4px_20px_rgba(0,0,0,0.1)] focus-within:border-violet-400 focus-within:ring-2 focus-within:ring-violet-400/20 transition-all">
                     <MessageSquare className="w-5 h-5 text-violet-400/50 shrink-0" />
                     <input
                       type="text"
@@ -257,7 +259,7 @@ export function AskAI() {
                     />
                     <button
                       onClick={() => handleAsk()}
-                      className="w-full md:w-auto bg-violet-600 hover:bg-violet-500 text-white px-6 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-violet-600/30"
+                      className="bg-violet-600 hover:bg-violet-500 text-white px-4 py-2 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-violet-600/30"
                     >
                       <Send className="w-4 h-4" />
                       Ask AI
