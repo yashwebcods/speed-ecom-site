@@ -1,83 +1,82 @@
 "use client"
 
-import Link from "next/link"
 import { motion, Variants } from "framer-motion"
 import {
-  Megaphone,
-  BarChart3,
-  CalendarDays,
-  Scale,
-  FileSearch,
-  LineChart,
-  Warehouse,
   TrendingUp,
-  ChevronRight,
+  AlertTriangle,
+  ArrowLeftRight,
+  PackageX,
+  FileSearch,
+  ClipboardList,
+  BarChart2,
+  Users,
+  Zap,
 } from "lucide-react"
 
 const services = [
   {
-    icon: Megaphone,
-    title: "Advertising & ROI Tracking",
+    icon: TrendingUp,
+    title: "AI-Powered Reconciliation Engine",
     description:
-      "Track ad spend, ACOS, and campaign ROI across Amazon, Flipkart, and Meesho with monthly performance insights.",
-    deliverable: "Monthly ad performance PDF with ACOS per campaign",
-    color: "bg-violet-500/10 text-violet-600",
+      "Automatically match every order, payment, and return across all marketplaces. Detect discrepancies in real-time, reconcile settlements, and know exactly how much you earned — down to the last rupee.",
+    line: "Real-time matching across all marketplaces",
+    color: "bg-gradient-to-br from-[#1D4ED8]/10 to-[#7C3AED]/10 text-[#1D4ED8]",
   },
   {
-    icon: BarChart3,
-    title: "Sales-Wise Participant Analysis",
+    icon: AlertTriangle,
+    title: "Leakage & Wrong Charge Detection",
     description:
-      "Understand which SKUs and categories drive revenue across every marketplace you sell on.",
-    deliverable: "SKU ranking table across all your platforms",
-    color: "bg-blue-500/10 text-blue-600",
+      "Automatically detect overcharged commissions, wrong weight slabs, and duplicate deductions across Meesho, Amazon, Flipkart & more. Recover what's rightfully yours.",
+    line: "Recover overcharged commissions automatically",
+    color: "bg-gradient-to-br from-[#DC2626]/10 to-[#EA580C]/10 text-[#DC2626]",
   },
   {
-    icon: CalendarDays,
-    title: "Discount & Festival Sales Strategy",
+    icon: ArrowLeftRight,
+    title: "Order-to-Payment Reconciliation",
     description:
-      "Plan profitable festival campaigns with data-backed pricing and discount recommendations.",
-    deliverable: "30-day event calendar with pricing recommendations",
-    color: "bg-amber-500/10 text-amber-600",
+      "Match every order with its settlement entry. Identify payment delays, short credits, and missing remittances across all channels in one clean dashboard.",
+    line: "Track payment delays & short credits",
+    color: "bg-gradient-to-br from-[#06B6D4]/10 to-[#0891B2]/10 text-[#06B6D4]",
   },
   {
-    icon: Scale,
-    title: "Shipping Weight Discrepancy Report",
+    icon: PackageX,
+    title: "Return, RTO & Exchange Reality",
     description:
-      "Identify overcharges from wrong weight slabs and recover excess shipping fees from platforms.",
-    deliverable: "Weight mismatch report with exact overcharge amount",
-    color: "bg-rose-500/10 text-rose-600",
+      "See the true cost of returns and RTO per SKU. Track exchange rates, identify high-return products, and make data-driven decisions to reduce losses.",
+    line: "SKU-level return cost analysis",
+    color: "bg-gradient-to-br from-[#F59E0B]/10 to-[#D97706]/10 text-[#F59E0B]",
   },
   {
     icon: FileSearch,
-    title: "Wrong Commission & Settlement Audit",
+    title: "Return Reconciliation",
     description:
-      "Catch incorrect commissions, missing settlements, and fee errors before they hurt your margins.",
-    deliverable: "Dispute-ready report with platform submission format",
-    color: "bg-teal-500/10 text-teal-600",
+      "Reconcile every returned order against credit notes and refunds. Catch unprocessed returns, missing credits, and settlement discrepancies before they hurt your margins.",
+    line: "Catch missing credits & refunds",
+    color: "bg-gradient-to-br from-[#3B82F6]/10 to-[#2563EB]/10 text-[#3B82F6]",
   },
   {
-    icon: LineChart,
-    title: "Pricing Strategy & Profit Analysis",
+    icon: Zap,
+    title: "Speed AI - Instant Processing",
     description:
-      "SKU-level profit and loss visibility so you can price confidently and protect margins.",
-    deliverable: "SKU-wise P&L sheet updated monthly",
-    color: "bg-emerald-500/10 text-emerald-600",
+      "Lightning-fast AI that processes thousands of transactions in milliseconds. Get real-time insights, instant reconciliation, and never wait for reports again.",
+    line: "Process thousands of transactions instantly",
+    color: "bg-gradient-to-br from-[#F59E0B]/10 to-[#EA580C]/10 text-[#F59E0B]",
   },
   {
-    icon: Warehouse,
-    title: "Warehouse & Order Settlement Reports",
+    icon: BarChart2,
+    title: "Profit & Loss",
     description:
-      "Reconcile FBA, FBF, and warehouse settlements with clear flags on profit leaks.",
-    deliverable: "FBA/FBF comparison sheet with profit leaks flagged",
-    color: "bg-indigo-500/10 text-indigo-600",
+      "Know instantly which products, categories, channels, and warehouses are making money — and which are not. Be smart, grow your business profitably.",
+    line: "Real-time profitability insights",
+    color: "bg-gradient-to-br from-[#10B981]/10 to-[#059669]/10 text-[#10B981]",
   },
   {
-    icon: TrendingUp,
-    title: "Business Growth & Planning Insights",
+    icon: Users,
+    title: "Multi-User Support",
     description:
-      "Quarterly forecasts, competitor benchmarks, and strategic recommendations to scale profitably.",
-    deliverable: "Quarterly forecast report with competitor benchmarks",
-    color: "bg-cyan-500/10 text-cyan-600",
+      "Collaborate with your team without compromising security. Assign role-based access so every member sees exactly what they need — nothing more, nothing less.",
+    line: "Role-based team collaboration",
+    color: "bg-gradient-to-br from-[#14B8A6]/10 to-[#0D9488]/10 text-[#14B8A6]",
   },
 ]
 
@@ -94,13 +93,14 @@ const itemVariants: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
   },
 }
 
 export function ServicesDetailed() {
   return (
-    <section id="services" className="section-spacing bg-background px-4">
+    <section id="services" className="bg-white py-20 px-4">
+      {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -108,15 +108,19 @@ export function ServicesDetailed() {
         transition={{ duration: 0.55 }}
         className="text-center max-w-2xl mx-auto mb-14"
       >
-        <h1 className="text-[40px] sm:text-[44px] font-bold text-[var(--color-navy-dark)] leading-tight mb-4">
-          Our Services
-        </h1>
-        <p className="text-[15px] sm:text-base text-[#374151] leading-[1.7]">
-          End-to-end financial management for Indian online sellers — from ad ROI to settlement
-          audits and growth planning.
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-gray-900 leading-tight mb-4">
+          Everything You Need to Run a{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D4ED8] to-[#7C3AED]">
+            Profitable Business
+          </span>
+        </h2>
+        <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+          From profit tracking to commission audits — we give sellers the
+          clarity and control to grow smarter, not harder.
         </p>
       </motion.div>
 
+      {/* Cards Grid - White cards */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -128,29 +132,30 @@ export function ServicesDetailed() {
           <motion.div
             key={service.title}
             variants={itemVariants}
-            className="group bg-card border border-border rounded-2xl p-6 flex flex-col gap-4 hover:border-[var(--color-brand-blue)]/40 hover:shadow-lg transition-all duration-300"
+            className="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow duration-300"
           >
+            {/* Icon */}
             <div
-              className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${service.color} transition-transform duration-300 group-hover:scale-110`}
+              className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${service.color}`}
             >
               <service.icon className="w-5 h-5" />
             </div>
-            <div className="flex flex-col flex-grow">
-              <h3 className="text-lg font-semibold text-foreground leading-snug mb-2">
+
+            {/* Text */}
+            <div>
+              <h3 className="text-base font-semibold text-gray-900 leading-snug mb-2">
                 {service.title}
               </h3>
-              <p className="text-sm text-[#374151] leading-[1.7] mb-3">{service.description}</p>
-              <p className="text-[13px] text-[#6B7280] leading-relaxed mb-4">
-                <span className="font-medium text-[#6B7280]">What you receive: </span>
-                {service.deliverable}
+              {/* Green colored line below title */}
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-1 h-1 rounded-full bg-green-500"></div>
+                <p className="text-xs text-green-600 font-medium tracking-wide">
+                  {service.line}
+                </p>
+              </div>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                {service.description}
               </p>
-              <Link
-                href="/contact"
-                className="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-brand-blue)] hover:underline"
-              >
-                Learn More
-                <ChevronRight className="w-4 h-4" />
-              </Link>
             </div>
           </motion.div>
         ))}
