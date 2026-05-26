@@ -80,6 +80,10 @@ export function AskAI() {
   const handleQuickBtn = (value: string) => {
     setInputValue(value)
     setActiveBtn(value)
+    // Auto-submit on mobile for better UX
+    if (window.innerWidth < 640) {
+      handleAsk(value)
+    }
   }
 
   const handleAsk = (overrideQ?: string) => {
@@ -126,39 +130,40 @@ export function AskAI() {
           <div className="p-6 lg:p-8 relative z-10">
 
             {/* Top Bar - Tags and Status */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-              <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between mb-6 md:mb-8">
+              <div className="flex flex-wrap items-center gap-2 md:gap-3">
                 {TOP_TAGS.map((tag) => (
                   <motion.div
                     key={tag.label}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer ${
+                    className={`flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-semibold transition-all cursor-pointer ${
                       tag.active
                         ? "bg-gradient-to-r from-violet-500/30 to-indigo-500/30 text-violet-200 border border-violet-400/40 shadow-lg shadow-violet-500/20"
                         : "bg-white/5 text-violet-300/70 border border-white/10 hover:bg-white/10 hover:border-violet-400/30"
                     }`}
                   >
-                    <tag.icon className="w-4 h-4" />
-                    {tag.label}
+                    <tag.icon className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                    <span className="hidden sm:inline">{tag.label}</span>
                   </motion.div>
                 ))}
               </div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-violet-300/70 bg-white/5 px-3 py-1.5 rounded-full">
-                <span className="relative flex h-2.5 w-2.5">
+              <div className="flex items-center gap-2 text-xs md:text-sm font-semibold text-violet-300/70 bg-white/5 px-3 py-1.5 rounded-full w-fit">
+                <span className="relative flex h-2 w-2 md:h-2.5 md:w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 md:h-2.5 md:w-2.5 bg-emerald-500"></span>
                 </span>
-                Live reconciliation active
+                <span className="hidden sm:inline">Live reconciliation active</span>
+                <span className="sm:hidden">Live</span>
               </div>
             </div>
 
-            {/* Main Content Grid - Redesigned with 3 columns on desktop */}
+            {/* Main Content Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
               
-              {/* LEFT SIDE - Stats & Insights (4 columns on desktop) */}
-              <div className="lg:col-span-4 space-y-5">
-                {/* Header + Image section with ORIGINAL HEADING */}
+              {/* LEFT SIDE - Stats & Insights - HIDDEN COMPLETELY ON MOBILE */}
+              <div className="hidden sm:block lg:col-span-4 space-y-5">
+                {/* Header + Image section */}
                 <div className="text-center lg:text-left mb-4">
                   <div className="inline-flex items-center gap-2 bg-violet-500/20 px-3 py-1.5 rounded-full mb-4">
                     <Sparkles className="w-4 h-4 text-violet-300" />
@@ -208,18 +213,34 @@ export function AskAI() {
                 </div>
               </div>
 
-              {/* RIGHT SIDE - Chat Interface (8 columns on desktop) */}
-              <div className="lg:col-span-8 flex flex-col h-full">
+              {/* RIGHT SIDE - Chat Interface - TAKES FULL WIDTH ON MOBILE */}
+              <div className="sm:lg:col-span-8 flex flex-col h-full">
+                {/* Mobile-only header - shows only on mobile */}
+                <div className="sm:hidden text-center mb-4">
+                  <div className="inline-flex items-center gap-2 bg-violet-500/20 px-3 py-1.5 rounded-full mb-3">
+                    <Sparkles className="w-3 h-3 text-violet-300" />
+                    <span className="text-[10px] font-semibold text-violet-200">AI Expert</span>
+                  </div>
+                  <h2 className="text-lg font-bold text-white leading-tight mb-1">
+                    Ask Speddi AI anything
+                  </h2>
+                  <p className="text-xs text-violet-200">
+                    Get instant answers about your reconciliation
+                  </p>
+                </div>
+
                 {/* Section header */}
                 <div className="mb-4">
                   <p className="text-sm font-semibold text-violet-300 mb-3 flex items-center gap-2">
                     <MessageSquare className="w-4 h-4" />
-                    Quick questions sellers ask most:
+                    <span className="hidden sm:inline">Quick questions sellers ask most:</span>
+                    <span className="sm:hidden">Quick questions:</span>
                   </p>
 
-                  {/* Quick Questions Grid - 2 columns */}
+                  {/* Quick Questions Grid - MOBILE: single column, only first 4 questions */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {QUICK_QUESTIONS.map((q, idx) => {
+                    {/* Show all 8 on desktop/tablet, only first 4 on mobile */}
+                    {QUICK_QUESTIONS.slice(0, window.innerWidth < 640 ? 4 : 8).map((q, idx) => {
                       const Icon = q.icon
                       const isActive = activeBtn === q.value
                       return (
@@ -258,8 +279,8 @@ export function AskAI() {
                   </div>
                 </div>
 
-                {/* Divider */}
-                <div className="flex items-center gap-3 my-4">
+                {/* Divider - hidden on mobile */}
+                <div className="hidden sm:flex items-center gap-3 my-4">
                   <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                   <span className="text-violet-400 text-xs font-medium">or ask your own question</span>
                   <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -272,7 +293,7 @@ export function AskAI() {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <div className="bg-gradient-to-br from-violet-900/30 to-indigo-900/30 border border-violet-500/30 rounded-2xl p-5 shadow-inner backdrop-blur-sm">
+                  <div className="bg-gradient-to-br from-violet-900/30 to-indigo-900/30 border border-violet-500/30 rounded-2xl p-4 sm:p-5 shadow-inner backdrop-blur-sm">
                     {isTyping ? (
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center shrink-0">
@@ -295,7 +316,7 @@ export function AskAI() {
                         <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center shrink-0">
                           <Sparkles className="w-4 h-4 text-white" />
                         </div>
-                        <p className="text-violet-100 text-sm leading-relaxed flex-1">
+                        <p className="text-violet-100 text-xs sm:text-sm leading-relaxed flex-1 break-words overflow-hidden whitespace-normal">
                           {response}
                         </p>
                       </div>
@@ -312,7 +333,7 @@ export function AskAI() {
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && handleAsk()}
-                      placeholder="e.g. Why are my orders not matching?"
+                      placeholder={window.innerWidth < 640 ? "Ask a question..." : "e.g. Why are my orders not matching?"}
                       className="flex-1 min-w-0 bg-transparent border-none outline-none text-white placeholder:text-violet-400/50 font-medium py-2.5 text-sm"
                     />
                     <motion.button
@@ -322,26 +343,26 @@ export function AskAI() {
                       className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white px-5 py-2 rounded-xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-violet-600/30"
                     >
                       <Send className="w-4 h-4" />
-                      Ask AI
+                      <span className="hidden sm:inline">Ask AI</span>
                     </motion.button>
                   </div>
 
-                  {/* Quota and Info */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mt-3">
+                  {/* Quota and Info - simplified on mobile */}
+                  <div className="flex flex-row items-center justify-between gap-2 mt-3">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"></div>
                       <p className="text-xs font-medium text-violet-300/70">
-                        {quota} of 10 AI questions remaining for this report.
+                        {quota} left
                       </p>
                     </div>
                     <div className="flex items-center gap-3 text-xs text-violet-300/50">
                       <span className="flex items-center gap-1">
                         <Clock className="w-3 h-3" />
-                        Avg response: 2s
+                        2s
                       </span>
                       <span className="flex items-center gap-1">
                         <ThumbsUp className="w-3 h-3" />
-                        94% accuracy
+                        94%
                       </span>
                     </div>
                   </div>
@@ -349,24 +370,6 @@ export function AskAI() {
               </div>
             </div>
 
-            {/* Footer */}
-            <div className="mt-8 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-medium text-violet-300/60">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-violet-400" />
-                <span>Powered by <strong className="text-white font-semibold">Claude AI</strong> with your full reconciliation data</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5">
-                  <Lock className="w-3.5 h-3.5" />
-                  Your data is secure and never shared
-                </div>
-                <div className="w-1 h-1 rounded-full bg-violet-400/30" />
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  Real-time sync
-                </div>
-              </div>
-            </div>
 
           </div>
         </motion.div>
