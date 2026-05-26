@@ -18,7 +18,7 @@ const pricingTiers = [
       { text: "Commission & Settlement Audit", included: true },
       { text: "Basic Listing Optimization", included: true },
       { text: "24/7 Email Support", included: true },
-      { text: "Speedi AI Access", included: false },
+      { text: "Speedy AI Access", included: false },
       { text: "Advanced Advertising Strategy", included: false },
     ],
     ctaText: "Get Started",
@@ -33,7 +33,7 @@ const pricingTiers = [
     popular: true,
     features: [
       { text: "Everything in Starter", included: true },
-      { text: "Speedi AI (50 questions/month)", included: true },
+      { text: "Speedy AI (50 questions/month)", included: true },
       { text: "Advanced Listing & SEO Optimization", included: true },
       { text: "Full Advertising Campaign Management", included: true },
       { text: "Shipping Weight Discrepancy Reports", included: true },
@@ -52,7 +52,7 @@ const pricingTiers = [
     popular: false,
     features: [
       { text: "Everything in Professional", included: true },
-      { text: "Unlimited Speedi AI access", included: true },
+      { text: "Unlimited Speedy AI access", included: true },
       { text: "Dedicated Account Manager team", included: true },
       { text: "Multi-warehouse Settlement Reports", included: true },
       { text: "Competitor Benchmarking", included: true },

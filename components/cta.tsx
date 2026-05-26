@@ -48,13 +48,13 @@ const marketplaces = [
     textOnly: false,
   },
   {
-    name: "JioMart",
-    logo: "/jioMart.jpg",
+    name: "Snapdeal",
+    logo: "/Snapdeal.png",
     angle: 200,
-    glowColor: "rgba(0, 120, 212, 0.3)",
-    borderColor: "#0078D4",
+    glowColor: "rgba(228, 0, 70, 0.3)",
+    borderColor: "#E40046",
     delay: 0.6,
-    blend: true,
+    blend: false,
     textOnly: false,
   },
 ]
@@ -227,7 +227,7 @@ export function CTA() {
                 className="text-sm sm:text-base lg:text-lg text-white/90 mb-8 leading-relaxed max-w-xl"
               >
                 We help e-commerce sellers identify revenue leaks, wrong commission fees, shipping overcharges, and settlement
-                issues across marketplaces like Meesho, Amazon, Flipkart, Myntra, and JioMart.
+                issues across marketplaces like Meesho, Amazon, Flipkart, Myntra, and Snapdeal.
                 Get professional auditing to recover your lost money today!
               </motion.p>
 

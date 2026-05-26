@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { RobotAvatar, Phase } from '@/components/hero-chat-scene';
 
 const LEFT_MESSAGES = [
-  "👋 Hi, I'm Speedi AI!",
+  "👋 Hi, I'm Speedy AI!",
   "💰 Spot hidden marketplace fees!",
   "📉 Amazon taking too much cut?",
   "📊 Let's check your true ROI."
@@ -235,7 +235,7 @@ export default function RobotPeeker() {
             transform: side === 'left' && pose === 'face' ? 'rotate(-15deg)' : side === 'right' && pose === 'face' ? 'rotate(15deg)' : 'none',
           }}
         >
-          <div className="text-[10px] uppercase font-extrabold text-primary mb-0.5 tracking-wider">Speedi AI</div>
+          <div className="text-[10px] uppercase font-extrabold text-primary mb-0.5 tracking-wider">Speedy AI</div>
           <div className="font-semibold text-sm text-slate-700 leading-snug">{currentMessage}</div>
           {/* Arrow */}
           <div

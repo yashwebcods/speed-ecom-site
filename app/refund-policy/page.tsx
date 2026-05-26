@@ -226,7 +226,7 @@ export default function RefundPolicyPage() {
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl" />
             <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-accent rounded-full blur-3xl" />
           </div>
-          
+
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -242,8 +242,8 @@ export default function RefundPolicyPage() {
                 Refund & Cancellation Policy
               </h1>
               <p className="text-white/70 text-lg lg:text-xl leading-relaxed">
-                At Speed Ecom Solution, we provide highly detailed, manual, and time-intensive data analysis 
-                and reconciliation services. To maintain fairness and transparency, this policy outlines 
+                At Speed Ecom Solution, we provide highly detailed, manual, and time-intensive data analysis
+                and reconciliation services. To maintain fairness and transparency, this policy outlines
                 how refunds and cancellations are handled.
               </p>
             </motion.div>
@@ -254,7 +254,7 @@ export default function RefundPolicyPage() {
         <section className="py-16 lg:py-24 bg-slate-50/50">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              
+
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -285,52 +285,6 @@ export default function RefundPolicyPage() {
                   </motion.div>
                 ))}
 
-                {/* Refund Request Steps */}
-                <motion.div
-                  variants={itemVariants}
-                  className="bg-primary rounded-3xl p-8 lg:p-12 text-white relative overflow-hidden"
-                >
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32" />
-                  
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-                        <HelpCircle className="w-6 h-6 text-accent" />
-                      </div>
-                      <h2 className="text-2xl lg:text-3xl font-bold font-display">How to Request a Refund</h2>
-                    </div>
-                    <p className="text-white/70 mb-8 max-w-2xl text-sm lg:text-base">
-                      If you believe your case is exceptional and qualifies for management review, please follow these steps:
-                    </p>
-                    
-                    <div className="grid sm:grid-cols-2 gap-6">
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-xs">01</div>
-                          <h4 className="font-bold">Email Us</h4>
-                        </div>
-                        <p className="text-white/60 text-sm">
-                          Send an email to <span className="text-white font-medium">speedecomsolution@gmail.com</span>
-                        </p>
-                      </div>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-xs">02</div>
-                          <h4 className="font-bold">Provide Details</h4>
-                        </div>
-                        <p className="text-white/60 text-sm">
-                          Include Subject: <span className="text-white font-medium">Refund Request – [Your Firm Name]</span>. 
-                          Attach Payment screenshot + Reason.
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="mt-8 flex items-center gap-3 text-xs lg:text-sm text-accent font-bold">
-                      <Clock className="w-4 h-4" />
-                      <span>Response time: 5–7 working days</span>
-                    </div>
-                  </div>
-                </motion.div>
 
                 {/* Contact Footer */}
                 <motion.div
@@ -343,7 +297,7 @@ export default function RefundPolicyPage() {
                       For any questions or clarifications regarding this policy, feel free to reach out.
                     </p>
                   </div>
-                  
+
                   <div className="flex flex-wrap justify-center gap-4">
                     <a href="mailto:speedecomsolution@gmail.com" className="flex items-center gap-2 px-5 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all group">
                       <Mail className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />

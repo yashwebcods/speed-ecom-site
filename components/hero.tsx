@@ -189,7 +189,7 @@ export function Hero() {
               variants={itemVariants}
               className="text-sm font-medium text-[var(--color-cta-primary)] tracking-[0.04em] mb-4"
             >
-              Bijnes tamaro, hisab amaro
+              Business tamaro, hisab amaro
             </motion.p>
 
             <motion.h1
@@ -204,7 +204,7 @@ export function Hero() {
               className="text-[14px] sm:text-base text-white/80 max-w-md mx-auto lg:mx-0 lg:max-w-lg mb-8 leading-[1.7]"
             >
               Eliminate revenue leakage from hidden marketplace fees. Get precise financial auditing
-              and scale your business across Meesho, Flipkart, and Amazon — with Speedi AI.
+              and scale your business across Meesho, Flipkart, and Amazon — with Speedy AI.
             </motion.p>
 
             <motion.div
@@ -227,7 +227,7 @@ export function Hero() {
               variants={itemVariants}
               className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 border-t border-white/10"
             >
-             
+
             </motion.div>
           </motion.div>
 

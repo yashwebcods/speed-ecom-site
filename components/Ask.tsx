@@ -187,7 +187,7 @@ export function AskAI() {
                     Meet your personal reconciliation expert that powers your decisions.
                   </h2>
                   <p className="text-sm sm:text-base text-violet-200 max-w-xl mx-auto lg:mx-0">
-                    Speedi AI scans every transaction and tells you exactly what to fix next.
+                    Speedy AI scans every transaction and tells you exactly what to fix next.
                   </p>
                 </div>
 
