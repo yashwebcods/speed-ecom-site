@@ -92,8 +92,8 @@ export function AskAI() {
   }
 
   return (
-    <section className="w-full bg-[#F8F9FE] py-8 md:py-10 relative overflow-hidden font-sans">
-      <div className="w-full px-4 md:px-6 relative z-10 max-w-[1440px] mx-auto">
+    <section className="w-full bg-[#F8F9FE] py-6 sm:py-8 md:py-10 relative overflow-hidden font-sans">
+      <div className="w-full px-4 sm:px-5 md:px-6 relative z-10 max-w-[1440px] mx-auto">
 
         {/* Main Card Container - Dark Theme */}
         <motion.div
@@ -136,16 +136,16 @@ export function AskAI() {
 
               {/* Left Column - Copy & Visual */}
               <div className="flex flex-col">
-                <div className="flex items-start gap-4">
-                  <div className="flex-1">
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-[1.15] mb-3">
-                      Your P&L report holds<br />the answers.
+                <div className="flex flex-col lg:flex-row items-start gap-4">
+                  <div className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight md:leading-[1.1] mb-3">
+                      Meet your personal reconciliatoion expert<br />that powers your decisions.
                     </h2>
-                    <p className="text-base text-violet-200 mb-5">
-                      Our AI reads every line and tells you exactly what to act on.
+                    <p className="text-sm sm:text-base text-violet-200 mb-5 max-w-xl mx-auto lg:mx-0">
+                      Speedi AI scans every transaction and tells you exactly what to fix next.
                     </p>
                   </div>
-                  <div className="w-36 sm:w-44 lg:w-72 relative rounded-2xl overflow-hidden flex items-center justify-center flex-shrink-0">
+                  <div className="w-full sm:w-44 lg:w-72 max-w-full mx-auto lg:mx-0 relative rounded-2xl overflow-hidden flex items-center justify-center flex-shrink-0">
                     <Image
                       src="/dashboard.png"
                       alt="AI Dashboard Illustration"
@@ -176,7 +176,7 @@ export function AskAI() {
                 </p>
 
                 {/* Quick Questions Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-2 gap-2.5 mb-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
                   {QUICK_QUESTIONS.map((q) => {
                     const Icon = q.icon
                     const isActive = activeBtn === q.value
