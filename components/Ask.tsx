@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import {
   Search, TrendingDown, Zap, FileText, AlertTriangle,
@@ -76,12 +76,26 @@ export function AskAI() {
   const [response, setResponse] = useState<string | null>(null)
   const [isTyping, setIsTyping] = useState(false)
   const [quota, setQuota] = useState(10)
+  const [isMobile, setIsMobile] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+
+    const updateSize = () => {
+      setIsMobile(window.innerWidth < 640)
+    }
+
+    updateSize()
+    window.addEventListener("resize", updateSize)
+    return () => window.removeEventListener("resize", updateSize)
+  }, [])
 
   const handleQuickBtn = (value: string) => {
     setInputValue(value)
     setActiveBtn(value)
     // Auto-submit on mobile for better UX
-    if (window.innerWidth < 640) {
+    if (isMobile) {
       handleAsk(value)
     }
   }
@@ -240,7 +254,7 @@ export function AskAI() {
                   {/* Quick Questions Grid - MOBILE: single column, only first 4 questions */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {/* Show all 8 on desktop/tablet, only first 4 on mobile */}
-                    {QUICK_QUESTIONS.slice(0, window.innerWidth < 640 ? 4 : 8).map((q, idx) => {
+                    {QUICK_QUESTIONS.slice(0, mounted && isMobile ? 4 : 8).map((q, idx) => {
                       const Icon = q.icon
                       const isActive = activeBtn === q.value
                       return (
@@ -333,7 +347,7 @@ export function AskAI() {
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && handleAsk()}
-                      placeholder={window.innerWidth < 640 ? "Ask a question..." : "e.g. Why are my orders not matching?"}
+                      placeholder={mounted && isMobile ? "Ask a question..." : "e.g. Why are my orders not matching?"}
                       className="flex-1 min-w-0 bg-transparent border-none outline-none text-white placeholder:text-violet-400/50 font-medium py-2.5 text-sm"
                     />
                     <motion.button
