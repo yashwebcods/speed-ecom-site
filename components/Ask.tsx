@@ -5,7 +5,9 @@ import { motion } from "framer-motion"
 import {
   Search, TrendingDown, Zap, FileText, AlertTriangle,
   Tag, Building2, CheckCircle2, Send, MessageSquare,
-  Lock, Sparkles, ChevronRight, Activity, Shield
+  Lock, Sparkles, ChevronRight, Activity, Shield,
+  BarChart3, Clock, ThumbsUp, TrendingUp, DollarSign,
+  Package, Truck, AlertCircle
 } from "lucide-react"
 import Image from "next/image"
 
@@ -53,6 +55,21 @@ const TOP_TAGS = [
   { label: "Dispute Ready", icon: Shield, active: false },
 ]
 
+// Stats cards data
+const STATS_CARDS = [
+  { label: "Total Discrepancies", value: "₹2,34,500", change: "+12.5%", icon: DollarSign, color: "violet" },
+  { label: "Unmatched Orders", value: "47", change: "-8%", icon: Package, color: "blue" },
+  { label: "RTO Rate", value: "34%", change: "+5%", icon: Truck, color: "orange" },
+  { label: "Resolution Time", value: "2.4 days", change: "-32%", icon: Clock, color: "green" },
+]
+
+// Quick insights data
+const QUICK_INSIGHTS = [
+  { icon: TrendingUp, label: "Margin Opportunity", value: "₹84K", description: "Recoverable through optimization" },
+  { icon: AlertCircle, label: "Critical SKUs", value: "46", description: "Loss-making products" },
+  { icon: ThumbsUp, label: "Auto-fixable", value: "67%", description: "Issues can be auto-resolved" },
+]
+
 export function AskAI() {
   const [inputValue, setInputValue] = useState("")
   const [activeBtn, setActiveBtn] = useState<string | null>(null)
@@ -63,8 +80,6 @@ export function AskAI() {
   const handleQuickBtn = (value: string) => {
     setInputValue(value)
     setActiveBtn(value)
-    // Optional: auto-submit when clicking a quick button
-    // handleAsk(value)
   }
 
   const handleAsk = (overrideQ?: string) => {
@@ -92,8 +107,8 @@ export function AskAI() {
   }
 
   return (
-    <section className="w-full bg-[#F8F9FE] py-6 sm:py-8 md:py-10 relative overflow-hidden font-sans">
-      <div className="w-full px-4 sm:px-5 md:px-6 relative z-10 max-w-[1440px] mx-auto">
+    <section className="w-full bg-[#F8F9FE] py-8 sm:py-10 md:py-12 relative overflow-hidden font-sans">
+      <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10 max-w-[1440px] mx-auto">
 
         {/* Main Card Container - Dark Theme */}
         <motion.div
@@ -101,130 +116,167 @@ export function AskAI() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="bg-gradient-to-br from-[#0f2a52] via-[#1a3d66] to-[#0f2a52] rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] border border-violet-500/30 overflow-hidden relative"
+          className="bg-gradient-to-br from-[#0f2a52] via-[#1a3d66] to-[#0f2a52] rounded-3xl shadow-2xl border border-violet-500/30 overflow-hidden relative"
         >
-          {/* Subtle glow effects in the background */}
+          {/* Background glow effects */}
           <div className="pointer-events-none absolute -top-32 -right-32 w-96 h-96 rounded-full bg-violet-600/20 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-28 -left-28 w-80 h-80 rounded-full bg-indigo-500/15 blur-3xl" />
+          <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-violet-500/5 blur-3xl" />
 
-          <div className="p-5 lg:p-6 relative z-10">
+          <div className="p-6 lg:p-8 relative z-10">
 
-            {/* Top Bar */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5">
+            {/* Top Bar - Tags and Status */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
               <div className="flex flex-wrap items-center gap-3">
                 {TOP_TAGS.map((tag) => (
-                  <div
+                  <motion.div
                     key={tag.label}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer ${tag.active
-                      ? "bg-violet-500/20 text-violet-200 border border-violet-400/30 shadow-[0_0_15px_rgba(139,92,246,0.2)]"
-                      : "bg-white/5 text-violet-300/70 border border-white/10 hover:bg-white/10"
-                      }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer ${
+                      tag.active
+                        ? "bg-gradient-to-r from-violet-500/30 to-indigo-500/30 text-violet-200 border border-violet-400/40 shadow-lg shadow-violet-500/20"
+                        : "bg-white/5 text-violet-300/70 border border-white/10 hover:bg-white/10 hover:border-violet-400/30"
+                    }`}
                   >
                     <tag.icon className="w-4 h-4" />
                     {tag.label}
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-violet-300/70">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"></span>
+              <div className="flex items-center gap-2 text-sm font-semibold text-violet-300/70 bg-white/5 px-3 py-1.5 rounded-full">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
                 Live reconciliation active
               </div>
             </div>
 
-            {/* Main Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
-              {/* Left Column - Copy & Visual */}
-              <div className="flex flex-col">
-                <div className="flex flex-col lg:flex-row items-start gap-4">
-                  <div className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight md:leading-[1.1] mb-3">
-                      Meet your personal reconciliatoion expert<br />that powers your decisions.
-                    </h2>
-                    <p className="text-sm sm:text-base text-violet-200 mb-5 max-w-xl mx-auto lg:mx-0">
-                      Speedi AI scans every transaction and tells you exactly what to fix next.
-                    </p>
+            {/* Main Content Grid - Redesigned with 3 columns on desktop */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+              
+              {/* LEFT SIDE - Stats & Insights (4 columns on desktop) */}
+              <div className="lg:col-span-4 space-y-5">
+                {/* Header + Image section with ORIGINAL HEADING */}
+                <div className="text-center lg:text-left mb-4">
+                  <div className="inline-flex items-center gap-2 bg-violet-500/20 px-3 py-1.5 rounded-full mb-4">
+                    <Sparkles className="w-4 h-4 text-violet-300" />
+                    <span className="text-xs font-semibold text-violet-200">AI-Powered Dashboard</span>
                   </div>
-                  <div className="w-full sm:w-44 lg:w-72 max-w-full mx-auto lg:mx-0 relative rounded-2xl overflow-hidden flex items-center justify-center flex-shrink-0">
-                    <Image
-                      src="/dashboard.png"
-                      alt="AI Dashboard Illustration"
-                      width={400}
-                      height={280}
-                      className="object-contain w-full h-auto max-h-[140px] sm:max-h-[180px] lg:max-h-[240px] drop-shadow-2xl"
-                      priority
-                    />
-                  </div>
+                  <h2 className="text-2xl sm:text-3xl lg:text-3xl font-bold text-white leading-tight md:leading-[1.2] mb-3">
+                    Meet your personal reconciliation expert that powers your decisions.
+                  </h2>
+                  <p className="text-sm sm:text-base text-violet-200 max-w-xl mx-auto lg:mx-0">
+                    Speedi AI scans every transaction and tells you exactly what to fix next.
+                  </p>
                 </div>
 
-                {/* Badge */}
-                <div className="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 backdrop-blur-sm mt-3 lg:mt-0">
-                  <div className="w-9 h-9 bg-violet-600/30 border border-violet-400/30 text-violet-300 rounded-lg flex items-center justify-center shadow-lg">
-                    <Sparkles className="w-4 h-4" />
+                {/* Stats Cards Grid */}
+                <div className="grid grid-cols-2 gap-3">
+                  {STATS_CARDS.map((stat, idx) => (
+                    <motion.div
+                      key={stat.label}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: idx * 0.1 }}
+                      className="bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm hover:border-violet-400/50 transition-all group"
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <div className={`p-1.5 rounded-lg bg-${stat.color}-500/20`}>
+                          <stat.icon className={`w-4 h-4 text-${stat.color}-300`} />
+                        </div>
+                        <span className={`text-xs font-medium ${stat.change.startsWith('+') ? 'text-red-400' : 'text-emerald-400'}`}>
+                          {stat.change}
+                        </span>
+                      </div>
+                      <p className="text-lg font-bold text-white">{stat.value}</p>
+                      <p className="text-xs text-violet-300/70 mt-0.5">{stat.label}</p>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* CTA Badge */}
+                <div className="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 backdrop-blur-sm">
+                  <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg">
+                    <Sparkles className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-white font-bold text-xs">AI-Powered insights</h4>
-                    <p className="text-violet-300/70 text-[10px] font-medium">Trained on 10M+ transactions</p>
+                    <h4 className="text-white font-bold text-sm">AI-Powered insights</h4>
+                    <p className="text-violet-300/70 text-xs">Trained on 10M+ transactions</p>
                   </div>
                 </div>
               </div>
 
-              {/* Right Column - Interactive Chat */}
-              <div className="flex flex-col">
-                <p className="text-sm font-semibold text-violet-300 mb-3">
-                  Quick questions sellers ask most:
-                </p>
+              {/* RIGHT SIDE - Chat Interface (8 columns on desktop) */}
+              <div className="lg:col-span-8 flex flex-col h-full">
+                {/* Section header */}
+                <div className="mb-4">
+                  <p className="text-sm font-semibold text-violet-300 mb-3 flex items-center gap-2">
+                    <MessageSquare className="w-4 h-4" />
+                    Quick questions sellers ask most:
+                  </p>
 
-                {/* Quick Questions Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
-                  {QUICK_QUESTIONS.map((q) => {
-                    const Icon = q.icon
-                    const isActive = activeBtn === q.value
-                    return (
-                      <button
-                        key={q.value}
-                        onClick={() => handleQuickBtn(q.value)}
-                        className={`group relative text-left p-3 rounded-xl border transition-all duration-300 flex items-center gap-3 overflow-hidden ${isActive
-                          ? "bg-violet-600/40 border-violet-400/50 shadow-[0_0_15px_rgba(139,92,246,0.15)]"
-                          : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
+                  {/* Quick Questions Grid - 2 columns */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {QUICK_QUESTIONS.map((q, idx) => {
+                      const Icon = q.icon
+                      const isActive = activeBtn === q.value
+                      return (
+                        <motion.button
+                          key={q.value}
+                          initial={{ opacity: 0, x: 20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: idx * 0.05 }}
+                          onClick={() => handleQuickBtn(q.value)}
+                          className={`group relative text-left p-3 rounded-xl border transition-all duration-300 flex items-center gap-3 overflow-hidden ${
+                            isActive
+                              ? "bg-gradient-to-r from-violet-600/40 to-indigo-600/40 border-violet-400/50 shadow-lg shadow-violet-500/20"
+                              : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-violet-400/30"
                           }`}
-                      >
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${isActive ? "bg-violet-500 text-white" : "bg-violet-500/20 text-violet-300 group-hover:bg-violet-500/30"
+                        >
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all ${
+                            isActive 
+                              ? "bg-gradient-to-br from-violet-500 to-indigo-500 text-white shadow-md" 
+                              : "bg-violet-500/20 text-violet-300 group-hover:bg-violet-500/30"
                           }`}>
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <span className={`text-[13px] font-semibold leading-tight ${isActive ? "text-white" : "text-violet-100"}`}>
-                          {q.label}
-                        </span>
-
-                        {/* Little arrow */}
-                        <div className={`ml-auto shrink-0 transition-transform duration-300 ${isActive ? "text-violet-300 translate-x-1" : "text-violet-500/50 group-hover:translate-x-1 group-hover:text-violet-400"}`}>
-                          <ChevronRight className="w-3.5 h-3.5" />
-                        </div>
-                      </button>
-                    )
-                  })}
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <span className={`text-xs sm:text-[13px] font-semibold leading-tight flex-1 ${
+                            isActive ? "text-white" : "text-violet-100"
+                          }`}>
+                            {q.label}
+                          </span>
+                          <ChevronRight className={`w-3.5 h-3.5 transition-all ${
+                            isActive 
+                              ? "text-violet-300 translate-x-1" 
+                              : "text-violet-500/50 group-hover:translate-x-1 group-hover:text-violet-400"
+                          }`} />
+                        </motion.button>
+                      )
+                    })}
+                  </div>
                 </div>
 
                 {/* Divider */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex-1 h-px bg-white/10" />
-                  <span className="text-violet-400 text-xs font-medium">or type your own question</span>
-                  <div className="flex-1 h-px bg-white/10" />
+                <div className="flex items-center gap-3 my-4">
+                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                  <span className="text-violet-400 text-xs font-medium">or ask your own question</span>
+                  <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 </div>
 
-                {/* AI Output / Response Area (if active) */}
+                {/* AI Response Area */}
                 <motion.div
                   initial={false}
-                  animate={isTyping || response ? { opacity: 1, height: "auto", marginBottom: 24 } : { opacity: 0, height: 0, marginBottom: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="overflow-hidden mb-6"
+                  animate={isTyping || response ? { opacity: 1, height: "auto", marginBottom: 20 } : { opacity: 0, height: 0, marginBottom: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden"
                 >
-                  <div className="bg-violet-900/40 border border-violet-500/30 rounded-2xl p-5 shadow-inner backdrop-blur-sm">
+                  <div className="bg-gradient-to-br from-violet-900/30 to-indigo-900/30 border border-violet-500/30 rounded-2xl p-5 shadow-inner backdrop-blur-sm">
                     {isTyping ? (
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-violet-600/50 flex items-center justify-center shrink-0">
-                          <Sparkles className="w-4 h-4 text-violet-200 animate-pulse" />
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center shrink-0">
+                          <Sparkles className="w-4 h-4 text-white animate-pulse" />
                         </div>
                         <div className="flex gap-1.5">
                           {[0, 1, 2].map((i) => (
@@ -236,18 +288,24 @@ export function AskAI() {
                             />
                           ))}
                         </div>
+                        <span className="text-xs text-violet-300">AI is analyzing your data...</span>
                       </div>
-                    ) : (
-                      <p className="text-violet-100 text-[15px] leading-relaxed">
-                        {response}
-                      </p>
+                    ) : response && (
+                      <div className="flex gap-3">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center shrink-0">
+                          <Sparkles className="w-4 h-4 text-white" />
+                        </div>
+                        <p className="text-violet-100 text-sm leading-relaxed flex-1">
+                          {response}
+                        </p>
+                      </div>
                     )}
                   </div>
                 </motion.div>
 
                 {/* Input Area */}
-                <div className="mt-auto">
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-2 pl-4 flex items-center gap-3 shadow-[0_4px_20px_rgba(0,0,0,0.1)] focus-within:border-violet-400 focus-within:ring-2 focus-within:ring-violet-400/20 transition-all">
+                <div className="mt-auto pt-4">
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-2 pl-4 flex items-center gap-3 shadow-lg focus-within:border-violet-400 focus-within:ring-2 focus-within:ring-violet-400/20 transition-all">
                     <MessageSquare className="w-5 h-5 text-violet-400/50 shrink-0" />
                     <input
                       type="text"
@@ -255,38 +313,58 @@ export function AskAI() {
                       onChange={(e) => setInputValue(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && handleAsk()}
                       placeholder="e.g. Why are my orders not matching?"
-                      className="flex-1 min-w-0 bg-transparent border-none outline-none text-white placeholder:text-violet-400/50 font-medium py-2"
+                      className="flex-1 min-w-0 bg-transparent border-none outline-none text-white placeholder:text-violet-400/50 font-medium py-2.5 text-sm"
                     />
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => handleAsk()}
-                      className="bg-violet-600 hover:bg-violet-500 text-white px-4 py-2 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-violet-600/30"
+                      className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white px-5 py-2 rounded-xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-violet-600/30"
                     >
                       <Send className="w-4 h-4" />
                       Ask AI
-                    </button>
+                    </motion.button>
                   </div>
 
-                  {/* Quota */}
-                  <div className="flex items-center gap-2 mt-4 ml-2">
-                    <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"></div>
-                    <p className="text-xs font-medium text-violet-300/70">
-                      {quota} of 10 AI questions remaining for this report.
-                    </p>
+                  {/* Quota and Info */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mt-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"></div>
+                      <p className="text-xs font-medium text-violet-300/70">
+                        {quota} of 10 AI questions remaining for this report.
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-3 text-xs text-violet-300/50">
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        Avg response: 2s
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <ThumbsUp className="w-3 h-3" />
+                        94% accuracy
+                      </span>
+                    </div>
                   </div>
                 </div>
-
               </div>
             </div>
 
             {/* Footer */}
-            <div className="mt-6 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-medium text-violet-300/60">
+            <div className="mt-8 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-medium text-violet-300/60">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-violet-400" />
                 <span>Powered by <strong className="text-white font-semibold">Claude AI</strong> with your full reconciliation data</span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <Lock className="w-3.5 h-3.5" />
-                Your data is secure and never shared
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5">
+                  <Lock className="w-3.5 h-3.5" />
+                  Your data is secure and never shared
+                </div>
+                <div className="w-1 h-1 rounded-full bg-violet-400/30" />
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  Real-time sync
+                </div>
               </div>
             </div>
 
