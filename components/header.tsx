@@ -134,7 +134,7 @@ export function Header() {
             asChild
             className="rounded-full px-6 h-10 text-sm font-medium bg-secondary text-white shadow-lg shadow-secondary/20 hover:bg-secondary/90 transition-all"
           >
-            <Link href="/login" className="flex items-center justify-center gap-2">
+            <Link href="https://speedecomsolution.com/client/login" className="flex items-center justify-center gap-2">
               <User className="w-4 h-4" />
               Seller Login
             </Link>

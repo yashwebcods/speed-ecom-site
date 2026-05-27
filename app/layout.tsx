@@ -20,21 +20,8 @@ export const metadata: Metadata = {
   description: 'Maximize profits and eliminate hidden losses in your online business. Expert financial analysis for Meesho, Flipkart, Amazon sellers with ROI tracking, commission audits, and growth insights.',
   keywords: ['e-commerce', 'online business', 'financial analysis', 'Meesho', 'Flipkart', 'Amazon', 'profit optimization'],
   icons: {
-    icon: [
-      {
-        url: '/logo_light.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/logo_dark.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/logo_dark.png',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/logo_dark.png',
+    icon: '/fav.png',
+    apple: '/fav.png',
   },
 }
 

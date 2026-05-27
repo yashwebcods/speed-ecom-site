@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -48,6 +49,39 @@ const contactCardVariants = {
 }
 
 export function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    const formData = new FormData(e.currentTarget)
+
+    // NOTE: Replace this with your actual Web3Forms access key
+    formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY_HERE")
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      })
+      const data = await response.json()
+      if (data.success) {
+        setIsSuccess(true)
+        e.currentTarget.reset()
+        setTimeout(() => setIsSuccess(false), 5000) // Reset success message after 5 seconds
+      } else {
+        alert("Something went wrong. Please try again.")
+      }
+    } catch (error) {
+      console.error(error)
+      alert("Something went wrong. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section id="contact" className="py-20 lg:py-28 bg-slate-50/50">
       <div className="container mx-auto px-4 lg:px-8">
@@ -88,8 +122,8 @@ export function Contact() {
                     <div className="flex-1 min-w-0">
                       <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">{item.label}</p>
                       {item.href ? (
-                        <a 
-                          href={item.href} 
+                        <a
+                          href={item.href}
                           className="text-sm lg:text-base font-bold text-slate-900 hover:text-violet-600 transition-colors block leading-relaxed break-words"
                         >
                           {item.value}
@@ -122,42 +156,57 @@ export function Contact() {
                       Send us a message and our team will get back to you shortly.
                     </p>
                   </div>
-                  
-                  <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+
+                  <form className="space-y-4" onSubmit={handleSubmit}>
                     <div className="space-y-4 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-4">
-                      <input 
-                        type="text" 
-                        placeholder="Your Name" 
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
                         className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder:text-white/50 border border-white/20 focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all"
                         required
                       />
-                      <input 
-                        type="email" 
-                        placeholder="Email Address" 
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
                         className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder:text-white/50 border border-white/20 focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all"
                         required
                       />
                     </div>
-                    <input 
-                      type="tel" 
-                      placeholder="Phone Number" 
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number"
                       className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder:text-white/50 border border-white/20 focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all"
                     />
-                    <textarea 
-                      placeholder="Tell us about your business goals..." 
-                      rows={3} 
+                    <textarea
+                      name="message"
+                      placeholder="Tell us about your business goals..."
+                      rows={3}
                       className="w-full px-4 py-3 rounded-xl bg-white/10 text-white placeholder:text-white/50 border border-white/20 focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all resize-none"
                       required
                     ></textarea>
-                    
+
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full bg-white text-[#022c43] hover:bg-slate-100 rounded-xl h-14 font-bold transition-all hover:scale-[1.02] active:scale-[0.98] text-base group"
+                      disabled={isSubmitting}
+                      className="w-full bg-white text-[#022c43] hover:bg-slate-100 rounded-xl h-14 font-bold transition-all hover:scale-[1.02] active:scale-[0.98] text-base group disabled:opacity-70 disabled:hover:scale-100"
                     >
-                      Send Message
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      {isSubmitting ? "Sending..." : "Send Message"}
+                      {!isSubmitting && <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                     </Button>
+
+                    {isSuccess && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-emerald-400 text-sm font-medium text-center mt-4 bg-emerald-400/10 py-2 rounded-lg"
+                      >
+                        Message sent successfully! We'll be in touch soon.
+                      </motion.div>
+                    )}
                   </form>
                 </div>
 
@@ -172,4 +221,3 @@ export function Contact() {
     </section>
   )
 }
- 

@@ -120,7 +120,7 @@ export function CTA() {
                   className="relative z-10 w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 bg-white rounded-full shadow-2xl border border-slate-100 flex items-center justify-center p-3 sm:p-4"
                 >
                   <img
-                    src="/logo_dark.png"
+                    src="/fav.png"
                     alt="Speed E-Com Logo"
                     className="w-full h-full object-contain"
                   />
