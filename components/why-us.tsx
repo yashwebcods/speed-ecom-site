@@ -26,7 +26,7 @@ const reasons = [
   },
   {
     icon: Headphones,
-    title: "Speed AI - Instant Reconciliation",
+    title: "Speedy AI - Instant Reconciliation",
     description:
       "Lightning-fast AI that reconciles thousands of orders in seconds. Get real-time discrepancy detection, automated settlement matching, and instant profit insights with 99.99% accuracy.",
     angle: 30,
