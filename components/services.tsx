@@ -55,7 +55,7 @@ const services = [
   },
   {
     icon: Zap,
-    title: "Speed AI - Instant Processing",
+    title: "Speedy AI - Instant Processing",
     description:
       "Lightning-fast AI that processes thousands of transactions in milliseconds. Get real-time insights, instant reconciliation, and never wait for reports again.",
     line: "Process thousands of transactions instantly",
