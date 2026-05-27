@@ -7,7 +7,7 @@ const stats = [
   { value: "4,000+", label: "Trusted Sellers" },
   { value: "700+", label: "Verified Reviews" },
   { value: "40+", label: "Team Members" },
-  { value: "5", label: "Supported Platforms" },
+  { value: "60+", label: "Speedy AI Faq" },
 ]
 
 function AnimatedNumber({ value }: { value: string }) {
